@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:padding="@dimen/two_unit"
+    tools:context=".activities.HomeActivity">
+    <EditText
+        android:gravity="start|center_vertical"
+        android:id="@+id/et_search"
+        android:layout_marginTop="@dimen/two_unit"
+        android:hint="@string/search"
+        android:padding="@dimen/unit"
+        android:drawableStart="@drawable/ic_baseline_search_24"
+        android:background="@drawable/search_bg"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d5_2"/>
+    <TextView
+        android:id="@+id/tv_area_title"
+        android:layout_gravity="start"
+        android:layout_marginTop="@dimen/two_unit"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:text="@string/your_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:visibility="gone"
+        android:textColor="@color/colorPrimary"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/tv_empty"
+        android:text="@string/no_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ly_empty"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_marginTop="@dimen/d9"
+         android:layout_gravity="center_horizontal"
+        android:src="@drawable/order_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+        <TextView
+            android:textSize="@dimen/d2"
+            android:textColor="@color/colorPrimary"
+            android:text="@string/no_data_available"
+            android:layout_marginTop="@dimen/d2"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+
+    <com.urcloset.smartangle.CustomViewPager
+        android:layout_marginTop="@dimen/two_unit"
+        android:id="@+id/area_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_wait"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <LinearLayout
+            android:id="@+id/ly_area"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <include layout="@layout/shimmer_user_layout"/>
+        <include layout="@layout/shimmer_user_layout"/>
+        <include layout="@layout/shimmer_user_layout"/>
+        </LinearLayout>
+
+
+
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/shimmer_users"
+        android:visibility="gone">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include layout="@layout/shimmer_user_layout"/>
+            <include layout="@layout/shimmer_user_layout"/>
+            <include layout="@layout/shimmer_user_layout"/>
+        </LinearLayout>
+
+
+
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+
+
+
+
+
+</LinearLayout>
+</androidx.core.widget.NestedScrollView>
+
+

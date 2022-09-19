@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/two_unit"
+    tools:context=".activity.choseCountry.ChoseCountryActivity">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="Country"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <Spinner
+            android:id="@+id/country"
+            android:background="@drawable/spinner_bg_thin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="City"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <Spinner
+            android:background="@drawable/spinner_bg_thin"
+            android:id="@+id/city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <androidx.cardview.widget.CardView
+        android:layout_alignParentBottom="true"
+        android:id="@+id/card_finish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/d0_8"
+        android:elevation="@dimen/d0_8"
+        app:cardBackgroundColor="@color/login_btn"
+        app:cardCornerRadius="@dimen/d1_2"
+        app:cardElevation="@dimen/d0_8">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/d1"
+            android:text="Finish"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

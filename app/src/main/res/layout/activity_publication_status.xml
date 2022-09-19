@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#ffffff"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout
+   android:id="@+id/content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.publishStatusActivity.PublicationStatus">
+    <include layout="@layout/toolbar_backpress1"/>
+
+    <TextView
+        android:layout_marginLeft="@dimen/d1_2"
+        android:layout_marginRight="@dimen/d1_2"
+        android:textSize="22sp"
+        android:padding="@dimen/unit"
+        android:id="@+id/title"
+        android:layout_gravity="start"
+        android:textColor="@android:color/black"
+        android:text="@string/publication_statuses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:weightSum="3"
+        android:padding="4dp"
+        android:background="#f9f9f9"
+        android:gravity="center_horizontal"
+        android:layout_marginLeft="@dimen/d1_2"
+        android:layout_marginRight="@dimen/d1_2"
+        android:layout_marginTop="@dimen/two_unit"
+        android:orientation="horizontal"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="13sp"
+            android:layout_weight="1"
+            android:id="@+id/tv_published"
+            android:textColor="@android:color/white"
+            android:background="@drawable/publish_state_bg"
+            android:text="@string/published"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/d3_8"
+            android:gravity="center"
+
+            />
+        <TextView
+            android:textSize="13sp"
+            android:layout_weight="1"
+            android:id="@+id/tv_review"
+            android:gravity="center"
+            android:background="@drawable/unselected_publish_state_bg"
+            android:text="@string/in_review"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/d3_8"
+            />
+        <TextView
+            android:textSize="13sp"
+            android:layout_weight="1"
+            android:id="@+id/tv_rejected"
+            android:gravity="center"
+            android:background="@drawable/unselected_publish_state_bg"
+            android:text="@string/rejected"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/d3_8"/>
+
+
+    </LinearLayout>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_marginTop="@dimen/two_unit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/rv_shimmer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <LinearLayout
+            android:id="@+id/ly_area"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include layout="@layout/shimmer_publish_state_item"/>
+            <include layout="@layout/shimmer_publish_state_item"/>
+            <include layout="@layout/shimmer_publish_state_item"/>
+        </LinearLayout>
+
+
+
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+</LinearLayout>
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ly_unsigned"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/message"
+        android:gravity="center_horizontal"
+        android:text="Please log into your account to see publication status "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/d2"
+        android:id="@+id/login"
+        android:textColor="@android:color/white"
+        android:background="@drawable/selected_text_button_bg_small"
+        android:text="Log in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</RelativeLayout>

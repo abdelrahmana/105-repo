@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    android:orientation="vertical"
+    android:fillViewport="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <LinearLayout
+        android:id="@+id/linear"
+
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include layout="@layout/toolbar_backpress1"
+            android:visibility="gone"/>
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="8dp"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_avatar"
+                android:src="@drawable/user_image_holder"
+                android:layout_width="70dp"
+                android:layout_height="70dp"/>
+            <LinearLayout
+                android:layout_marginStart="16dp"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:textSize="15dp"
+                    android:text=""
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/location"
+                        android:layout_width="12dp"
+                        android:tint="@color/colorPrimary"
+                        android:layout_height="12dp"/>
+
+                    <TextView
+                        android:textSize="12dp"
+                        android:layout_marginStart="2.5dp"
+                        android:textColor="@color/colorPrimary"
+                        android:id="@+id/tv_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:layout_marginStart="2.5dp"
+                        android:visibility="gone"
+                        android:id="@+id/my_shimmer_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+
+                                android:layout_marginTop="@dimen/d1"
+                                android:background="#E6E6E6"
+                                android:layout_width="100dp"
+                                android:layout_height="@dimen/d2"
+                                />
+
+                        </LinearLayout>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+           <RelativeLayout
+               android:id="@+id/rl_setting"
+               android:layout_width="@dimen/d4_5"
+               android:layout_height="@dimen/d4_5"
+               android:layout_alignParentEnd="true"
+               android:layout_centerVertical="true"
+               android:layout_gravity="center_vertical"
+               android:layout_marginStart="@dimen/d0_8"
+               android:layout_marginEnd="@dimen/d0_8"
+               android:background="@drawable/ic_setting_bg"
+               android:clickable="true"
+               android:focusable="true">
+
+               <ImageView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_centerInParent="true"
+                   android:scaleType="centerCrop"
+                   android:src="@drawable/setting_ic_bn" />
+           </RelativeLayout>
+       </RelativeLayout>
+
+
+        <TextView
+            android:layout_marginTop="4dp"
+            android:paddingRight="8dp"
+            android:paddingLeft="8dp"
+            android:visibility="gone"
+            android:id="@+id/tv_available_product"
+            android:textSize="16dp"
+            android:textColor="@android:color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:padding="8dp"
+            android:layout_marginTop="4dp"
+            android:visibility="gone"
+            android:id="@+id/my_text_info_shimmer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+
+                    android:layout_marginTop="@dimen/d1"
+                    android:background="#E6E6E6"
+                    android:layout_width="100dp"
+                    android:layout_height="@dimen/d2"
+                    />
+
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <LinearLayout
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="13dp"
+            android:visibility="gone"
+            android:id="@+id/mystar"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_star_1"
+                android:src="@drawable/star_empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:id="@+id/iv_star_2"
+                android:src="@drawable/star_empty"
+                android:layout_marginStart="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:id="@+id/iv_star_3"
+                android:src="@drawable/star_empty"
+                android:layout_marginStart="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:id="@+id/iv_star_4"
+                android:src="@drawable/star_empty"
+                android:layout_marginStart="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:id="@+id/iv_star_5"
+                android:src="@drawable/star_empty"
+                android:layout_marginStart="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tv_rate_count"
+                android:layout_marginTop="-5dp"
+                android:layout_marginStart="8dp"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:visibility="gone"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="13dp"
+            android:id="@+id/my_star_shimmer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:src="@drawable/star_empty"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:src="@drawable/star_empty"
+                        android:layout_marginStart="6dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:src="@drawable/star_empty"
+                        android:layout_marginStart="6dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:src="@drawable/star_empty"
+                        android:layout_marginStart="6dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <ImageView
+                        android:src="@drawable/star_empty"
+                        android:layout_marginStart="6dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:layout_marginTop="-5dp"
+                        android:layout_marginStart="8dp"
+                        android:textSize="16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+    <HorizontalScrollView
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:scrollbarThumbHorizontal="@drawable/scroll_style_custome"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <androidx.cardview.widget.CardView
+            android:visibility="gone"
+            android:orientation="vertical"
+            android:layout_marginEnd="13dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="6dp"
+            android:id="@+id/cv_cat"
+            android:layout_marginBottom="6dp"
+            app:cardElevation="@dimen/d0_2"
+            android:layout_width="@dimen/d5_2"
+            android:layout_height="@dimen/d4_4"
+            app:cardCornerRadius="@dimen/d1_2"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
+        <RelativeLayout
+            android:layout_gravity="center"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_width="@dimen/d5_2"
+            android:layout_height="@dimen/d4_4"
+            android:background="@drawable/seller_category_unselected_item_bg"
+            android:padding="@dimen/d0_8"
+            android:id="@+id/rl_all_cat"
+
+            >
+
+            <ImageView
+                android:src="@drawable/ic_all_categories"
+                android:id="@+id/iv_photo"
+                android:layout_width="45dp"
+                android:layout_height="35dp" />
+        </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_categories"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/d1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    </HorizontalScrollView>
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_cat"
+            android:layout_marginTop="@dimen/d2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <include layout="@layout/category_item_shimmer"/>
+                <include layout="@layout/category_item_shimmer"/>
+                <include layout="@layout/category_item_shimmer"/>
+                <include layout="@layout/category_item_shimmer"/>
+                <include layout="@layout/category_item_shimmer"/>
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+        <com.urcloset.smartangle.CustomViewPager
+            android:layout_marginTop="10dp"
+            android:id="@+id/seller_view_pager"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/shimmer_my_main_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="200dp"
+                android:layout_height="320dp"
+                android:layout_marginTop="@dimen/two_unit"
+                android:layout_marginRight="24dp"
+                android:layout_marginLeft="24dp"
+                android:gravity="center_horizontal"
+                android:background="@drawable/product_images_bg_shimmer"
+                >
+
+            </LinearLayout>
+
+
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_product_state"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+            <LinearLayout
+                android:id="@+id/ly_area"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <include layout="@layout/shimmer_user_layout"/>
+                <include layout="@layout/shimmer_user_layout"/>
+                <include layout="@layout/shimmer_user_layout"/>
+            </LinearLayout>
+
+
+
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+    </LinearLayout>
+
+
+
+
+
+</androidx.core.widget.NestedScrollView>
+
+
+
+

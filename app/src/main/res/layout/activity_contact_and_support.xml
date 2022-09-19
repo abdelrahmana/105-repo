@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+
+    android:background="@android:color/white"
+    >
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <include layout="@layout/toolbar_backpress1"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/half_unit"
+            android:padding="@dimen/unit"
+            android:layout_marginBottom="@dimen/four_unit"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_gravity="start"
+                android:textSize="@dimen/header_text"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:text="@string/contact_amp_support"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_gravity="start"
+                android:textSize="@dimen/header_text"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginTop="@dimen/three_unit"
+                android:text="@string/tell_us_how_we_can_help_you"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_gravity="start"
+                android:textColor="@android:color/black"
+                android:text="@string/our_crew_superheroes_are_standing_by_for_services_and_support"
+                android:layout_marginTop="@dimen/unit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:weightSum="2"
+                android:padding="@dimen/half_unit"
+                android:background="@drawable/search_bg"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/half_unit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_gravity="start"
+                    android:id="@+id/lynew"
+                    android:background="@drawable/selected_text_button_bg_for_contact"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:padding="@dimen/d0_8"
+                    android:gravity="center"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tv_new_request"
+                        android:textColor="@android:color/white"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@string/new_request"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_gravity="end"
+                    android:id="@+id/lybox"
+                    android:padding="@dimen/d0_8"
+                    android:background="@drawable/unselected_text_button_bg_for_contact"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tv_box"
+                        android:gravity="center"
+                        android:text="@string/box"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:id="@+id/rv_box"
+                android:layout_height="wrap_content"/>
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/chat_shimmer"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <include layout="@layout/shimmer_box_layout"/>
+                    <include layout="@layout/shimmer_box_layout"/>
+                    <include layout="@layout/shimmer_box_layout"/>
+                    <include layout="@layout/shimmer_box_layout"/>
+
+                </LinearLayout>
+            </com.facebook.shimmer.ShimmerFrameLayout>
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/half_unit"
+                android:id="@+id/ly_empty"
+                android:orientation="vertical"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/order_img"
+                    android:layout_width="225dp"
+                    android:layout_height="175dp"/>
+                <TextView
+                    android:textSize="@dimen/d2"
+                    android:textColor="@color/colorPrimary"
+                    android:text="@string/no_data_available"
+                    android:layout_marginTop="@dimen/d2"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_no_chat_data"
+                android:visibility="gone"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/no_data_available"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+
+                android:id="@+id/body"
+                android:padding="@dimen/d1_2"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_gravity="start"
+                    android:layout_marginTop="@dimen/unit"
+                    android:textColor="@android:color/black"
+                    android:text="@string/please_enter_the_details_of_your_request_n_a_member_of_our_support_staff_will_respond_as_soon_as_possible"
+                    android:padding="@dimen/unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:textSize="@dimen/two_unit"
+                    android:layout_marginTop="@dimen/three_unit"
+                    android:text="@string/your_email_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <EditText
+                    android:id="@+id/et_email"
+                    android:padding="@dimen/two_unit"
+                    android:background="@drawable/search_bg"
+                    android:textSize="@dimen/two_unit"
+                    android:layout_marginTop="@dimen/half_unit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:textSize="@dimen/two_unit"
+                    android:layout_marginTop="@dimen/three_unit"
+                    android:text="@string/subject"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <EditText
+                    android:id="@+id/et_subject"
+                    android:padding="@dimen/two_unit"
+                    android:background="@drawable/search_bg"
+                    android:textSize="@dimen/two_unit"
+                    android:layout_marginTop="@dimen/half_unit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:textSize="@dimen/two_unit"
+                    android:layout_marginTop="@dimen/three_unit"
+                    android:text="@string/description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <EditText
+                    android:id="@+id/et_des"
+                    android:layout_marginBottom="@dimen/four_unit"
+                    android:padding="@dimen/two_unit"
+
+                    android:background="@drawable/search_bg"
+                    android:textSize="@dimen/two_unit"
+                    android:lines="4"
+                    android:maxLines="4"
+                    android:layout_marginTop="@dimen/half_unit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_marginTop="@dimen/three_unit"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardBackgroundColor="@color/colorPrimary"
+                    app:cardCornerRadius="@dimen/d1"
+                    android:theme="@style/card_wave"
+                    android:elevation="0dp"
+                    app:cardElevation="0dp"
+                    >
+
+                    <TextView
+                        android:textSize="@dimen/header_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="@dimen/d1_2"
+                        android:text="@string/submit"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold" />
+
+                </androidx.cardview.widget.CardView>
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:layout_alignParentBottom="true"
+                    android:id="@+id/shimmer"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <androidx.cardview.widget.CardView
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_marginTop="@dimen/three_unit"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="@color/colorPrimary"
+                        app:cardCornerRadius="@dimen/d1_2"
+                        android:theme="@style/card_wave"
+                       >
+
+                        <TextView
+                            android:textSize="@dimen/header_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:padding="@dimen/unit"
+                            android:text="@string/submit"
+                            android:textAlignment="center"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold" />
+
+                    </androidx.cardview.widget.CardView>
+                </com.facebook.shimmer.ShimmerFrameLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <ProgressBar
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/progress_bar_chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</RelativeLayout>

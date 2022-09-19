@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:layout_width="@dimen/d15"
+    android:layout_height="@dimen/d16"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:layout_marginEnd="@dimen/d1"
+    app:cardPreventCornerOverlap="false"
+    app:cardUseCompatPadding="true"
+    app:cardBackgroundColor="@color/lightBg"
+    app:cardCornerRadius="@dimen/d1_6"
+    app:cardElevation="0dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:layout_gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:background="@drawable/product_images_bg"
+        >
+        <ImageView
+
+            android:background="@drawable/img_clip"
+            android:scaleType="fitXY"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d11"
+
+            />
+        <LinearLayout
+            android:layout_marginTop="@dimen/d1"
+
+            android:visibility="visible"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:paddingRight="4dp"
+                android:paddingLeft="4dp"
+                android:background="@drawable/visibility_bg"
+                android:backgroundTint="@android:color/white"
+                android:layout_marginEnd="7dp"
+                android:drawableStart="@drawable/ic_black_visibility"
+                android:textColor="@android:color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:gravity="center"
+
+                android:visibility="gone"
+                android:layout_gravity="center_horizontal"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:background="@drawable/text_product_price"
+                android:textColor="@android:color/white"
+
+                android:layout_width="@dimen/d2_4"
+                android:layout_height="@dimen/d2_4"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

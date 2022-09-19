@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+
+    <RelativeLayout
+
+
+        android:id="@+id/root_hard_card"
+
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d5">
+
+        <ImageView
+            android:layout_width="match_parent"
+
+
+
+           android:scaleType="fitXY"
+            android:padding="@dimen/d0_4"
+            android:adjustViewBounds="true"
+            android:id="@+id/iv_title"
+            android:textColor="@color/white"
+            android:layout_marginStart="@dimen/d0_4"
+            android:layout_marginEnd="@dimen/d0_4"
+
+
+            android:layout_height="match_parent"
+         />
+
+        <ImageView
+            android:layout_marginEnd="@dimen/d0_4"
+            android:layout_width="@dimen/d5"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/d1"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_tow_right_arrow"
+            android:tint="@color/white"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:id="@+id/rv_body"
+            android:layout_height="wrap_content"/>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

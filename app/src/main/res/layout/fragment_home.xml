@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+<ScrollView
+
+    android:id="@+id/root_scroll_home"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1">
+
+    <LinearLayout
+        android:layout_marginStart="@dimen/d0_8"
+        android:layout_marginEnd="@dimen/d0_8"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d16">
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewpager_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <LinearLayout
+                android:id="@+id/layoutDots"
+                android:layout_width="match_parent"
+                android:gravity="center"
+
+                android:layout_height="?attr/actionBarSize"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal" />
+
+
+
+
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+
+            android:layout_marginTop="@dimen/d0_8"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="@string/main_hint"
+                android:textColor="@color/black"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:layout_gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:padding="@dimen/d0_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
+                android:background="@drawable/showall_bg"
+                android:text="@string/show_all"/>
+
+
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/d0_8"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/root_watches"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_margin="@dimen/d0_4"
+                android:background="?attr/selectableItemBackground"
+                android:layout_height="wrap_content">
+
+
+                <View
+                    android:layout_centerInParent="true"
+                    android:background="@color/watch_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/d6"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+
+                    <ImageView
+                        android:scaleType="centerCrop"
+
+                        android:layout_width="@dimen/d8"
+                        android:layout_height="@dimen/d10"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textColor="@color/white"
+                        android:text="@string/watch"/>
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/root_man_fashstion"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_margin="@dimen/d0_4"
+                android:background="?attr/selectableItemBackground"
+                android:layout_height="wrap_content">
+
+
+                <View
+                    android:layout_centerInParent="true"
+                    android:background="@color/man_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/d6"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:scaleType="centerCrop"
+
+                        android:layout_width="@dimen/d8"
+                        android:layout_height="@dimen/d10"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:layout_gravity="center"
+                        android:text="@string/man_fastion"/>
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/root_perfiom"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_margin="@dimen/d0_4"
+                android:background="?attr/selectableItemBackground"
+                android:layout_height="wrap_content">
+
+
+                <View
+                    android:layout_centerInParent="true"
+                    android:background="@color/perfiom_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/d6"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                <ImageView
+                    android:scaleType="centerCrop"
+
+                    android:layout_width="@dimen/d8"
+                    android:layout_height="@dimen/d10"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:text="@string/perfiom"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/root_electronics"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_margin="@dimen/d0_4"
+                android:background="?attr/selectableItemBackground"
+                android:layout_height="wrap_content">
+
+
+                <View
+                    android:layout_centerInParent="true"
+                    android:background="@color/electronic_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/d6"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                <ImageView
+                    android:scaleType="centerCrop"
+
+                    android:padding="@dimen/d1_6"
+                    android:layout_width="@dimen/d8"
+                    android:layout_height="@dimen/d10"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:text="@string/elctronic"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/d0_8"
+            android:background="@color/color3"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:text="@string/new_arrivlas"
+                android:textColor="@color/white"
+                android:layout_marginStart="@dimen/d0_4"
+                android:layout_marginEnd="@dimen/d0_4"
+                android:layout_gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:layout_marginEnd="@dimen/d0_4"
+                android:layout_width="@dimen/d5"
+                android:layout_height="@dimen/d5"
+                android:padding="@dimen/d1"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_tow_right_arrow"
+                android:tint="@color/white"/>
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rv_new_arvial"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/d0_8"
+            android:background="@color/color4"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:text="@string/featured_product"
+                android:textColor="@color/white"
+                android:layout_marginStart="@dimen/d0_4"
+                android:layout_marginEnd="@dimen/d0_4"
+                android:layout_gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:layout_marginEnd="@dimen/d0_4"
+                android:layout_width="@dimen/d5"
+                android:layout_height="@dimen/d5"
+                android:padding="@dimen/d1"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_tow_right_arrow"
+                android:tint="@color/white"/>
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rv_feature"/>
+
+        </RelativeLayout>
+
+
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/d0_8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rv_all_product"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d5"/>
+
+
+
+    </LinearLayout>
+
+</ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@color/black"
+        android:orientation="horizontal"
+
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/iv_insta"
+            android:padding="@dimen/d0_4"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/insta"
+            android:tint="@color/white"
+            android:layout_height="@dimen/d3"/>
+        <ImageView
+            android:id="@+id/iv_twiiter"
+            android:padding="@dimen/d0_4"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:tint="@color/white"
+            android:src="@drawable/twitter"
+            android:layout_height="@dimen/d3"/>
+        <ImageView
+            android:id="@+id/iv_youtube"
+            android:padding="@dimen/d0_4"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+
+            android:src="@drawable/youtube"
+            android:layout_height="@dimen/d3"/>
+
+        <ImageView
+            android:id="@+id/iv_parista"
+            android:padding="@dimen/d0_4"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:tint="@color/white"
+            android:src="@drawable/pinterest"
+            android:layout_height="@dimen/d3"/>
+
+        <ImageView
+            android:id="@+id/iv_linked_in"
+            android:padding="@dimen/d0_4"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:tint="@color/white"
+            android:src="@drawable/linkedin"
+            android:layout_height="@dimen/d3"/>
+
+        <ImageView
+            android:id="@+id/iv_facebook"
+            android:padding="@dimen/d0_4"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:tint="@color/white"
+            android:src="@drawable/facebook"
+            android:layout_height="@dimen/d3"/>
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

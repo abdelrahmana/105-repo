@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.google.android.material.appbar.AppBarLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/transparent"
+    android:fitsSystemWindows="true"
+    app:elevation="0dp">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/activity_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:minHeight="?attr/actionBarSize"
+        android:background="@color/transparent"
+        android:theme="?attr/actionBarTheme"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
+
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/d1_2"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="@dimen/d2_4"
+
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/d1_2"
+                android:layout_height="@dimen/d2_4"
+                android:tint="@color/transparent_black_percent_90"
+
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_arrow_back" />
+
+            <EditText
+                android:layout_marginEnd="@dimen/d1_8"
+                android:hint="@string/search"
+                android:padding="@dimen/two_unit"
+                android:drawableStart="@drawable/ic_baseline_search_24"
+                android:background="@drawable/search_bg"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="60dp"/>
+
+
+
+
+
+
+        </LinearLayout>
+
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+
+</com.google.android.material.appbar.AppBarLayout>
+

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <dimen name="d0_1">1dp</dimen>
+    <dimen name="d0_1_1">2dp</dimen>
+
+    <dimen name="d0_2">6dp</dimen>
+    <dimen name="d0_4">14dp</dimen>
+    <dimen name="d0_6">12dp</dimen>
+
+    <dimen name="d0_8">14dp</dimen>
+    <dimen name="d1">18dp</dimen>
+    <dimen name="d1_2">20dp</dimen>
+    <dimen name="d1_3">21.5dp</dimen>
+    <dimen name="d1_4">22dp</dimen>
+    <dimen name="d1_6">24dp</dimen>
+    <dimen name="dd1_6">-24dp</dimen>
+    <dimen name="d1_8">26dp</dimen>
+    <dimen name="d2">30dp</dimen>
+    <dimen name="d2_2">32dp</dimen>
+
+    <dimen name="d2_4">34dp</dimen>
+    <dimen name="d2_6">36dp</dimen>
+    <dimen name="d2_7">37dp</dimen>
+    <dimen name="d3">40dp</dimen>
+    <dimen name="d3_4">44dp</dimen>
+    <dimen name="d3_8">50dp</dimen>
+
+    <dimen name="d4">60dp</dimen>
+    <dimen name="d4_2">62dp</dimen>
+    <dimen name="d4_4">64dp</dimen>
+    <dimen name="d4_5">65dp</dimen>
+    <dimen name="d5">70dp</dimen>
+    <dimen name="d5_2">74dp</dimen>
+    <dimen name="d6">90dp</dimen>
+    <dimen name="d6_6">96dp</dimen>
+    <dimen name="d7">100dp</dimen>
+    <dimen name="d8">110dp</dimen>
+    <dimen name="d9">120dp</dimen>
+    <dimen name="d92">122dp</dimen>
+    <dimen name="d10">140dp</dimen>
+    <dimen name="d11">150dp</dimen>
+    <dimen name="d12">160dp</dimen>
+    <dimen name="d13">170dp</dimen>
+    <dimen name="d14">180dp</dimen>
+    <dimen name="d15">190dp</dimen>
+    <dimen name="d16">200dp</dimen>
+    <dimen name="d18">220dp</dimen>
+    <dimen name="d20">240dp</dimen>
+    <dimen name="d256">296dp</dimen>
+    <dimen name="d22">260dp</dimen>
+    <dimen name="d24">280dp</dimen>
+    <dimen name="d26">300dp</dimen>
+    <dimen name="d28">320dp</dimen>
+    <dimen name="d30">340dp</dimen>
+    <dimen name="d32">360dp</dimen>
+    <dimen name="d326">366dp</dimen>
+    <dimen name="d347">387dp</dimen>
+    <dimen name="d375">416dp</dimen>
+
+
+    <dimen name="main_product_height">200dp</dimen>
+    <dimen name="product_detail_header">250dp</dimen>
+    <dimen name="header_text">18dp</dimen>
+    <dimen name="unit">8dp</dimen>
+    <dimen name="half_unit">4dp</dimen>
+
+
+    <dimen name="normal_text_size">14dp</dimen>
+    <dimen name="two_unit">16dp</dimen>
+    <dimen name="two_and_half_unit">20dp</dimen>
+
+    <dimen name="three_unit">24dp</dimen>
+    <dimen name="four_unit">32dp</dimen>
+
+    <dimen name="avatar_size">65dp</dimen>
+    <dimen name="notifiy_img_size">50dp</dimen>
+
+</resources>

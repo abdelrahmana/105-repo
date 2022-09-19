@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/105smart.android-master/105smart.android-master/app/src/main/res/layout/activity_chose_country.xml" value="0.17074275362318841" />
+        <entry key="..\:/105smart.android-master/105smart.android-master/app/src/main/res/layout/activity_home.xml" value="0.17074275362318841" />
+        <entry key="..\:/105smart.android-master/105smart.android-master/app/src/main/res/layout/activity_login.xml" value="0.13360507246376813" />
+        <entry key="..\:/105smart.android-master/105smart.android-master/app/src/main/res/layout/activity_product_details.xml" value="0.13360507246376813" />
+        <entry key="..\:/105smart.android-master/105smart.android-master/app/src/main/res/layout/activity_select_city.xml" value="0.17074275362318841" />
+        <entry key="..\:/105smart.android-master/105smart.android-master/app/src/main/res/layout/bottomsheet_layout_post_distance.xml" value="0.25" />
+        <entry key="..\:/105smart.android-master/105smart.android-master/app/src/main/res/layout/fragment_home1.xml" value="0.2" />
+        <entry key="..\:/105smart.android-master/105smart.android-master/app/src/main/res/layout/post_grid_item.xml" value="0.17074275362318841" />
+        <entry key="..\:/105smart.android-master/105smart.android-master/app/src/main/res/layout/post_grid_view_item.xml" value="0.17074275362318841" />
+        <entry key="..\:/105smart.android-master/105smart.android-master/app/src/main/res/layout/post_item.xml" value="0.17074275362318841" />
+        <entry key="..\:/105smart.android-master/105smart.android-master/app/src/main/res/layout/posts_fragment.xml" value="0.17074275362318841" />
+        <entry key="..\:/105smart.android-master/105smart.android-master/app/src/main/res/layout/product_detail_photo_gallery_layout.xml" value="0.17074275362318841" />
+        <entry key="..\:/105smart.android-master/105smart.android-master/app/src/main/res/layout/shimmer_login.xml" value="0.17074275362318841" />
+        <entry key="..\:/105smart.android-master/105smart.android-master/app/src/main/res/layout/shimmer_spinner.xml" value="0.17074275362318841" />
+        <entry key="..\:/105smart.android-master/105smart.android-master/app/src/main/res/layout/spinner_text_item_small.xml" value="0.17074275362318841" />
+        <entry key="..\:/105smart.android-master/105smart.android-master/app/src/main/res/layout/toolbar_backpress1.xml" value="0.17074275362318841" />
+        <entry key="..\:/105smart.android-master/105smart.android-master/app/src/main/res/layout/toolbar_posts.xml" value="0.17074275362318841" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_marginStart="@dimen/d2"
+        android:layout_marginEnd="@dimen/d2_4"
+
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/d4"
+            android:textColor="@color/login_btn"
+            android:text="@string/complete_your_account_data"
+            />
+
+
+
+
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_profile"
+            android:layout_marginTop="@dimen/d4"
+            android:layout_gravity="center"
+            android:layout_width="@dimen/d10"
+            android:layout_height="@dimen/d10"
+            android:src="@drawable/camera_icon"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/d2"
+            android:textColor="@color/text_color"
+            android:text="@string/full_name"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/d0_6"
+            android:layout_marginTop="@dimen/d0_8"
+            android:layout_gravity="bottom"
+            android:background="@drawable/rounded_edit_text"
+            android:orientation="horizontal"
+            >
+
+
+
+            <EditText
+
+                android:id="@+id/edit_full_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/d0_8"
+                android:layout_marginEnd="@dimen/d0_8"
+                android:layout_weight="1"
+                android:padding="@dimen/d0_4"
+                android:background="@color/transparent"
+                android:gravity="start"
+                android:singleLine="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/black" />
+
+
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/d0_4"
+            android:textColor="@color/text_color"
+            android:text="@string/phone_number"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/d0_6"
+            android:layout_marginTop="@dimen/d0_8"
+            android:layout_gravity="bottom"
+            android:background="@drawable/rounded_edit_text"
+            android:orientation="horizontal"
+            >
+
+            <com.hbb20.CountryCodePicker
+                android:id="@+id/country_code"
+                android:layout_gravity="center"
+                android:gravity="center"
+                app:ccp_defaultNameCode="SA"
+                app:ccp_showFlag="false"
+                app:ccp_showPhoneCode="true"
+
+                app:ccp_showFullName="false"
+                app:ccp_showNameCode="false"
+                android:visibility="visible"
+                app:ccp_customMasterCountries="JO,KW,QA,BH,AE,OM,SA"
+                android:layout_marginStart="@dimen/d0_4"
+                android:layout_width="@dimen/d6"
+                app:ccp_textSize="14sp"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/edit_phone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/d0_8"
+                android:layout_marginEnd="@dimen/d0_8"
+                android:layout_weight="1"
+                android:inputType="phone"
+                android:background="@color/transparent"
+                android:gravity="start"
+                android:singleLine="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/test4" />
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/d0_4"
+            android:textColor="@color/text_color"
+            android:text="@string/email"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/d0_6"
+            android:layout_marginTop="@dimen/d0_8"
+            android:layout_gravity="bottom"
+            android:background="@drawable/rounded_edit_text"
+            android:orientation="horizontal"
+            >
+
+
+
+            <EditText
+                android:id="@+id/edit_email"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/d0_8"
+                android:layout_marginEnd="@dimen/d0_8"
+                android:layout_weight="1"
+                android:inputType="textEmailAddress"
+                android:background="@color/transparent"
+                android:gravity="start"
+                android:singleLine="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/test4" />
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/d0_4"
+            android:textColor="@color/text_color"
+            android:text="@string/country_txt"
+            />
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/d0_8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:id="@+id/spinner_country"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner_bg"/>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:visibility="gone"
+            android:id="@+id/shimmer_country"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <include layout="@layout/shimmer_spinner"/>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        </RelativeLayout>
+
+
+
+
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/d0_4"
+            android:textColor="@color/text_color"
+            android:text="@string/city_txt"
+            />
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/d0_8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:id="@+id/spinner_city"
+                android:layout_height="wrap_content"
+                android:background="@drawable/spinner_bg"/>
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:visibility="gone"
+                android:id="@+id/shimmer_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <include layout="@layout/shimmer_spinner"/>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+        </RelativeLayout>
+
+
+
+
+
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_done"
+                android:layout_marginTop="@dimen/d3"
+                app:cardCornerRadius="@dimen/d1_2"
+                android:elevation="@dimen/d0_8"
+                app:cardElevation="@dimen/d0_8"
+                android:focusable="true"
+                android:clickable="true"
+
+                android:theme="@style/card_wave"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardBackgroundColor="@color/login_btn">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:padding="@dimen/d1"
+
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@string/done"/>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:visibility="gone"
+                android:id="@+id/shimmer_done"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <include layout="@layout/shimmer_done"/>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+        </RelativeLayout>
+
+
+
+       <View
+           android:layout_width="match_parent"
+           android:layout_height="@dimen/d2"/>
+
+
+
+
+
+
+
+
+
+
+
+    </LinearLayout>
+
+</ScrollView>

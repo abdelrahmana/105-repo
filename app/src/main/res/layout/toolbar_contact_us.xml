@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.google.android.material.appbar.AppBarLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/login_btn"
+    android:fitsSystemWindows="true"
+    app:elevation="0dp">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/activity_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:background="@color/login_btn"
+        android:theme="?attr/actionBarTheme"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
+
+
+        <RelativeLayout
+
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="@dimen/d2_4"
+                android:layout_alignParentStart="true"
+                android:layout_height="@dimen/d2_4"
+                android:tint="@color/white"
+                android:layout_centerInParent="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_arrow_back" />
+
+            <View
+                android:visibility="gone"
+                android:id="@+id/iv_view"
+                android:layout_width="38dp"
+
+                android:layout_alignParentEnd="true"
+                android:layout_height="@dimen/d2_4"
+                android:background="@color/transparent"
+                />
+
+            <TextView
+
+                android:layout_centerInParent="true"
+                android:id="@+id/tv_title_toolbar"
+                style="@style/tv_title_toolbar"
+                android:gravity="center"
+                android:textStyle="bold"
+
+
+                android:layout_toStartOf="@id/iv_view"
+                android:background="@color/transparent"
+                android:text="@string/contact_us"
+                android:textColor="@color/ana1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <!--   <include
+
+
+
+
+                 android:layout_width="@dimen/d5"
+                   android:layout_height="@dimen/d5"
+                   android:layout_gravity="center"
+
+                   layout="@layout/notification_circle_text"
+                   android:id="@+id/iv_bag"
+                   android:background="?attr/selectableItemBackground"
+             />-->
+
+
+            <ImageView
+
+
+                android:visibility="gone"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/iv_search"
+                android:padding="@dimen/d1"
+                android:layout_width="@dimen/d5"
+                android:layout_height="@dimen/d5"
+                android:src="@drawable/search_icon"
+                android:background="?attr/selectableItemBackground"
+                android:tint="@color/ana1"/>
+
+
+
+
+
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/navigation_drawer_handy"
+                android:padding="@dimen/d1"
+                android:layout_marginStart="@dimen/d0_4"
+                android:layout_width="@dimen/d5"
+                android:layout_height="@dimen/d5"
+                android:src="@color/white"
+                android:tint="@color/ana1"/>
+
+
+        </RelativeLayout>
+
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+
+</com.google.android.material.appbar.AppBarLayout>
+

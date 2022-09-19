@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.google.android.material.appbar.AppBarLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+
+    app:elevation="0dp">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/activity_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:minHeight="?attr/actionBarSize"
+        android:background="@color/transparent"
+        android:theme="?attr/actionBarTheme"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_marginEnd="@dimen/d1_8"
+                android:hint="@string/search"
+                android:padding="@dimen/d1"
+                android:id="@+id/edit_search_book"
+                android:visibility="visible"
+                android:drawableStart="@drawable/ic_baseline_search_24"
+                android:background="@drawable/search_bg"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="@dimen/d5_2"/>
+
+
+
+                <ImageView
+                    android:background="@drawable/search_bg"
+
+                    android:layout_marginEnd="@dimen/d1_6"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/d1_4"
+                    android:id="@+id/iv_search"
+                    android:src="@drawable/ic_search_filter"
+                    android:layout_width="@dimen/d5"
+                    android:layout_height="@dimen/d5_2"/>
+
+
+        </LinearLayout>
+
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+
+</com.google.android.material.appbar.AppBarLayout>
+

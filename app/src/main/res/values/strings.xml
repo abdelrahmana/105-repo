@@ -1,0 +1,543 @@
+<resources>
+    <string name="app_name">Dolaby</string>
+    <string name="facebook_app_id" translatable="false">198249675630124</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb198249675630124</string>
+
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string name="activate_gps_question">هذه الخدمة تتطلب تفعيل GPS هل تريد المتابعة !!</string>
+    <string name="validation_failed">Please check all fields</string>
+
+    <string name="enter_code">Please Enter Code</string>
+
+
+    <array name="dur">
+        <item>Less Than 1 Year</item>
+        <item>1 Year</item>
+        <item>2 Years</item>
+        <item>More Than 2 Years</item>
+
+    </array>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="selled">Selled</string>
+    <string name="blocked">Blocked</string>
+
+
+    <string name="tax">Tax</string>
+    <string name="message_price">Message price</string>
+    <string name="email_phone_num">Email or phone number</string>
+    <string name="login_with">Login with</string>
+    <string name="double_click">اضغط مرة اخرى للخروج</string>
+    <string name="start">ابدأ</string>
+    <string name="start_e">Start</string>
+    <string name="user_name">Username</string>
+
+
+    <string name="no_data">No Data Available</string>
+    <string name="welcome_msg">Welcome to Echo</string>
+    <string name="sign_in">sign in</string>
+
+    <string name="enter_by_facebook">الدخول عن طريق فيس بوك</string>
+    <string name="continue_as_vistor">المتابعة كزائر</string>
+    <string name="create_new_account">حساب جديد</string>
+    <string name="item4">open</string>
+
+
+    <string name="message_wtih_reply">Message with a reply</string>
+    <string name="only_message">Message only</string>
+    <string name="nothing_to_show">No Data</string>
+
+    <string name="chef">CHEF</string>
+
+
+    <string name="message_setting">Message settings</string>
+
+
+    <string name="mark_as_read">Mark as read</string>
+    <string name="e_mail_address">E-mail address</string>
+    <string name="enter_a_valid_email_address">Please Enter a valid Email address</string>
+    <string name="password_is_required">Password is required</string>
+    <string name="password_lenght">Password must be at least 6 characters without spaces</string>
+
+    <string name="chagne_password">Change Password</string>
+    <string name="old_password">Old password</string>
+    <string name="old_password_wrong">Old password is wrong</string>
+    <string name="enter_your_mobile_number">Enter your phone number</string>
+    <string name="send_code_hint1">We\'ll send a verification code to your phone via text message</string>
+    <string name="continue_hint">Continue</string>
+    <string name="privacy_hint1">By creating an account,you agree to our</string>
+    <string name="privacy_policy">terms of use &amp; privacy policy</string>
+
+    <string name="donot_have_account">Don\'t have an account</string>
+    <string name="phone_number">Phone number</string>
+    <string name="enter_code_hint1">Enter code send to your number</string>
+    <string name="enter_code_wrong_code">Wrong code!!!!</string>
+    <string name="enter_code_hint2">we sent it to the number </string>
+    <string name="resend_code">Resend code</string>
+    <string name="sign_up">Sign up</string>
+    <string name="skip">Skip For Now</string>
+
+
+    <string name="continue_as_normal">Continue as a normal user</string>
+    <string name="enter_digit">Enter digit code</string>
+
+    <string name="forgot_password_email_hint">We have sent a verification code to your registered email id</string>
+    <string name="forgot_password_phone_hint">The Code was sent to your mobile number.</string>
+    <string name="please_enter_code">Please enter code</string>
+    <string name="sign_up_hint1">Sign up!</string>
+    <string name="sign_up_hint2">Create an account to get start.</string>
+    <string name="ok">OK</string>
+    <string name="forgot_passowrd">Forgot Your password</string>
+    <string name="or">OR</string>
+    <string name="new_user">new user?</string>
+
+    <string name="view_all">View all</string>
+    <string name="trending">Trending</string>
+    <string name="categories">Categories</string>
+    <string name="change">Change</string>
+    <string name="featured">Featured</string>
+    <string name="new_and_noteworthy">New and Noteworthy</string>
+
+
+    <string name="message_status">Message Status</string>
+    <string name="read">Read</string>
+    <string name="unread">Unread</string>
+    <string name="new_password">New Password</string>
+    <string name="re_enter_password">Re-enter Password</string>
+
+    <string name="new_product">New Product</string>
+    <string name="hot_deals">Hot Deals</string>
+    <string name="view_all_offres">View All Offers</string>
+    <string name="temp">temp</string>
+    <string name="test">TEST</string>
+    <string name="close_drawer">close_drawer</string>
+    <string name="open_drawer">Open navigation drawer</string>
+    <string name="timeout">bad internet connection</string>
+    <string name="logout">Log Out</string>
+    <string name="quantity">Quantity</string>
+    <string name="take_table">Take Table </string>
+    <string name="leave_table">Leave Table</string>
+
+    <string name="name_hint">Name:</string>
+
+
+    <string name="name">Name</string>
+    <string name="subject_name">اسم المادة</string>
+
+
+    <string name="validate_empty_field">Empty field not allowed!</string>
+    <string name="verification_code">Verification code</string>
+    <string name="create_account">Create Account</string>
+    <string name="please_enter_your_registeration_details">Please enter your registeration details</string>
+    <string name="full_name">Full Name</string>
+
+
+    <string name="hint_code_email">We have sent a verification code to your email please enter it</string>
+
+    <string name="hint_code_phone">We have sent a verification code to your phone please enter it</string>
+
+
+    <string name="complete_your_account_data">Your Information</string>
+    <string name="job_titile">Job Titile</string>
+    <string name="edit_job_titile_specialty">Edit Job Titile and Specialty</string>
+    <string name="specialty">Specialty</string>
+    <string name="date_of_virth">Date of Birth</string>
+    <string name="bio">Bio</string>
+    <string name="select_your_message">Select your message</string>
+    <string name="iban">IBAN</string>
+    <string name="done">Done</string>
+    <string name="reply_to_message">Reply to message</string>
+
+    <string name="payment_and_send">Payment and Send</string>
+
+    <string name="message_reply_hint">You can receive a reply to your email or login</string>
+    <string name="type_message_here">Type a message here</string>
+    <string name="send_new_message">send a new message</string>
+    <string name="reply_to_message_hint">Reply to message to get the amount</string>
+    <string name="select_gender">Please Select Gender</string>
+    <string name="validate_email_field">E-mail format not correct!</string>
+    <string name="no_enternet">No Enternet!!!</string>
+    <string name="select_country_hint">Select Country!!!</string>
+    <string name="please_wait">Please Wait!!</string>
+    <string name="faild">Failed</string>
+    <string name="faild_to_login">user name or passowrd not true</string>
+    <string name="forgot_your_password">Forgot Your Password</string>
+    <string name="enter_your_registered">Enter your registered phone number</string>
+    <string name="next">Next</string>
+    <string name="faild_get_data">Faild To Get Data</string>
+    <string name="no_connection">No Connection</string>
+    <string name="resturant_name">Restaurant Name:</string>
+    <string name="add_value">Add Value</string>
+    <string name="submit">Submit</string>
+
+    <string name="hold">Hold</string>
+    <string name="on_progress">On Progress</string>
+
+    <string name="upload_image">upload image</string>
+    <string name="favorite">Favorite</string>
+    <string name="manage_messages">Manage Messages</string>
+    <string name="personal_balance">Personal Balance</string>
+    <string name="settings">Settings</string>
+    <string name="about_us">About us</string>
+    <string name="follow_us_on">Follow us on</string>
+    <string name="contact_us_hint">Here are some ways to contact us</string>
+    <string name="usage_policy">Usage Policy</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="contact_with_us">Contact With Us</string>
+    <string name="invite_freinds">Invite your friends</string>
+    <string name="rate_us_on_store">Rate us on store</string>
+    <string name="email_or_phone">Email or phone number</string>
+
+    <string name="enter_email_for_account">Enter the email  associated with an account</string>
+    <string name="enter_phone_for_account">Enter the phone number associated with an account</string>
+    <string name="edit">Edit</string>
+    <string name="edit_name">Name Editing</string>
+    <string name="edit_image">Photo Editing</string>
+    <string name="edit_phone">Phone Editing</string>
+    <string name="edit_bio">Bio Editing</string>
+    <string name="edit_date_of_bith">Birth Date Editing</string>
+    <string name="edit_email">Email Editing</string>
+    <string name="home">Home</string>
+    <string name="continuetxt">Continue</string>
+    <string name="question">Question</string>
+    <string name="message">Messages</string>
+    <string name="message_me">Messages Me</string>
+    <string name="message_hint">Message</string>
+    <string name="message_type">Message type</string>
+    <string name="message_title">Message title</string>
+    <string name="price_hint">Price</string>
+    <string name="add_new_message">Add New Message</string>
+    <string name="add">Add</string>
+    <string name="account">Account</string>
+    <string name="delete">Delete</string>
+    <string name="hide">Hide</string>
+    <string name="pleas_wait">Please Wait…</string>
+    <string name="faild_to_edit_data">Faild To Edit Order</string>
+
+
+    <string name="manage_messsage">Manage Messages</string>
+    <string name="select_photo">please select image!!!</string>
+
+    <string name="inbox">Inbox</string>
+    <string name="send">Send</string>
+
+
+    <string name="send_form">Sent from</string>
+
+    <string name="new_txt">New</string>
+    <string name="read_txt">Read</string>
+    <string-array name="splash_title">
+        <item>Ready to Travel</item>
+        <item>Pick the Ticket</item>
+        <item>Flight to Destination</item>
+        <item>Enjoy Holiday</item>
+    </string-array>
+
+
+    <string-array name="message_types">
+        <item>Message with a reply</item>
+        <item>Message only</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+    <string name="stop_message">Stop messages</string>
+
+
+    <string-array name="langues">
+        <item>English</item>
+        <item>عربي</item>
+    </string-array>
+
+    <string-array name="splash_desc">
+        <item>Choose your destination, plan Your trip. Pick the best place for Your holiday</item>
+        <item>Select the day, pick Your ticket. We give you the best prices. We guarantee!</item>
+        <item>Safe and Comfort flight is our priority. Professional crew and services.</item>
+        <item>Enjoy your holiday, Dont forget to feel the moment and take a photo!</item>
+    </string-array>
+
+
+    <string name="main_hint">Main Categories</string>
+    <string name="show_all">"Show All"</string>
+
+    <string name="account_login">Account Login</string>
+    <string name="please_fill_out">Please Fill out this field</string>
+    <string name="person">Person</string>
+    <string name="company">Company</string>
+    <string name="login">Login</string>
+    <string name="register_new_account_user">Register new account-user</string>
+    <string name="register_new_account_company">Register new account-company</string>
+    <string name="show_password">Show password</string>
+    <string name="cancel">Cancel</string>
+    <string name="maincategories">Main Categories </string>
+    <string name="see_all">See All</string>
+    <string name="register_new_user">Register New User</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="email">Email Address</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="select_country_of_residence">Select country of residence…</string>
+    <string name="address">Address</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="bithday">Birth Date</string>
+    <string name="location">Location</string>
+    <string name="register_new_account">Register new account</string>
+    <string name="password_donot_match">Password does not match the confirmation</string>
+    <string name="select_nation">Select nationality....</string>
+    <string name="country_txt">Country</string>
+    <string name="city_txt">City</string>
+    <string name="save">Save</string>
+    <string name="reply">Reply</string>
+    <string name="please_select_job_title">Please select Job Title</string>
+    <string name="please_select_Specialities">Please select Specialities</string>
+    <string name="job_title">عنوان وظيفي</string>
+    <string name="specialities">Specialities</string>
+    <string name="rating">Rating:</string>
+    <string name="product_details">PRODUCT DETAILS</string>
+    <string name="prodcut_photo">PRODUCT PHOTO</string>
+    <string name="price">price</string>
+    <string name="description">Description:</string>
+    <string name="in_stock">In stock:</string>
+    <string name="quntity">Quntity</string>
+    <string name="order_now">Order now</string>
+
+    <string name="watch">WATCHES</string>
+    <string name="elctronic">ELECTRONICS</string>
+    <string name="man_fastion">MAN\'S FASHION</string>
+    <string name="perfiom">PERFUMES</string>
+    <string name="thank_you_hint">Thank you, your order has been sent successfully</string>
+
+    <string name="failed_to_login">Login failed</string>
+    <string name="failed_to_location">Login to get location</string>
+
+    <string name="menu_1">Home</string>
+    <string name="menu_2">Abous us</string>
+    <string name="menu_2_1">About Mattajir</string>
+    <string name="menu_2_2">Vision, mission, values and goals</string>
+    <string name="menu_2_3">General Director speech</string>
+    <string name="menu_3">Event</string>
+    <string name="menu_4">New Arrivals</string>
+    <string name="menu_5">Special offers</string>
+    <string name="menu_6">Persons categories</string>
+    <string name="menu_7">Companies categories</string>
+    <string name="menu_8">Media center</string>
+    <string name="menu_8_1">News</string>
+    <string name="menu_8_2">Video Gallery</string>
+    <string name="menu_8_3">Photo Album</string>
+    <string name="menu_9">Blogs and Releases</string>
+    <string name="menu_10">Privacy policy</string>
+    <string name="menu_11">Terms and Conditions</string>
+    <string name="menu_12">Complaints and suggestions</string>
+    <string name="menu_13">Contact us</string>
+    <string name="please_add_quantity">Please Add Quantity!!!</string>
+
+
+    <string name="new_arrivlas">NEW ARRIVALS</string>
+    <string name="featured_product">FEATURED PRODUCTS</string>
+    <string name="search">Search</string>
+    <string name="clear">Clear</string>
+    <string name="select_sub_category">Select sub category…</string>
+    <string name="product_name">Product Name</string>
+    <string name="no_result">No Result</string>
+    <string name="success">Successful operation</string>
+
+
+    <string name="message_not_received">message was not sent successfully</string>
+    <string name="profile">Profile</string>
+
+
+    <string name="pick_way_to_reset_password">Select which contact details should we use to reset your password.</string>
+    <string name="sms_way">Via SMS:</string>
+    <string name="email_way">Via email:</string>
+    <string name="check_phone_hint">this phone is already used</string>
+    <string name="check_email_hint">this email is already used</string>
+
+
+    <string name="money_transfer">Money Transfer</string>
+
+
+    <string name="remain">Remain</string>
+    <string name="settle">Settle</string>
+    <string name="total">Total</string>
+    <string name="money_back">Money back</string>
+    <string name="all_order_have_settled">All orders have already been settled</string>
+
+    <string name="not_found_email">We do not have a similar email</string>
+    <string name="not_found_phone">We do not have a similar phone number</string>
+    <string name="building_materials"> building materials</string>
+    <string name="input_products">input products</string>
+    <string name="heavy_equipments_machinery">heavy equipments and machinery</string>
+    <string name="agricultural_products">agricultural products</string>
+    <string name="infrastructure_materialis">infrastructure materialis</string>
+    <string name="your_informations">your information</string>
+
+
+    <string name="condtion_val" translatable="false">Used, <font style="color='green'">Less Than 1 Year</font></string>
+    <string name="condition">Condition</string>
+    <string name="colors">Colors</string>
+    <string name="sizes">Sizes</string>
+    <string name="box_available">Box Available</string>
+    <string name="negotiable">Negotiable</string>
+    <string name="invoic_avaliable">Invoice Available</string>
+    <string name="notifications">Notifications</string>
+    <string name="account_settings">Account Settings</string>
+    <string name="visitors">Visitors</string>
+    <string name="change_language">Change Language</string>
+    <string name="payment_methods">Payment Methods</string>
+    <string name="about_app">About App</string>
+    <string name="voice_identity">Voice Identity</string>
+    <string name="add_or_edit_voice_identity">Add or edit voice Identity</string>
+    <string name="rate_app">Rate App</string>
+    <string name="social_media">Social Media</string>
+    <string name="sign_out">Sign out</string>
+    <string name="get_your_card">Get Your Card</string>
+    <string name="change_password">Change Password</string>
+    <string name="privacy_and_policies">Privacy and Policies</string>
+    <string name="terms_and_conditions">Terms and Conditions</string>
+    <string name="contact_amp_support"><![CDATA[Contact & Support]]></string>
+
+    <string name="email_address">Email Address</string>
+    <string name="country">Country</string>
+    <string name="city">City</string>
+    <string name="locations">Locations</string>
+
+    <string name="change_app_language">Change App Language</string>
+    <string name="link_now"><u>Link Now</u></string>
+    <string name="facebook">Facebook</string>
+    <string name="whatsapp">Whatsapp</string>
+    <string name="twitter">Twitter</string>
+    <string name="instagram">Instagram</string>
+    <string name="terms">Terms</string>
+    <string name="conditions">Conditions</string>
+    <string name="tell_us_how_we_can_help_you">Tell Us How We Can help you!</string>
+    <string name="our_crew_superheroes_are_standing_by_for_services_and_support">Our Crew Superheroes Are Standing By For Services And Support</string>
+    <string name="please_enter_the_details_of_your_request_n_a_member_of_our_support_staff_will_respond_as_soon_as_possible">Please enter the details of your request.\n A member of our support staff will respond as soon as possible</string>
+
+    <string name="new_request">New Request</string>
+    <string name="box">Box</string>
+    <string name="your_email_address">Your email address</string>
+    <string name="subject">Subject</string>
+
+    <string name="privacy_amp_polices"><![CDATA[Privacy & Polices]]></string>
+    <string name="privacy">Privacy</string>
+    <string name="polices">polices</string>
+
+    <string name="your_area">Your Area</string>
+    <string name="all_users">All Users</string>
+
+    <string name="color">Color</string>
+    <string name="search_history">Search history</string>
+    <string name="allow_dolaby_to_acces_your_location">Allow "Dolaby" to acces your location</string>
+    <string name="category">Category</string>
+    <string name="product_description">Product Description</string>
+    <string name="add_photos">Add Photos</string>
+    <string name="available_colors">Available Colors</string>
+    <string name="duration">Duration</string>
+    <string name="report">Report</string>
+    <string name="you_can_report_this_product">You can report this product</string>
+    <string name="order_message">Do you want to connect with the seller via Whats Up</string>
+    <string name="publication_statuses">Publication Statuses</string>
+    <string name="editcxc">Edit &amp; Republish</string>
+
+
+    <string name="save_contact_hint1">Welcome aboard Dollaby! we\'re so glad you\'ve joined us</string>
+
+    <string name="save_contact_hint2">Save The Card And Share With Your Friends</string>
+    <string name="save_contact_hint3">The Phone Number Has Been Verified Successfully</string>
+
+
+    <string name="product">Product</string>
+    <string name="porvider">Provider</string>
+
+    <string name="filter">Filters</string>
+    <string name="update">Update</string>
+    <string name="your_order_has_been_sent">Your Order Has Been Sent</string>
+    <string name="your_post_request_will_be_reviewed_and_responded_to_as_soon_as_possible_you_can_follow_the_status_of_the_publication_through_the_dedicated_section_in_the_settings">Your Post Request Will Be Reviewed And Responded To As Soon As Possible You Can Follow The Status Of The Publication Through The Dedicated Section In The Settings</string>
+    <string name="publication_statues">Publication statues</string>
+
+    <string name="choose_color">Choose Color</string>
+
+    <string name="rate">Rate</string>
+    <string name="distence">Distance</string>
+    <string name="rate2star">2 &amp; up</string>
+    <string name="rate3star">3 &amp; up</string>
+    <string name="rate4star">4 &amp; up</string>
+
+
+    <string-array name="location_selected">
+
+        <item>Custom Location</item>
+        <item>Current Location</item>
+
+    </string-array>
+
+    <string name="gps_hint">This application requires GPS to work properly, do you want to enable it</string>
+
+
+    <string name="you_have_to_login_first">You Have To Login First</string>
+
+
+    <string name="allow_location_hint1">Location is used for compliance and is stored with record data</string>
+    <string name="allow">Allow</string>
+    <string name="allow_lcaoation">Allow Locations</string>
+    <string name="dont_allow">Don\'t allow</string>
+    <string name="no_data_available">No Data</string>
+    <string name="published">Published</string>
+    <string name="in_review">In Review</string>
+    <string name="rejected">Rejected</string>
+
+    <string name="what_is_voices">What is voice Identity?</string>
+    <string name="continues">Continue</string>
+    <string name="remove">remove</string>
+    <string name="no_voice_identifiy">You dont have voice identity yet</string>
+    <string name="rate_product">Rate Product</string>
+    <string name="you_must_fill_all_the_fileds">You Must fill all the fields</string>
+    <string name="you_must_log_in">You must log in</string>
+    <string name="note_if_the_product_photos_edited_your_product_will_be_under_review_as_new_published_one">Note: if the Product Photos Edited Your Product Will Be Under Review As New Published One</string>
+    <string name="note_if_the_product_price_cannot_be_edited">Note: if The Product Price Cannot Be Edited</string>
+    <string name="new_state">New</string>
+    <string name="not_avaliable">Not available</string>
+    <string name="add_product">Add Product</string>
+
+
+    <string name="card_activity_hint1">The Phone Number Has Been Verified Successfully</string>
+    <string name="hello">Hello</string>
+    <string name="card_activity_hint_2">Save The card And Share With Your Friends</string>
+    <string name="card_activity_hint_3">Welcome aboard Dolaby! We\'re so glad you\'ve joined us</string>
+    <string name="donot_have_phone">You Don\'t Have Phone Number</string>
+
+    <string name="visit_txt">visit</string>
+    <string name="add_to_favourite_msg">Product has been added to favourite successfully</string>
+    <string name="mst_add_notification">Notifications has been activated and you will receive notifications when the seller add product</string>
+    <string name="name_required">Name field is required</string>
+    <string name="price_required">Price is required</string>
+    <string name="you_mst_add_photo">You must add one photo at least</string>
+    <string name="uploa_boice">Upload audio file</string>
+    <string name="posts">Posts</string>
+    <string name="applay">Apply</string>
+    <string name="distance_preference">Distance Preference</string>
+    <string name="distance">Distance</string>
+    <string name="des_required">Description field is required</string>
+    <string name="phone_required">Phone is required</string>
+    <string name="may_like">May Like Too</string>
+    <string name="add_product_message">The cost of publishing the product in the application <b>%s SAR</b>, which is a symbolic value for services only, but the publication is open for free at the present time.</string>
+    <string name="currency">" SAR"</string>
+    <string name="avatar">Avatar</string>
+    <string name="name_display" translatable="false">%s, %s</string>
+    <string name="edit_available_before">Edit available before:</string>
+    <string name="server_client_id" translatable="false">620853133242-njdmnopj0betvrbvpacv476fvua1eo7q.apps.googleusercontent.com</string>
+    <string name="client_secret" translatable="false">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</string>
+    <string name="token_isnull">Cannot to get Your Info</string>
+    <string name="reset">Reset</string>
+
+
+</resources>

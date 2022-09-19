@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_marginStart="@dimen/d1_6"
+        android:layout_marginEnd="@dimen/d1_6"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/toolbar_backpress1"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textStyle="bold"
+
+            android:textColor="@color/transparent_black_percent_90"
+            android:text="@string/forgot_passowrd"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/pick_way_to_reset_password"
+            android:textStyle="normal"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/categroy_name"/>
+
+
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/d1_6"
+            android:id="@+id/root_sms_way"
+            android:background="?attr/selectableItemBackground"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:layout_width="@dimen/d5"
+                android:layout_height="@dimen/d5"
+                android:layout_gravity="center"
+                android:padding="@dimen/d0_4"
+                android:layout_marginEnd="@dimen/d0_8"
+                android:src="@drawable/ic_phone_iphone_black_24dp"
+                android:tint="@color/login_btn"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:text="@string/sms_way"
+                    android:textStyle="normal"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/categroy_name"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:text="XXX XXX XXX"
+                    android:textStyle="bold"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/desinger_name"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+
+            android:layout_height="@dimen/d0_1"
+            android:background="@color/categroy_name"/>
+        <LinearLayout
+            android:id="@+id/root_email_way"
+            android:background="?attr/selectableItemBackground"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:layout_width="@dimen/d5"
+                android:layout_height="@dimen/d5"
+                android:layout_gravity="center"
+                android:padding="@dimen/d0_4"
+                android:layout_marginEnd="@dimen/d0_8"
+                android:src="@drawable/ic_email_black_24dp"
+                android:tint="@color/login_btn"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:text="@string/email_way"
+                    android:textStyle="normal"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/categroy_name"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:text="XXXXXX@XXX.com"
+                    android:textStyle="bold"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/desinger_name"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

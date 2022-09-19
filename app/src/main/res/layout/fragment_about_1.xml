@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+
+    android:id="@+id/swip_about_1"
+
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_about_us_1"
+                    android:adjustViewBounds="true"
+
+                    android:src="@drawable/matajer_logo"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/d12"/>
+
+                <TextView
+                    android:layout_marginEnd="@dimen/d1_6"
+                    android:layout_marginStart="@dimen/d1_6"
+                    android:id="@+id/tv_about_1"
+                    android:layout_marginTop="@dimen/d0_8"
+                    android:text=""
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+            </LinearLayout>
+
+
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+</RelativeLayout>

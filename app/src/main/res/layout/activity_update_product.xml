@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <LinearLayout
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_gravity="start"
+            android:textSize="16sp"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="9dp"
+            android:textStyle="bold"
+            android:textColor="@color/text_header_color"
+            android:text="@string/category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_categories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <include layout="@layout/category_item_shimmer"/>
+                <include layout="@layout/category_item_shimmer"/>
+                <include layout="@layout/category_item_shimmer"/>
+                <include layout="@layout/category_item_shimmer"/>
+                <include layout="@layout/category_item_shimmer"/>
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+        <TextView
+            android:layout_gravity="start"
+            android:textSize="16sp"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="4dp"
+            android:textStyle="bold"
+            android:textColor="@color/text_header_color"
+            android:text="@string/product_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <RelativeLayout
+            android:layout_gravity="start"
+            android:padding="16dp"
+            android:background="@drawable/pn_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:enabled="true"
+                android:id="@+id/tv_name"
+                android:background="@null"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+        <TextView
+            android:layout_gravity="start"
+            android:textSize="16sp"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="4dp"
+            android:textStyle="bold"
+            android:textColor="@color/text_header_color"
+            android:text="@string/product_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <RelativeLayout
+            android:layout_gravity="start"
+            android:padding="16dp"
+            android:layout_marginBottom="9dp"
+            android:background="@drawable/pn_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:enabled="true"
+                android:gravity="start"
+                android:id="@+id/tv_des"
+                android:textSize="14sp"
+                android:background="@null"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+        <TextView
+            android:layout_gravity="start"
+            android:textSize="16sp"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="9dp"
+            android:textStyle="bold"
+            android:textColor="@color/text_header_color"
+            android:text="@string/add_photos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:textSize="12sp"
+            android:text="@string/note_if_the_product_photos_edited_your_product_will_be_under_review_as_new_published_one"
+            android:textColor="#F9306E"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_photos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_gravity="start"
+            android:textSize="16sp"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="9dp"
+            android:textStyle="bold"
+            android:textColor="@color/text_header_color"
+            android:text="@string/available_colors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_colors"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerColors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <include layout="@layout/color_item"/>
+                <include layout="@layout/color_item"/>
+                <include layout="@layout/color_item"/>
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+        <TextView
+            android:textSize="16sp"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="4dp"
+            android:textStyle="bold"
+            android:textColor="@color/text_header_color"
+            android:text="@string/sizes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_weight="3"
+            android:padding="2dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_size"
+                tools:listitem="@layout/condition_item"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmerSize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <include layout="@layout/card_condition_bookmark"/>
+                    <include layout="@layout/card_condition_bookmark"/>
+                    <include layout="@layout/card_condition_bookmark"/>
+                </LinearLayout>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:textSize="16sp"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="4dp"
+            android:textStyle="bold"
+            android:textColor="@color/text_header_color"
+            android:text="@string/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:textSize="12sp"
+            android:text="@string/note_if_the_product_price_cannot_be_edited"
+            android:textColor="#F9306E"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:textDirection="locale"
+            android:layoutDirection="locale"
+            android:layout_gravity="start"
+            android:background="@drawable/pn_bg"
+            android:weightSum="3"
+            android:orientation="horizontal"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="9dp"
+            android:layout_width="@dimen/d13"
+            android:layout_height="@dimen/d5_2">
+
+            <TextView
+                android:layout_marginStart="@dimen/d0_4"
+                android:layout_gravity="start|center_vertical"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:text="$"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:layout_gravity="start|center_vertical"
+                android:id="@+id/et_price"
+                android:inputType="numberDecimal"
+                android:gravity="start|center_vertical"
+                android:hint="150"
+                android:background="@drawable/pn_bg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <TextView
+            android:layout_gravity="start"
+            android:textSize="16sp"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="9dp"
+            android:textStyle="bold"
+            android:textColor="@color/text_header_color"
+            android:text="@string/negotiable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_gravity="start"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="9dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:gravity="center"
+                android:layout_gravity="start"
+                android:text="@string/yes"
+                android:textColor="@android:color/white"
+                android:background="@drawable/opt_yes_background"
+                android:id="@+id/tv_yes_negotiable"
+                android:layout_width="@dimen/d92"
+                android:layout_height="@dimen/d5_2"/>
+            <TextView
+                android:gravity="center"
+                android:layout_gravity="start"
+                android:layout_marginStart="20dp"
+                android:text="@string/no"
+                android:textColor="@android:color/black"
+                android:background="@drawable/opt_ng_background"
+                android:id="@+id/tv_no_negotiable"
+                android:layout_width="@dimen/d92"
+                android:layout_height="@dimen/d5_2"/>
+
+        </LinearLayout>
+        <TextView
+            android:layout_gravity="start"
+            android:textSize="16sp"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="4dp"
+            android:textStyle="bold"
+            android:textColor="@color/text_header_color"
+            android:text="@string/phone_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <RelativeLayout
+            android:padding="@dimen/d0_8"
+            android:background="@drawable/pn_bg"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d5">
+            <LinearLayout
+                android:layout_gravity="start"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <EditText
+                    android:id="@+id/tv_code"
+                    android:layout_gravity="start"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:gravity="start"
+                    android:background="@drawable/pn_bg"
+                    android:textColor="@android:color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+
+
+                <EditText
+                    android:inputType="phone"
+                    android:id="@+id/et_phone"
+                    android:layout_gravity="start"
+                    android:gravity="start"
+                    android:textColorHint="@android:color/black"
+                    android:background="@drawable/pn_bg"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+        <TextView
+            android:textSize="16sp"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="4dp"
+            android:textStyle="bold"
+            android:textColor="@color/text_header_color"
+            android:text="@string/condition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_weight="3"
+            android:padding="2dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_conditions"
+                tools:listitem="@layout/condition_item"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_condition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <include layout="@layout/card_condition_bookmark"/>
+                    <include layout="@layout/card_condition_bookmark"/>
+                    <include layout="@layout/card_condition_bookmark"/>
+                </LinearLayout>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/ly_dur"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_gravity="start"
+            android:textSize="16sp"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="2dp"
+            android:textStyle="bold"
+            android:textColor="@color/text_header_color"
+            android:text="@string/duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_gravity="start"
+            android:layout_margin="9dp"
+            android:background="@drawable/pn_bg"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Spinner
+                android:layout_gravity="start"
+                android:background="@android:color/transparent"
+                android:id="@+id/sp_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown"/>
+            <ImageView
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/spinner_ind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_gravity="start"
+            android:textSize="16sp"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="4dp"
+            android:textStyle="bold"
+            android:textColor="@color/text_header_color"
+            android:text="@string/box_available"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_gravity="start"
+                android:id="@+id/tv_ba_y"
+                android:text="@string/yes"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:background="@drawable/selected_text_button_bg"
+                android:layout_width="@dimen/d92"
+                android:layout_height="@dimen/d5_2"/>
+            <TextView
+                android:layout_gravity="start"
+                android:id="@+id/tv_ba_n"
+                android:text="@string/no"
+                android:layout_marginStart="20dp"
+                android:gravity="center"
+                android:textColor="@android:color/black"
+                android:background="@drawable/unselected_text_button_bg"
+                android:layout_width="@dimen/d92"
+                android:layout_height="@dimen/d5_2"/>
+
+        </LinearLayout>
+        <TextView
+            android:layout_gravity="start"
+            android:textSize="16sp"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="4dp"
+            android:textStyle="bold"
+            android:textColor="@color/text_header_color"
+            android:text="@string/invoic_avaliable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_gravity="start"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_gravity="start"
+                android:text="@string/yes"
+                android:id="@+id/tv_ia_y"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:background="@drawable/selected_text_button_bg"
+                android:layout_width="@dimen/d92"
+                android:layout_height="@dimen/d5_2"
+
+                />
+            <TextView
+                android:layout_gravity="start"
+                android:id="@+id/tv_ia_n"
+                android:text="@string/no"
+                android:gravity="center"
+                android:layout_marginStart="20dp"
+                android:textColor="@android:color/black"
+                android:background="@drawable/unselected_text_button_bg"
+                android:layout_width="@dimen/d92"
+                android:layout_height="@dimen/d5_2"
+                />
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_note"
+            android:textSize="12sp"
+            android:layout_marginTop="@dimen/d4"
+            android:layout_marginBottom="@dimen/d1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <android.widget.Button
+            android:id="@+id/bn_add_update"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/btn_add"
+            android:textColor="@android:color/white"
+            android:text="@string/update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:visibility="gone"
+            android:id="@+id/shimmer_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.widget.Button
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/btn_add"
+                android:textColor="@android:color/white"
+                android:text="@string/update"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+
+    </LinearLayout>
+
+
+</ScrollView>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:layout_marginTop="@dimen/d1_8"
+    app:cardCornerRadius="@dimen/d1_2"
+    android:elevation="@dimen/d0_8"
+    app:cardElevation="@dimen/d0_8"
+    android:focusable="true"
+    android:clickable="true"
+    android:theme="@style/card_wave"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/login_btn"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:padding="@dimen/d0_6"
+
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:text="@string/done"/>
+
+
+</androidx.cardview.widget.CardView>

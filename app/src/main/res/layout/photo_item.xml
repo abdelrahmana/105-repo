@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@drawable/dr_photo"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginEnd="24dp"
+    android:layout_width="94dp"
+    android:layout_height="94dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.cardview.widget.CardView
+        app:cardBackgroundColor="#f7f7f9"
+        android:elevation="0dp"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="@dimen/d1_6"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+<ImageView
+    android:scaleType="fitXY"
+    android:id="@+id/iv_photo"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
+
+            <ImageView
+                android:layout_marginTop="@dimen/d0_4"
+                android:layout_marginLeft="@dimen/d0_8"
+                android:layout_marginRight="@dimen/d0_8"
+                android:tint="@color/login_btn"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_cancel_black"
+                android:id="@+id/iv_cancel"
+                android:layout_width="15dp"
+                android:layout_height="15dp"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

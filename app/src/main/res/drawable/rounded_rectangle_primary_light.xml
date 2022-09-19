@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="?colorControlHighlight">
+    <item>
+        <shape android:shape="rectangle"
+            >
+            <solid android:color="@color/colorPrimaryLight"/>
+            <corners android:radius="@dimen/unit"/>
+
+
+        </shape>
+    </item>
+    <item
+        android:drawable="@drawable/notification"
+        android:top="@dimen/unit"
+        android:bottom="@dimen/unit"
+        android:right="@dimen/unit"
+        android:left="@dimen/unit"
+
+        />
+    <item
+        android:start="@dimen/two_and_half_unit"
+        android:top="@dimen/unit"
+        android:drawable="@drawable/circle_notification"
+        android:width="@dimen/unit"
+        android:height="@dimen/unit"
+
+        />
+
+</ripple>

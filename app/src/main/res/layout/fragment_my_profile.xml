@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/toolbar_profile"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_marginTop="@dimen/d2_6"
+                android:id="@+id/iv_profile"
+                android:layout_width="match_parent"
+                android:src="@drawable/user_3x"
+                android:layout_height="@dimen/d11"/>
+
+
+            <TextView
+                android:id="@+id/tv_uplaod_image"
+                android:background="?attr/selectableItemBackground"
+
+                android:layout_gravity="center"
+                android:text="@string/upload_image"
+                android:alpha="0.7"
+                android:layout_marginTop="@dimen/d1_6"
+                android:textColor="@color/desinger_name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="wrap_content"
+                android:textStyle="normal"
+                android:layout_height="wrap_content"
+                />
+
+
+            <View
+                android:layout_marginTop="@dimen/d1_6"
+                android:layout_width="match_parent"
+                android:alpha="0.5"
+                android:layout_height="@dimen/d0_1_1"
+                android:background="@color/categroy_name"/>
+
+
+
+            <LinearLayout
+
+                android:layout_marginTop="@dimen/d1_6"
+                android:layout_marginStart="@dimen/d1_6"
+                android:layout_marginEnd="@dimen/d1_6"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <TextView
+                    android:background="?attr/selectableItemBackground"
+
+                    android:layout_gravity="center"
+                    android:text="@string/name"
+
+                    android:textColor="@color/desinger_name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textStyle="normal"
+                    android:layout_height="wrap_content"
+                    />
+
+                <TextView
+                    android:background="?attr/selectableItemBackground"
+
+                    android:id="@+id/tv_name"
+                    android:layout_gravity="center"
+                    android:textColor="@color/categroy_name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textStyle="normal"
+                    android:layout_height="wrap_content"
+                    />
+
+
+            </LinearLayout>
+            <View
+                android:layout_marginTop="@dimen/d1_6"
+                android:layout_width="match_parent"
+                android:alpha="0.5"
+                android:layout_height="@dimen/d0_1_1"
+                android:background="@color/categroy_name"/>
+
+            <LinearLayout
+
+                android:layout_marginTop="@dimen/d1_6"
+                android:layout_marginStart="@dimen/d1_6"
+                android:layout_marginEnd="@dimen/d1_6"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <TextView
+                    android:background="?attr/selectableItemBackground"
+
+                    android:layout_gravity="center"
+                    android:text="@string/phone_number"
+
+                    android:textColor="@color/desinger_name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textStyle="normal"
+                    android:layout_height="wrap_content"
+                    />
+
+                <TextView
+                    android:background="?attr/selectableItemBackground"
+
+                    android:id="@+id/tv_phone_number"
+                    android:layout_gravity="center"
+
+
+                    android:textColor="@color/categroy_name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textStyle="normal"
+                    android:layout_height="wrap_content"
+                    />
+
+
+            </LinearLayout>
+            <View
+                android:layout_marginTop="@dimen/d1_6"
+                android:layout_width="match_parent"
+                android:alpha="0.5"
+                android:layout_height="@dimen/d0_1_1"
+                android:background="@color/categroy_name"/>
+
+            <LinearLayout
+
+                android:layout_marginTop="@dimen/d1_6"
+                android:layout_marginStart="@dimen/d1_6"
+                android:layout_marginEnd="@dimen/d1_6"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <TextView
+                    android:background="?attr/selectableItemBackground"
+
+                    android:layout_gravity="center"
+                    android:text="@string/email"
+
+                    android:textColor="@color/desinger_name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textStyle="normal"
+                    android:layout_height="wrap_content"
+                    />
+
+                <TextView
+                    android:background="?attr/selectableItemBackground"
+
+                    android:id="@+id/tv_email"
+                    android:layout_gravity="center"
+
+
+                    android:textColor="@color/categroy_name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textStyle="normal"
+                    android:layout_height="wrap_content"
+                    />
+
+
+            </LinearLayout>
+            <View
+                android:layout_marginTop="@dimen/d1_6"
+                android:layout_width="match_parent"
+                android:alpha="0.5"
+                android:layout_height="@dimen/d0_1_1"
+                android:background="@color/categroy_name"/>
+
+
+            <LinearLayout
+
+                android:layout_marginTop="@dimen/d1_6"
+                android:layout_marginStart="@dimen/d1_6"
+                android:layout_marginEnd="@dimen/d1_6"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <TextView
+                    android:background="?attr/selectableItemBackground"
+
+                    android:layout_gravity="center"
+                    android:text="@string/job_titile"
+
+                    android:textColor="@color/desinger_name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textStyle="normal"
+                    android:layout_height="wrap_content"
+                    />
+
+                <TextView
+                    android:background="?attr/selectableItemBackground"
+
+                    android:id="@+id/tv_job_title"
+                    android:layout_gravity="center"
+
+
+                    android:textColor="@color/categroy_name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textStyle="normal"
+                    android:layout_height="wrap_content"
+                    />
+
+
+            </LinearLayout>
+            <View
+                android:layout_marginTop="@dimen/d1_6"
+                android:layout_width="match_parent"
+                android:alpha="0.5"
+                android:layout_height="@dimen/d0_1_1"
+                android:background="@color/categroy_name"/>
+
+
+            <LinearLayout
+
+                android:layout_marginTop="@dimen/d1_6"
+                android:layout_marginStart="@dimen/d1_6"
+                android:layout_marginEnd="@dimen/d1_6"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <TextView
+                    android:background="?attr/selectableItemBackground"
+
+                    android:layout_gravity="center"
+                    android:text="@string/specialities"
+
+                    android:textColor="@color/desinger_name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textStyle="normal"
+                    android:layout_height="wrap_content"
+                    />
+
+                <TextView
+                    android:background="?attr/selectableItemBackground"
+
+                    android:id="@+id/tv_special"
+                    android:layout_gravity="center"
+
+
+                    android:textColor="@color/categroy_name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textStyle="normal"
+                    android:layout_height="wrap_content"
+                    />
+
+
+            </LinearLayout>
+            <View
+                android:layout_marginTop="@dimen/d1_6"
+                android:layout_width="match_parent"
+                android:alpha="0.5"
+                android:layout_height="@dimen/d0_1_1"
+                android:background="@color/categroy_name"/>
+
+
+            <LinearLayout
+
+                android:layout_marginTop="@dimen/d1_6"
+                android:layout_marginStart="@dimen/d1_6"
+                android:layout_marginEnd="@dimen/d1_6"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <TextView
+                    android:background="?attr/selectableItemBackground"
+
+                    android:layout_gravity="center"
+                    android:text="@string/date_of_virth"
+
+                    android:textColor="@color/desinger_name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textStyle="normal"
+                    android:layout_height="wrap_content"
+                    />
+
+                <TextView
+                    android:background="?attr/selectableItemBackground"
+
+                    android:id="@+id/tv_date_of_bith"
+                    android:layout_gravity="center"
+
+
+                    android:textColor="@color/categroy_name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textStyle="normal"
+                    android:layout_height="wrap_content"
+                    />
+
+
+            </LinearLayout>
+            <View
+                android:layout_marginTop="@dimen/d1_6"
+                android:layout_width="match_parent"
+                android:alpha="0.5"
+                android:layout_height="@dimen/d0_1_1"
+                android:background="@color/categroy_name"/>
+
+            <LinearLayout
+
+                android:layout_marginTop="@dimen/d1_6"
+                android:layout_marginStart="@dimen/d1_6"
+                android:layout_marginEnd="@dimen/d1_6"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <TextView
+                    android:background="?attr/selectableItemBackground"
+
+                    android:layout_gravity="center"
+                    android:text="@string/bio"
+
+                    android:textColor="@color/desinger_name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textStyle="normal"
+                    android:layout_height="wrap_content"
+                    />
+
+                <TextView
+                    android:background="?attr/selectableItemBackground"
+
+                    android:id="@+id/tv_bio"
+                    android:layout_gravity="center"
+
+
+                    android:textColor="@color/categroy_name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textStyle="normal"
+                    android:layout_height="wrap_content"
+                    />
+
+
+            </LinearLayout>
+            <View
+                android:layout_marginTop="@dimen/d1_6"
+                android:layout_width="match_parent"
+                android:alpha="0.5"
+                android:layout_height="@dimen/d0_1_1"
+                android:background="@color/categroy_name"/>
+
+
+            <LinearLayout
+
+                android:layout_marginTop="@dimen/d1_6"
+                android:layout_marginStart="@dimen/d1_6"
+                android:layout_marginEnd="@dimen/d1_6"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <TextView
+                    android:background="?attr/selectableItemBackground"
+
+                    android:layout_gravity="center"
+                    android:text="@string/password"
+
+                    android:textColor="@color/desinger_name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textStyle="normal"
+                    android:layout_height="wrap_content"
+                    />
+
+                <TextView
+                    android:background="?attr/selectableItemBackground"
+
+                    android:id="@+id/tv_chagne"
+                    android:layout_gravity="center"
+
+                    android:text="@string/change"
+                    android:textColor="@color/desinger_name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textStyle="normal"
+                    android:alpha="0.8"
+                    android:layout_height="wrap_content"
+                    />
+
+
+            </LinearLayout>
+            <View
+                android:layout_marginTop="@dimen/d1_6"
+                android:layout_width="match_parent"
+                android:alpha="0.5"
+                android:layout_height="@dimen/d0_1_1"
+                android:background="@color/categroy_name"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d3"/>
+
+        </LinearLayout>
+
+
+
+
+    </ScrollView>
+
+</LinearLayout>

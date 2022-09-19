@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minHeight="150dp"
+    android:layout_height="150dp"
+    android:layout_width="100dp"
+    android:layout_marginRight="13dp"
+    android:layout_marginLeft="13dp"
+    android:layout_marginBottom="17dp"
+    android:background="@drawable/user_item_bg"
+    android:layout_marginEnd="@dimen/two_unit"
+   >
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+        <RelativeLayout
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_user_img"
+                android:layout_width="49dp"
+                android:layout_height="49dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/user_image_holder" />
+
+        </RelativeLayout>
+        <TextView
+          android:textSize="12dp"
+            android:maxLines="1"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center"
+           android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:text=""
+            android:id="@+id/tv_title"
+            android:ellipsize="end"
+            android:textColor="@android:color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/visit"
+            android:layout_width="71dp"
+            android:layout_height="24dp"
+            android:elevation="@dimen/unit"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/colorPrimary"
+            app:cardCornerRadius="7dp"
+            android:theme="@style/card_wave"
+           >
+
+            <LinearLayout
+
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="24dp">
+
+                <ImageView
+                    android:layout_marginRight="4dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/ic_visibility"
+                    android:tint="@android:color/white" />
+
+
+                <TextView
+                    android:id="@+id/tv_visit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/visit_txt"
+                    android:textSize="13dp"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="@android:color/white"
+
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+    <ImageView
+        android:paddingTop="10dp"
+        android:paddingEnd="7dp"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/location_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>

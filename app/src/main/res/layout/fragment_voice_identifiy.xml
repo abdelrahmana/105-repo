@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:padding="@dimen/unit">
+    <ImageView
+        android:src="@drawable/ic_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/roboto"
+        android:textSize="22dp"
+        android:textColor="@android:color/black"
+        android:text="Voice Identity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_marginTop="20dp"
+        android:textSize="17dp"
+        android:textColor="@color/colorPrimary"
+        android:text="What Is Voice Identity ?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+
+        android:fontFamily="@font/roboto"
+        android:layout_marginTop="10dp"
+        android:textSize="14dp"
+        android:textColor="#444444"
+        android:text="Lorem Ipsum Dolor Sit Amet, Consetetur\n Sadipscing Elitr, Sed Diam Nonumy Eirmod\n Temppor Invidunt Ut Labore Et Dloare Magna\n Aliquyam Erat, Set Diam Voluptuna. At Vero EOs Et Accusam Et Ju"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:padding="@dimen/unit"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/voice_recorder_bg"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:padding="@dimen/half_unit"
+            android:id="@+id/ic_play_music"
+            android:src="@drawable/ic_voice_recorder"
+            android:background="@drawable/dr_color"
+            android:layout_width="32dp"
+            android:layout_height="32dp"/>
+        <SeekBar
+            android:layout_marginRight="12dp"
+            android:id="@+id/seek_bar"
+            android:layout_gravity="center_vertical"
+            android:thumb="@drawable/thumb_seekbar"
+            android:progressBackgroundTint="@color/colorPrimary"
+            android:backgroundTint="@color/colorPrimary"
+            android:background="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="25dp"
+        android:weightSum="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/d0_8"
+            app:cardBackgroundColor="@color/lightBg"
+
+            app:cardCornerRadius="@dimen/d1_2"
+            app:cardElevation="@dimen/d0_8">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="@dimen/d1"
+                android:text="@string/edit"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/black"
+                />
+
+        </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_sign_up"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/d0_8"
+            android:layout_marginLeft="16dp"
+            app:cardBackgroundColor="@color/lightBg"
+            app:cardCornerRadius="@dimen/d1_2"
+            app:cardElevation="@dimen/d0_8">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="@dimen/d1"
+                android:text="Remove"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#ff2121"
+                />
+
+        </androidx.cardview.widget.CardView>
+
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:background="@color/white"
+        android:layout_marginStart="@dimen/d1_6"
+        android:layout_marginEnd="@dimen/d1_6"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:src="@color/black"
+            android:id="@+id/iv_product_details"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d20"/>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/root_view_pager_info"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d16">
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewpager_image1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <LinearLayout
+                android:id="@+id/layoutDots1"
+                android:layout_width="match_parent"
+                android:gravity="center"
+
+                android:layout_height="?attr/actionBarSize"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal" />
+
+
+
+
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/d4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="@color/black"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="@string/rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/d0_4"
+                android:layout_marginEnd="@dimen/d0_4"
+                style="@style/Widget.AppCompat.RatingBar.Small"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/d2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="@color/black"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="@string/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tv_price_detaisl"
+                android:textColor="@color/black"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+
+                android:layout_marginStart="@dimen/d0_4"
+                android:layout_marginEnd="@dimen/d0_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/d2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="@color/black"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="@string/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tv_description"
+                android:textColor="@color/black"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+
+                android:layout_marginStart="@dimen/d0_4"
+                android:layout_marginEnd="@dimen/d0_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/d2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="@color/black"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="@string/in_stock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tv_instock"
+                android:textColor="@color/black"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+
+                android:layout_marginStart="@dimen/d0_4"
+                android:layout_marginEnd="@dimen/d0_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/d2"
+            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/d1"
+            android:layout_marginEnd="@dimen/d1"
+            android:id="@+id/root_first_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="@dimen/d3"
+                android:layout_height="@dimen/d4"
+                android:src="@drawable/count"
+                android:tint="@color/black"
+                android:layout_gravity="center"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_first_name_add_patient"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/d1"
+                app:hintEnabled="true"
+                android:hint="@string/quntity"
+                android:layout_marginEnd="@dimen/d1"
+                android:layout_marginTop="@dimen/d0_4"
+
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+
+
+
+                >
+
+                <EditText
+                    android:id="@+id/edit_quantity_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/d0_4"
+                    android:gravity="start"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+                    android:inputType="number"
+                    android:paddingTop="@dimen/d0_4"
+                    style="@style/SignupEdit"
+                    android:theme="@style/SignupEdit" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+
+
+        <Button
+            android:id="@+id/btn_order_now"
+            android:layout_marginTop="@dimen/d3"
+            android:layout_width="match_parent"
+            android:layout_marginStart="@dimen/d4"
+            android:layout_marginEnd="@dimen/d3_4"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/color1"
+            android:textColor="@color/white"
+            android:inputType="text"
+            android:text="@string/order_now"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d1"/>
+
+    </LinearLayout>
+
+</ScrollView>

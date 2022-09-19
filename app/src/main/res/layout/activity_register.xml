@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/black"
+        android:layout_marginTop="@dimen/d1_6"
+        android:text="@string/register_new_user"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+
+
+    <RelativeLayout
+        android:layout_marginTop="@dimen/d5"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="match_parent">
+
+
+
+        <ScrollView
+            android:layout_marginStart="@dimen/d1_6"
+            android:layout_marginEnd="@dimen/d1_6"
+            android:layout_marginTop="@dimen/d3_4"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/d7"/>
+
+
+
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginStart="@dimen/d1"
+                    android:layout_marginEnd="@dimen/d1"
+                    android:id="@+id/root_first_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="@dimen/d3"
+                        android:layout_height="@dimen/d4"
+                        android:src="@drawable/person_icon"
+                        android:tint="@color/black"
+                        android:layout_gravity="center"/>
+                    <com.google.android.material.textfield.TextInputLayout
+
+                        android:id="@+id/layout_first_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/d1"
+                        app:hintEnabled="true"
+
+                        android:hint="@string/first_name"
+                        android:layout_marginEnd="@dimen/d1"
+                        android:layout_marginTop="@dimen/d0_4"
+
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+
+
+
+                        >
+
+                        <EditText
+                            android:id="@+id/edit_first_name_register"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/d0_4"
+                            android:gravity="start"
+                            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+
+                            android:inputType="textEmailAddress"
+                            android:paddingTop="@dimen/d0_4"
+                            style="@style/SignupEdit"
+                            android:theme="@style/SignupEdit" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginStart="@dimen/d1"
+                    android:layout_marginEnd="@dimen/d1"
+                    android:id="@+id/root_last_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="@dimen/d3"
+                        android:layout_height="@dimen/d4"
+                        android:src="@drawable/person_icon"
+                        android:tint="@color/black"
+                        android:layout_gravity="center"/>
+                    <com.google.android.material.textfield.TextInputLayout
+
+                        android:id="@+id/layout_last_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/d1"
+                        app:hintEnabled="true"
+
+                        android:hint="@string/last_name"
+                        android:layout_marginEnd="@dimen/d1"
+                        android:layout_marginTop="@dimen/d0_4"
+
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+
+
+
+                        >
+
+                        <EditText
+                            android:id="@+id/edit_last_name_register"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/d0_4"
+                            android:gravity="start"
+                            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+
+                            android:inputType="text"
+                            android:paddingTop="@dimen/d0_4"
+                            style="@style/SignupEdit"
+                            android:theme="@style/SignupEdit" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <!--Email-->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginStart="@dimen/d1"
+                    android:layout_marginEnd="@dimen/d1"
+                    android:id="@+id/root_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="@dimen/d3"
+                        android:layout_height="@dimen/d4"
+                        android:src="@drawable/message"
+                        android:tint="@color/black"
+                        android:layout_gravity="center"/>
+                    <com.google.android.material.textfield.TextInputLayout
+
+                        android:id="@+id/layout_first_name_add_patient"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/d1"
+                        app:hintEnabled="true"
+
+                        android:hint="@string/email"
+                        android:layout_marginEnd="@dimen/d1"
+                        android:layout_marginTop="@dimen/d0_4"
+
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+
+
+
+                        >
+
+                        <EditText
+                            android:id="@+id/edit_email_register"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/d0_4"
+                            android:gravity="start"
+                            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+
+                            android:inputType="textEmailAddress"
+                            android:paddingTop="@dimen/d0_4"
+                            style="@style/SignupEdit"
+                            android:theme="@style/SignupEdit" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <!--Mobile-->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginStart="@dimen/d1"
+                    android:layout_marginEnd="@dimen/d1"
+                    android:id="@+id/root_mobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="@dimen/d3"
+                        android:layout_height="@dimen/d4"
+                        android:src="@drawable/old_mobile_icon"
+                        android:tint="@color/black"
+                        android:layout_gravity="center"/>
+                    <com.google.android.material.textfield.TextInputLayout
+
+                        android:id="@+id/layout_mobile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/d1"
+                        app:hintEnabled="true"
+
+                        android:hint="@string/mobile_number"
+                        android:layout_marginEnd="@dimen/d1"
+                        android:layout_marginTop="@dimen/d0_4"
+
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+
+
+
+                        >
+
+                        <EditText
+                            android:id="@+id/edit_mobile"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/d0_4"
+                            android:gravity="start"
+                            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+                            android:inputType="number"
+                            android:paddingTop="@dimen/d0_4"
+                            style="@style/SignupEdit"
+                            android:theme="@style/SignupEdit" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginStart="@dimen/d1"
+                    android:layout_marginEnd="@dimen/d1"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="@dimen/d3"
+                        android:layout_height="@dimen/d4"
+                        android:src="@drawable/lock"
+                        android:tint="@color/black"
+                        android:layout_gravity="center"/>
+                    <com.google.android.material.textfield.TextInputLayout
+
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/d1"
+                        app:hintEnabled="true"
+
+                        android:hint="@string/password"
+                        android:layout_marginEnd="@dimen/d1"
+                        android:layout_marginTop="@dimen/d0_8"
+                        app:passwordToggleEnabled="false"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+
+
+
+                        >
+
+                        <EditText
+                            android:id="@+id/edit_password_register"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/d0_4"
+                            android:gravity="start"
+                            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+
+                            android:inputType="textPassword"
+                            android:paddingTop="@dimen/d0_4"
+                            style="@style/SignupEdit"
+                            android:theme="@style/SignupEdit" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <!--re password-->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginStart="@dimen/d1"
+                    android:layout_marginEnd="@dimen/d1"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="@dimen/d3"
+                        android:layout_height="@dimen/d4"
+                        android:src="@drawable/lock"
+                        android:tint="@color/black"
+                        android:layout_gravity="center"/>
+                    <com.google.android.material.textfield.TextInputLayout
+
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/d1"
+                        app:hintEnabled="true"
+
+                        android:hint="@string/confirm_password"
+                        android:layout_marginEnd="@dimen/d1"
+                        android:layout_marginTop="@dimen/d0_8"
+                        app:passwordToggleEnabled="false"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+
+
+
+                        >
+
+                        <EditText
+                            android:id="@+id/edit_re_password_register"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/d0_4"
+                            android:gravity="start"
+                            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+
+                            android:inputType="textPassword"
+                            android:paddingTop="@dimen/d0_4"
+                            style="@style/SignupEdit"
+                            android:theme="@style/SignupEdit" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/select_country_of_residence"
+                    android:textColor="@color/white"
+                    android:padding="@dimen/d0_4"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:background="@drawable/showall_bg"/>
+
+                <Spinner
+                    android:background="@drawable/spinner_bg"
+                    android:id="@+id/spinner_country"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <!--address-->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginStart="@dimen/d1"
+                    android:layout_marginEnd="@dimen/d1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="@dimen/d3"
+                        android:layout_height="@dimen/d4"
+                        android:src="@drawable/home_icon"
+                        android:tint="@color/black"
+                        android:layout_gravity="center"/>
+                    <com.google.android.material.textfield.TextInputLayout
+
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/d1"
+                        app:hintEnabled="true"
+
+                        android:hint="@string/address"
+                        android:layout_marginEnd="@dimen/d1"
+                        android:layout_marginTop="@dimen/d0_8"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+
+
+
+                        >
+
+                        <EditText
+                            android:id="@+id/edit_address_register"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/d0_4"
+                            android:gravity="start"
+                            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+
+                            android:inputType="text"
+                            android:paddingTop="@dimen/d0_4"
+                            style="@style/SignupEdit"
+                            android:theme="@style/SignupEdit" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+                <RadioGroup
+                    android:id="@+id/radio_group_gender"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                    <RadioButton
+                        android:id="@+id/radio_male"
+                        android:text="@string/male"
+                        android:checked="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <RadioButton
+                        android:id="@+id/radio_female"
+                        android:text="@string/female"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </RadioGroup>
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/select_nation"
+                    android:textColor="@color/white"
+                    android:padding="@dimen/d0_4"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:background="@drawable/showall_bg"/>
+                <Spinner
+                    android:background="@drawable/spinner_bg"
+                    android:id="@+id/spinner_nationality"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+
+
+
+                <!--Date-->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginStart="@dimen/d1"
+                    android:layout_marginEnd="@dimen/d1"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="@dimen/d3"
+                        android:layout_height="@dimen/d4"
+                        android:src="@drawable/calendar"
+                        android:tint="@color/black"
+                        android:layout_gravity="center"/>
+                    <com.google.android.material.textfield.TextInputLayout
+
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/d1"
+                        app:hintEnabled="true"
+
+                        android:hint="@string/bithday"
+                        android:layout_marginEnd="@dimen/d1"
+                        android:layout_marginTop="@dimen/d0_8"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+
+
+
+                        >
+
+                        <EditText
+                            android:id="@+id/edit_date_register"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/d0_4"
+                            android:gravity="start"
+                            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+
+                            android:inputType="text"
+                            android:paddingTop="@dimen/d0_4"
+                            style="@style/SignupEdit"
+                            android:theme="@style/SignupEdit" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <!--location-->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginStart="@dimen/d1"
+                    android:layout_marginEnd="@dimen/d1"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="@dimen/d3"
+                        android:layout_height="@dimen/d4"
+                        android:src="@drawable/location"
+                        android:tint="@color/black"
+                        android:layout_gravity="center"/>
+                    <com.google.android.material.textfield.TextInputLayout
+
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/d1"
+                        app:hintEnabled="true"
+
+                        android:hint="@string/location"
+                        android:layout_marginEnd="@dimen/d1"
+                        android:layout_marginTop="@dimen/d0_8"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+
+
+
+                        >
+
+                        <EditText
+                            android:id="@+id/edit_location_register"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/d0_4"
+                            android:gravity="start"
+                            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+
+                            android:inputType="text"
+                            android:paddingTop="@dimen/d0_4"
+                            style="@style/SignupEdit"
+                            android:theme="@style/SignupEdit" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_register"
+                    android:layout_marginTop="@dimen/d3"
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/d4"
+                    android:layout_marginEnd="@dimen/d3_4"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/color1"
+                    android:textColor="@color/white"
+                    android:inputType="text"
+                    android:text="@string/register_new_account"/>
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:visibility="gone"
+                    android:layout_marginTop="@dimen/d3"
+                    android:layout_marginStart="@dimen/d4"
+                    android:layout_marginEnd="@dimen/d3_4"
+                    android:id="@+id/shimmer_register"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <include layout="@layout/shimmer_wait"/>
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+                <ProgressBar
+                    android:layout_gravity="center"
+                    android:id="@+id/prgs_login"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+
+
+
+                <Button
+                    android:id="@+id/btn_cancel_register"
+                    android:layout_marginTop="@dimen/d3"
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/d4"
+                    android:layout_marginEnd="@dimen/d3_4"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/color2"
+                    android:inputType="text"
+                    android:textColor="@color/white"
+                    android:text="@string/cancel"/>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/d1"/>
+
+
+
+
+
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+        <ImageView
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/shape_circle_black"
+            android:src="@drawable/tow_person_icon"
+            android:padding="@dimen/d1_6"
+            android:tint="@color/white"
+            android:layout_width="@dimen/d8"
+            android:layout_height="@dimen/d8"/>
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+</LinearLayout>
+
+

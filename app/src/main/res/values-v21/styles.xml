@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TransparentEditTextStyle">
+        <item name="android:colorControlHighlight">@color/colorPrimary</item>
+        <!-- <item name="android:typeface">serif</item>-->
+        <!--  <item name="android:fontFamily">@font/pangram_regualr</item>-->
+        <item name="android:fontFamily">@font/arbfonts_22015_notokufiarabic_regular</item>
+
+    </style>
+
+    <style name="card_wave" parent="AlertDialog.AppCompat.Light">
+        <item name="android:colorControlHighlight">#0D765C</item>
+    </style>
+
+</resources>

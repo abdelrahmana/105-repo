@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:id="@+id/selled" android:title="@string/selled" android:icon="@drawable/ic_unselected_menu_option"/>
+    <item android:id="@+id/blocked" android:title="@string/blocked" android:icon="@drawable/ic_unselected_menu_option"/>
+
+</menu>

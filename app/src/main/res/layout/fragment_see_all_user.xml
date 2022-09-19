@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:padding="@dimen/unit"
+    >
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_marginStart="@dimen/d1"
+            android:layout_marginTop="@dimen/d1"
+            android:id="@+id/iv_back"
+            android:layout_width="@dimen/d2"
+
+            android:layout_height="@dimen/d2"
+
+
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/back_icon" />
+        <TextView
+            android:id="@+id/tv_area_users"
+
+            android:layout_gravity="start"
+            android:layout_marginTop="@dimen/two_unit"
+            android:textSize="22dp"
+            android:layout_marginStart="@dimen/d4"
+            android:textStyle="bold"
+
+
+            android:textColor="@android:color/black"
+            android:text="@string/all_users"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:id="@+id/swip_seeall_user"
+        android:layout_height="match_parent">
+
+
+
+
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+
+
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="@dimen/d1_2"
+                    android:layout_width="match_parent"
+                    android:id="@+id/rv_seeall_user"
+                    android:visibility="visible"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    android:orientation="vertical"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/user_item"
+                    android:layout_height="match_parent"/>
+
+
+
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:layout_marginTop="@dimen/d1_2"
+                    android:id="@+id/shimmer_wait_seeall_user"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+
+
+
+                        <include layout="@layout/users_gride_items" />
+
+
+
+
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/root_empty_page"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+
+                    android:layout_centerInParent="true">
+
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/order_img"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/no_data"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+
+                        android:layout_marginTop="@dimen/d0_8"
+                        android:textStyle="bold"
+                        android:textColor="@color/login_btn"
+                        android:layout_gravity="center"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+
+
+
+
+
+            </RelativeLayout>
+
+            <ProgressBar
+                android:visibility="gone"
+                android:id="@+id/prgs_seeall_user"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+
+
+</LinearLayout>

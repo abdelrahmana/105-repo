@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+
+    >
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include layout="@layout/toolbar_backpress1"/>
+
+        <TextView
+            android:layout_gravity="start"
+            android:textSize="20sp"
+            android:paddingRight="@dimen/d1_6"
+            android:paddingLeft="@dimen/d1_6"
+            android:textColor="@android:color/black"
+            android:text="@string/privacy_amp_polices"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+       
+        <TextView
+            android:layout_gravity="start"
+            android:paddingRight="@dimen/d1_6"
+            android:paddingLeft="@dimen/d1_6"
+            android:layout_marginTop="@dimen/d1_8"
+            android:id="@+id/tv_privacy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:paddingRight="@dimen/two_unit"
+            android:paddingLeft="@dimen/two_unit"
+            android:id="@+id/tv_terms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+    </LinearLayout>
+
+</ScrollView>
+    <ProgressBar
+
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:id="@+id/progress_privacy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>

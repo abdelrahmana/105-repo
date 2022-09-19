@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.google.android.material.appbar.AppBarLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black"
+    android:fitsSystemWindows="true"
+    app:elevation="0dp">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/activity_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:background="@color/transparent"
+        android:theme="?attr/actionBarTheme"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
+
+
+        <LinearLayout
+            android:padding="@dimen/d0_2"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+
+            <TextView
+                android:id="@+id/tv_title_toolbar"
+                style="@style/tv_title_toolbar"
+                android:gravity="start|center"
+                android:layout_gravity="start"
+                android:background="@color/transparent"
+                android:text="name"
+                android:textColor="@color/ana1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+            <!--   <include
+
+
+
+
+                 android:layout_width="@dimen/d5"
+                   android:layout_height="@dimen/d5"
+                   android:layout_gravity="center"
+
+                   layout="@layout/notification_circle_text"
+                   android:id="@+id/iv_bag"
+                   android:background="?attr/selectableItemBackground"
+             />-->
+
+
+
+            <TextView
+                android:id="@+id/tv_langugers"
+                android:padding="@dimen/d1"
+                android:text="AR"
+                android:visibility="gone"
+                android:gravity="center"
+                android:background="?attr/selectableItemBackground"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+            />
+
+
+            <ru.nikartm.support.ImageBadgeView
+                android:id="@+id/iv_shpping_cart"
+                android:padding="@dimen/d1"
+                app:ibv_badgeTextSize="12sp"
+                app:ibv_badgeTextColor="@color/white"
+                android:layout_gravity="center"
+                app:ibv_badgeColor="@color/color1"
+                app:ibv_badgeLimitValue="false"
+                android:layout_width="@dimen/d4"
+                android:layout_height="@dimen/d4"
+                android:src="@drawable/shoppin_icon"
+                android:tint="@color/white"/>
+            <ImageView
+                android:id="@+id/iv_logout"
+                android:padding="@dimen/d1"
+                android:background="?attr/selectableItemBackground"
+                android:layout_gravity="center"
+                android:layout_width="@dimen/d4"
+                android:layout_height="@dimen/d4"
+                android:src="@drawable/logout_icon"
+                android:tint="@color/white"/>
+            <ImageView
+                android:id="@+id/iv_search"
+                android:padding="@dimen/d1"
+                android:background="?attr/selectableItemBackground"
+                android:layout_gravity="center"
+                android:layout_width="@dimen/d4"
+                android:layout_height="@dimen/d4"
+                android:src="@drawable/search_icon"
+                android:tint="@color/white"/>
+
+
+
+
+
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/navigation_drawer_handy"
+                android:padding="@dimen/d1"
+                android:layout_marginStart="@dimen/d0_4"
+                android:layout_width="@dimen/d5"
+                android:layout_height="@dimen/d5"
+                android:src="@color/white"
+                android:tint="@color/ana1"/>
+
+
+        </LinearLayout>
+
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+
+</com.google.android.material.appbar.AppBarLayout>
+

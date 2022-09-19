@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:bottomLeftRadius="@dimen/d0_8"
+        android:bottomRightRadius="@dimen/d0_8"
+        android:topLeftRadius="0dp"
+        android:topRightRadius="@dimen/d0_8"/>
+
+    <solid android:color="@color/bg_message_text"/>
+
+
+</shape>

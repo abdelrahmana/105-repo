@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+
+
+        android:title="@string/filter"
+
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/product"
+                android:icon="@drawable/selected_icon"
+                android:title="@string/product"
+                app:showAsAction="always" />
+            <item
+                android:id="@+id/provider"
+                android:icon="@drawable/un_selected_icon"
+                    android:title="@string/porvider"
+                app:showAsAction="always" />
+        </menu>
+    </item>
+</menu>

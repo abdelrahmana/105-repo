@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:textColor="@color/desinger_name"
+        android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_marginStart="@dimen/d1_6"
+        android:layout_marginEnd="@dimen/d1_6"
+        android:layout_marginTop="@dimen/d0_8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/message"/>
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/tabs_white"
+        app:tabGravity="fill"
+
+        app:tabTextColor="@color/light_gray"
+        app:tabSelectedTextColor="@color/login_btn"
+        app:tabIndicatorColor="@color/gray_color"
+        app:tabIndicatorHeight="@dimen/d0_4"
+
+        app:tabMode="fixed"
+        />
+
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:id="@+id/pager_product_details">
+    </androidx.viewpager.widget.ViewPager>
+</LinearLayout>

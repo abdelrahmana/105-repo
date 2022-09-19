@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_marginEnd="12dp"
+    android:layout_marginStart="9dp"
+    android:layout_marginTop="6dp"
+    android:layout_marginBottom="6dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <RelativeLayout
+        android:background="@drawable/category_selected_item_bg"
+        android:padding="6dp"
+        android:id="@+id/rv_cat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:clickable="true"
+            android:focusable="true"
+            android:id="@+id/iv_photo"
+            android:layout_width="45dp"
+            android:layout_height="35dp"/>
+    </RelativeLayout>
+    <ImageView
+        android:layout_marginTop="@dimen/half_unit"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone"
+        android:id="@+id/iv_new_products"
+        android:src="@drawable/red_circle"
+        android:layout_width="12dp"
+        android:layout_height="12dp"/>
+</LinearLayout>

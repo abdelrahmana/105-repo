@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--    <color name="colorPrimary">@color/login_btn</color>
+    <color name="colorPrimaryDark">@color/login_btn</color>
+    <color name="colorAccent">@color/login_btn</color>-->
+
+    <color name="colorPrimary">#D3485D</color>
+    <color name="colorPrimaryDark">@color/login_btn</color>
+    <color name="colorAccent">#F2d130</color>
+    <color name="colorPrimaryLight">#Fec9dd</color>
+
+
+    <color name="bg_color">#C5C5C5</color>
+
+    <color name="farma1">#292D78</color>
+
+    <color name="farma2">#E4E4E4</color>
+    <color name="farma4">#606060</color>
+    <color name="farma5">#D4D4D4</color>
+    <color name="farma6">#A5A5A5</color>
+    <color name="farma7">#989898</color>
+    <color name="farma8">#292D78</color>
+    <color name="farma9">#707070</color>
+    <color name="farma10">#404040</color>
+
+    <color name="background_camera">#EDC167</color>
+
+
+    <color name="background_edit_text">#F9F9F9</color>
+
+    <color name="bg_message_text">#F1F1F2</color>
+    <color name="spinner_item_gray_selected">#9E9E9E</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="hint_color">#99FFFFFF</color>
+
+    <color name="text_color_urcolset">#6E6E6E</color>
+
+    <color name="drawer_background_color">#BBFFFFFF</color>
+    <color name="control_color_highlight">#99FFFFFF</color>
+    <color name="drawer_activity_blurring_white">#FFFFFF</color>
+
+    <color name="gray_color">#3e4344</color>
+    <color name="car_item_overlay">#993e4344</color>
+    <color name="hint_text_color">#808080</color>
+    <color name="sign_divider_bg">#99FFFFFF</color>
+
+    <color name="transaction_gold">#b48811</color>
+
+    <color name="divider_color">#BBFFFFFF</color>
+
+    <color name="main_green">#02A651</color>
+    <color name="main_orange">#ffa500</color>
+    <color name="light_orange">#78ffa500</color>
+    <color name="main_green_pressed">#017D35</color>
+    <color name="main_orange_pressed">#C37800</color>
+    <color name="colorHighlight">#76cf79</color>
+
+    <color name="light_gray">#AAAAAA</color>
+    <color name="medium_light_gray">#AAAAAA</color>
+    <color name="medium_gray">#666666</color>
+    <color name="error">#D00000</color>
+    <color name="dark_gray">#333333</color>
+    <color name="main_green_light">#7802A651</color>
+    <color name="tabs_gray">#E1E1E1</color>
+    <color name="tabs_very_gray">#f1f2f2f2</color>
+    <color name="very_gray">#f2f2f2</color>
+
+
+    <color name="very_light_gray">#EEEEEE</color>
+    <color name="tabs_white">#FFFFFF</color>
+    <color name="transparent_gray">#80FFFFFF</color>
+    <color name="transparent_light_gray">#33FFFFFF</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="light_background">#DFF0D8</color>
+    <color name="yellow_green">#9ACD32</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="main_green_brother">#DD02A651</color>
+
+
+    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="windowBackground">#FFFFFF</color>
+    <color name="navigationBarColor">#000000</color>
+
+    <color name="main_red">#ffff4b4b</color>
+    <color name="light_hint">#99FFFFFF</color>
+
+    <color name="main_light_blue">#03A9F4</color>
+    <color name="main_teal">#009688</color>
+    <color name="store_background">#6dc066</color>
+
+    <color name="forget_color">#9C9CA5</color>
+    <color name="material1">#1abc9c</color>
+    <color name="material2">#2ecc71</color>
+    <color name="material3">#3498db</color>
+    <color name="material4">#9b59b6</color>
+    <color name="material5">#34495e</color>
+    <color name="material6">#16a085</color>
+    <color name="material7">#27ae60</color>
+    <color name="material8">#2980b9</color>
+    <color name="material9">#8e44ad</color>
+    <color name="material10">#2c3e50</color>
+    <color name="material11">#f1c40f</color>
+    <color name="material12">#e67e22</color>
+    <color name="material13">#e74c3c</color>
+    <color name="material14">#7f8c8d</color>
+    <color name="material15">#95a5a6</color>
+    <color name="material16">#f39c12</color>
+    <color name="material17">#d35400</color>
+    <color name="material18">#c0392b</color>
+
+
+    <color name="skip_color">#F0CC83</color>
+
+    <color name="login_btn">#D3485D</color>
+    <color name="text_color">#DA6375</color>
+    <color name="light_purple">#e3f2fd</color>
+
+    <color name="categroy_name">#A2A2A5</color>
+    <color name="desinger_name">#121212</color>
+    <color name="very_light_orange">#3fffa500</color>
+    <color name="transparent_white">#33FFFFFF</color>
+    <color name="very_light_green">#CC02A651</color>
+    <color name="transparent_green">#6402a651</color>
+    <color name="transparent_orang">#63ff9800</color>
+
+    <color name="background_title_message">#F6F6F6</color>
+    <color name="facebook_blue">#3b5998</color>
+    <color name="facebook_dark">#3b5972</color>
+    <color name="google_red">#EA4335</color>
+    <color name="google_dark">#BB4335</color>
+
+    <color name="bg_screen1">#ff9800</color>
+    <color name="bg_screen2">#ffc107</color>
+    <color name="bg_screen3">#cddc39</color>
+    <color name="bg_screen4">#8bc34a</color>
+    <color name="bg_screen5">#4caf50</color>
+
+
+
+
+    <!-- dots inactive colors -->
+    <color name="dot_dark_screen1">#a46200</color>
+    <color name="dot_dark_screen2">#c19100</color>
+    <color name="dot_dark_screen3">#94a300</color>
+    <color name="dot_dark_screen4">#4f9300</color>
+    <color name="dot_dark_screen5">#008605</color>
+    <!-- dots active colors -->
+    <color name="dot_light_screen1">#ffbf61</color>
+    <color name="dot_light_screen2">#ffe28a</color>
+    <color name="dot_light_screen3">#e4f169</color>
+    <color name="dot_light_screen4">#c8ff89</color>
+    <color name="dot_light_screen5">#86ff8b</color>
+
+    <color name="bg_edit_text">#A51fff44</color>
+
+    <color name="bg_edit_textV2">#000000</color>
+
+    <color name="control_background">#cc4285f4</color>
+
+    <color name="overlay_dark_30">#4D000000</color>
+    <color name="grey_10">#e6e6e6</color>
+    <color name="unselected_state">#989898</color>
+
+
+
+
+
+    <color name="transparent_white_5">#0Dffffff</color>
+    <color name="transparent_white_10">#1Affffff</color>
+    <color name="transparent_white_20">#33ffffff</color>
+    <color name="transparent_white_30">#4Dffffff</color>
+    <color name="transparent_white_40">#66ffffff</color>
+    <color name="transparent_white_50">#80ffffff</color>
+    <color name="transparent_white_60">#99ffffff</color>
+    <color name="transparent_white_65">#A6ffffff</color>
+    <color name="transparent_white_70">#B3ffffff</color>
+    <color name="transparent_white_75">#BFffffff</color>
+    <color name="transparent_white_80">#CCffffff</color>
+    <color name="transparent_white_90">#E6ffffff</color>
+    <color name="bg_glass">#88ffffff</color>
+    <color name="bg_blur">#33FFFFFF</color>
+    <color name="ana_my_card">#D5B5B9</color>
+    <color name="ana_circle_card">#684469</color>
+    <color name="ana_navigator_header">#e7cccd</color>
+    <color name="ana_navigator_icon">#572b5e</color>
+
+
+
+    <color name="ana1">#E9CDD0</color>
+    <color name="ana2">#572c5f</color>
+    <color name="ana3">#734c75</color>
+    <color name="ana4">#D5B5B9</color>
+    <color name="ana5">#DBBDC1</color>
+    <!--card click-->
+    <color name="ana6">#D5B4B9</color>
+
+    <color name="test1">#53B0A1</color>
+    <color name="test2">#DCDCDC</color>
+    <color name="test3">#F8F8FA</color>
+    <!--icon color-->
+    <color name="test4">#A7A7A7</color>
+
+
+    <color name="arrow_down_spinner">#676767</color>
+
+    <color name="background_search">#EFF0F2</color>
+    <color name="blue_90">#E00667FE</color>
+    <color name="blue_80">#CC0067FE</color>
+    <color name="blue_70">#B30067FE</color>
+    <color name="blue_60">#990067FE</color>
+    <color name="blue_50">#800067FE</color>
+    <color name="blue_40">#660067FE</color>
+    <color name="blue_30">#4D0067FE</color>
+    <color name="blue_20">#330067FE</color>
+    <color name="blue_10">#1A0067FE</color>
+
+    <color name="transparent_black_percent_05">#0D000000</color>
+    <color name="transparent_black_percent_10">#1A000000</color>
+    <color name="transparent_black_percent_15">#26000000</color>
+    <color name="transparent_black_percent_20">#33000000</color>
+    <color name="transparent_black_percent_25">#40000000</color>
+    <color name="transparent_black_percent_30">#4D000000</color>
+    <color name="transparent_black_percent_35">#59000000</color>
+    <color name="transparent_black_percent_40">#66000000</color>
+    <color name="transparent_black_percent_45">#73000000</color>
+    <color name="transparent_black_percent_50">#80000000</color>
+    <color name="transparent_black_percent_55">#8C000000</color>
+    <color name="transparent_black_percent_60">#99000000</color>
+    <color name="transparent_black_percent_65">#A6000000</color>
+    <color name="transparent_black_percent_70">#B3000000</color>
+    <color name="transparent_black_percent_75">#BF000000</color>
+    <color name="transparent_black_percent_80">#CC000000</color>
+    <color name="transparent_black_percent_85">#D9000000</color>
+    <color name="transparent_black_percent_90">#E6000000</color>
+    <color name="transparent_black_percent_95">#F2000000</color>
+
+    <color name="color1">#46A800</color>
+    <color name="color2">#FB1540</color>
+    <color name="color3">#FF2200</color>
+    <color name="color4">#D39E00</color>
+    <color name="color5">#009D4A</color>
+
+    <color name="round_line_color">#F2F2F2</color>
+
+    <color name="watch_color">#222E3D</color>
+    <color name="man_color">#009B4C</color>
+    <color name="perfiom_color">#F44235</color>
+    <color name="electronic_color">#00A9F4</color>
+
+    <color name="blue_app">#9694E9</color>
+
+        <color name="primary_bg_color">#F9F9F9</color>
+
+
+    <color name="lightBg">#F7F7F9</color>
+    <color name="lightGreyBg">#F9F9F9</color>
+    <color name="textHeaderColor">#DA6375</color>
+    <color name="un_read_notification_color">#FEC9DB</color>
+    <color name="text_header_color">#989898</color>
+    <color name="shimmer_grey">#f3f3f3</color>
+    <color name="light_green">#E3FBEE</color>
+</resources>

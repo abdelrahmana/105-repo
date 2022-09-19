@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/d30"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginStart="@dimen/d1"
+
+    android:layout_marginTop="@dimen/d2"
+    android:layout_marginEnd="@dimen/d1"
+    android:background="@color/white"
+
+    app:cardCornerRadius="@dimen/d1"
+    app:cardElevation="@dimen/d1"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/d1"
+        android:layout_marginEnd="@dimen/d1"
+        android:layout_marginTop="@dimen/d1"
+        android:orientation="vertical">
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/login_btn"
+                android:layout_centerVertical="true"
+                android:text="@string/choose_color"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <ImageView
+                android:layout_alignParentEnd="true"
+                android:layout_width="@dimen/d3_4"
+                android:layout_height="@dimen/d3_4"
+                android:id="@+id/iv_clear_color"
+                android:padding="@dimen/d1"
+                android:layout_centerVertical="true"
+                android:background="?attr/selectableItemBackground"
+                android:src="@drawable/clear_icon_v2"/>
+        </RelativeLayout>
+
+
+
+        <RelativeLayout
+
+            android:layout_marginTop="@dimen/d1_4"
+            android:layout_width="match_parent"
+
+            android:layout_weight="1"
+            android:layout_height="0dp">
+
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                tools:itemCount="3"
+                app:spanCount="3"
+                android:visibility="visible"
+                android:id="@+id/rv_choose_colors"
+
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                tools:listitem="@layout/color_item"/>
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_choose_colors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <include layout="@layout/color_item"/>
+                    <include layout="@layout/color_item"/>
+                    <include layout="@layout/color_item"/>
+                </LinearLayout>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+        </RelativeLayout>
+
+
+
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/d1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_ok"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d0_8"
+                android:elevation="@dimen/d0_8"
+
+                app:cardBackgroundColor="@color/login_btn"
+                app:cardCornerRadius="@dimen/d1_2"
+                app:cardElevation="@dimen/d0_8">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/d1"
+                    android:text="@string/ok"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+            </androidx.cardview.widget.CardView>
+
+
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d1"/>
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

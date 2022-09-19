@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:background="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <LinearLayout
+        android:layout_marginStart="@dimen/d0_8"
+        android:layout_marginEnd="@dimen/d0_8"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <include layout="@layout/toolbar_backpress1"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textStyle="bold"
+            android:textColor="@color/transparent_black_percent_90"
+            android:text="@string/enter_your_mobile_number"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+
+
+            android:text="@string/send_code_hint1"
+            />
+
+        <LinearLayout
+
+
+
+
+
+            android:layout_marginTop="@dimen/d1_6"
+            android:background="@drawable/rounded_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="horizontal">
+
+            <com.hbb20.CountryCodePicker
+                android:id="@+id/country_code"
+                android:layout_gravity="center"
+                android:gravity="center"
+                app:ccp_defaultNameCode="SA"
+                app:ccp_showFlag="true"
+                app:ccp_customMasterCountries="JO,KW,QA,BH,AE,OM,SA"
+                android:visibility="visible"
+                android:layout_marginStart="@dimen/d0_4"
+                android:layout_width="@dimen/d5"
+                android:layout_height="@dimen/d5" />
+
+            <EditText
+                android:padding="@dimen/d1_4"
+                android:id="@+id/edit_phone"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:background="@color/transparent"
+                android:layout_height="wrap_content"
+                android:hint="@string/phone_number"
+                android:inputType="phone"/>
+
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_contintue"
+
+                android:layout_marginTop="@dimen/d3_4"
+                app:cardCornerRadius="@dimen/d1_2"
+                android:elevation="@dimen/d0_8"
+                app:cardElevation="@dimen/d0_8"
+
+
+                android:background="?attr/selectableItemBackground"
+                android:theme="@style/card_wave"
+                android:focusable="true"
+                android:clickable="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardBackgroundColor="@color/login_btn">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:padding="@dimen/d0_6"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@string/continue_hint"/>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:visibility="gone"
+                android:id="@+id/shimmer_wait"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <include layout="@layout/shimmer_please_wait"/>
+            </com.facebook.shimmer.ShimmerFrameLayout>
+        </RelativeLayout>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_resend"
+
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/d3_4"
+            app:cardCornerRadius="@dimen/d1_2"
+            android:elevation="@dimen/d0_8"
+            app:cardElevation="@dimen/d0_8"
+
+
+            android:background="?attr/selectableItemBackground"
+            android:theme="@style/card_wave"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardBackgroundColor="@color/login_btn">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:padding="@dimen/d0_6"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="@string/resend_code"/>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+
+        <TextView
+            android:layout_marginTop="@dimen/d3_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textStyle="normal"
+            android:textColor="@color/transparent_black_percent_90"
+            android:text="@string/privacy_hint1"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textStyle="normal"
+            android:textColor="@color/skip_color"
+            android:text="@string/privacy_policy"
+            />
+
+
+
+    </LinearLayout>
+
+</ScrollView>

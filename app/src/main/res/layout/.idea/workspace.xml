@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="353a32e0-9fe1-4527-a053-905c0811dcf1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../java/com/echo/app/activity/activitySetting/ActivitySetting.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/com/echo/app/activity/addNewMessage/AddNewMessage.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/com/echo/app/activity/forgotPassword/EnterCodeForgotPassowrdPhoneActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/com/echo/app/activity/forgotPassword/EnterEmailActivityForgotPassword.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/com/echo/app/activity/forgotPassword/EnterPhoneActivityForgotPassword.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/com/echo/app/activity/forgotPassword/ForgotPassowrdActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/com/echo/app/activity/forgotPassword/SelectWayActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/com/echo/app/activity/messageMeActivity/IMessageMeActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/com/echo/app/activity/messageMeActivity/MessageMeActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/com/echo/app/activity/messageMeOnlyMessageActivity/MessageMeOnlyMessageActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/com/echo/app/activity/messageMeWithReplayActivity/MessageMeWithReplyActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/com/echo/app/activity/updateMessage/UpdateMessage.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/com/echo/app/adapter/project21/FavorityListFragmentAdapter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/com/echo/app/adapter/project21/LangSpinnerAdapter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/com/echo/app/adapter/project21/MessageMeActivityAdapter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/com/echo/app/adapter/project21/MessageTypeSpinnerAdapter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/com/echo/app/adapter/project21/NewAndOtherListAdapter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/com/echo/app/fragment/project21/categoryFragment/CategoriesListFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/com/echo/app/fragment/project21/favorityFragment/FavorityFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/com/echo/app/fragment/project21/favorityFragment/IFavorityFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/com/echo/app/fragment/project21/newAndOther/NewAndOtherListFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/com/echo/app/model/project21/AllCategoryModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../drawable-hdpi/share_icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../drawable-mdpi/share_icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../drawable-xhdpi/share_icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../drawable-xxhdpi/share_icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../drawable-xxxhdpi/share_icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../drawable/about_logo_echo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../drawable/bg_message_me.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../drawable/exit_to_app.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../drawable/ic_add_black_24dp.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../drawable/ic_email_black_24dp.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../drawable/ic_flag_black_24dp.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../drawable/ic_language_black_24dp.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../drawable/ic_phone_iphone_black_24dp.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../drawable/ic_smart_phone_3x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../drawable/ic_star_border_black_24dp.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../drawable/message_setting.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/activity_add_new_message.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/activity_enter_code_email_forgot_password.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/activity_enter_code_phone_forgot_password.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/activity_enter_email_forgotpassword.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/activity_enter_phone_forgotpassword.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/activity_forgot_passwrod.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/activity_message_me.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/activity_send_message_only.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/activity_setting.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/activty_select_way.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/card_categories_v2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/card_message_me.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fragment_category21_list.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fragment_favority_list.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/toolbar_category.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/toolbar_favority.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/toolbar_send_messages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/activity/SplashActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/activity/SplashActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/activity/complete_data/CompleteDataAcitivty.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/activity/complete_data/CompleteDataAcitivty.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/activity/enterCodeActivity/EnterCodeActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/activity/enterCodeActivity/EnterCodeActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/activity/enterPhoneNumber/EnterPhoneNumberAcivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/activity/enterPhoneNumber/EnterPhoneNumberAcivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/activity/homeActivity/HomeActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/activity/homeActivity/HomeActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/activity/loginActivity/LoginAcitivty.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/activity/loginActivity/LoginAcitivty.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/activity/manageMessagesActivity/IManageMessagesActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/activity/manageMessagesActivity/IManageMessagesActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/activity/manageMessagesActivity/ManageMessagesActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/activity/manageMessagesActivity/ManageMessagesActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/activity/policyActivity/UsagePoliciyActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/activity/policyActivity/UsagePoliciyActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/adapter/project21/CategoryFragmentAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/adapter/project21/CategoryFragmentAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/adapter/project21/CategoryHomeAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/adapter/project21/CategoryHomeAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/adapter/project21/FeaturedHomeAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/adapter/project21/FeaturedHomeAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/adapter/project21/FeaturesFragmentAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/adapter/project21/FeaturesFragmentAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/adapter/project21/NewAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/adapter/project21/NewAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/adapter/project21/TrendingAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/adapter/project21/TrendingAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/adapter/project21/TrendingFragmentAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/adapter/project21/TrendingFragmentAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/api/ApiClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/api/ApiClient.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/api/AppApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/api/AppApi.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/fragment/project21/FeaturesFragment/FeatuersFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/fragment/project21/FeaturesFragment/FeatuersFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/fragment/project21/FeaturesFragment/IFeaturesFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/fragment/project21/FeaturesFragment/IFeaturesFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/fragment/project21/accountFragment/AccountFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/fragment/project21/accountFragment/AccountFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/fragment/project21/homeFragment/HomeFramgment21.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/fragment/project21/homeFragment/HomeFramgment21.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/fragment/project21/homeFragment/IHomeFramgnt21.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/fragment/project21/homeFragment/IHomeFramgnt21.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/fragment/project21/myProfile/MyProfileFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/fragment/project21/myProfile/MyProfileFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/fragment/project21/newAndOther/INewAndOthersFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/fragment/project21/newAndOther/INewAndOthersFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/fragment/project21/trendinFragment/ITrendingFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/fragment/project21/trendinFragment/ITrendingFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/fragment/project21/trendinFragment/TrendingFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/fragment/project21/trendinFragment/TrendingFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/model/project21/AllMessagesModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/model/project21/AllMessagesModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/model/project21/LoginResposeModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/model/project21/LoginResposeModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/model/project21/SignUpModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/model/project21/SignUpModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/tools/BasicTools.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/tools/BasicTools.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/echo/app/tools/TemplateActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/echo/app/tools/TemplateActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drawable-hdpi/exit_to_app_3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drawable-hdpi/ic_smart_phone_3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drawable-hdpi/message_setting_3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drawable-mdpi/exit_to_app_3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drawable-mdpi/ic_smart_phone_3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drawable-mdpi/message_setting_3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drawable-xhdpi/exit_to_app_3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drawable-xhdpi/ic_smart_phone_3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drawable-xhdpi/message_setting_3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drawable-xxhdpi/exit_to_app_3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drawable-xxhdpi/ic_smart_phone_3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drawable-xxhdpi/message_setting_3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drawable-xxxhdpi/exit_to_app_3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drawable-xxxhdpi/ic_smart_phone_3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drawable-xxxhdpi/message_setting_3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/activity_complete_your_data.xml" beforeDir="false" afterPath="$PROJECT_DIR$/activity_complete_your_data.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/activity_enter_code.xml" beforeDir="false" afterPath="$PROJECT_DIR$/activity_enter_code.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/activity_enter_phone_number.xml" beforeDir="false" afterPath="$PROJECT_DIR$/activity_enter_phone_number.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/activity_manage_messages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/activity_manage_messages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/activity_sign_up.xml" beforeDir="false" afterPath="$PROJECT_DIR$/activity_sign_up.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/activity_splash.xml" beforeDir="false" afterPath="$PROJECT_DIR$/activity_splash.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bottomsheet_message_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/bottomsheet_message_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/card_categories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/card_categories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/card_manage_messages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/card_manage_messages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/card_trending.xml" beforeDir="false" afterPath="$PROJECT_DIR$/card_trending.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/card_trending_v2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/card_trending_v2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/card_view_message.xml" beforeDir="false" afterPath="$PROJECT_DIR$/card_view_message.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fragment_account.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fragment_account.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../values-ar/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../values-ar/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../values/strings.xml" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../.." />
+  </component>
+  <component name="ProjectId" id="1kc4FTUoXjv2nEbszRsyaQ8pDfQ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="353a32e0-9fe1-4527-a053-905c0811dcf1" name="Default Changelist" comment="" />
+      <created>1605986441065</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1605986441065</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

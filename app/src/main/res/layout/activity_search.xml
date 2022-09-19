@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <include layout="@layout/toolbar_backpress1"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView android:layout_width="match_parent"
+           android:layout_above="@id/search"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            >
+            <LinearLayout
+                android:layout_marginEnd="@dimen/d1_2"
+                android:layout_marginStart="@dimen/d1_6"
+                android:orientation="vertical"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/unit"
+               >
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:layout_marginEnd="@dimen/d1_8"
+                        android:hint="@string/search"
+
+                        android:id="@+id/edit_search_product"
+                        android:padding="@dimen/d1_2"
+                        android:drawableStart="@drawable/ic_baseline_search_24"
+                        android:background="@drawable/search_bg"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+
+
+                    <ImageView
+                        android:background="@drawable/search_bg"
+
+                        android:layout_marginEnd="@dimen/d1_6"
+                        android:layout_gravity="center"
+                        android:padding="@dimen/d1_4"
+                        android:id="@+id/iv_filter"
+                        android:src="@drawable/ic_arrow_down"
+                        android:layout_width="@dimen/d5"
+                        android:layout_height="@dimen/d5"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/root_search_product"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:fontFamily="@font/roboto_medium"
+                        android:layout_gravity="start"
+                        android:layout_marginTop="@dimen/unit"
+                        android:textSize="18dp"
+                        android:textColor="@android:color/black"
+                        android:text="@string/price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <RelativeLayout
+                        android:layout_marginTop="@dimen/unit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/tv_min_seekbar"
+                            android:textColor="@color/colorPrimary"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                            android:layout_alignParentStart="true"
+                            android:text=""
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/tv_max_seekbar"
+                            android:textColor="@color/colorPrimary"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                            android:layout_alignParentEnd="true"
+                            android:text=""
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    </RelativeLayout>
+                   <!-- <SeekBar
+                        android:thumb="@drawable/price_thumb_seekbar"
+                        android:theme="@style/PriceSeekBar"
+                        android:layout_marginTop="@dimen/two_unit"
+                        android:id="@+id/seek_bar"
+                        android:layout_gravity="center_vertical"
+                        android:background="@android:color/transparent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>-->
+
+                    <com.mohammedalaa.seekbar.DoubleValueSeekBarView
+                        android:id="@+id/double_range_seekbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:r2CurrentMaxValue="1500"
+                        app:r2CurrentMinValue="10"
+                        app:r2barHeight="2.5dp"
+                        app:r2baseColor="#c5c5c5"
+                        app:r2circleFillColor="@color/colorPrimaryLight"
+                        app:r2circleRadius="11dp"
+                        app:r2circleTextColor="@color/white"
+
+                        app:r2fillColor="@color/login_btn"
+                        app:r2maxValue="1500"
+                        app:r2maxValueStep="1"
+                        app:r2minValue="0"
+                        app:r2minValueStep="1" />
+                    <TextView
+                        android:fontFamily="@font/roboto_medium"
+                        android:layout_gravity="start"
+                        android:layout_marginTop="@dimen/two_unit"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="@android:color/black"
+                        android:text="@string/condition"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <RelativeLayout
+                        android:layout_marginTop="@dimen/d1_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:itemCount="3"
+                            app:spanCount="3"
+                            android:id="@+id/rv_conditions"
+
+                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                            tools:listitem="@layout/card_condition_bookmark"/>
+
+
+
+                        <com.facebook.shimmer.ShimmerFrameLayout
+                            android:id="@+id/shimmer_condition"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone">
+
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <include layout="@layout/card_condition_bookmark"/>
+                                <include layout="@layout/card_condition_bookmark"/>
+                                <include layout="@layout/card_condition_bookmark"/>
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+                    </RelativeLayout>
+                    <TextView
+                        android:fontFamily="@font/roboto_medium"
+                        android:layout_gravity="start"
+                        android:layout_marginTop="@dimen/unit"
+                        android:textSize="18dp"
+                        android:textColor="@android:color/black"
+                        android:text="@string/color"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+
+
+                    <LinearLayout
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+
+                        <RelativeLayout
+
+                            android:layout_marginTop="@dimen/d1_2"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content">
+
+
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+
+                                tools:itemCount="3"
+                                app:spanCount="3"
+                                android:visibility="visible"
+                                android:id="@+id/rv_colors"
+
+                                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                                tools:listitem="@layout/color_item"/>
+                            <com.facebook.shimmer.ShimmerFrameLayout
+                                android:id="@+id/shimmer_colors"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone">
+
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <include layout="@layout/color_item"/>
+                                    <include layout="@layout/color_item"/>
+                                    <include layout="@layout/color_item"/>
+                                </LinearLayout>
+
+                            </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+                        </RelativeLayout>
+
+                        <ImageView
+
+                            android:id="@+id/iv_add_color"
+
+                            android:layout_marginTop="@dimen/d0_4"
+                            android:layout_gravity="center"
+                            android:src="@drawable/add_color_icon"
+                            android:layout_width="@dimen/d4"
+                            android:layout_height="@dimen/d4"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:text="@string/sizes"
+                        android:textSize="18dp"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/roboto_medium"
+                        android:layout_marginTop="@dimen/three_unit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <RelativeLayout
+                        android:layout_marginTop="@dimen/d1_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:itemCount="3"
+                            app:spanCount="5"
+                            android:id="@+id/rv_sizes"
+
+                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                            tools:listitem="@layout/card_condition_bookmark"/>
+
+
+
+                        <com.facebook.shimmer.ShimmerFrameLayout
+                            android:id="@+id/shimmer_sizes"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone">
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <include layout="@layout/card_condition_bookmark"/>
+                                <include layout="@layout/card_condition_bookmark"/>
+                                <include layout="@layout/card_condition_bookmark"/>
+                            </LinearLayout>
+
+                        </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+                <View
+                    android:paddingEnd="@dimen/four_unit"
+                    android:paddingStart="@dimen/four_unit"
+                    android:layout_marginTop="@dimen/four_unit"
+                    android:background="#C5C5C5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="2dp">
+
+                </View>
+                <TextView
+
+                    android:fontFamily="@font/roboto_medium"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="@dimen/two_unit"
+                    android:textSize="18dp"
+                    android:textColor="@android:color/black"
+                    android:text="@string/search_history"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:paddingBottom="@dimen/four_unit"
+                        android:layout_marginTop="@dimen/two_unit"
+                        android:layout_gravity="center_horizontal"
+                        tools:listitem="@layout/product_item"
+
+                        android:visibility="visible"
+                        android:id="@+id/rv_search_history"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"/>
+
+                    <ProgressBar
+                        android:layout_marginStart="@dimen/d1"
+                        android:layout_marginEnd="@dimen/d1"
+                        android:id="@+id/prgs_search"
+
+                        android:visibility="gone"
+                        android:layout_gravity="center"
+                        style="?android:attr/progressBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/root_empty_search"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/order_img"/>
+
+                        <TextView
+                            android:layout_marginTop="@dimen/d1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/no_data"
+                            android:textStyle="bold"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textColor="@color/login_btn"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+        </ScrollView>
+
+        <RelativeLayout
+            android:layout_marginBottom="@dimen/d1"
+            android:id="@+id/search"
+            android:layout_marginStart="@dimen/d1_2"
+            android:layout_marginEnd="@dimen/d1_2"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <androidx.cardview.widget.CardView
+
+
+                android:id="@+id/btn_search"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d0_8"
+                android:elevation="@dimen/d0_8"
+
+                app:cardBackgroundColor="@color/login_btn"
+                app:cardCornerRadius="@dimen/d1_2"
+                app:cardElevation="@dimen/d0_8">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/d1"
+                    android:text="@string/search"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+            </androidx.cardview.widget.CardView>
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <include layout="@layout/shimmer_please_wait" />
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>

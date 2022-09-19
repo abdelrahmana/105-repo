@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/dialog_bg">
+    <LinearLayout
+        android:layout_marginStart="@dimen/d1"
+        android:layout_marginEnd="@dimen/d1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:textSize="18sp"
+            android:layout_marginTop="@dimen/d1_6"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:text="@string/distance_preference"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <RelativeLayout
+            android:layout_marginTop="@dimen/d1_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+
+                android:textColor="@android:color/black"
+                android:layout_alignParentStart="true"
+                android:text="@string/distance"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tv_seek_bar"
+                android:textColor="@color/colorPrimary"
+                android:layout_alignParentEnd="true"
+                android:text="1 Km"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+
+        <SeekBar
+            android:thumb="@drawable/price_thumb_seekbar"
+            android:theme="@style/PriceSeekBar"
+            android:layout_marginTop="@dimen/two_unit"
+            android:id="@+id/seek_bar_distance"
+            android:layout_gravity="center_vertical"
+            android:max="100"
+            android:min="1"
+            android:background="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/text_color"
+            android:text="@string/country_txt"
+            />
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/d0_8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <Spinner
+                android:id="@+id/spinner_country"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/spinner_bg" />
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:visibility="gone"
+                android:id="@+id/shimmer_country"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <include layout="@layout/shimmer_spinner"/>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+        </RelativeLayout>
+
+
+
+
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/d0_4"
+            android:textColor="@color/text_color"
+            android:text="@string/city_txt"
+            />
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/d0_8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:id="@+id/spinner_city"
+                android:layout_height="wrap_content"
+                android:background="@drawable/spinner_bg"/>
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:visibility="gone"
+                android:id="@+id/shimmer_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <include layout="@layout/shimmer_spinner"/>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+        </RelativeLayout>
+
+
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_apply"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d5_2"
+            android:layout_marginTop="@dimen/d3_4"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/colorPrimary"
+            app:cardCornerRadius="@dimen/d1_2"
+            android:theme="@style/card_wave"
+            >
+
+            <TextView
+                android:textSize="14sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/applay"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardReset"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d5_2"
+            android:layout_marginTop="15dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/black"
+            app:cardCornerRadius="@dimen/d1_2"
+            android:theme="@style/card_wave"
+            >
+
+            <TextView
+                android:textSize="14sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/reset"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+</LinearLayout>

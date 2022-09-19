@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.google.android.material.textfield.TextInputLayout
+
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:hintEnabled="true"
+
+        android:hint="@string/product_name"
+
+
+
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+
+
+
+        >
+
+        <EditText
+            android:id="@+id/edit_product_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/d0_4"
+            android:gravity="start"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+
+            android:text=""
+            android:inputType="text"
+            android:paddingTop="@dimen/d0_4"
+            style="@style/SignupEdit"
+            android:theme="@style/SignupEdit" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_hint_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/select_sub_category"
+        android:textColor="@color/white"
+        android:background="@color/black"/>
+    <Spinner
+        android:background="@drawable/spinner_bg"
+        android:id="@+id/spinner_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/d0_8"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_search"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:background="@color/color4"
+            android:text="@string/search"
+            android:layout_width="0dp"
+            android:layout_marginStart="@dimen/d0_4"
+            android:layout_marginEnd="@dimen/d0_4"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btn_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/color5"
+            android:textColor="@color/white"
+            android:text="@string/clear"
+            android:layout_marginStart="@dimen/d0_4"
+            android:layout_marginEnd="@dimen/d0_4"/>
+
+    </LinearLayout>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swip_prodict_list"
+        android:layout_marginTop="@dimen/d0_8"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_product_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:textColor="@color/black"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:visibility="gone"
+                android:id="@+id/tv_no_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/no_result"/>
+
+
+        </RelativeLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</LinearLayout>

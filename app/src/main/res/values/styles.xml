@@ -1,0 +1,150 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+        <item name="android:fontFamily">@font/arbfonts_22015_notokufiarabic_regular</item>
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+        <item name="android:windowContentTransitions">true</item>
+
+
+    </style>
+
+<style name="spinner_style">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">@dimen/d5_2</item>
+    <item name="android:background">@drawable/spinner_bg_thin_post</item>
+    <item name="android:radius">@dimen/d1_6</item>
+    <item name="android:popupBackground">#F9F9F9</item>
+</style>
+    <style name="MySeekBar" parent="Widget.AppCompat.SeekBar">
+        <item name="android:thumbnail">@drawable/thumb_seekbar</item>
+        <item name="android:progressTint">@color/colorPrimary</item>
+        <item name="android:progressBackgroundTint">@color/colorPrimary</item>
+
+    </style>
+    <style name="RatingAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="buttonBarPositiveButtonStyle">@style/positive</item>
+        <item name="buttonBarNegativeButtonStyle">@style/negative</item>
+    </style>
+
+    <style name="positive">
+        <item name="color">@color/white</item>
+        <item name="android:textColor"> @color/black</item>
+        <item name="background">@color/transparent</item>
+    </style>
+    <style name="negative">
+        <item name="background">@color/transparent</item>
+        <item name="android:textColor"> @color/red</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="filePickerActivityTheme" parent="LibAppTheme"/>
+
+    <style name="SignupEdit" parent="AlertDialog.AppCompat.Light">
+        <item name="colorControlNormal">@color/transparent_white_50</item>
+        <item name="colorControlActivated">@color/black</item>
+        <item name="colorControlHighlight">@color/black</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="tv_title_toolbar">
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Medium</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:background">@color/tabs_white</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="tv_label_v2">
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Medium</item>
+        <item name="android:textColor">@color/farma9</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="edit_login">
+        <item name="android:padding">@dimen/d0_6</item>
+        <item name="android:height">@dimen/d4_4</item>
+        <item name="android:textColor">@color/colorAccent</item>
+
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Medium</item>
+        <item name="android:paddingBottom">@dimen/d1</item>
+        <item name="android:paddingEnd">@dimen/d1_6</item>
+        <item name="android:paddingStart">@dimen/d1_6</item>
+        <item name="android:paddingTop">@dimen/d1</item>
+
+    </style>
+
+    <style name="button_login">
+        <item name="android:padding">@dimen/d0_6</item>
+        <item name="android:height">@dimen/d5</item>
+        <item name="android:textColor">@color/tabs_white</item>
+
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Large</item>
+    </style>
+
+    <style name="button_login_white">
+        <item name="android:padding">@dimen/d0_6</item>
+        <item name="android:height">@dimen/d5</item>
+        <item name="android:textColor">@color/colorAccent</item>
+
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Large</item>
+    </style>
+
+    <style name="Yellow.Small.AppCompatRatingBar" parent="Base.Widget.AppCompat.RatingBar.Small">
+        <item name="colorControlNormal">@color/colorPrimary</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+        <item name="android:colorActivatedHighlight">@color/colorPrimary</item>
+
+    </style>
+
+    <style name="dialogAnim">
+        <item name="android:windowEnterAnimation">@anim/slide_from_left</item>
+        <item name="android:windowExitAnimation">@anim/slide_from_right</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.MyFancyTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+
+        <item name="android:textColor">@color/tabs_white</item>
+        <item name="android:textColorPrimary">@color/tabs_white</item>
+        <item name="android:textColorSecondary">@color/tabs_white</item>
+
+
+    </style>
+
+    <style name="DrawerArrowStyle" parent="@style/Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@android:color/white</item>
+    </style>
+    <style name="AppTheme.WhiteAccent">
+        <item name="colorAccent">@color/ana1</item> <!-- Whatever color you want-->
+    </style>
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
+    </style>
+
+    <style name="PriceSeekBar">
+        <item name="android:progressTint">@color/colorPrimary</item>
+        <item name="android:progressBackgroundTint">#c5c5c5</item>
+    </style>
+
+
+    <style name="Widget.MPM.Menu.Dark.CustomBackground">
+        <item name="android:colorBackground">@color/background_edit_text</item>
+    </style>
+
+
+
+</resources>

@@ -1,0 +1,70 @@
+{
+  "project_info": {
+    "project_number": "620853133242",
+    "project_id": "urcloset",
+    "storage_bucket": "urcloset.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:620853133242:android:14f261c8a4c395c186a783",
+        "android_client_info": {
+          "package_name": "com.urcloset.smartangle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "620853133242-e4h8skr4ag29vokftpu4c67tsvklnh6j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.urcloset.smartangle",
+            "certificate_hash": "808f1258f4d6cdd1dd5cf05e1e44d3d67ee5a077"
+          }
+        },
+        {
+          "client_id": "620853133242-pik0b64l0e1hkdhn1svlvg8v6pqrk3g9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.urcloset.smartangle",
+            "certificate_hash": "3e66b4945c1cc7c1480195312446697eec0b3320"
+          }
+        },
+        {
+          "client_id": "620853133242-qf70noq81e18tlcclkg4vbufv66b96m0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.urcloset.smartangle",
+            "certificate_hash": "84964fca114d8c51b2e7529b408ba3e31ae1538e"
+          }
+        },
+        {
+          "client_id": "620853133242-c3u3ba60bii0am8nvuii39g6ljg5i9kr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfvoPUDu9Bap3qn60UlvufJtx80E0VHqM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "620853133242-c3u3ba60bii0am8nvuii39g6ljg5i9kr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "620853133242-e27ee1303o9aemas2sfs9r3a1upusam2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.smartangle.closet-ios"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

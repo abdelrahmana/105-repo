@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout android:layout_width="match_parent"
+
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+
+    <include layout="@layout/toolbar_about_us"/>
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swip_about_us"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+
+
+        <ScrollView
+            android:background="@color/white"
+            android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:layout_marginEnd="@dimen/d1_6"
+                android:layout_marginStart="@dimen/d1_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:src="@drawable/aboutlogo_3x"
+
+                    android:adjustViewBounds="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/d1_6"
+                    android:layout_width="@dimen/d14"
+                    android:layout_height="wrap_content"/>
+
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:layout_marginTop="@dimen/d1_6"
+                    android:text="V 1.0.0"
+                    android:textColor="@color/categroy_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <View
+                    android:layout_marginTop="@dimen/d0_8"
+                    android:background="@color/categroy_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/d0_1"/>
+
+                <TextView
+                    android:id="@+id/tv_about_us"
+                    android:layout_marginTop="@dimen/d2_6"
+                    android:textColor="@color/desinger_name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</LinearLayout>
+

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:paddingBottom="@dimen/two_unit"
+
+
+    >
+    <LinearLayout
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/toolbar_backpress1"/>
+        <LinearLayout
+            android:background="@color/white"
+            android:paddingRight="@dimen/two_unit"
+            android:paddingLeft="@dimen/two_unit"
+            android:paddingBottom="@dimen/two_unit"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/order_img"
+            android:layout_width="160dp"
+            android:layout_height="130dp"/>
+        <TextView
+            android:textSize="21dp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_state"
+            android:text="@string/your_order_has_been_sent"
+            android:layout_marginTop="25dp"
+            android:layout_gravity="center_horizontal"
+          />
+        <TextView
+            android:fontFamily="@font/roboto_medium"
+            android:textSize="16dp"
+            android:textAlignment="center"
+            android:textColor="#444444"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/your_post_request_will_be_reviewed_and_responded_to_as_soon_as_possible_you_can_follow_the_status_of_the_publication_through_the_dedicated_section_in_the_settings"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center_horizontal"
+            />
+        </LinearLayout>
+
+    </LinearLayout>
+    <androidx.cardview.widget.CardView
+        android:layout_alignParentBottom="true"
+        android:id="@+id/card_finish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/d0_8"
+        app:cardBackgroundColor="@color/login_btn"
+        app:cardCornerRadius="@dimen/d1_2"
+       >
+
+        <TextView
+            android:gravity="center_horizontal"
+            android:fontFamily="@font/roboto_medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/d1"
+            android:text="@string/publication_statues"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</RelativeLayout>

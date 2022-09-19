@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/dialog_bg">
+ <LinearLayout
+     android:layout_marginStart="@dimen/d1"
+     android:layout_marginEnd="@dimen/d1"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:orientation="vertical">
+
+     <TextView
+         android:layout_marginTop="@dimen/d1_6"
+         android:textStyle="bold"
+         android:textColor="@android:color/black"
+         android:text="@string/report"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"/>
+     <TextView
+         android:text="@string/you_can_report_this_product"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"/>
+     <com.google.android.material.textfield.TextInputLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="@dimen/d2"
+         app:counterEnabled="true"
+         app:counterMaxLength="500"
+         android:padding="@dimen/d1"
+         android:background="@drawable/report_message_bg"
+         app:passwordToggleEnabled="false">
+
+         <com.google.android.material.textfield.TextInputEditText
+             android:id="@+id/edit_text"
+             android:layout_width="match_parent"
+             android:layout_height="200dp"
+             android:maxLength="1000"
+             android:background="@android:color/transparent"
+             android:gravity="top|start"
+             android:inputType="textMultiLine|textNoSuggestions"/>
+
+     </com.google.android.material.textfield.TextInputLayout>
+     <androidx.cardview.widget.CardView
+         android:id="@+id/cv_report"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="@dimen/three_unit"
+         android:elevation="@dimen/unit"
+         android:clickable="true"
+         android:focusable="true"
+         android:foreground="?android:attr/selectableItemBackground"
+         app:cardBackgroundColor="@color/colorPrimary"
+         app:cardCornerRadius="@dimen/d1_2"
+         android:theme="@style/card_wave"
+         app:cardElevation="@dimen/unit">
+
+         <TextView
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_gravity="center"
+             android:padding="@dimen/d1_2"
+             android:text="@string/report"
+             android:textAlignment="center"
+             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+             android:textColor="@android:color/white"
+             android:textStyle="bold" />
+
+     </androidx.cardview.widget.CardView>
+     <com.facebook.shimmer.ShimmerFrameLayout
+         android:id="@+id/shimmer_report"
+         android:visibility="gone"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content">
+
+     <androidx.cardview.widget.CardView
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="@dimen/three_unit"
+         android:elevation="@dimen/unit"
+         android:clickable="true"
+         android:focusable="true"
+         android:foreground="?android:attr/selectableItemBackground"
+         app:cardBackgroundColor="@color/colorPrimary"
+         app:cardCornerRadius="@dimen/d1_2"
+         android:theme="@style/card_wave"
+         app:cardElevation="@dimen/unit">
+
+         <TextView
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_gravity="center"
+             android:padding="@dimen/d1_2"
+             android:text="@string/report"
+             android:textAlignment="center"
+             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+             android:textColor="@android:color/white"
+             android:textStyle="bold" />
+
+     </androidx.cardview.widget.CardView>
+     </com.facebook.shimmer.ShimmerFrameLayout>
+
+ </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_marginLeft="@dimen/d2_4"
+    android:layout_marginRight="@dimen/d2_4"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_marginTop="@dimen/d3"
+        android:layout_gravity="left"
+        android:text="Beauty"
+        android:textSize="@dimen/d5"
+        android:textColor="#D3485D"
+        android:fontFamily="@font/roboto_bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_gravity="left"
+        android:text="Is Power,"
+        android:textSize="@dimen/d3_4"
+        android:textColor="#000000"
+        android:fontFamily="@font/roboto_regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <ImageView
+        android:src="@drawable/ic_first_intro"
+        android:layout_marginTop="@dimen/d2_4"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d326"/>
+
+</LinearLayout>
+</RelativeLayout>

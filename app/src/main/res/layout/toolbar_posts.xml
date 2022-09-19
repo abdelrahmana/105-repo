@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.google.android.material.appbar.AppBarLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+android:layout_marginTop="@dimen/d2_4"
+    app:elevation="0dp">
+    <androidx.appcompat.widget.Toolbar
+
+        android:id="@+id/activity_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:background="@color/transparent"
+        android:theme="?attr/actionBarTheme"
+        android:paddingStart="@dimen/d1"
+        android:paddingEnd="@dimen/d2"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="@dimen/d5_2"
+                >
+
+                <Spinner
+
+                    android:id="@+id/sp_posts_filter"
+                    style="@style/spinner_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:spinnerMode="dropdown" />
+                <ImageView
+                    android:layout_marginEnd="@dimen/d1_4"
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/ic_spinner_drop_down_posts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+
+
+
+            <ImageView
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/search_bg"
+                android:layout_marginStart="@dimen/d0_8"
+                android:layout_gravity="center"
+                android:padding="@dimen/d1_4"
+                android:id="@+id/iv_filter_posts"
+                android:src="@drawable/ic_filter_post"
+                android:layout_width="@dimen/d5"
+                android:layout_height="@dimen/d5_2"/>
+
+
+        </LinearLayout>
+
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+
+</com.google.android.material.appbar.AppBarLayout>
+

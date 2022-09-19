@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:background="@drawable/seen_notification_bg"
+    android:id="@+id/root"
+    android:padding="@dimen/unit"
+    android:layout_marginBottom="@dimen/unit">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_avatar"
+        android:layout_width="@dimen/avatar_size"
+        android:layout_height="@dimen/avatar_size"
+        android:background="@drawable/dr_avatar_bg"
+        android:contentDescription="@string/avatar"
+        android:scaleType="centerCrop"
+        android:src="@drawable/user_image_holder" />
+    <LinearLayout
+        android:layout_toEndOf="@id/iv_avatar"
+        android:layout_marginStart="@dimen/unit"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textAlignment="textStart"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_marginTop="@dimen/half_unit"
+            android:id="@+id/notification_title"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:textAlignment="textStart"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:id="@+id/notification_body"
+            android:textColor="@android:color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginStart="@dimen/d0_8"
+        android:layout_alignParentEnd="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/d1">
+
+        <ImageView
+            android:id="@+id/iv_notification_img"
+            android:scaleType="centerCrop"
+            android:src="@drawable/logo1"
+            android:background="@drawable/product_images_bg"
+            android:layout_width="@dimen/notifiy_img_size"
+            android:layout_height="50dp"/>
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

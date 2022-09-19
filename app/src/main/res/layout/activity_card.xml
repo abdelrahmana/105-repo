@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.cardActivity.CardActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginTop="@dimen/d9"
+            android:src="@drawable/ic_check_card"
+            android:layout_width="@dimen/d4"
+            android:layout_height="@dimen/d4"/>
+        <TextView
+            android:layout_marginTop="@dimen/d3"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="17dp"
+            android:textColor="@color/colorPrimary"
+            android:text="@string/card_activity_hint1"
+            android:layout_width="273dp"
+            android:layout_height="wrap_content"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="@dimen/d4"
+        android:background="@drawable/card_bg"
+        android:elevation="8dp"
+
+        app:cardCornerRadius="@dimen/d2"
+        android:layout_width="273dp"
+        android:layout_height="142dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_marginTop="@dimen/d1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+
+                android:id="@+id/iv_image"
+                android:layout_marginStart="@dimen/d2"
+                android:layout_gravity="start"
+                android:src="@drawable/logo1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginStart="@dimen/d1"
+                    android:layout_marginEnd="@dimen/d1"
+                    android:text="@string/hello"
+                    android:textSize="12dp"
+                    android:textColor="@android:color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:textSize="11dp"
+
+                    android:textColor="@color/colorPrimary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/d1"/>
+            <ImageView
+                android:layout_gravity="right"
+                android:src="@drawable/ic_card_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+            <TextView
+                android:layout_marginStart="@dimen/d2"
+                android:layout_marginEnd="@dimen/d2"
+                android:textColor="@android:color/black"
+                android:text="@string/card_activity_hint_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <ImageView
+            android:layout_gravity="right|bottom"
+            android:background="@drawable/ic_oval_purple"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </androidx.cardview.widget.CardView>
+        <TextView
+
+            android:layout_marginTop="@dimen/d1"
+            android:text="@string/card_activity_hint_2"
+            android:textSize="14dp"
+            android:gravity="center"
+            android:layout_width="175dp"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:layout_marginTop="@dimen/d1"
+            android:src="@drawable/ic_save_card"
+            android:layout_width="@dimen/d3"
+            android:layout_height="@dimen/d3"/>
+    </LinearLayout>
+    <androidx.cardview.widget.CardView
+        android:layout_margin="@dimen/d1"
+        android:id="@+id/card_contineu"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/d0_8"
+        app:cardBackgroundColor="@color/login_btn"
+        app:cardCornerRadius="@dimen/d1_2"
+        app:cardElevation="@dimen/d0_8">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/d0_8"
+            android:text="@string/continues"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

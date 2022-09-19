@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+
+        <layer-list>
+
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="#F9F9F9"/>
+
+
+                    <corners android:radius="@dimen/d1_6" />
+
+                    <padding android:bottom="3dp" android:left="3dp" android:right="3dp" android:top="3dp" />
+                </shape>
+            </item>
+
+            <item  android:left="@dimen/two_unit"
+                android:right="@dimen/two_unit"
+                android:top="@dimen/two_unit"
+                android:bottom="@dimen/two_unit">
+
+                <bitmap android:gravity="center_vertical|end"
+                    android:src="@drawable/ic_spinner_drop_down_posts"
+                    android:tint="#848484"/>
+
+
+            </item >
+
+        </layer-list>
+
+    </item>
+
+</selector>

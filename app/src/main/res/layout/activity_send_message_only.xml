@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/toolbar_send_messages"/>
+
+    <LinearLayout
+        android:layout_marginEnd="@dimen/d1_6"
+        android:layout_marginStart="@dimen/d1_6"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+
+
+
+
+
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/d0_8"
+                android:layout_marginEnd="@dimen/d0_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+
+                    android:id="@+id/tv_title"
+                    android:textColor="@color/desinger_name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+
+                    android:text="@string/question"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+
+                    android:id="@+id/tv_message_type"
+                    android:textColor="@color/categroy_name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+
+                    android:text="@string/only_message"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+
+                    android:id="@+id/tv_price"
+                    android:textStyle="bold"
+                    android:textColor="@color/login_btn"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+
+                    android:text="$20"/>
+
+            </LinearLayout>
+
+
+
+        <!--name-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d1_6"
+            android:background="@drawable/rounded_edit_text"
+            android:orientation="horizontal"
+            android:padding="@dimen/d0_8">
+
+
+            <EditText
+                android:id="@+id/edit_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/d0_8"
+                android:layout_marginEnd="@dimen/d0_8"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:gravity="start"
+                android:hint="@string/name"
+                android:singleLine="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/test4" />
+
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/d1_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_hint"
+            android:textColor="@color/desinger_name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:text="@string/message_reply_hint"/>
+
+
+        <!--name-->
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/root_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d1_6"
+            android:background="@drawable/rounded_edit_text"
+            android:orientation="horizontal"
+            android:padding="@dimen/d0_8">
+
+
+            <EditText
+
+                android:id="@+id/edit_email"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/d0_8"
+                android:layout_marginEnd="@dimen/d0_8"
+                android:layout_weight="1"
+                android:inputType="textEmailAddress"
+                android:background="@color/transparent"
+                android:gravity="start"
+                android:hint="@string/email"
+                android:singleLine="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/test4" />
+
+
+        </LinearLayout>
+
+
+
+
+        <!--name-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d1_6"
+            android:background="@drawable/rounded_edit_text"
+            android:orientation="horizontal"
+            android:padding="@dimen/d0_8">
+
+
+            <EditText
+                android:id="@+id/edit_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/d0_8"
+                android:layout_marginEnd="@dimen/d0_8"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:gravity="start"
+                android:hint="@string/type_message_here"
+                android:lines="3"
+                android:maxLines="6"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/test4" />
+
+
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/d1_6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_payment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d0_8"
+                android:elevation="@dimen/d0_8"
+
+                app:cardBackgroundColor="@color/login_btn"
+                app:cardCornerRadius="@dimen/d1_2"
+                app:cardElevation="@dimen/d0_8">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/d0_6"
+                    android:text="@string/payment_and_send"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+            </androidx.cardview.widget.CardView>
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_payment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <include layout="@layout/shimmer_wait" />
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+        </RelativeLayout>
+
+        </LinearLayout>
+
+
+
+
+
+    </LinearLayout>
+

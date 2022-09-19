@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/root_bottom_sheet"
+    android:layout_width="match_parent"
+    android:background="@drawable/bg_message_setting"
+    android:layout_height="wrap_content">
+
+<LinearLayout
+
+    android:layout_marginTop="@dimen/d1_6"
+    android:layout_marginStart="@dimen/d1_6"
+    android:layout_marginEnd="@dimen/d0_8"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/desinger_name"
+        android:text="@string/message_setting"/>
+
+
+    <LinearLayout
+        android:background="?attr/selectableItemBackground"
+        android:layout_marginTop="@dimen/d0_8"
+        android:id="@+id/root_delete"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="@dimen/d3"
+            android:layout_height="@dimen/d3"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_delete_black_24dp"
+            android:tint="@color/categroy_name"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/d0_8"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/desinger_name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:layout_marginStart="@dimen/d0_8"
+            android:text="@string/delete"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="?attr/selectableItemBackground"
+        android:layout_marginTop="@dimen/d0_8"
+        android:id="@+id/root_edit"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="@dimen/d3"
+            android:layout_height="@dimen/d3"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_mode_edit_black_24dp"
+            android:tint="@color/categroy_name"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/d0_8"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/desinger_name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:layout_marginStart="@dimen/d0_8"
+            android:text="@string/edit"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:background="?attr/selectableItemBackground"
+        android:layout_marginTop="@dimen/d0_8"
+        android:id="@+id/root_hide"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="@dimen/d3"
+            android:layout_height="@dimen/d3"
+            android:layout_gravity="center"
+            android:src="@drawable/message_3x"
+            android:tint="@color/categroy_name"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/d0_8"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/desinger_name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:layout_marginStart="@dimen/d0_8"
+            android:text="@string/hide"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/d0_8"/>
+
+        <Switch
+            android:layout_marginEnd="@dimen/d1_6"
+            android:layout_marginStart="@dimen/d0_8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/switch_hide"/>
+    </LinearLayout>
+
+</LinearLayout>
+
+
+</LinearLayout>

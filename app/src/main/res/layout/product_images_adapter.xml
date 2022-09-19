@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    >
+
+    <ImageView
+        android:id="@+id/product_image"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <ImageView
+        android:id="@+id/iv_download"
+        android:layout_margin="@dimen/d1"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/ic_save_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_margin="@dimen/d1"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/back_icon"
+        android:layout_width="@dimen/d2_4"
+        android:layout_height="@dimen/d2_4"/>
+</RelativeLayout>
