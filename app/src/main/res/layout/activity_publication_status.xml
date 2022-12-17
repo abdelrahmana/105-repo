@@ -55,7 +55,7 @@
             android:id="@+id/tv_review"
             android:gravity="center"
             android:background="@drawable/unselected_publish_state_bg"
-            android:text="@string/in_review"
+            android:text="@string/sold"
             android:layout_width="0dp"
             android:layout_height="@dimen/d3_8"
             />
@@ -71,7 +71,7 @@
 
 
     </LinearLayout>
-    <androidx.viewpager.widget.ViewPager
+    <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewpager"
         android:layout_marginTop="@dimen/two_unit"
         android:layout_width="match_parent"

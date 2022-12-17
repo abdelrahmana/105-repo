@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.urcloset.shop.tools.hide
 import com.urcloset.shop.tools.visible
@@ -27,6 +28,7 @@ import com.urcloset.smartangle.model.PublishStateModel
 import com.urcloset.smartangle.tools.AppObservable
 import com.urcloset.smartangle.tools.BasicTools
 import com.urcloset.smartangle.tools.TemplateActivity
+import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -34,11 +36,11 @@ import kotlinx.android.synthetic.main.activity_add_product.*
 import kotlinx.android.synthetic.main.activity_publication_status.*
 import java.util.*
 import kotlin.collections.ArrayList
-
+@AndroidEntryPoint
 class PublicationStatus : TemplateActivity() {
     var lang:String ="en"
     var disposable = CompositeDisposable()
-    lateinit var viewPager: ViewPager
+    lateinit var viewPager: ViewPager2
     var selectState:Int=1
     lateinit var tvPublished:TextView
     lateinit var tvRejected:TextView
@@ -58,10 +60,26 @@ class PublicationStatus : TemplateActivity() {
         if(!BasicTools.isDeviceLanEn())
             lang ="ar"
         if(TemplateActivity.loginResponse?.data!!.accessToken!=null){
-            getProductsByPublishState()
+          //  getProductsByPublishState()
+            setViewPagerCategories(ArrayList<InterfacePublication>().also {
+                it.add(PublicationOrdersImplementer())
+                it.add(SoldOrdersImplementer())
+                it.add(RejectedProductsImplementer())
+            })
         }
     }
+    private fun setViewPagerCategories(arrayList: List<InterfacePublication>) {
 
+        val viewPagerAdaptor =
+            ViewPagerProducts(
+                this, arrayList as ArrayList<InterfacePublication>
+
+            )
+        viewPager.adapter = viewPagerAdaptor
+
+
+
+    }
     override fun init_views() {
         viewPager = viewpager
         tvPublished =tv_published
@@ -104,7 +122,7 @@ class PublicationStatus : TemplateActivity() {
             viewPager.setCurrentItem(2)
 
         }
-       viewPager.setOnPageChangeListener(object :ViewPager.OnPageChangeListener{
+       viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageScrolled(
                 position: Int,
                 positionOffset: Float,
@@ -131,7 +149,6 @@ class PublicationStatus : TemplateActivity() {
                     tvPublished.setTextColor(Color.parseColor("#ACACAC"))
                     tvRejected.setTextColor(Color.parseColor("#ACACAC"))
                     viewPager.setCurrentItem(1)
-
                 }
                 if (position == 2){
                     tvPublished.background = getDrawable(R.drawable.unselected_text_button_bg_small)
@@ -140,7 +157,7 @@ class PublicationStatus : TemplateActivity() {
                     tvRejected.setTextColor(resources.getColor(R.color.white))
                     tvPublished.setTextColor(Color.parseColor("#ACACAC"))
                     tvInReview.setTextColor(Color.parseColor("#ACACAC"))
-                    pagerAdapter.notifyDataSetChanged()
+                 //   pagerAdapter.notifyDataSetChanged()
                     viewPager.setCurrentItem(2)
 
 
@@ -162,7 +179,7 @@ class PublicationStatus : TemplateActivity() {
 
     override fun set_fragment_place() {
     }
-    fun getProductsByPublishState(){
+/*    fun getProductsByPublishState(whenSwipping : Boolean = false,selectedSwipePosition : Int = 0){
         showShimmer(true)
 
         val shopApi =
@@ -173,7 +190,9 @@ class PublicationStatus : TemplateActivity() {
                 ?.create(
                     AppApi::class.java
                 )
-        val observable = shopApi!!.getPublicationStatus()
+        val observable = if (selectedSwipePosition==0)shopApi!!.getPublicationStatus()
+        else if (selectedSwipePosition == 1) shopApi!!.getPublicationStatus()
+        else shopApi!!.getPublicationStatus()
         disposable.add(
             observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -183,16 +202,15 @@ class PublicationStatus : TemplateActivity() {
 
 
                         if (result.status!!) {
-                            pagerAdapter =    ProductPublishStateAdapter(
+                                pagerAdapter = ProductPublishStateAdapter(
+                                    context = this@PublicationStatus,
+                                    rejected = result.data?.rejected as ArrayList<ProductModel.Product>,
+                                    published = result.data.published as ArrayList<ProductModel.Product>,
+                                    inReview = result.data.inReview as ArrayList<ProductModel.Product>
 
-                                context = this@PublicationStatus,
-                                rejected = result.data?.rejected as ArrayList<ProductModel.Product>,
-                                published = result.data.published as ArrayList<ProductModel.Product>,
-                                inReview = result.data.inReview as ArrayList<ProductModel.Product>
 
-
-                            )
-                            viewPager.adapter = pagerAdapter
+                                )
+                                viewPager.adapter = pagerAdapter
 
 
 
@@ -214,7 +232,7 @@ class PublicationStatus : TemplateActivity() {
 
 
 
-    }
+    }*/
     fun showShimmer(state: Boolean){
 
         if(state){

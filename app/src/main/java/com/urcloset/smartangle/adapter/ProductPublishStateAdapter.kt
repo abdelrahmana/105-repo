@@ -50,10 +50,10 @@ class ProductPublishStateAdapter(
 
 
         }
-         val publishStateAdapter =PublishStateAdapter(context, products)
-         rvProducts.adapter = publishStateAdapter
+        // val publishStateAdapter =PublishStateAdapter(context, products)
+        // rvProducts.adapter = publishStateAdapter
 
-        publishStateAdapter.notifyDataSetChanged()
+       // publishStateAdapter.notifyDataSetChanged()
         if(products.size==0)
             view.findViewById<LinearLayout>(R.id.ly_empty).visibility = View.VISIBLE
         else             view.findViewById<LinearLayout>(R.id.ly_empty).visibility = View.GONE

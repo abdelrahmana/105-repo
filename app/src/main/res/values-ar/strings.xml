@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">دولابي</string>
+    <string name="app_name">دولابك</string>
 
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -423,5 +423,27 @@
     <string name="avatar">Avatar</string>
     <string name="edit_available_before">التعديل متوفر قبل:</string>
     <string name="reset">إعادة التعيين</string>
+    <string name="support_whats">الدعم بواسطة واتس اب</string>
+    <string name="payment">طريقة الدفع</string>
+    <string name="process_completed">تمت العملية بنجاح</string>
+    <string name="paynow">الدفع</string>
+    <string name="error_happend">حدث خطأ</string>
+    <string name="consent_header">الموافقة والإلتزام</string>
+    <string name="agree">موافق</string>
+    <string name="sold">تم البيع</string>
+    <string name="number_product">عدد المنتجات المختارة:</string>
+    <string name="total_commission">إجمالى العمولة</string>
+    <string name="pay_selected">الدفع</string>
+    <string name="publication_date">تاريخ النشر : </string>
+    <string name="single_commission">10 ر.س</string>
+    <string name="sar">ر.س</string>
+    <string name="commission_payment">دفع العمولة</string>
+    <string name="congratulation">تهانينا</string>
+    <string name="commission_unpaid">عمولة غير مدفوعة</string>
+    <string name="unpaid_products">لقد قمت بنشر %d من المنتجات</string>
+    <string name="short_description">أُقر باني أتحمل كافة المسؤولية على المنتجات التي أبيعها وأن تكون مطابقة للمواصفات التي يتم وضعها بالتطبيق، ويحق للتطبيق اتخاذ الاجراءات اللازمة عند مخالفة الشروط والاحكام وأُوافق على دفع ١٠ ريال عند بيع المنتج وان تكون بذمتي حتى الدفع.</string>
+    <string name="card_holder_customize">اسم صاحب البطاقة</string>
+    <string name="add_compeleted">تمت الإضافة بنجاح</string>
+    <string name="select_products">حدد المنتجات التي تريد إضافتها إلى القسم المباع :</string>
 
 </resources>

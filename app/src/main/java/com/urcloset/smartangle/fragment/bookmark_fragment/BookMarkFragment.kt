@@ -11,6 +11,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -18,14 +19,12 @@ import com.facebook.shimmer.ShimmerFrameLayout
 import com.urcloset.smartangle.R
 import com.urcloset.smartangle.activity.conditionActivity.ConditionActivity
 import com.urcloset.smartangle.activity.homeActivity.HomeActivity
+import com.urcloset.smartangle.activity.homeActivity.HomeViewModel
 import com.urcloset.smartangle.adapter.project105.ConditionListAdapter
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
 import com.urcloset.smartangle.model.project_105.BookmarkMV3
-import com.urcloset.smartangle.tools.AppObservable
-import com.urcloset.smartangle.tools.BasicTools
-import com.urcloset.smartangle.tools.TemplateActivity
-import com.urcloset.smartangle.tools.TemplateFragment
+import com.urcloset.smartangle.tools.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -47,31 +46,33 @@ class BookMarkFragment : TemplateFragment(),IBookMarkFragment {
     var lastPage=-1
     lateinit var prgs:ProgressBar
 
+    lateinit var views : View
     lateinit var rootEmpty:LinearLayout
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var view = inflater.inflate(R.layout.fragment_book_mark, container, false)
+         views = inflater.inflate(R.layout.fragment_book_mark, container, false)
 
+        viewModelHome.setPreviousNavBottom(R.id.bookmark)
 
-        return view
+        return views
     }
 
 
     override fun init_views() {
 
-        swip=parent!!.findViewById(R.id.swip_bookmark)
-        rv=parent!!.findViewById(R.id.rv_bookmark)
-        ivFilter=parent!!.findViewById(R.id.iv_search)
-        adapter=ConditionListAdapter(parent!!,ArrayList(),this)
-        shimmer=parent!!.findViewById(R.id.shimmer_wait)
+        swip=views!!.findViewById(R.id.swip_bookmark)
+        rv=views!!.findViewById(R.id.rv_bookmark)
+        ivFilter=views!!.findViewById(R.id.iv_search)
+        adapter=ConditionListAdapter(views.context!!,ArrayList(),this)
+        shimmer=views!!.findViewById(R.id.shimmer_wait)
 
-        prgs=parent!!.findViewById(R.id.prgs_bookmark)
-        rootEmpty=parent!!.findViewById(R.id.root_empty_page)
-        layoutManager= LinearLayoutManager(parent!!,LinearLayoutManager.VERTICAL,false)
-        editSearch=parent!!.findViewById(R.id.edit_search_book)
+        prgs=views!!.findViewById(R.id.prgs_bookmark)
+        rootEmpty=views!!.findViewById(R.id.root_empty_page_bookmark)
+        layoutManager= LinearLayoutManager(views.context!!,LinearLayoutManager.VERTICAL,false)
+        editSearch=views!!.findViewById(R.id.edit_search_book)
         rv.adapter=adapter
         rv.layoutManager=layoutManager
 
@@ -102,12 +103,12 @@ class BookMarkFragment : TemplateFragment(),IBookMarkFragment {
             lastPage= TemplateActivity.lastPageBookMark
         adapter?.change_data(TemplateActivity.bookMarkListV2!!)
         }
-        if(HomeActivity.bottomNavigation?.currentItem!=1){
+     /*   if(HomeActivity.bottomNavigation?.currentItem!=1){
             HomeActivity.doNothing =  true
             HomeActivity.bottomNavigation?.currentItem=1
             HomeActivity.doNothing =  false
 
-        }
+        }*/
 
     }
 
@@ -255,11 +256,6 @@ class BookMarkFragment : TemplateFragment(),IBookMarkFragment {
                             requestBegin=false
                             swip.isRefreshing=false
                             if(result.status!!) {
-
-
-
-
-
                                 if(TemplateActivity.bookMarkListV2==null){
                                     TemplateActivity.bookMarkListV2= ArrayList()
                                 TemplateActivity.bookMarkListV2?.clear()

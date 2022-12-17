@@ -7,17 +7,11 @@ package com.urcloset.smartangle.tools
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-
-
-
-
-
-
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
+import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.PorterDuff
@@ -27,10 +21,11 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.net.Uri
 import android.os.Build
+import android.os.Bundle
 import android.provider.Settings
-
 import android.text.InputType
 import android.text.SpannableString
+import android.text.format.DateFormat
 import android.text.style.UnderlineSpan
 import android.util.Log
 import android.util.Patterns
@@ -42,15 +37,20 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.andrognito.flashbar.Flashbar
+import com.andrognito.flashbar.anim.FlashAnim
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.facebook.shimmer.ShimmerFrameLayout
-
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.dynamiclinks.DynamicLink
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import com.mobsandgeeks.saripaar.ValidationError
-
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache
 import com.nostra13.universalimageloader.core.DisplayImageOptions
 import com.nostra13.universalimageloader.core.ImageLoader
@@ -63,20 +63,20 @@ import com.urcloset.shop.tools.hide
 import com.urcloset.shop.tools.visible
 import com.urcloset.smartangle.R
 import com.urcloset.smartangle.adapter.PagedAdapter
-
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
+import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.OffsetDateTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.math.pow
 import kotlin.math.sqrt
 
 
 object BasicTools {
-
-
-
 
 
     fun showShimmer(card: RelativeLayout, shimmer: ShimmerFrameLayout, state: Boolean){
@@ -88,9 +88,64 @@ object BasicTools {
             shimmer.hide()
         }
     }
+    fun changeFragmentBack(activity: FragmentActivity, fragment: Fragment, tag: String, bundle: Bundle?, id : Int ) {
 
+        val transaction = activity?.supportFragmentManager?.beginTransaction()
+        if (bundle != null) {
+            fragment.arguments = bundle
+        }
+        transaction.setCustomAnimations(
+            R.anim.enter_from_right, R.anim.exit_to_left,
+            R.anim.enter_from_left, R.anim.exit_to_right)
+        //R.id.frameLayout_direction+
+        transaction.replace(id, fragment, tag)
+        transaction.addToBackStack(tag)
+        //    transaction.addToBackStack(null)
+        transaction.commit()
 
-
+    }
+    fun getStringDate(date:String): String? {
+      /*  val inst: OffsetDateTime = OffsetDateTime.ofInstant(
+            Instant.parse(date),
+            ZoneId.systemDefault()
+        )
+        return DateTimeFormatter.ofPattern("dd,MMM, yyyy").format(inst)*/
+           val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH)
+        val formatter = SimpleDateFormat("dd-MM-yyyy",Locale.ENGLISH)
+        //return  DateFormat.format("yyyy-MM-dd", cal).toString()
+         val newDate = sdf.parse(date)
+         val returnedDate = formatter.format(newDate!!)
+         return returnedDate
+    }
+    fun showSnackMessages(
+        activity: Activity?,
+        error: String?,color : Int= android.R.color.holo_red_dark
+    ) {
+        if (activity != null) {
+            Flashbar.Builder(activity)
+                .gravity(Flashbar.Gravity.TOP)
+                //.title(activity.getString(R.string.errors))
+                .message(error!!)
+                .backgroundColorRes(color)
+                .dismissOnTapOutside()
+                .duration(2500)
+                .enableSwipeToDismiss()
+                .enterAnimation(
+                    FlashAnim.with(activity)
+                        .animateBar()
+                        .duration(550)
+                        .alpha()
+                        .overshoot()
+                )
+                .exitAnimation(
+                    FlashAnim.with(activity)
+                        .animateBar()
+                        .duration(200)
+                        .anticipateOvershoot()
+                )
+                .build().show()
+        }
+    }
 
     fun showShimmer(card: LinearLayout, shimmer: ShimmerFrameLayout, state: Boolean){
         if(state){
@@ -204,7 +259,11 @@ object BasicTools {
         TemplateActivity.bookmarkConditionSelectedCondtionInedx=0
         TemplateActivity.conditionIdForBookMark=-1
         TemplateActivity.categoryIdForBookMark=-1
-        setToken(context,"")
+      //  setToken(context,"")
+        BasicTools.setAgreementsTerms(
+            context,
+            false
+        )
         setPassword(context,"")
         setUserName(context,"")
         setToken(context,"")
@@ -276,10 +335,22 @@ object BasicTools {
         editor.apply()
     }
 
+    fun getAgreementsTerms(context: Context): Boolean{
+        val preferences = context.getSharedPreferences("APP_DATA", Context.MODE_PRIVATE)
+        val agreements = preferences.getBoolean("terms_agreemnts", false)?:false
+        return agreements
+    }
+    fun setAgreementsTerms(context: Context, agreements: Boolean) {
+        val preferences = context.getSharedPreferences("APP_DATA", Context.MODE_PRIVATE)
+        val editor = preferences.edit()
+        editor.putBoolean("terms_agreemnts", agreements)
+        editor.apply()
+    }
+
     fun getToken(context: Context): String{
         val preferences = context.getSharedPreferences("APP_DATA", Context.MODE_PRIVATE)
-        val token = preferences.getString("TOKEN", "")
-        return token!!
+        val token = preferences.getString("TOKEN", "")?:""
+        return token
     }
 
 
@@ -395,6 +466,42 @@ object BasicTools {
         return value
     }
 
+    fun setLanguagePerActivity(activity : Activity, intent: Intent?){
+        val currentLanguage =  (getLangCode(activity.applicationContext)?:"en")
+        val prefsLang = currentLanguage
+        //  if (UtilKotlin.getSharedPrefs(activity).getString(PrefsModel.localLanguage, "en").equals("en")) {
+        val locale = Locale(currentLanguage)
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.setLocale(locale)
+        activity.getResources().updateConfiguration(config, activity.resources.displayMetrics)
+
+        setApplicationlanguage(
+            activity,
+            currentLanguage
+        )
+        // add current language if default
+        setLangCode(activity.applicationContext,prefsLang)
+        if (intent!=null) // we need to start activity
+        {
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            activity.finishAffinity()
+            activity.startActivity(intent) // start redirect activity when you set it
+        }
+    }
+    private fun setApplicationlanguage(context: Context, language: String?) {
+        val res = context.applicationContext.resources
+        val dm = res.displayMetrics
+        val conf = res.configuration
+        // if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+        conf.setLocale(Locale(language!!)) // API 17+ only.
+        /*  } else {
+              conf.locale = Locale(language)
+          }
+
+         */
+        res.updateConfiguration(conf, dm)
+    }
     fun runLayoutAnimation(recyclerView: RecyclerView?, item: AnimationItem) {
         if (recyclerView != null && recyclerView.adapter != null) {
             val context = recyclerView.context
@@ -834,11 +941,35 @@ object BasicTools {
         }
 
     }
+    fun setRecycleView(recyclerView: RecyclerView?, adaptor: RecyclerView.Adapter<*>,
+                       verticalOrHorizontal: Int?, context:Context, gridModel: GridModel?,
+                       includeEdge : Boolean) {
+        var layoutManger : RecyclerView.LayoutManager? = null
+        if (gridModel==null) // normal linear
+            layoutManger = LinearLayoutManager(context, verticalOrHorizontal!!,false)
+        else
+        {
+            layoutManger = GridLayoutManager(context, gridModel.numberOfItems)
+            if (recyclerView?.itemDecorationCount==0)
+                recyclerView?.addItemDecoration(
+                    SpacesItemDecorationGrid(gridModel.numberOfItems
+                    , gridModel.space, includeEdge)
+                )
+        }
+        recyclerView?.apply {
+            setLayoutManager(layoutManger)
+            setHasFixedSize(true)
+            adapter = adaptor
 
+        }
+    }
     @JvmOverloads
-    fun loadImage(url: String, image_view: ImageView, listener: DownloadListener?, loading_drawable: Drawable? = null) {
+    fun loadImage(url: String, image_view: ImageView?, listener: DownloadListener?, loading_drawable: Drawable? = null) {
         try {
-            val imageLoader = ImageLoader.getInstance()
+            Glide.with(image_view!!.context).load(url)
+                .error(R.color.background_image)/*.placeholder(R.color.background_image)*/.dontAnimate()
+                .apply( RequestOptions().override(600, 600)).into(image_view)
+          /*  val imageLoader = ImageLoader.getInstance()
             val options: DisplayImageOptions
             if (loading_drawable != null) {
                 options = DisplayImageOptions.Builder().cacheInMemory(true)
@@ -870,7 +1001,7 @@ object BasicTools {
 
                 }
             })
-            imageLoader.displayImage(url, image_view, options)
+            imageLoader.displayImage(url, image_view, options)*/
         } catch (e: Exception) {
             e.printStackTrace()
         } catch (er: Error) {
@@ -1144,10 +1275,16 @@ object BasicTools {
     fun getShareMessage(name:String,owner:String,price:String):String{
         return "name: $name\nowner: $owner\nprice:$price SAR\n";
     }
+    fun sharePdfForWhatsApp(phoneNumber :String): Intent {
+        val sendIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://api.whatsapp.com/send?phone=" +phoneNumber +
+                "&text=" + "")
+        )
+        return sendIntent//Intent.createChooser(sendIntent, "Sharing Options")
+    }
     fun shareProduct(name:String,owner:String,price:String,id: String,image:String?,context: Context){
         val link = FirebaseDynamicLinks.getInstance().createDynamicLink()
-            .setLink(Uri.parse("http://urcloset.net?id=" + id))
-            .setDomainUriPrefix("http://urcloset.page.link/")
+            .setLink(Uri.parse(/*"https://.*urcloset.com.*?id="*/"https://urcloset.page.link/product?id=" + id))
+            .setDomainUriPrefix("https://urcloset.page.link/")
             .setSocialMetaTagParameters(
                 DynamicLink.SocialMetaTagParameters.Builder()
                     .setTitle(context.resources.getString(R.string.app_name))
@@ -1188,6 +1325,7 @@ object BasicTools {
                             (context as TemplateActivity).showToastMessage(it.result.toString())
                         }
                         catch (e:Exception){
+                            Log.v("exception",e.toString())
                             (context as TemplateActivity).showToastMessage(e.toString())
 
                         }

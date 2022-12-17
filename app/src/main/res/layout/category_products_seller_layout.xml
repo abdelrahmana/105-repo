@@ -13,7 +13,7 @@
             android:layout_marginTop="@dimen/two_unit"
             android:layout_gravity="center_horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="350dp"/>
 
     <LinearLayout
         android:background="@drawable/product_images_bg"
@@ -128,10 +128,9 @@
         </LinearLayout>
 
     <ImageView
-        android:src="@drawable/category_empty"
-        android:visibility="gone"
+        android:layout_centerInParent="true"
         android:id="@+id/empty_products"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="350dp"/>
 
 </RelativeLayout>

@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.core.widget.NestedScrollView android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    android:id="@+id/swipe"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<com.urcloset.smartangle.tools.NestedScrollPaginationView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/nestedScrollPagination">
 <LinearLayout
     android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
@@ -29,7 +34,7 @@
         android:textSize="22dp"
         android:textStyle="bold"
         android:textColor="@android:color/black"
-        android:text="@string/your_area"
+        android:text="@string/all_users"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <TextView
@@ -69,7 +74,7 @@
 
 
 
-    <com.urcloset.smartangle.CustomViewPager
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_marginTop="@dimen/two_unit"
         android:id="@+id/area_view_pager"
         android:layout_width="match_parent"
@@ -100,6 +105,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/shimmer_users"
+
         android:visibility="gone">
         <LinearLayout
             android:orientation="horizontal"
@@ -123,6 +129,7 @@
 
 
 </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+</com.urcloset.smartangle.tools.NestedScrollPaginationView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 

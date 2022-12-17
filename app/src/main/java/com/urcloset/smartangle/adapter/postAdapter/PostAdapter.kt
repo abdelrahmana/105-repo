@@ -169,9 +169,9 @@ class PostAdapter():RecyclerView.Adapter<PostAdapter.ViewHolder>() {
 
         BasicTools.loadImage(path,image,object : DownloadListener {
             override fun completed(status: Boolean, bitmap: Bitmap) {
-               val anim = AnimationUtils.loadAnimation(context?.applicationContext, android.R.anim.fade_in)
+            /*   val anim = AnimationUtils.loadAnimation(context?.applicationContext, android.R.anim.fade_in)
                 anim!!.setDuration(1000)
-                image.animation = anim
+                image.animation = anim*/
             }
         })
 
@@ -180,9 +180,9 @@ class PostAdapter():RecyclerView.Adapter<PostAdapter.ViewHolder>() {
 
         BasicTools.loadImage(path,image,object : DownloadListener {
             override fun completed(status: Boolean, bitmap: Bitmap) {
-                val anim = AnimationUtils.loadAnimation(context?.applicationContext, android.R.anim.fade_in)
+            /*    val anim = AnimationUtils.loadAnimation(context?.applicationContext, android.R.anim.fade_in)
                 anim!!.setDuration(1000)
-                image.animation = anim
+                image.animation = anim*/
             }
         })
 

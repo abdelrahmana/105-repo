@@ -1,59 +1,51 @@
 package com.urcloset.smartangle.activity.homeActivity
 
 
-import android.app.Activity
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Base64
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem
-import com.bumptech.glide.Glide
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.dynamiclinks.ktx.dynamicLinks
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
-import com.google.gson.Gson
 import com.urcloset.smartangle.R
-import com.urcloset.smartangle.activity.demo105.AddProductActivity
 import com.urcloset.smartangle.activity.productDetails.ProductDetails
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
 import com.urcloset.smartangle.fragment.HomeFragment.HomeFragment
-import com.urcloset.smartangle.fragment.UserInfoFragment
 import com.urcloset.smartangle.fragment.bookmark_fragment.BookMarkFragment
 import com.urcloset.smartangle.fragment.myselleraccount.MySellerAccount
 import com.urcloset.smartangle.fragment.postsFragment.PostsFragment
 import com.urcloset.smartangle.fragment.setting_fragment.SettingFragment
-import com.urcloset.smartangle.model.UserProfileModel
 
 
 import com.urcloset.smartangle.tools.AppObservable
 import com.urcloset.smartangle.tools.BasicTools
 import com.urcloset.smartangle.tools.TemplateActivity
-import droidninja.filepicker.FilePickerConst
+import dagger.hilt.android.AndroidEntryPoint
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_home.*
 import okhttp3.ResponseBody
-import java.security.MessageDigest
-import java.security.NoSuchAlgorithmException
-import java.util.*
 import kotlin.collections.HashMap
 
-
+@AndroidEntryPoint
 class HomeActivity : TemplateActivity() {
 
     var disposable= CompositeDisposable()
     companion object{
-        var bottomNavigation: AHBottomNavigation?=null
+        var bottomNavigation: BottomNavigationView?=null
         var doNothing: Boolean=false
 
 
@@ -61,6 +53,7 @@ class HomeActivity : TemplateActivity() {
     override fun set_layout() {
         setContentView(R.layout.activity_home)
     }
+    val viewModel : HomeViewModel by viewModels()
 
     override fun init_activity(savedInstanceState: Bundle?) {
         Firebase.dynamicLinks
@@ -135,6 +128,12 @@ class HomeActivity : TemplateActivity() {
 
     }
 
+
+
+    val postsFragment = PostsFragment()
+    val homeFragment  = HomeFragment()
+    val bookMark = BookMarkFragment()
+    val sellerAccount = MySellerAccount()
     override fun init_views() {
 
     }
@@ -142,19 +141,16 @@ class HomeActivity : TemplateActivity() {
     override fun init_events() {
 
         initBottomNavigation()
-        val postsFragment = PostsFragment()
+       // val postsFragment = postsFragment//PostsFragment()
 
-        show_fragment2(postsFragment, false, false)
-        bottomNavigation!!.setOnTabSelectedListener { position, wasSelected ->
+        show_fragment2(postsFragment, false, false, R.id.root_fragment_home)
+      /*  bottomNavigation!!.setOnTabSelectedListener { position, wasSelected ->
             // Do something cool here...
-            when(position.toInt()){
+            when(position){
                 0 -> if (!wasSelected) {
 
                     if(!doNothing) {
-
-                        val postsFragment = PostsFragment()
-
-                        show_fragment2(postsFragment, false, false)
+                        show_fragment2(postsFragment, false, false,R.id.root_fragment_home)
                     }
 
 
@@ -162,9 +158,9 @@ class HomeActivity : TemplateActivity() {
                 }
                 1->if(!wasSelected){
                     if(!doNothing) {
-                        val f = HomeFragment()
+                       // val f = HomeFragment()
 
-                        show_fragment2(f, false, false)
+                        show_fragment2(homeFragment, false, false, R.id.root_fragment_home)
                     }
                 }
 
@@ -185,11 +181,10 @@ class HomeActivity : TemplateActivity() {
                 }
                 3->if(!wasSelected) {
                     if (TemplateActivity.loginResponse?.data?.accessToken != null) {
-
                         if(!doNothing) {
-
-                            val f = BookMarkFragment()
-                            show_fragment2(f, false, false)
+                            //bottomNavigation!!.currentItem = 3
+                            val f =bookMark
+                            show_fragment2(f, false, false, R.id.root_fragment_home)
                         }
                     }
                     else {
@@ -203,21 +198,18 @@ class HomeActivity : TemplateActivity() {
 
                4->if(!wasSelected) {
 
-
-
                    // var f= UserInfoFragment()
-                    val f= MySellerAccount()
+                    val f= sellerAccount//MySellerAccount()
                 if (TemplateActivity.loginResponse?.data?.accessToken != null) {
                     if(!doNothing) {
 
-
-                        show_fragment2(f, false, false)
+                        show_fragment2(f, false, false, R.id.root_fragment_home)
                     }
                 }
                 else {
                     if(!doNothing) {
                         val settingFragment = SettingFragment()
-                        show_fragment2(settingFragment, false, false)
+                        show_fragment2(settingFragment, false, false, R.id.root_fragment_home)
                     }
                 }
 
@@ -227,6 +219,98 @@ class HomeActivity : TemplateActivity() {
 
             true
         }
+        bottomNavigation!!.currentItem = 0*/
+        val navListener =
+            bottomNavigation!!.setOnNavigationItemSelectedListener { menuItem ->
+                //           previousFragment = selectedFragment // previous to be equal to selected
+                // if (isDoubleSelection(menuItem.itemId)){
+                /*    val f = supportFragmentManager.findFragmentById(R.id.fragment_container_navigation)
+                        if (f == selectedFragment) // do something with f
+                            return@OnNavigationItemSelectedListener true*/
+
+                // }
+                bottomNavigation?.menu?.setGroupCheckable(0, true, true)
+
+                when (menuItem.itemId) {
+                    R.id.posts -> {
+
+                            if (!doNothing) {
+                                show_fragment2(postsFragment, false, false, R.id.root_fragment_home)
+                            }
+
+                    }
+                    R.id.users -> {
+                        if(!doNothing) {
+                            // val f = HomeFragment()
+
+                            show_fragment2(homeFragment, false, false, R.id.root_fragment_home)
+                        }
+
+                    }
+                    R.id.adding -> {
+                        if (TemplateActivity.loginResponse?.data?.accessToken != null) {
+                            // will check if the user agree or not
+                            BasicTools.openActivity(
+                                this@HomeActivity,
+                                com.urcloset.smartangle.activity.addProductActivity.AddProductActivity::class.java,
+                                false
+                            )
+                        } else {
+                            Toast.makeText(applicationContext, getString(R.string.you_must_log_in), Toast.LENGTH_SHORT).show()
+                        }
+
+                    }
+                    R.id.bookmark -> {
+                        if (TemplateActivity.loginResponse?.data?.accessToken != null) {
+                            if(!doNothing) {
+                                //bottomNavigation!!.currentItem = 3
+                                val f =bookMark
+                                show_fragment2(f, false, false, R.id.root_fragment_home)
+                            }
+                        }
+                        else {
+                            Toast.makeText(applicationContext, getString(R.string.you_must_log_in), Toast.LENGTH_SHORT).show()
+
+
+                        }
+
+                    }
+                    R.id.setting -> {
+                        if (TemplateActivity.loginResponse?.data?.accessToken != null) {
+                            if(!doNothing) {
+
+                                show_fragment2(MySellerAccount(), false, false, R.id.root_fragment_home)
+                            }
+                        }
+                        else {
+                            if(!doNothing) {
+                                val settingFragment = SettingFragment()
+                                show_fragment2(settingFragment, false, false, R.id.root_fragment_home)
+                            }
+                        }
+
+                    }
+                }
+
+
+                true
+            }
+
+        viewModel.loadPreviousNavBottom.observe(this, Observer<Int> { updatedId ->
+            if (updatedId != null) {
+                // this is the id
+                //bottomNavigationView.
+             /*   if (updatedId == R.id.users)
+                    bottomNavigation!!.menu?.findItem(R.id.users)?.setChecked(true)
+                else  if (updatedId == R.id.home)
+                    bottomNavigation!!.menu?.findItem(R.id.home)?.setChecked(true)*/
+                //bottomNavigation!!.selectedItemId = updatedId
+               bottomNavigation!!.menu.findItem(updatedId)?.setChecked(true)
+                //  setCurrentCheckedItemIfAvaliable(updatedId,true) // when observe so we only need the selectdd not all action so send filter
+                viewModel.setPreviousNavBottom(null)
+            }
+
+        })
 
     }
 
@@ -240,15 +324,17 @@ class HomeActivity : TemplateActivity() {
 
 
     fun initBottomNavigation() {
-        bottomNavigation = findViewById(R.id.bottom_navigation) as AHBottomNavigation
+        bottomNavigation = findViewById(R.id.bottom_navigation) as BottomNavigationView
+        bottomNavigation?.setItemIconTintList(null)
         val pixels = 5 * resources.displayMetrics.density
         if (Build.VERSION.SDK_INT >= 21)
             bottomNavigation!!.setElevation(pixels)
 
-
-        val item1 =AHBottomNavigationItem(resources.getString(R.string.home), R.drawable.ic_discover)
+/*
+            val item1 =AHBottomNavigationItem(resources.getString(R.string.home), R.drawable.ic_discover)
         val item2 = AHBottomNavigationItem(getString(R.string.account), R.drawable.ic_nearby_users)
-        val item3 = AHBottomNavigationItem(resources.getString(R.string.add_product), R.drawable.ic_add__item_icon)
+        val item3 = AHBottomNavigationItem(resources.getString(R.string.add_product),
+            R.drawable.ic_add__item_icon)
         val item4 = AHBottomNavigationItem(resources.getString(R.string.message), R.drawable.bookmark_ic_bn)
         val item5 = AHBottomNavigationItem(resources.getString(R.string.account), R.drawable.person_ic_bn)
 
@@ -268,8 +354,10 @@ class HomeActivity : TemplateActivity() {
 
         //bottomNavigation.disableItemAtPosition(4);
 
-        bottomNavigation!!.setCurrentItem(0);
-        bottomNavigation!!.setBehaviorTranslationEnabled(false)
+     //   bottomNavigation!!.currentItem = 1
+       // bottomNavigation!!.setBehaviorTranslationEnabled(false)
+        bottomNavigation!!.setColored(false)
+
 
         // Manage titles
         bottomNavigation!!.setTitleState(AHBottomNavigation.TitleState.ALWAYS_HIDE)
@@ -282,12 +370,10 @@ class HomeActivity : TemplateActivity() {
         bottomNavigation!!.setInactiveColor(fetchColor(R.color.black))
 
 
-        bottomNavigation!!.currentItem = 0
-
 
 
         //bottomNavigation!!.isColored = true
-
+*/
 
 
         /* notification = AHNotification.Builder()

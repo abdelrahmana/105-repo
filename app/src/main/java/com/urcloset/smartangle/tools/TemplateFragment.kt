@@ -5,7 +5,10 @@ package com.urcloset.smartangle.tools
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.google.android.material.snackbar.Snackbar
+import com.urcloset.smartangle.activity.homeActivity.HomeViewModel
 import com.urcloset.smartangle.model.User
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +17,7 @@ import kotlin.coroutines.CoroutineContext
 
 
 abstract class TemplateFragment : Fragment(), CoroutineScope {
-
+    val viewModelHome : HomeViewModel by activityViewModels()
     protected var parent: TemplateActivity?=null
     protected var snackbar: Snackbar? = null
     private lateinit var job: Job
@@ -38,7 +41,7 @@ abstract class TemplateFragment : Fragment(), CoroutineScope {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         job = Job()
-
+        BasicTools.setLanguagePerActivity(requireActivity(),null)
 
 
 

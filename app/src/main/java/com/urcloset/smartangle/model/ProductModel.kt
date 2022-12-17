@@ -44,6 +44,9 @@ data class ProductModel(
         val itemStatus: Int?,
         @SerializedName("name")
         val name: String?,
+        var selectedItem : Boolean = false,
+        var soldItem : Boolean = false,
+
         @SerializedName("negotiable_sentence_id")
         val negotiableSentenceId: String?,
         @SerializedName("payment_status")

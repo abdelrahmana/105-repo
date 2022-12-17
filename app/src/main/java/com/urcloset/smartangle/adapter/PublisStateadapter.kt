@@ -13,9 +13,11 @@ import com.bumptech.glide.Glide
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.gson.Gson
 import com.urcloset.smartangle.R
+import com.urcloset.smartangle.activity.publishStatusActivity.InterfacePublication
 import com.urcloset.smartangle.activity.updateProduct.UpdateProductActivity
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
+import com.urcloset.smartangle.databinding.PublishStateItemBinding
 import com.urcloset.smartangle.model.BasicModel
 import com.urcloset.smartangle.model.ProductModel
 import com.urcloset.smartangle.tools.AppObservable
@@ -33,19 +35,34 @@ import java.util.*
 class PublishStateAdapter(): RecyclerView.Adapter<PublishStateAdapter.ViewHolder>() {
     private var products:ArrayList<ProductModel.Product> ?= null
     private var context:Context ?=null
-    constructor(context: Context, products:ArrayList<ProductModel.Product>) : this() {
+    private var currentPageProduct : InterfacePublication? =null
+    constructor(context: Context, products:ArrayList<ProductModel.Product>,currentPageProduct :InterfacePublication) : this() {
 
         this.context=context
         this.products=products
+        this.currentPageProduct = currentPageProduct
 
     }
 
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view : View= LayoutInflater.from(parent.context)
-            .inflate(R.layout.publish_state_item, parent, false)
-        return ViewHolder(view)
+        val binding = PublishStateItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+      /*  val view : View= LayoutInflater.from(parent.context)
+            .inflate(R.layout.publish_state_item, parent, false)*/
+        return ViewHolder(binding,binding.root)
+    }
+    fun clearProduct () {
+        products?.clear()
+    }
+    fun updateList(data: List<ProductModel.Product>) {
+        if (products?.isEmpty()==true) {
+            products?.addAll(data)
+            notifyDataSetChanged()
+        } else {
+            products?.addAll(data)
+            notifyItemRangeChanged(0, data!!.size)
+        }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -132,7 +149,7 @@ class PublishStateAdapter(): RecyclerView.Adapter<PublishStateAdapter.ViewHolder
             holder.lyEdit.visibility = View.GONE
             holder.edit.visibility = View.GONE
         }
-
+        currentPageProduct?.showHideViews(holder.binding)
 
     }
 
@@ -173,7 +190,7 @@ class PublishStateAdapter(): RecyclerView.Adapter<PublishStateAdapter.ViewHolder
                val  shopApi =
                     ApiClient.getClientJwt(
                         TemplateActivity.loginResponse?.data?.accessToken.toString(),
-                        BasicTools.getProtocol(context as TemplateActivity).toString(), lang)
+                        BasicTools.getProtocol(context!!).toString(), lang)
                         ?.create(
                             AppApi::class.java
                         )
@@ -188,7 +205,7 @@ class PublishStateAdapter(): RecyclerView.Adapter<PublishStateAdapter.ViewHolder
                 observable.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeWith(object :
-                        AppObservable<BasicModel>(context as TemplateActivity) {
+                        AppObservable<BasicModel>(context!!) {
                         override fun onSuccess(result: BasicModel) {
                             if(result.status == true ){
                                 products?.removeAt(position)
@@ -222,7 +239,7 @@ class PublishStateAdapter(): RecyclerView.Adapter<PublishStateAdapter.ViewHolder
         }
 
     }
-    class ViewHolder(val view: View) :RecyclerView.ViewHolder(view){
+    class ViewHolder(val binding: PublishStateItemBinding,val view : View) :RecyclerView.ViewHolder(view){
         val image = view.findViewById<ImageView>(R.id.image)
         val name = view.findViewById<TextView>(R.id.name)
         val delete = view.findViewById<CardView>(R.id.cv_delete)

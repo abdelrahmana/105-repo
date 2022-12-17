@@ -19,11 +19,12 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/logo_v4"
+        android:icon="@mipmap/logo_4"
         android:label="@string/app_name"
+        android:name=".di.MyApplicationClass"
         android:largeHeap="true"
         android:requestLegacyExternalStorage="true"
-        android:roundIcon="@mipmap/logo_v4"
+        android:roundIcon="@mipmap/logo_4"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
@@ -168,6 +169,9 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".activity.socialActivity.SocialActivityV2"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:exported="true"
             android:name=".activity.homeActivity.HomeActivity"
@@ -179,10 +183,10 @@
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
                 <data
-                    android:host="urcloset.net"
+                    android:host="urcloset.page.link/product"
                     android:scheme="https"/>
                 <data
-                    android:host="urcloset.net"
+                    android:host="urcloset.page.link/product"
                     android:scheme="http"/>
             </intent-filter>
 
@@ -264,16 +268,16 @@
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
-        <activity
-            android:name="com.facebook.CustomTabActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="@string/fb_login_protocol_scheme" />
-            </intent-filter>
-        </activity>
+            <activity
+                android:name="com.facebook.CustomTabActivity"
+                android:exported="true">
+                <intent-filter>
+                    <action android:name="android.intent.action.VIEW" />
+                    <category android:name="android.intent.category.DEFAULT" />
+                    <category android:name="android.intent.category.BROWSABLE" />
+                    <data android:scheme="@string/fb_login_protocol_scheme" />
+                </intent-filter>
+            </activity>
         <activity
             android:name=".activity.publishStatusActivity.PublicationStatus"
             android:configChanges="orientation|screenSize|keyboardHidden"

@@ -72,15 +72,15 @@
                 android:layout_height="0dp">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:layout_marginTop="@dimen/d1_2"
-                    android:layout_width="match_parent"
                     android:id="@+id/rv_seeall_user"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/d1_2"
+                    android:orientation="vertical"
                     android:visibility="visible"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    android:orientation="vertical"
                     tools:itemCount="3"
-                    tools:listitem="@layout/user_item"
-                    android:layout_height="match_parent"/>
+                    tools:listitem="@layout/user_item" />
 
 
 

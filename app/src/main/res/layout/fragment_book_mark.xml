@@ -10,15 +10,16 @@
     android:padding="@dimen/unit"
     >
 
-
-
-    <include layout="@layout/toolbar_bookmark"/>
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/toolbar_bookmark"/>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
         android:id="@+id/swip_bookmark"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
 
 
@@ -30,8 +31,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <RelativeLayout
-
-
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp">
@@ -71,7 +70,7 @@
 
                 <LinearLayout
                     android:visibility="gone"
-                    android:id="@+id/root_empty_page"
+                    android:id="@+id/root_empty_page_bookmark"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -89,8 +88,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/no_data"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-
                         android:layout_marginTop="@dimen/d0_8"
                         android:textStyle="bold"
                         android:textColor="@color/login_btn"

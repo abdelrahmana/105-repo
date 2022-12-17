@@ -34,7 +34,6 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_settings.*
 import okhttp3.ResponseBody
-import java.util.*
 import kotlin.collections.HashMap
 
 
@@ -231,7 +230,7 @@ class SettingActivity : TemplateActivity() {
                 showToastMessage(R.string.you_have_to_login_first)
             else {
                 var f = UserInfoFragment()
-               show_fragment2(f, false, false)
+               show_fragment2(f, false, false, R.id.root_fragment_home)
             }
         }
 

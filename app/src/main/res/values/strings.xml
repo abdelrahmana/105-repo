@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Dolaby</string>
+    <string name="app_name">UR CLOSET</string>
     <string name="facebook_app_id" translatable="false">198249675630124</string>
     <string name="fb_login_protocol_scheme" translatable="false">fb198249675630124</string>
 
@@ -538,6 +538,29 @@
     <string name="client_secret" translatable="false">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</string>
     <string name="token_isnull">Cannot to get Your Info</string>
     <string name="reset">Reset</string>
+    <string name="support_whats">"Support by WhatsApp  "</string>
+    <string name="payment">"Payment Method "</string>
+    <string name="commission_payment">Commission Payment</string>
+    <string name="process_completed">Process Completed Successfully</string>
+    <string name="paynow">Pay</string>
+    <string name="error_happend">Error Happend</string>
+    <string name="consent_header">Consent And Commitment</string>
+    <string name="agree">Agree</string>
+    <string name="sold">Sold</string>
+    <string name="number_product">Number of products selected:</string>
+    <string name="total_commission">Total Commissions</string>
+    <string name="pay_selected">Pay For The Selected</string>
+    <string name="publication_date">Publication Date :</string>
+    <string name="single_commission">10 RSA</string>
+    <string name="sar">RSA</string>
+    <string name="congratulation">Congratulation</string>
+    <string name="commission_unpaid">Commission Unpaid</string>
+    <string name="unpaid_products">You Have Posted %d Products</string>
+    <string name="short_description">I acknowledge that I bear all responsibility for the products that I sell and that they conform to the specifications that are set in the application, and the application has the right to take the necessary measures when violating the terms and conditions
+I agree to pay 10 riyals when selling the product, and that it is in my possession until payment.</string>
+    <string name="card_holder_customize">Card Holder Name</string>
+    <string name="add_compeleted">Product Added Successfully</string>
+    <string name="select_products">Select the products you want to add to the sold section:</string>
 
 
 </resources>

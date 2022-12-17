@@ -5,13 +5,12 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:layout_centerInParent="true"
         android:id="@+id/iv_splash"
-        android:padding="@dimen/d9"
         android:layout_width="match_parent"
-        android:adjustViewBounds="true"
         android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:adjustViewBounds="true"
 
-        />
+        android:padding="@dimen/d9" />
 
 </RelativeLayout>

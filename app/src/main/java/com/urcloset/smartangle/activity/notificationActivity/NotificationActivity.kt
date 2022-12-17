@@ -56,6 +56,13 @@ class NotificationActivity : TemplateActivity(),ItemClickListener {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        currentPage = 1
+        getNotifications(currentPage.toString())
+
+    }
+
     override fun set_layout() {
         setContentView(R.layout.activity_notification)
 

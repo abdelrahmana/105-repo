@@ -443,7 +443,10 @@ class CompleteDataAct : TemplateActivity() ,Validator.ValidationListener{
                                 BasicTools.setIsSocial(this@CompleteDataAct,false)
                                 BasicTools.setLoginType(this@CompleteDataAct, registerType)
                                 BasicTools.setToken(this@CompleteDataAct,result.data?.accessToken!!.toString())
-
+                                BasicTools.setAgreementsTerms(
+                                    this@CompleteDataAct,
+                                    result.data?.user?.is_agree?:false
+                                )
 //                                BasicTools.setPhoneUser(this@CompleteDataAct,result.data?.user?.phoneNumber!!.toString())
 //                                BasicTools.setUserCountryCode(this@CompleteDataAct,countryCode.selectedCountryCode)
                                 BasicTools.setPassword(this@CompleteDataAct,TemplateActivity.passwrodSignUp)
@@ -525,7 +528,10 @@ class CompleteDataAct : TemplateActivity() ,Validator.ValidationListener{
                               //  BasicTools.setPhoneUser(this@CompleteDataAct,result.data?.user?.phoneNumber!!.toString())
                               //  BasicTools.setUserCountryCode(this@CompleteDataAct,countryCode.selectedCountryCode)
                                 BasicTools.setPassword(this@CompleteDataAct,TemplateActivity.passwrodSignUp)
-
+                                BasicTools.setAgreementsTerms(
+                                    this@CompleteDataAct,
+                                    result.data?.user?.is_agree?:false
+                                )
 
 
                                 if(!result.data?.user?.email.isNullOrEmpty())

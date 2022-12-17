@@ -45,8 +45,10 @@ class CountrySpinnerAdapter(
 //        Utility.setGravityForTextView(context, view)
         setItemTextColor(view, position, true)
 
-        view.setText(mItems.get(position).name?.toString())
-        //        view.setTypeface(mTypeface);
+        if(BasicTools.isDeviceLanEn())
+            view.setText(mItems.get(position).name?.toString())
+        else
+            view.setText(mItems.get(position).nameAr?.toString())        //        view.setTypeface(mTypeface);
         return view
     }
 

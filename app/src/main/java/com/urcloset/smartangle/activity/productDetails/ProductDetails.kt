@@ -518,7 +518,7 @@ class ProductDetails : TemplateActivity() ,IProductDetailsActivity{
                                             ""
                                         )!!
                                     ) {
-                                        tvUsed.text = result.productDetails?.item?.usedSentence?.english
+                                        tvUsed.text = result.productDetails?.item?.usedSentence?.arabic
 
                                     }
                                     if (result.productDetails?.item?.boxAvailable!! > 0)

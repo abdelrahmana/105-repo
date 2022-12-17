@@ -17,7 +17,7 @@
         android:layout_gravity="center_horizontal"
 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="350dp"/>
     <LinearLayout
         android:id="@+id/ly_product"
         android:orientation="vertical"

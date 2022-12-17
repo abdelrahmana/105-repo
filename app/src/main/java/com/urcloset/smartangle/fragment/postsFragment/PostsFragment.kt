@@ -8,13 +8,17 @@ import android.os.Bundle
 import android.view.*
 import android.widget.*
 import androidx.cardview.widget.CardView
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.urcloset.smartangle.R
 import com.urcloset.smartangle.activity.homeActivity.HomeActivity
+import com.urcloset.smartangle.activity.homeActivity.HomeViewModel
 import com.urcloset.smartangle.activity.notificationActivity.NotificationActivity
 import com.urcloset.smartangle.activity.searchActivity.SearchActivity
 import com.urcloset.smartangle.adapter.postAdapter.PostAdapter
@@ -31,13 +35,11 @@ import com.urcloset.smartangle.model.NotificationModel
 import com.urcloset.smartangle.model.PostsModel
 import com.urcloset.smartangle.model.project_105.CountryModel
 import com.urcloset.smartangle.model.project_105.CountryWithCity
-import com.urcloset.smartangle.tools.AppObservable
-import com.urcloset.smartangle.tools.BasicTools
-import com.urcloset.smartangle.tools.TemplateActivity
-import com.urcloset.smartangle.tools.TemplateFragment
+import com.urcloset.smartangle.tools.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import io.reactivex.subjects.PublishSubject
 
 class PostsFragment():TemplateFragment() {
     lateinit var spinner: Spinner
@@ -53,6 +55,7 @@ class PostsFragment():TemplateFragment() {
     lateinit var gridLayout: LinearLayout
     lateinit var listLayout: LinearLayout
     lateinit var  cview:View
+    lateinit var swipeRefreshLayout : SwipeRefreshLayout
     lateinit var progressBar: ProgressBar
     lateinit var postsModel:PostsModel
     lateinit var tvUserLocation: TextView
@@ -60,7 +63,6 @@ class PostsFragment():TemplateFragment() {
     lateinit var tvUsername:TextView
     lateinit var rlSearch:RelativeLayout
     lateinit var ivNotification:ImageView
-
     var postAdapter: PostAdapter?=null
     var posts =  ArrayList<PostsModel.Data.Post>()
     var postGridAdapter:PostGridAdapter?=null
@@ -76,14 +78,15 @@ class PostsFragment():TemplateFragment() {
     var itemloaded = false
     override fun onResume() {
         super.onResume()
-        if(HomeActivity.bottomNavigation?.currentItem!=0){
+  /*      if(HomeActivity.bottomNavigation?.currentItem!=0){
             HomeActivity.doNothing =  true
             HomeActivity.bottomNavigation?.currentItem=0
             HomeActivity.doNothing =  false
 
-        }
+        }*/
     }
-
+   // val viewModelHome : HomeViewModel by activityViewModels()
+    var sameFragmentCreated = false
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -109,13 +112,23 @@ class PostsFragment():TemplateFragment() {
         tvUserLocation=cview.findViewById(R.id.tv_user_location)
         rlSearch = cview.findViewById(R.id.rl_search)
         ivNotification = cview.findViewById(R.id.iv_notification)
-
+        swipeRefreshLayout = cview.findViewById(R.id.swipe)
         if(selectedViewType==0)
             setGridViewType(cview)
         else setListViewType(cview)
         setWelcomeUser()
         setUserLocation()
+        if (posts.isEmpty())
         getCategories()
+        else {
+            sameFragmentCreated = true
+            //listLayout.performClick()
+            if (selectedViewType == 0) // grid
+                setGridList()
+            else setNormalList()
+            setCategoriesAdaptor(ArrayList(), ArrayList(),categories)
+
+        }
         setNotification()
 
 
@@ -129,6 +142,10 @@ class PostsFragment():TemplateFragment() {
         rlSearch.setOnClickListener {
             BasicTools.openActivity(parent!!, SearchActivity::class.java, false)
         }
+        swipeRefreshLayout.setOnRefreshListener {
+            getPost(categoryId, distance, countryId, cityId)
+            swipeRefreshLayout.isRefreshing = false
+        }
         // category filter
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -140,13 +157,14 @@ class PostsFragment():TemplateFragment() {
                 if (position!=0)
                 categoryId = categories?.get(position-1)?.id.toString()
                 else categoryId = null
+                if (!sameFragmentCreated)
                 getPost(categoryId,distance,countryId,cityId)
+                else
+                    sameFragmentCreated = false
 
             }
-
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
-
         }
         rvPosts.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
@@ -156,8 +174,7 @@ class PostsFragment():TemplateFragment() {
                         if (currentPage < postsModel.data?.lastPage!!) {
                             progressBar.visibility = View.VISIBLE
                             currentPage = currentPage + 1
-
-                            getNextPost(currentPage.toString(),distance)
+                            getNextPost(categoryId,distance,currentPage,countryId,cityId)
                         }
                     }
 
@@ -168,25 +185,14 @@ class PostsFragment():TemplateFragment() {
         gridLayout.setOnClickListener {
             if(selectedViewType==1) {
                 if(itemloaded) {
-                    rvPosts.layoutManager =
-                        GridLayoutManager(parent, 3, GridLayoutManager.VERTICAL, false)
-                    postGridAdapter = PostGridAdapter(parent!!, ArrayList<PostsModel.Data.Post>(posts))
-                    rvPosts.adapter = postGridAdapter
-                    setGridViewType(cview)
-                    selectedViewType = 0
+                    setGridList()
                 }
             }
         }
         listLayout.setOnClickListener {
             if(selectedViewType==0) {
                 if(itemloaded) {
-                    rvPosts.layoutManager =
-                        LinearLayoutManager(parent, LinearLayoutManager.VERTICAL, false)
-                    postAdapter = PostAdapter(parent!!, ArrayList<PostsModel.Data.Post>(posts))
-
-                    rvPosts.adapter = postAdapter
-                    setListViewType(cview)
-                    selectedViewType = 1
+                    setNormalList()
                 }
 
             }
@@ -198,7 +204,30 @@ class PostsFragment():TemplateFragment() {
             }
 
         }
+        viewModelHome.setPreviousNavBottom(R.id.posts)
 
+
+    }
+
+    private fun setGridList() {
+      /*  rvPosts.layoutManager =
+            GridLayoutManager(parent, 3, GridLayoutManager.VERTICAL, false)
+        postGridAdapter = PostGridAdapter(parent!!, ArrayList<PostsModel.Data.Post>(posts))
+        rvPosts.adapter = postGridAdapter*/
+        BasicTools.setRecycleView(rvPosts,postGridAdapter!!,
+            null,requireContext(), GridModel(3,0),false)
+        setGridViewType(cview)
+        selectedViewType = 0
+    }
+
+    private fun setNormalList() {
+        rvPosts.layoutManager =
+            LinearLayoutManager(parent, LinearLayoutManager.VERTICAL, false)
+        postAdapter = PostAdapter(parent!!, ArrayList<PostsModel.Data.Post>(posts))
+
+        rvPosts.adapter = postAdapter
+        setListViewType(cview)
+        selectedViewType = 1
     }
 
     override fun init_fragment(savedInstanceState: Bundle?) {
@@ -382,7 +411,18 @@ class PostsFragment():TemplateFragment() {
             Toast.makeText(requireContext(),R.string.no_connection,Toast.LENGTH_SHORT).show()
         }
     }
+    fun saveObserverData() {
+        viewModelHome.savePosts.observe(this, Observer{
+            it?.let {categoryModel->
 
+            }?: getCategories()
+        })
+        viewModelHome.postLiveData.observe(this, Observer{
+            it?.let {categoryModel->
+
+            }?: getCategories()
+        })
+    }
     fun getCategories(){
         if(BasicTools.isConnected(parent!!)) {
             beginShimmerCategories()
@@ -410,19 +450,7 @@ class PostsFragment():TemplateFragment() {
                                  categories = result.categories as ArrayList<CategoryModel.Category>?
                                 images.add("")
                                 names.add("")
-                                categories!!.forEach {
-                                    images.add(it.mediaPath!!)
-                                    if (!BasicTools.isDeviceLanEn())
-                                        names.add(it.nameAr!!)
-                                    else names.add(it.nameEn!!)
-
-
-                                }
-
-
-                                val postsFilter =
-                                    SpinnerAdapter(parent!!, images = images, names = names)
-                                spinner.adapter = postsFilter
+                                setCategoriesAdaptor(images,names,categories)
                                 getPost(categoryId, distance, countryId, cityId)
 
                             }
@@ -445,6 +473,22 @@ class PostsFragment():TemplateFragment() {
 
         }
     }
+
+    private fun setCategoriesAdaptor(images: ArrayList<String>, names: ArrayList<String>, categories: ArrayList<CategoryModel.Category>?) {
+        categories!!.forEach {
+            images.add(it.mediaPath!!)
+            if (!BasicTools.isDeviceLanEn())
+                names.add(it.nameAr!!)
+            else names.add(it.nameEn!!)
+
+
+        }
+
+        val postsFilter =
+            SpinnerAdapter(parent!!, images = images, names = names)
+        spinner.adapter = postsFilter
+    }
+
     fun  beginShimmerCategories(){
         activityToolbar.visibility = View.GONE
         shimmerCategories.visibility = View.VISIBLE
@@ -486,7 +530,7 @@ class PostsFragment():TemplateFragment() {
             val map = HashMap<String,String>()
 
             map.put("with_paginate","yes")
-            if(TemplateActivity.loginResponse?.data?.accessToken!=null){
+          /*  if(TemplateActivity.loginResponse?.data?.accessToken!=null){
                 if(!TemplateActivity.loginResponse?.data?.user?.lat.isNullOrEmpty())
                     map.put("lat", TemplateActivity.loginResponse?.data?.user?.lat!!)
                 if(!TemplateActivity.loginResponse?.data?.user?.long.isNullOrEmpty())
@@ -507,7 +551,7 @@ class PostsFragment():TemplateFragment() {
                 if(!TemplateActivity.selectedCountryVisitor.isNullOrEmpty())
                     map.put("country_id", TemplateActivity.selectedCountryVisitor)
 
-            }
+            }*/
             if(!categoryId.isNullOrEmpty())
                 map.put("category_id",categoryId.toString())
             if(!distance.isNullOrEmpty())
@@ -576,7 +620,13 @@ class PostsFragment():TemplateFragment() {
         }
 
     }
-    fun getNextPost(categoryId:String?,distance:String?){
+    fun getNextPost(
+        categoryId: String?,
+        distance: String?,
+        currentPage: Int,
+        countryId: String?,
+        cityId: String?
+    ){
         if(BasicTools.isConnected(parent!!)) {
             progressBar.visibility = View.VISIBLE
             val disposable = CompositeDisposable()
@@ -596,7 +646,7 @@ class PostsFragment():TemplateFragment() {
                 )
             val map = HashMap<String,String>()
             map.put("with_paginate","yes")
-            if(TemplateActivity.loginResponse?.data?.accessToken!=null){
+     /*       if(TemplateActivity.loginResponse?.data?.accessToken!=null){
                 if(!TemplateActivity.loginResponse?.data?.user?.lat.isNullOrEmpty())
                     map.put("lat", TemplateActivity.loginResponse?.data?.user?.lat!!)
                 if(!TemplateActivity.loginResponse?.data?.user?.long.isNullOrEmpty())
@@ -617,11 +667,20 @@ class PostsFragment():TemplateFragment() {
                 if(!TemplateActivity.selectedCountryVisitor.isNullOrEmpty())
                     map.put("country_id", TemplateActivity.selectedCountryVisitor)
 
-            }
+            }*/
             if(!categoryId.isNullOrEmpty())
                 map.put("category_id",categoryId.toString())
             if(!distance.isNullOrEmpty())
                 map.put("distance",distance.toString())
+
+            map.put("page",currentPage.toString())
+
+            countryId?.let { it->
+                map.put("country_id", it)
+            }
+            cityId?.let { it->
+                map.put("city_id", it)
+            }
 
             val observable = shopApi!!.getPosts(map)
             disposable.add(
@@ -743,8 +802,6 @@ class PostsFragment():TemplateFragment() {
             tvUsername.visibility = View.INVISIBLE
 
         }
-
-
 
     }
     fun setUserLocation(){

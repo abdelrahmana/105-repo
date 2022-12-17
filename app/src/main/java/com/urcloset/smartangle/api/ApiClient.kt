@@ -1,6 +1,7 @@
 package com.urcloset.smartangle.api
 
 
+import com.skydoves.sandwich.coroutines.CoroutinesResponseCallAdapterFactory
 import com.urcloset.smartangle.BuildConfig
 import com.urcloset.smartangle.model.User
 import com.urcloset.smartangle.tools.Constants
@@ -120,6 +121,7 @@ object ApiClient {
                 .baseUrl(protocol + Constants.api_url + "/")
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(CoroutinesResponseCallAdapterFactory())
                 .client(httpClient.build())
                 .build()
         }

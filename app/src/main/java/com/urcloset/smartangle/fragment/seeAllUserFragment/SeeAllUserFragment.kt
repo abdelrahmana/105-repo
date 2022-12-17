@@ -78,12 +78,12 @@ class SeeAllUserFragment : TemplateFragment() , ISearchProviderActivity {
             lastPage= TemplateActivity.lastPageSeeAllUser
             adapter?.change_data(TemplateActivity.SeeAllUser!!)
         }
-        if(HomeActivity.bottomNavigation?.currentItem!=0){
+  /*      if(HomeActivity.bottomNavigation?.currentItem!=0){
             HomeActivity.doNothing =  true
             HomeActivity.bottomNavigation?.currentItem=0
             HomeActivity.doNothing =  false
 
-        }
+        }*/
 
     }
 

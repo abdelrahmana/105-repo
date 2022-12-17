@@ -14,15 +14,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "620853133242-e4h8skr4ag29vokftpu4c67tsvklnh6j.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.urcloset.smartangle",
-            "certificate_hash": "808f1258f4d6cdd1dd5cf05e1e44d3d67ee5a077"
-          }
-        },
-        {
-          "client_id": "620853133242-pik0b64l0e1hkdhn1svlvg8v6pqrk3g9.apps.googleusercontent.com",
+          "client_id": "620853133242-9klrgf2as1pi6if78lsn8hoefp5uhgr5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.urcloset.smartangle",
@@ -30,7 +22,23 @@
           }
         },
         {
-          "client_id": "620853133242-qf70noq81e18tlcclkg4vbufv66b96m0.apps.googleusercontent.com",
+          "client_id": "620853133242-ck8h46dnjodre07e3cfsvkmj6qcbpgib.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.urcloset.smartangle",
+            "certificate_hash": "808f1258f4d6cdd1dd5cf05e1e44d3d67ee5a077"
+          }
+        },
+        {
+          "client_id": "620853133242-ir0p6kbtm5m4srra5gs1n0h5fipleh06.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.urcloset.smartangle",
+            "certificate_hash": "3053ced8e1e6da81b1974f0c8331d6cf9aa642ea"
+          }
+        },
+        {
+          "client_id": "620853133242-qp4l0grvo8fgt617hdrabigeu8dlah7s.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.urcloset.smartangle",
@@ -55,10 +63,11 @@
               "client_type": 3
             },
             {
-              "client_id": "620853133242-e27ee1303o9aemas2sfs9r3a1upusam2.apps.googleusercontent.com",
+              "client_id": "620853133242-bsvpa1m7l6pa03vda4m543o5ucsttmrk.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.smartangle.closet-ios"
+                "bundle_id": "com.smartangle.closet-ios",
+                "app_store_id": "1607790630"
               }
             }
           ]

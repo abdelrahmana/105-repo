@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--  <item
+          android:id="@+id/todaysArticles"
+          android:icon="@drawable/ic_todaynews_bottom"
+          android:title="@string/todays" />-->
+
+    <item
+        android:id="@+id/posts"
+        android:icon="@drawable/post_selector"
+        android:title="" />
+
+    <item
+        android:id="@+id/users"
+        android:icon="@drawable/user_selector"
+        android:title=""
+        />
+    <item
+        android:id="@+id/adding"
+        android:icon="@drawable/adding"
+        android:title=""
+        />
+    <item
+        android:id="@+id/bookmark"
+        android:icon="@drawable/book_mark_selector"
+        android:title=""
+        />
+    <item
+        android:id="@+id/setting"
+        android:icon="@drawable/setting_selector"
+        android:title=""
+        />
+
+</menu>

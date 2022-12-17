@@ -785,6 +785,10 @@ class UserInfoFragment : TemplateFragment(),Validator.ValidationListener {
                                 BasicTools.setIsSocial(parent!!, false)
 
                                 BasicTools.setToken(parent!!, result.data?.accessToken!!.toString())
+                                BasicTools.setAgreementsTerms(
+                                    requireContext(),
+                                    result.data?.user?.is_agree?:false
+                                )
                                 BasicTools.setUserName(
                                     parent!!,
                                     result.data?.user?.email!!.toString()
@@ -857,6 +861,10 @@ class UserInfoFragment : TemplateFragment(),Validator.ValidationListener {
                                 BasicTools.setIsSocial(parent!!, false)
 
                                 BasicTools.setToken(parent!!, result.data?.accessToken!!.toString())
+                                BasicTools.setAgreementsTerms(
+                                    requireContext(),
+                                    result.data?.user?.is_agree?:false
+                                )
                                 BasicTools.setUserName(
                                     parent!!,
                                     result.data?.user?.email!!.toString()

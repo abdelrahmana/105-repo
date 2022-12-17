@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:fitsSystemWindows="true"
-android:layout_marginTop="@dimen/d2_4"
+android:layout_marginTop="5dp"
     app:elevation="0dp">
     <androidx.appcompat.widget.Toolbar
 

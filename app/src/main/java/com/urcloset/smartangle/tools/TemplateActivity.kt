@@ -36,16 +36,15 @@ import com.urcloset.smartangle.model.project21.*
 import com.google.firebase.auth.PhoneAuthProvider
 import com.urcloset.smartangle.activity.ContextUtils
 import com.urcloset.smartangle.model.project_105.*
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
-
+@AndroidEntryPoint
 abstract class TemplateActivity : AppCompatActivity() {
 
     var current_fragment: TemplateFragment? = null
-
-
 
 
 
@@ -233,7 +232,17 @@ abstract class TemplateActivity : AppCompatActivity() {
         } else {
             resources.updateConfiguration(configuration, resources.displayMetrics)
         }
+        val res = newBase.applicationContext.resources
+        val dm = res.displayMetrics
+      //  val conf = res.configuration
+        // if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+        configuration.setLocale(Locale(lang)) // API 17+ only.
+        /*  } else {
+              conf.locale = Locale(language)
+          }
 
+         */
+        res.updateConfiguration(configuration, dm)
        // super.attachBaseContext(localeUpdatedContext)
     }
 
@@ -267,7 +276,12 @@ abstract class TemplateActivity : AppCompatActivity() {
     }
 
     @JvmOverloads
-    fun show_fragment2(fragment: TemplateFragment, clearStack: Boolean, main: Boolean = false) {
+    fun show_fragment2(
+        fragment: TemplateFragment,
+        clearStack: Boolean,
+        main: Boolean = false,
+        viewId: Int
+    ) {
         if (current_fragment !== fragment) {
             if (fragment_place != null) {
                 val runnable = Runnable {
@@ -281,7 +295,7 @@ abstract class TemplateActivity : AppCompatActivity() {
                             }
                         }
                     }
-                    replaceFragment(fragment)
+                    replaceFragment(fragment,viewId)
                     current_fragment = fragment
                 }
                 runOnUiThread(runnable)
@@ -289,7 +303,7 @@ abstract class TemplateActivity : AppCompatActivity() {
         }
     }
 
-    @JvmOverloads
+ /*   @JvmOverloads
     fun show_fragment(fragment: TemplateFragment, forward: Boolean = true) {
         if (current_fragment != fragment) {
             if (fragment_place != null) {
@@ -303,7 +317,7 @@ abstract class TemplateActivity : AppCompatActivity() {
                 runOnUiThread(runnable)
             }
         }
-    }
+    }*/
 
 
     @JvmOverloads
@@ -322,18 +336,18 @@ abstract class TemplateActivity : AppCompatActivity() {
         }
     }
 
-    private fun replaceFragment(fragment: TemplateFragment) {
+    private fun replaceFragment(fragment: TemplateFragment,viewId : Int) {
         val backStateName = fragment.javaClass.name+System.currentTimeMillis();
         val manager = supportFragmentManager
-        val fragmentPopped = manager.popBackStackImmediate(backStateName, 0)
-        if (!fragmentPopped) {
+       // val fragmentPopped = manager.popBackStackImmediate(backStateName, 0)
+      //  if (!fragmentPopped) {
             val transaction = manager.beginTransaction()
             transaction.setCustomAnimations(R.anim.fade_out_short,R.anim.fade_in)
             transaction.replace(fragment_place!!.id, fragment)
             transaction.addToBackStack(backStateName)
             transaction.commit()
-            manager.executePendingTransactions()
-        }
+          //  manager.executePendingTransactions()
+    //    }
     }
 
     private fun replaceFragmentWithAnim(fragment: TemplateFragment, anim1:Int, anim2:Int) {

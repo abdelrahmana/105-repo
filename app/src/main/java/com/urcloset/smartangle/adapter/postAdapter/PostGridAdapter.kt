@@ -4,24 +4,20 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.icu.number.NumberFormatter.with
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import android.view.animation.ScaleAnimation
 import android.widget.ImageView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.google.gson.Gson
-import com.squareup.picasso.Picasso
 import com.urcloset.smartangle.R
 import com.urcloset.smartangle.activity.productDetails.ProductDetails
+import com.urcloset.smartangle.databinding.PostGridItemBinding
 import com.urcloset.smartangle.model.*
 import com.urcloset.smartangle.tools.BasicTools
 import com.urcloset.smartangle.tools.DownloadListener
@@ -52,20 +48,22 @@ class PostGridAdapter():RecyclerView.Adapter<PostGridAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val binding : PostGridItemBinding = PostGridItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return ViewHolder(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.post_grid_item, parent, false)
+           /* LayoutInflater.from(parent.context)
+                .inflate(R.layout.post_grid_item, parent, false)*/
+        binding
         )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.itemView.startAnimation(anim)
+       // holder.itemView.startAnimation(anim)
       val post=posts?.get(position)
         if(post?.itemMedia?.size!! >0)
             if(!post.itemMedia.get(0)?.mediaPath.isNullOrEmpty()) {
-                holder.ivPost.transitionName = post.itemMedia.get(0)?.id.toString()
+                holder.ivPost?.transitionName = post.itemMedia.get(0)?.id.toString()
                 loadImage(holder.ivPost,BasicTools.getUrlHttpImg(context!!,post.itemMedia.get(0)?.mediaPath!!))
-                ViewCompat.setTransitionName(holder.ivPost,  "profile");
+                ViewCompat.setTransitionName(holder.ivPost!!,  "profile");
 
 
             }
@@ -95,14 +93,14 @@ class PostGridAdapter():RecyclerView.Adapter<PostGridAdapter.ViewHolder>() {
 
     }
 
-    fun loadImage(image: ImageView, path: String){
+    fun loadImage(image: ImageView?, path: String){
 
 
         BasicTools.loadImage(path,image,object : DownloadListener {
             override fun completed(status: Boolean, bitmap: Bitmap) {
-                val anim = AnimationUtils.loadAnimation(context?.applicationContext, android.R.anim.fade_in)
+            /*    val anim = AnimationUtils.loadAnimation(context?.applicationContext, android.R.anim.fade_in)
                 anim!!.setDuration(1000)
-                image.animation = anim
+                image.animation = anim*/
             }
         })
 
@@ -118,9 +116,9 @@ class PostGridAdapter():RecyclerView.Adapter<PostGridAdapter.ViewHolder>() {
     override fun getItemCount(): Int {
         return posts!!.size
     }
-    class ViewHolder(val view: View):RecyclerView.ViewHolder(view){
-        val ivPost:ImageView = view.findViewById(R.id.iv_img)
-        val cvMain:CardView = view.findViewById(R.id.cv_item)
+    class ViewHolder(val view: PostGridItemBinding):RecyclerView.ViewHolder(view.root){
+        val ivPost:ImageView? = view.ivImg//findViewById(R.id.iv_img)
+        val cvMain:CardView = view.cvItem//findViewById(R.id.cv_item)
 
 
 

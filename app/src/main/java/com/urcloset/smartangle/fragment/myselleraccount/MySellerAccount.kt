@@ -1,13 +1,11 @@
 package com.urcloset.smartangle.fragment.myselleraccount
-import android.graphics.Bitmap
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.cardview.widget.CardView
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -17,18 +15,17 @@ import com.urcloset.shop.tools.visible
 import com.urcloset.smartangle.CustomViewPager
 import com.urcloset.smartangle.R
 import com.urcloset.smartangle.activity.homeActivity.HomeActivity
+import com.urcloset.smartangle.activity.homeActivity.HomeViewModel
 import com.urcloset.smartangle.adapter.*
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
 import com.urcloset.smartangle.fragment.setting_fragment.SettingFragment
 import com.urcloset.smartangle.listeners.ItemClickListener
-import com.urcloset.smartangle.listeners.OnProductChange
 import com.urcloset.smartangle.model.*
 import com.urcloset.smartangle.tools.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import okhttp3.internal.filterList
 
 class MySellerAccount() : TemplateFragment() {
     var disposable = CompositeDisposable()
@@ -112,6 +109,7 @@ class MySellerAccount() : TemplateFragment() {
         }
 
 
+        viewModelHome.setPreviousNavBottom(R.id.setting)
 
         return view
     }
@@ -119,7 +117,7 @@ class MySellerAccount() : TemplateFragment() {
     override fun init_events() {
         rlSetting.setOnClickListener {
             val f = SettingFragment()
-            parent!!.show_fragment2(f,false,false)
+            parent!!.show_fragment2(f, false, false, R.id.root_fragment_home)
         }
         categoryAdapter.setOnCategoryClickListener(object : ItemClickListener {
             override fun onClick(position: Int) {
@@ -145,6 +143,11 @@ class MySellerAccount() : TemplateFragment() {
 
     }
 
+    override fun onDestroyView() {
+        disposable.dispose()
+        super.onDestroyView()
+    }
+
     private fun selelctAllCategores() {
         categoryAdapter.selected =-1
         viewPager.setCurrentItem(0)
@@ -155,12 +158,12 @@ class MySellerAccount() : TemplateFragment() {
     }
 
     override fun onResume() {
-        if(HomeActivity.bottomNavigation?.currentItem!=4){
+   /*     if(HomeActivity.bottomNavigation?.currentItem!=4){
             HomeActivity.doNothing =  true
             HomeActivity.bottomNavigation?.currentItem=4
             HomeActivity.doNothing =  false
 
-        }
+        }*/
         super.onResume()
     }
     fun getPersonaluserProfile(){
@@ -221,11 +224,12 @@ class MySellerAccount() : TemplateFragment() {
                                 tvAvailableProduct.text =
                                     "Available Product (" + user!!.countAviableProducts + ")"
 
-                                tvLocation.text = user.country?.name
+                                tvLocation.text =
+                                user.country?.name
                             } else {
                                 tvAvailableProduct.text =
                                     " المنتجات المتوفرة ( "+result.data.user.countAviableProducts.toString()+" )"
-                                tvLocation.text = user.country?.name
+                                tvLocation.text = user.country?.nameAr
 
                             }
                             if(user.image!="") {

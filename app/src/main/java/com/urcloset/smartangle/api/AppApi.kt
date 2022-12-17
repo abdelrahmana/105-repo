@@ -2,6 +2,8 @@ package com.urcloset.smartangle.api
 
 
 
+import com.skydoves.sandwich.ApiResponse
+import com.urcloset.smartangle.data.model.agreement_terms.AgreementResponseTerms
 import com.urcloset.smartangle.model.*
 import com.urcloset.smartangle.model.project21.*
 import com.urcloset.smartangle.model.project_105.*
@@ -99,8 +101,19 @@ interface AppApi {
     fun changeProductStatus(@Body map: Map<String, String>):Observable<BasicModel>
     @POST("auth/notification/profile")
     fun toggleNotification(@Body map: Map<String, String>):Observable<BasicModel>
-    @GET("auth/product/publish_status/get")
-    fun getPublicationStatus():Observable<PublishStateModel>
+   // @GET("auth/product/publish_status/get")
+   @GET("auth/product/myProducts/published")
+   suspend fun getPublicationStatus():ApiResponse<ProductItemResponse>
+ @GET("auth/product/myProducts/selled")
+ suspend fun getSelledProducts():ApiResponse<ProductItemResponse>
+ @GET("auth/product/myProducts/rejected")
+ suspend fun getRejected():ApiResponse<ProductItemResponse>
+    @GET("auth/product/myProducts/unPaid")
+    suspend fun getUnPaidProducts():ApiResponse<ProductItemResponse>
+    @POST("auth/product/financialSettlement")
+    suspend fun postPaymentAfterMyFatoraPay(@Body hashMap: HashMap<String, Any>?)
+    :ApiResponse<ResponseBody>
+
     @POST("auth/contact_us/message/send")
     fun sendMessage(@Body map: Map<String, String>):Observable<SendMessageModel>
     @GET("auth/contact_us/chat/get")
@@ -263,13 +276,15 @@ interface AppApi {
     fun resetPass(@Body map:Map<String,String>):Observable<ResponseBody>
 
 
-
-
-
-
     @POST("auth/profile/changeLang")
     fun changeLang(@Body map: Map<String, String>):Observable<ResponseBody>
 
+ @GET("globallinks")
+ fun getSocialLoginData(@QueryMap hashMap: HashMap<String,Any>):Observable<GlobalLink>
 
+ @GET("general_text")
+suspend fun getAgreementText(@Query("key_text")keyText: String = "terms_and_conditions"):ApiResponse<AgreementResponseTerms>
+ @POST("auth/user/agreeOrNot")
+ suspend fun postAgreements(@Body hashMap: HashMap<String, Int>):ApiResponse<ResponseBody>
 
 }

@@ -36,6 +36,7 @@ import com.urcloset.smartangle.R
 import com.urcloset.smartangle.activity.homeActivity.HomeActivity
 import com.urcloset.smartangle.activity.locatonActivity.LocationActivity
 import com.urcloset.smartangle.activity.resetPasswrod.ResetPasswrodSelectWay
+import com.urcloset.smartangle.activity.selectedCityActivity.SelectedCityActivity
 import com.urcloset.smartangle.activity.signUp.SignUpAcitivty
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
@@ -364,7 +365,7 @@ class LoginAcitivty : TemplateActivity(), Validator.ValidationListener {
 
         tv_skip.setOnClickListener {
 
-            BasicTools.openActivity(this@LoginAcitivty, LocationActivity::class.java,false)
+            BasicTools.openActivity(this@LoginAcitivty, SelectedCityActivity::class.java,false)
           //  BasicTools.clearAllActivity(this@LoginAcitivty,HomeActivity::class.java)
         }
 
@@ -609,14 +610,15 @@ class LoginAcitivty : TemplateActivity(), Validator.ValidationListener {
                             showShimmerLoginBtn(false)
 
                         if(result.status!!){
-
-
                             TemplateActivity.loginResponse=result
                             BasicTools.setIsSocial(this@LoginAcitivty,false)
                             BasicTools.setLoginType(this@LoginAcitivty,loginType)
                             BasicTools.setToken(this@LoginAcitivty,result.data?.accessToken!!.toString())
                             BasicTools.setUserName(this@LoginAcitivty,result.data?.user?.email!!.toString())
-
+                            BasicTools.setAgreementsTerms(
+                                this@LoginAcitivty,
+                                result.data?.user?.is_agree?:false
+                            )
                             BasicTools.setPassword(this@LoginAcitivty,editPassword.text.trim().toString())
 
                             if(!result.data?.user?.phoneNumber.isNullOrEmpty())
@@ -658,12 +660,6 @@ class LoginAcitivty : TemplateActivity(), Validator.ValidationListener {
     private fun loginRQ(loginType: String, email: String, token: String,
     name:String,img:String) {
         if (BasicTools.isConnected(this@LoginAcitivty)) {
-
-
-
-
-
-
             var map = HashMap<String, String>()
             map.put("social_type",loginType)
             map.put("name",name)
@@ -687,12 +683,15 @@ class LoginAcitivty : TemplateActivity(), Validator.ValidationListener {
                             showShimmerLoginBtn(false)
 
                             if(result.status!!){
-
                                 TemplateActivity.loginResponse=result
                                 BasicTools.setSocialProviderID(this@LoginAcitivty,token)
                                 BasicTools.setIsSocial(this@LoginAcitivty,true)
                                 BasicTools.setLoginType(this@LoginAcitivty,loginType)
                                 BasicTools.setToken(this@LoginAcitivty,result.data?.accessToken!!.toString())
+                                BasicTools.setAgreementsTerms(
+                                    this@LoginAcitivty,
+                                    result.data?.user?.is_agree?:false
+                                )
                                 BasicTools.setUserName(this@LoginAcitivty,result.data?.user?.email!!.toString())
                                 //BasicTools.setPhoneUser(this@LoginAcitivty,result.data?.user?.phoneNumber!!.toString())
                                 //BasicTools.setUserCountryCode(this@LoginAcitivty,code)

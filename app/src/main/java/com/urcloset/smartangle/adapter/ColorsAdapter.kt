@@ -1,4 +1,5 @@
 package com.urcloset.smartangle.adapter
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.util.Log
@@ -35,10 +36,10 @@ class ColorsAdapter() :ListAdapter<ColorModel.Color, ColorsAdapter.ViewHolder>(o
     }
 
     override fun onBindViewHolder(holder: ColorsAdapter.ViewHolder, position: Int) {
-        holder.colorImage.background.setColorFilter(
+        holder.colorImage.backgroundTintList=(ColorStateList.valueOf(Color.parseColor(getItem(position).value)))/*.setColorFilter(
             Color.parseColor(getItem(position).value),
             PorterDuff.Mode.MULTIPLY
-        )
+        )*/
 
         if (getItem(position).isSelected!!>0) {
             holder.ivColorSelected.visibility = View.VISIBLE

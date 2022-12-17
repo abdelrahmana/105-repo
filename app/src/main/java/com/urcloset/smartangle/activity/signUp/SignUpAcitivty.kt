@@ -41,6 +41,9 @@ import com.urcloset.smartangle.activity.cardActivity.CardActivity
 import com.urcloset.smartangle.activity.locatonActivity.LocationActivity
 import com.urcloset.smartangle.activity.verification_code.EnterCodeActivity
 import com.urcloset.smartangle.activity.verification_code.VerificationCodeEmailActivity
+import com.urcloset.smartangle.fragment.bottomsheetagree.ConsentBottomSheet
+import com.urcloset.smartangle.fragment.bottomsheetagree.DialogConsent
+import com.urcloset.smartangle.fragment.bottomsheetagree.ImplementerRegisterConsent
 import com.urcloset.smartangle.model.project_105.CardResultModel
 import com.urcloset.smartangle.model.project_105.CheckEmailPhoneModel
 import com.urcloset.smartangle.tools.Constants.LOGIN_TYPE_EMAIL
@@ -400,9 +403,14 @@ class SignUpAcitivty : TemplateActivity(), Validator.ValidationListener{
             showToastMessage(R.string.select_photo)
         return
         }*/
+        ConsentBottomSheet(ImplementerRegisterConsent(),callBackConfirmConsent)
+        .show(supportFragmentManager, "consent_bottom_sheet")
 
-        checkPhoneRQ(editPhone.text.trim().toString())
 
+    }
+    val callBackConfirmConsent :(Int)->Unit = {isAgree->
+        if (isAgree==1)
+            checkPhoneRQ(editPhone.text.trim().toString()) // continue register
 
     }
 

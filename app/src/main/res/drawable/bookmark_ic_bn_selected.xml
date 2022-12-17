@@ -1,0 +1,19 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="17.278dp"
+    android:height="21.644dp"
+    android:viewportWidth="17.278"
+    android:viewportHeight="21.644">
+    <group
+        android:scaleX="0.6"
+        android:scaleY="0.6"
+        android:pivotX="12"
+        android:pivotY="12">
+        <path
+            android:pathData="M16.278,20.644l-7.639,-5.457L1,20.644L1,3.183A2.183,2.183 0,0 1,3.183 1L14.1,1a2.183,2.183 0,0 1,2.183 2.183Z"
+            android:strokeLineJoin="round"
+            android:strokeWidth="2"
+            android:fillColor="#00000000"
+            android:strokeColor="@color/login_btn"
+            android:strokeLineCap="round"/>
+    </group>
+</vector>

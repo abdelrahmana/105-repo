@@ -26,12 +26,16 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.urcloset.shop.tools.hide
 import com.urcloset.shop.tools.visible
 import com.urcloset.smartangle.R
+import com.urcloset.smartangle.activity.homeActivity.HomeActivity
 import com.urcloset.smartangle.activity.orderSentActivity.OrderSentActivity
 import com.urcloset.smartangle.adapter.*
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
 import com.urcloset.smartangle.dialog.ChooseColorDialog
 import com.urcloset.smartangle.dialog.HintAddProductDialog
+import com.urcloset.smartangle.fragment.bottomsheetagree.ConsentBottomSheet
+import com.urcloset.smartangle.fragment.bottomsheetagree.ImplementerPublishConsent
+import com.urcloset.smartangle.fragment.bottomsheetagree.ImplementerRegisterConsent
 import com.urcloset.smartangle.listeners.ItemClickListener
 import com.urcloset.smartangle.model.*
 import com.urcloset.smartangle.tools.*
@@ -356,7 +360,11 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
 
         })
         addButton.setOnClickListener {
+            if (BasicTools.getAgreementsTerms(this))
             addProduct()
+            else
+                ConsentBottomSheet(ImplementerPublishConsent(),callBackConfirmConsent) // need to add this feature
+                    .show(supportFragmentManager, "consent_bottom_sheet")
 
         }
         categoryAdapter.setOnCategoryClickListener(object : ItemClickListener {
@@ -398,6 +406,14 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
         tvCode.setText(TemplateActivity.loginResponse?.data?.user?.countryCode)
         phone.setText(TemplateActivity.loginResponse?.data?.user?.phoneNumber)
     }
+    val callBackConfirmConsent :(Int)->Unit = {isAgree->
+        if (isAgree==1) {
+            BasicTools.setAgreementsTerms(this ,true)
+            addProduct()
+        }
+
+    }
+
 
     fun selectText(tv: TextView) {
         tv.background = resources.getDrawable(R.drawable.opt_yes_background)
@@ -748,8 +764,8 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
 
                                // openDialog(images,sizes,map,colors)
                                 bn_add.isEnabled = true
-                                getProductCommision(etPrice.text.toString(),images,sizes,map,colors,this)
-
+                             //   getProductCommision(etPrice.text.toString(),images,sizes,map,colors,this)
+                                addProductRQDialog(images,sizes,map,colors)
 
                             } catch (e: Exception) {
                                 e.printStackTrace()
@@ -830,11 +846,13 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
                     AppObservable<CreateProductModel>(this) {
                     override fun onSuccess(result: CreateProductModel) {
                         showShimmerAddBtn(false)
+                        Toast.makeText(this@AddProductActivity,getString(R.string.add_compeleted)
+                            ,Toast.LENGTH_SHORT).show()
                         BasicTools.openActivity(
                             this@AddProductActivity,
-                            OrderSentActivity::class.java,
+                            HomeActivity::class.java,
                             true
-                        )
+                        ) //OrderSentActivity
                         bn_add.isEnabled = true
 
 

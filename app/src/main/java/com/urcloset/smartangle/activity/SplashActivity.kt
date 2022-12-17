@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatDelegate
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.urcloset.smartangle.R
 import com.urcloset.smartangle.activity.homeActivity.HomeActivity
 import com.urcloset.smartangle.activity.loginActivity.LoginAcitivty
@@ -53,6 +54,7 @@ class SplashActivity : TemplateActivity() {
     }
 
     override fun init_views() {
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         BasicTools.initialize_image_loader(this@SplashActivity)
         iv_splash.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.logo1))
@@ -158,6 +160,10 @@ class SplashActivity : TemplateActivity() {
                                     this@SplashActivity,
                                     result.data?.accessToken!!.toString()
                                 )
+                                BasicTools.setAgreementsTerms(
+                                    this@SplashActivity,
+                                    result.data?.user?.is_agree?:false
+                                )
                                 BasicTools.setUserName(
                                     this@SplashActivity,
                                     result.data?.user?.email!!.toString()
@@ -224,7 +230,7 @@ class SplashActivity : TemplateActivity() {
 
             var map = HashMap<String, String>()
             map.put("social_token",providerID)
-            // map.put("provider_name",loginType)
+             map.put("social_type",loginType)
             map.put("email",email)
 
 
@@ -252,6 +258,10 @@ class SplashActivity : TemplateActivity() {
                                 BasicTools.setToken(
                                     this@SplashActivity,
                                     result.data?.accessToken!!.toString()
+                                )
+                                BasicTools.setAgreementsTerms(
+                                    this@SplashActivity,
+                                    result.data?.user?.is_agree?:false
                                 )
                                 BasicTools.setUserName(
                                     this@SplashActivity,

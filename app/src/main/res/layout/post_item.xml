@@ -109,14 +109,15 @@
         <androidx.cardview.widget.CardView
             android:layout_gravity="center"
             app:cardCornerRadius="@dimen/d1_4"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="5dp"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/d256"
+            android:layout_height="400dp"
             app:cardElevation="0dp"
             >
             <ImageView
                 android:id="@+id/iv_main"
-
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
             <RelativeLayout

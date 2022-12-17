@@ -1,0 +1,12 @@
+<vector android:autoMirrored="true" android:height="22dp"
+    android:viewportHeight="22" android:viewportWidth="22"
+    android:width="22dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:pivotX="12"
+        android:pivotY="12">
+        <path android:fillColor="@color/login_btn" android:pathData="M11.0078,0.0039a11,11 0,1 0,10.992 11,11 11,0 0,0 -10.992,-11ZM11.0078,20.5156a9.512,9.512 0,1 1,9.508 -9.508,9.514 9.514,0 0,1 -9.508,9.508Z"/>
+        <path android:fillColor="@color/login_btn" android:pathData="M17.043,4.9727a0.914,0.914 0,0 0,-0.945 -0.223l-8.078,2.684a0.964,0.964 0,0 0,-0.586 0.59l-2.687,8.074a0.9,0.9 0,0 0,0.125 0.82,0.922 0.922,0 0,0 0.742,0.379 0.844,0.844 0,0 0,0.3 -0.047l8.078,-2.687a0.893,0.893 0,0 0,0.574 -0.578l2.7,-8.066A0.945,0.945 0,0 0,17.043 4.9727ZM12.9648,12.9727 L7.0742,14.9336 9.0391,9.043 14.9297,7.082Z"/>
+    </group>
+</vector>

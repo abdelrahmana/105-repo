@@ -70,6 +70,7 @@ data class LoginResponseModel(
             var socialToken: Any? = null,
             @SerializedName("social_type")
             var socialType: Any? = null,
+            var is_agree : Boolean = false,
             @SerializedName("updated_at")
             var updatedAt: String? = null,
             @SerializedName("voic_identity")

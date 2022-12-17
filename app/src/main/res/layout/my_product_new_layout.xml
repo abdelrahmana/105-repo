@@ -17,7 +17,7 @@
         android:layout_marginTop="@dimen/two_unit"
         android:layout_gravity="center_horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="350dp"/>
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
