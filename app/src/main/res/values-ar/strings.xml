@@ -445,5 +445,7 @@
     <string name="card_holder_customize">اسم صاحب البطاقة</string>
     <string name="add_compeleted">تمت الإضافة بنجاح</string>
     <string name="select_products">حدد المنتجات التي تريد إضافتها إلى القسم المباع :</string>
+    <string name="give_us_rating">قيم التطبيق لتجربة أفضل</string>
+    <string name="later">لاحقاً</string>
 
 </resources>

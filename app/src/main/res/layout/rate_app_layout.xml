@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    app:cardElevation="15dp"
+    app:cardCornerRadius="15dp"
+    app:strokeWidth="1dp"
+    android:background="@color/white"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="match_parent">
+        <TextView
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/give_us_rating"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            android:id="@+id/headerTrip"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            app:layout_constraintTop_toBottomOf="@+id/headerTrip"
+            android:orientation="vertical"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/send"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionCard"
+                android:layout_width="match_parent"
+                app:cornerRadius="10dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                app:backgroundTint="@color/colorPrimary"
+                android:layout_height="60dp"
+                android:layout_marginTop="25dp"
+                android:text="@string/rate"
+                android:textSize="17sp" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/later"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionCard"
+                android:layout_width="match_parent"
+                app:cornerRadius="10dp"
+                android:gravity="center"
+                android:layout_marginBottom="15dp"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                app:backgroundTint="@color/dark_gray"
+                android:layout_height="60dp"
+                android:text="@string/later"
+                android:textSize="17sp" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

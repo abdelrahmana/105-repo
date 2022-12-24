@@ -40,6 +40,7 @@
         <entry key="..\:/105smart.android-master/105smart.android-master/app/src/main/res/layout/activity_register.xml" value="0.2" />
         <entry key="..\:/105smart.android-master/105smart.android-master/app/src/main/res/layout/activity_search.xml" value="0.16304347826086957" />
         <entry key="..\:/105smart.android-master/105smart.android-master/app/src/main/res/layout/activity_select_city.xml" value="0.17074275362318841" />
+        <entry key="..\:/105smart.android-master/105smart.android-master/app/src/main/res/layout/activity_seller.xml" value="0.2" />
         <entry key="..\:/105smart.android-master/105smart.android-master/app/src/main/res/layout/activity_settings.xml" value="0.22" />
         <entry key="..\:/105smart.android-master/105smart.android-master/app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
         <entry key="..\:/105smart.android-master/105smart.android-master/app/src/main/res/layout/activity_social.xml" value="0.2" />
@@ -74,6 +75,7 @@
         <entry key="..\:/105smart.android-master/105smart.android-master/app/src/main/res/layout/product_one_item_fragment.xml" value="0.2" />
         <entry key="..\:/105smart.android-master/105smart.android-master/app/src/main/res/layout/product_publish_state_layout.xml" value="0.2" />
         <entry key="..\:/105smart.android-master/105smart.android-master/app/src/main/res/layout/publish_state_item.xml" value="0.33" />
+        <entry key="..\:/105smart.android-master/105smart.android-master/app/src/main/res/layout/rate_app_layout.xml" value="0.2" />
         <entry key="..\:/105smart.android-master/105smart.android-master/app/src/main/res/layout/shimmer_login.xml" value="0.17074275362318841" />
         <entry key="..\:/105smart.android-master/105smart.android-master/app/src/main/res/layout/shimmer_publish_state_item.xml" value="0.2" />
         <entry key="..\:/105smart.android-master/105smart.android-master/app/src/main/res/layout/shimmer_spinner.xml" value="0.17074275362318841" />

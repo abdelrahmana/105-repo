@@ -615,6 +615,10 @@ class LoginAcitivty : TemplateActivity(), Validator.ValidationListener {
                             BasicTools.setLoginType(this@LoginAcitivty,loginType)
                             BasicTools.setToken(this@LoginAcitivty,result.data?.accessToken!!.toString())
                             BasicTools.setUserName(this@LoginAcitivty,result.data?.user?.email!!.toString())
+                            BasicTools.setUserModel(
+                                this@LoginAcitivty,
+                                result.data
+                            )
                             BasicTools.setAgreementsTerms(
                                 this@LoginAcitivty,
                                 result.data?.user?.is_agree?:false
@@ -691,6 +695,10 @@ class LoginAcitivty : TemplateActivity(), Validator.ValidationListener {
                                 BasicTools.setAgreementsTerms(
                                     this@LoginAcitivty,
                                     result.data?.user?.is_agree?:false
+                                )
+                                BasicTools.setUserModel(
+                                    this@LoginAcitivty,
+                                    result.data
                                 )
                                 BasicTools.setUserName(this@LoginAcitivty,result.data?.user?.email!!.toString())
                                 //BasicTools.setPhoneUser(this@LoginAcitivty,result.data?.user?.phoneNumber!!.toString())

@@ -166,7 +166,7 @@ abstract class TemplateActivity : AppCompatActivity() {
         Locale.setDefault(locale)
         config.setLocale(locale)*/
         super.onCreate(savedInstanceState)
-
+        BasicTools.setLanguagePerActivity(this,null)
         //db= AppDatabase(this)
         setStatusBarColor()
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)

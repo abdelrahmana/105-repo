@@ -18,10 +18,10 @@ object Constants {
     var LOGIN_TYPE_NORMAL="normal"
     var LOGIN_TYPE_GMAIL="google"
     var LOGIN_TYPE_FACEBOOK="facebook"
-    val api_url = "apis.urcloset.org/api"
+    var api_url = "apis.urcloset.org/api/"
     var PAYMENY_TYPE="TEST"
   //  var PAYMENY_TYPE="LIVE"
-    val api_url_image = "apis.urcloset.org/storage/"
+    var api_url_image = "apis.urcloset.org/storage/"
     val MAPVIEW_BUNDLE_KEY = "MapViewBundleKey"
     val ERROR_DIALOG_REQUEST = 9001
     val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 9002
@@ -65,8 +65,7 @@ object Constants {
 
 
     var CORNER_VALUE=40F
-
-
+    val USER_MODEL = "user_model"
 
 
 

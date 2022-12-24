@@ -3,7 +3,6 @@ package com.urcloset.smartangle.activity
 
 import android.content.Intent
 import android.graphics.BitmapFactory
-import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -11,6 +10,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.google.firebase.database.FirebaseDatabase
 import com.urcloset.smartangle.R
 import com.urcloset.smartangle.activity.homeActivity.HomeActivity
 import com.urcloset.smartangle.activity.loginActivity.LoginAcitivty
@@ -22,13 +22,9 @@ import com.urcloset.smartangle.tools.AppObservable
 import com.urcloset.smartangle.tools.BasicTools
 import com.urcloset.smartangle.tools.Constants
 import com.urcloset.smartangle.tools.TemplateActivity
-import com.google.firebase.dynamiclinks.ktx.dynamicLinks
-import com.google.firebase.ktx.Firebase
-import com.google.gson.Gson
-import com.urcloset.smartangle.activity.productDetails.ProductDetails
-import com.urcloset.smartangle.model.ProductModel
 import com.urcloset.smartangle.tools.Constants.LOGIN_TYPE_EMAIL
 import com.urcloset.smartangle.tools.Constants.LOGIN_TYPE_PHONE
+import com.urcloset.smartangle.tools.FcmCall.setFirebaseData
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -54,6 +50,7 @@ class SplashActivity : TemplateActivity() {
     }
 
     override fun init_views() {
+        setFirebaseData(FirebaseDatabase.getInstance())
         FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         BasicTools.initialize_image_loader(this@SplashActivity)
@@ -168,6 +165,11 @@ class SplashActivity : TemplateActivity() {
                                     this@SplashActivity,
                                     result.data?.user?.email!!.toString()
                                 )
+                                BasicTools.setUserModel(
+                                    this@SplashActivity,
+                                    result.data
+                                )
+
                                 if(!result.data?.user?.phoneNumber.isNullOrEmpty())
                                     BasicTools.setPhoneUser(this@SplashActivity,result.data?.user?.phoneNumber!!.toString())
 
@@ -266,6 +268,10 @@ class SplashActivity : TemplateActivity() {
                                 BasicTools.setUserName(
                                     this@SplashActivity,
                                     result.data?.user?.email!!.toString()
+                                )
+                                BasicTools.setUserModel(
+                                    this@SplashActivity,
+                                    result.data
                                 )
 
                                 //  BasicTools.setPassword(this@SplashActivity)

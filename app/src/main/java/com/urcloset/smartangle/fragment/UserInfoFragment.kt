@@ -793,6 +793,10 @@ class UserInfoFragment : TemplateFragment(),Validator.ValidationListener {
                                     parent!!,
                                     result.data?.user?.email!!.toString()
                                 )
+                                BasicTools.setUserModel(
+                                    parent!!,
+                                    result.data
+                                )
                                 BasicTools.setPhoneUser(
                                     parent!!,
                                     result.data?.user?.phoneNumber!!.toString()

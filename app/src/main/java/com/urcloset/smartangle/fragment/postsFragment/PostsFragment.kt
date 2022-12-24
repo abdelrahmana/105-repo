@@ -2,6 +2,7 @@ package com.urcloset.smartangle.fragment.postsFragment
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -118,6 +119,9 @@ class PostsFragment():TemplateFragment() {
         else setListViewType(cview)
         setWelcomeUser()
         setUserLocation()
+        if (BasicTools.getToken(requireContext()).isNotEmpty()) // is logged in
+        cityId =
+            BasicTools.getUserModel(context?.getSharedPreferences("APP_DATA", Context.MODE_PRIVATE)?.getString(Constants.USER_MODEL,"")?:"")?.user?.cityId?:"1"
         if (posts.isEmpty())
         getCategories()
         else {
@@ -132,9 +136,13 @@ class PostsFragment():TemplateFragment() {
         setNotification()
 
 
+
         return cview
     }
     override fun init_events() {
+        if (arguments?.getBoolean("show_review",false) == true
+            &&!BasicTools.getRevviewedBefore(requireActivity()))
+            BasicTools.openReviewGoogle(requireActivity())
         ivFilterPosts.setOnClickListener {
             if(!isOpened)
             openDialog()

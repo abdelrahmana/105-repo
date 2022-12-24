@@ -48,8 +48,12 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.textfield.TextInputLayout
+import com.google.android.play.core.review.ReviewInfo
+import com.google.android.play.core.review.ReviewManagerFactory
 import com.google.firebase.dynamiclinks.DynamicLink
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.mobsandgeeks.saripaar.ValidationError
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache
 import com.nostra13.universalimageloader.core.DisplayImageOptions
@@ -63,6 +67,9 @@ import com.urcloset.shop.tools.hide
 import com.urcloset.shop.tools.visible
 import com.urcloset.smartangle.R
 import com.urcloset.smartangle.adapter.PagedAdapter
+import com.urcloset.smartangle.dialog.BottomSheetRatApplication
+import com.urcloset.smartangle.model.project_105.LoginResponseModel
+import com.urcloset.smartangle.tools.Constants.USER_MODEL
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
@@ -346,7 +353,17 @@ object BasicTools {
         editor.putBoolean("terms_agreemnts", agreements)
         editor.apply()
     }
-
+    fun setReviewedBefore(context: Context, agreements: Boolean) {
+        val preferences = context.getSharedPreferences("APP_DATA", Context.MODE_PRIVATE)
+        val editor = preferences.edit()
+        editor.putBoolean("reviewed_before", agreements)
+        editor.apply()
+    }
+    fun getRevviewedBefore(context: Context): Boolean{
+        val preferences = context.getSharedPreferences("APP_DATA", Context.MODE_PRIVATE)
+        val agreements = preferences.getBoolean("reviewed_before", false)?:false
+        return agreements
+    }
     fun getToken(context: Context): String{
         val preferences = context.getSharedPreferences("APP_DATA", Context.MODE_PRIVATE)
         val token = preferences.getString("TOKEN", "")?:""
@@ -403,6 +420,20 @@ object BasicTools {
         i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         context.startActivity(i)
         context.overridePendingTransition(R.anim.enter,R.anim.exit)
+    }
+    fun getUserModel(objectData : String): LoginResponseModel.Data? { // this should return the registeration model
+        val jso = objectData
+        val gson = Gson()
+        val typeToken = object : TypeToken<LoginResponseModel.Data?>() {}.type
+        val obj = gson.fromJson<LoginResponseModel.Data?>(jso, typeToken) ?: null
+        return obj
+
+    }
+    fun setUserModel(context: Context, loginResponseModel: LoginResponseModel.Data?) {
+        val preferences = context.getSharedPreferences("APP_DATA", Context.MODE_PRIVATE)
+        val editor = preferences.edit()
+        editor.putString(USER_MODEL, Gson().toJson(loginResponseModel))
+        editor.apply()
     }
 
 
@@ -599,7 +630,22 @@ object BasicTools {
 
     }
 
-
+    fun openReviewGoogle(applicationContext: FragmentActivity) {
+         /*  val request = ReviewManagerFactory.create(applicationContext).requestReviewFlow()
+           request.addOnCompleteListener { task ->
+               if (task.isSuccessful) {
+                   // We got the ReviewInfo object
+                   val reviewInfo : ReviewInfo = task.result
+                   BasicTools.setReviewedBefore(applicationContext,true)
+               } else {
+                   Toast.makeText(applicationContext,task.exception?.message?:"",Toast.LENGTH_SHORT).show()
+                   // There was some problem, log or handle the error code.
+                   // @ReviewErrorCode val reviewErrorCode = (task.getException()).errorCode
+               }
+           }*/
+        BottomSheetRatApplication()
+            .show(applicationContext.supportFragmentManager, "bottom_sheet")
+    }
     fun exitActivity(context:TemplateActivity){
         context.finish()
         context.overridePendingTransition(R.anim.enter_prev,R.anim.exit_prev)

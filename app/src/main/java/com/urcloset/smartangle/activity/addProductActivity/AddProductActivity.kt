@@ -1,41 +1,35 @@
 package com.urcloset.smartangle.activity.addProductActivity
 
-import android.app.Dialog
 import android.content.ClipData
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.text.Html
 import android.util.Log
-import android.view.Gravity
 import android.view.View
-import android.view.ViewGroup
-import android.view.Window
 import android.widget.*
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
-import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.play.core.review.ReviewInfo
+import com.google.android.play.core.review.ReviewManagerFactory
 import com.urcloset.shop.tools.hide
 import com.urcloset.shop.tools.visible
 import com.urcloset.smartangle.R
 import com.urcloset.smartangle.activity.homeActivity.HomeActivity
-import com.urcloset.smartangle.activity.orderSentActivity.OrderSentActivity
 import com.urcloset.smartangle.adapter.*
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
-import com.urcloset.smartangle.dialog.ChooseColorDialog
+import com.urcloset.smartangle.dialog.BottomSheetRatApplication
 import com.urcloset.smartangle.dialog.HintAddProductDialog
 import com.urcloset.smartangle.fragment.bottomsheetagree.ConsentBottomSheet
 import com.urcloset.smartangle.fragment.bottomsheetagree.ImplementerPublishConsent
-import com.urcloset.smartangle.fragment.bottomsheetagree.ImplementerRegisterConsent
 import com.urcloset.smartangle.listeners.ItemClickListener
 import com.urcloset.smartangle.model.*
 import com.urcloset.smartangle.tools.*
@@ -69,7 +63,6 @@ import okhttp3.RequestBody
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
-import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
@@ -129,6 +122,8 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //openReviewGoogle(applicationContext)
+
     }
 
     override fun set_layout() {
@@ -136,7 +131,22 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
 
     }
 
-
+    fun openReviewGoogle(applicationContext: Context) {
+     /*   val request = ReviewManagerFactory.create(applicationContext).requestReviewFlow()
+        request.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                // We got the ReviewInfo object
+                val reviewInfo : ReviewInfo = task.result
+                BasicTools.setReviewedBefore(applicationContext,true)
+            } else {
+                Toast.makeText(this,task.exception?.message?:"",Toast.LENGTH_SHORT).show()
+                // There was some problem, log or handle the error code.
+                // @ReviewErrorCode val reviewErrorCode = (task.getException()).errorCode
+            }
+        }*/
+        BottomSheetRatApplication()
+            .show(supportFragmentManager, "bottom_sheet")
+    }
     override fun init_activity(savedInstanceState: Bundle?) {
         lang = "en"
         photos.add(AddPhotoModel(null, R.drawable.dr_add_photo))
@@ -848,13 +858,18 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
                         showShimmerAddBtn(false)
                         Toast.makeText(this@AddProductActivity,getString(R.string.add_compeleted)
                             ,Toast.LENGTH_SHORT).show()
-                        BasicTools.openActivity(
+                 //       if (!BasicTools.getRevviewedBefore(applicationContext))
+                  //      openReviewGoogle(applicationContext)
+                    /*    if (!BasicTools.getRevviewedBefore(this@AddProductActivity))
+                            BasicTools.openReviewGoogle(this@AddProductActivity)*/
+                        startActivity(Intent(this@AddProductActivity, HomeActivity::class.java).putExtra("show_review",true))
+                        finish()
+                        /*   BasicTools.openActivity(
                             this@AddProductActivity,
                             HomeActivity::class.java,
                             true
-                        ) //OrderSentActivity
+                        ) //OrderSentActivity*/
                         bn_add.isEnabled = true
-
 
                     }
 

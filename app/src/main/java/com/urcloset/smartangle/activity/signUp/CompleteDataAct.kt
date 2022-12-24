@@ -451,7 +451,10 @@ class CompleteDataAct : TemplateActivity() ,Validator.ValidationListener{
 //                                BasicTools.setUserCountryCode(this@CompleteDataAct,countryCode.selectedCountryCode)
                                 BasicTools.setPassword(this@CompleteDataAct,TemplateActivity.passwrodSignUp)
 
-
+                                BasicTools.setUserModel(
+                                    this@CompleteDataAct,
+                                    result.data
+                                )
                                 if(!result.data?.user?.email.isNullOrEmpty())
                                 BasicTools.setUserName(this@CompleteDataAct,result.data?.user?.email.toString())
                                 else BasicTools.setUserName(this@CompleteDataAct,"")
@@ -533,7 +536,10 @@ class CompleteDataAct : TemplateActivity() ,Validator.ValidationListener{
                                     result.data?.user?.is_agree?:false
                                 )
 
-
+                                BasicTools.setUserModel(
+                                    this@CompleteDataAct,
+                                    result.data
+                                )
                                 if(!result.data?.user?.email.isNullOrEmpty())
                                     BasicTools.setUserName(this@CompleteDataAct,result.data?.user?.email.toString())
                                 else BasicTools.setUserName(this@CompleteDataAct,"")

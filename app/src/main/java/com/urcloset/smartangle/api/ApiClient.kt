@@ -58,7 +58,7 @@ object ApiClient {
                 chain.proceed(request)
             }
             retrofit = Retrofit.Builder()
-                .baseUrl(protocol + Constants.api_url + "/")
+                .baseUrl(protocol + Constants.api_url /*+ "/"*/)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(httpClient.build())
@@ -118,7 +118,7 @@ object ApiClient {
                 chain.proceed(request)
             }
             retrofit = Retrofit.Builder()
-                .baseUrl(protocol + Constants.api_url + "/")
+                .baseUrl(protocol + Constants.api_url /*+ "/"*/)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(CoroutinesResponseCallAdapterFactory())

@@ -9,6 +9,7 @@ import android.provider.Settings
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem
@@ -30,6 +31,7 @@ import com.urcloset.smartangle.fragment.setting_fragment.SettingFragment
 
 import com.urcloset.smartangle.tools.AppObservable
 import com.urcloset.smartangle.tools.BasicTools
+import com.urcloset.smartangle.tools.BasicTools.openReviewGoogle
 import com.urcloset.smartangle.tools.TemplateActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -52,6 +54,7 @@ class HomeActivity : TemplateActivity() {
     }
     override fun set_layout() {
         setContentView(R.layout.activity_home)
+
     }
     val viewModel : HomeViewModel by viewModels()
 
@@ -91,6 +94,7 @@ class HomeActivity : TemplateActivity() {
 
                 // send it to server
             })
+
     }
     fun saveToken(token: String?) {
 
@@ -142,8 +146,10 @@ class HomeActivity : TemplateActivity() {
 
         initBottomNavigation()
        // val postsFragment = postsFragment//PostsFragment()
-
+        val bundle  = bundleOf("show_review" to intent.getBooleanExtra("show_review",false))
+        postsFragment.arguments = bundle
         show_fragment2(postsFragment, false, false, R.id.root_fragment_home)
+
       /*  bottomNavigation!!.setOnTabSelectedListener { position, wasSelected ->
             // Do something cool here...
             when(position){
