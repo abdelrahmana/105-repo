@@ -14,8 +14,8 @@ import com.urcloset.smartangle.model.NearbyUsersModel
 import com.urcloset.smartangle.tools.BasicTools
 
 class UsersAdaptorList(
-    val imageClickedLUnit: ((NearbyUsersModel.Data.NearbyUsers.User) -> Unit)?
-    , val arrayList: ArrayList<NearbyUsersModel.Data.NearbyUsers.User>
+    val imageClickedLUnit: ((NearbyUsersModel.Data.User) -> Unit)?
+    , val arrayList: ArrayList<NearbyUsersModel.Data.User>
 ) : RecyclerView.Adapter<UsersAdaptorList.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -46,7 +46,7 @@ class UsersAdaptorList(
             notifyItemRangeInserted(0, arrayListOfImagessValues!!.size - 1)
         }
     }*/
-    fun updateList(data: List<NearbyUsersModel.Data.NearbyUsers.User>) { // update loader when scroll
+    fun updateList(data: List<NearbyUsersModel.Data.User>) { // update loader when scroll
         if (arrayList?.isEmpty()==true) {
             arrayList?.addAll(data)
             notifyDataSetChanged()
@@ -63,7 +63,7 @@ class UsersAdaptorList(
 
 
         fun bindItems(
-                itemData: NearbyUsersModel.Data.NearbyUsers.User
+                itemData: NearbyUsersModel.Data.User
         ) {
 
         //    imageItemadaptorBinding.userName.text = itemData.name?:""

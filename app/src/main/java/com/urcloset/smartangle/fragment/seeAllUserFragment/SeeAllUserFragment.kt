@@ -143,9 +143,6 @@ class SeeAllUserFragment : TemplateFragment() , ISearchProviderActivity {
     }
     fun getData(){
         if (BasicTools.isConnected(parent!!)) {
-
-
-
             val shopApi = ApiClient.getClient(BasicTools.getProtocol(parent!!).toString())
                 ?.create(AppApi::class.java)
 

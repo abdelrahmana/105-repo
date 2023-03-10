@@ -39,7 +39,7 @@ interface AppApi {
     fun CheckEmailOtp(@Body map: Map<String, String>):Observable<CheckOtpEmailModel>
 //    @GET("home")
 //    fun getUsers():Observable<UsersModel>
-   @GET("home")
+   @GET("public/providers/search")
    fun getUsers(@QueryMap map: Map<String, String>):Observable<NearbyUsersModel>
 
     @GET("auth/profile/visitor/log")

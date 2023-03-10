@@ -9,22 +9,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import androidx.viewpager.widget.ViewPager
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.urcloset.shop.tools.hide
 import com.urcloset.shop.tools.visible
 import com.urcloset.smartangle.R
-import com.urcloset.smartangle.activity.homeActivity.HomeActivity
-import com.urcloset.smartangle.activity.homeActivity.HomeViewModel
 import com.urcloset.smartangle.adapter.UserGridAdapter
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
 import com.urcloset.smartangle.fragment.HomeFragment.adaptor.UsersAdaptorList
 import com.urcloset.smartangle.model.NearbyUsersModel
-import com.urcloset.smartangle.model.User
 import com.urcloset.smartangle.tools.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -38,8 +33,8 @@ class HomeFragment : TemplateFragment(),NestedScrollPaginationView.OnMyScrollCha
     lateinit var shimmerWaitUsers :ShimmerFrameLayout
     lateinit var etSearch:EditText
     lateinit var tvEmpty:TextView
-    var usersSearchResult =  ArrayList<NearbyUsersModel.Data.NearbyUsers.User>()
-    var allNearbyUsers =  ArrayList<NearbyUsersModel.Data.NearbyUsers.User>()
+    var usersSearchResult =  ArrayList<NearbyUsersModel.Data.User>()
+    var allNearbyUsers =  ArrayList<NearbyUsersModel.Data.User>()
     lateinit var nearbyUsersModel:NearbyUsersModel
     lateinit var firstResult:NearbyUsersModel
     lateinit var  adapter : UsersAdaptorList
@@ -48,7 +43,7 @@ class HomeFragment : TemplateFragment(),NestedScrollPaginationView.OnMyScrollCha
     var lastPage:Int?=null
     lateinit var userGridAdapter:UserGridAdapter
     companion object{
-        var allUsers =  ArrayList<NearbyUsersModel.Data.NearbyUsers.User>()
+        var allUsers =  ArrayList<NearbyUsersModel.Data.User>()
 
     }
 
@@ -72,6 +67,7 @@ class HomeFragment : TemplateFragment(),NestedScrollPaginationView.OnMyScrollCha
 
 
     lateinit var views : View
+    lateinit var  nestedScrollPaginationView : NestedScrollPaginationView
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -81,7 +77,7 @@ class HomeFragment : TemplateFragment(),NestedScrollPaginationView.OnMyScrollCha
          views = inflater.inflate(R.layout.fragment_home1, container, false)
         areaViewPager = views.findViewById(R.id.area_view_pager)
         val swipeRefreshLayout : SwipeRefreshLayout  = views.findViewById(R.id.swipe)
-        val nestedScrollPaginationView : NestedScrollPaginationView = views.findViewById(R.id.nestedScrollPagination)
+         nestedScrollPaginationView = views.findViewById(R.id.nestedScrollPagination)
         nestedScrollPaginationView.myScrollChangeListener = this
 
         shimmerWait = views.findViewById(R.id.shimmer_wait)
@@ -150,6 +146,8 @@ class HomeFragment : TemplateFragment(),NestedScrollPaginationView.OnMyScrollCha
     }
 
     private fun setCall(map: HashMap<String, String>) {
+        views.findViewById<LinearLayout>(R.id.ly_empty).visibility =
+            View.GONE
         val observable = shopApi!!.getUsers(map)
         disposable.add(
             observable.subscribeOn(Schedulers.io())
@@ -163,22 +161,22 @@ class HomeFragment : TemplateFragment(),NestedScrollPaginationView.OnMyScrollCha
                         areaViewPager.visibility = View.VISIBLE
                         if (result.status!!) {
                             firstResult = result.copy(
-                                data = result.data?.copy(nearbyUsers =result.data?.nearbyUsers!!.copy() ))
-                            allUsers = result.data?.nearbyUsers?.data!!
+                                data = result.data?.copy(data =result.data?.data!! ))
+                            allUsers = result.data?.data!!
                             nearbyUsersModel = result
-                            lastPage = result.data?.nearbyUsers?.lastPage
-                            var newNearbyList = ArrayList<NearbyUsersModel.Data.NearbyUsers.User>()
+                            lastPage = result.data?.lastPage
+                            var newNearbyList = ArrayList<NearbyUsersModel.Data.User>()
                             if(!TemplateActivity.loginResponse?.data?.accessToken.isNullOrEmpty()) {
-                                newNearbyList = result.data?.nearbyUsers?.data!!.filter {
+                                newNearbyList = result.data?.data!!.filter {
                                     (TemplateActivity.loginResponse?.data?.user?.id != it.id)
-                                } as ArrayList<NearbyUsersModel.Data.NearbyUsers.User>
+                                } as ArrayList<NearbyUsersModel.Data.User>
 
 
 
 
                             }
                             else {
-                                newNearbyList = result.data?.nearbyUsers?.data!!
+                                newNearbyList = result.data?.data!!
 
                             }
                             adapter.updateList(newNearbyList)
@@ -244,22 +242,35 @@ class HomeFragment : TemplateFragment(),NestedScrollPaginationView.OnMyScrollCha
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                     if(p0.toString().isNotEmpty()) {
 
-                        usersSearchResult = allUsers.filter {
+                     /*   usersSearchResult = allUsers.filter {
                             it.name!!.contains(p0.toString(), true)
                         } as ArrayList<NearbyUsersModel.Data.NearbyUsers.User>
-                        nearbyUsersModel.data?.nearbyUsers?.data = usersSearchResult
-                        nearbyUsersModel.data?.nearbyUsers?.total = usersSearchResult.size
-                        nearbyUsersModel.data?.nearbyUsers?.lastPage = Math.ceil(usersSearchResult.size/26.0).toInt()
+                        nearbyUsersModel.data?.data?.data = usersSearchResult
+                        nearbyUsersModel.data?.data?.total = usersSearchResult.size
+                        nearbyUsersModel.data?.data?.lastPage = Math.ceil(usersSearchResult.size/26.0).toInt()
                      //   userGridAdapter = UserGridAdapter(context, nearbyUsersModel)
                         adapter = UsersAdaptorList(null,usersSearchResult)
                         areaViewPager.adapter = adapter//userGridAdapter
                         adapter.notifyDataSetChanged()
+
+                      */
                        // userGridAdapter.update()
+                        shimmerWait.visible()
+                        shimmerWaitUsers.visible()
+                        areaViewPager.visibility = View.GONE
+                        allNearbyUsers.clear()
+                        page = 1
+                        nestedScrollPaginationView.resetPageCounter()
+                        val map = HashMap<String, String>()
+                        map.put("per_page","36")
+                        map.put("page",page.toString())
+                        map.put("search_text",p0.toString())
+                        setCall(map)
                     }
                     else {
                        // areaViewPager.adapter = UserGridAdapter(context, firstResult.copy())
                        // userGridAdapter.update()
-                        adapter = UsersAdaptorList(null,allNearbyUsers)
+                        adapter = UsersAdaptorList(null, allNearbyUsers)
                         areaViewPager.adapter = adapter//userGridAdapter
                         adapter.notifyDataSetChanged()
 

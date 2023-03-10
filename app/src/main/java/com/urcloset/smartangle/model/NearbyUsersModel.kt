@@ -12,37 +12,38 @@ import com.google.gson.annotations.SerializedName
     val messages: Any?
 ) {
      data class Data(
-        @SerializedName("nearby_users")
-        val nearbyUsers: NearbyUsers,
+      /*  @SerializedName("data")
+        val nearbyUsers: NearbyUsers,*/
+        @SerializedName("current_page")
+        val currentPage: Int?,
+        @SerializedName("data")
+        var `data`: ArrayList<User>,
+        @SerializedName("first_page_url")
+        val firstPageUrl: String?,
+        @SerializedName("from")
+        val from: Int?,
+        @SerializedName("last_page")
+        var lastPage: Int?,
+        @SerializedName("last_page_url")
+        val lastPageUrl: String?,
+        @SerializedName("links")
+        val links: List<Link?>?,
+        @SerializedName("next_page_url")
+        val nextPageUrl: Any?,
+        @SerializedName("path")
+        val path: String?,
+        @SerializedName("per_page")
+        val perPage: Int?,
+        @SerializedName("prev_page_url")
+        val prevPageUrl: Any?,
+        @SerializedName("to")
+        val to: Int?,
+        @SerializedName("total")
+        var total: Int?
     ) {
-         data class NearbyUsers(
-            @SerializedName("current_page")
-            val currentPage: Int?,
-            @SerializedName("data")
-            var `data`: ArrayList<User>,
-            @SerializedName("first_page_url")
-            val firstPageUrl: String?,
-            @SerializedName("from")
-            val from: Int?,
-            @SerializedName("last_page")
-            var lastPage: Int?,
-            @SerializedName("last_page_url")
-            val lastPageUrl: String?,
-            @SerializedName("links")
-            val links: List<Link?>?,
-            @SerializedName("next_page_url")
-            val nextPageUrl: Any?,
-            @SerializedName("path")
-            val path: String?,
-            @SerializedName("per_page")
-            val perPage: Int?,
-            @SerializedName("prev_page_url")
-            val prevPageUrl: Any?,
-            @SerializedName("to")
-            val to: Int?,
-            @SerializedName("total")
-            var total: Int?
-        ) {
+        /* data class NearbyUsers(
+
+        )*/// {
              data class User(
                 @SerializedName("id")
                 val id: Int?,
@@ -87,5 +88,5 @@ import com.google.gson.annotations.SerializedName
                 val active: Boolean?
             )
         }
-    }
+   // }
 }

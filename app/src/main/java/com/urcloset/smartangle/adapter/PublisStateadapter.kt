@@ -31,7 +31,6 @@ import java.text.SimpleDateFormat
 import java.time.ZoneId
 import java.util.*
 
-
 class PublishStateAdapter(): RecyclerView.Adapter<PublishStateAdapter.ViewHolder>() {
     private var products:ArrayList<ProductModel.Product> ?= null
     private var context:Context ?=null
@@ -43,7 +42,6 @@ class PublishStateAdapter(): RecyclerView.Adapter<PublishStateAdapter.ViewHolder
         this.currentPageProduct = currentPageProduct
 
     }
-
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -102,10 +100,6 @@ class PublishStateAdapter(): RecyclerView.Adapter<PublishStateAdapter.ViewHolder
             holder.edit.visibility = View.VISIBLE
             holder.rejectedActions.visibility = View.GONE
             holder.message.setTextColor(Color.parseColor("#ACACAC"))
-
-
-
-
         }
         if(product.currentPublishStatus?.statusValue==0) {
             holder.imagestate.setImageResource(R.drawable.in_rejected)
@@ -128,7 +122,7 @@ class PublishStateAdapter(): RecyclerView.Adapter<PublishStateAdapter.ViewHolder
 
         }
         holder.delete.setOnClickListener {
-            deleteProduct(holder.shimmerDelete,holder.delete,product.id.toString(),position)
+            deleteProduct(holder.shimmerDelete,holder.delete,product.id.toString(),holder.adapterPosition)
 
         }
         try {

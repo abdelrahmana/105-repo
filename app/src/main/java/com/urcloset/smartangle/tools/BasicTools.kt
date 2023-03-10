@@ -47,11 +47,14 @@ import com.andrognito.flashbar.anim.FlashAnim
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
 import com.google.android.material.textfield.TextInputLayout
 import com.google.android.play.core.review.ReviewInfo
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.google.firebase.dynamiclinks.DynamicLink
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.mobsandgeeks.saripaar.ValidationError
@@ -110,6 +113,21 @@ object BasicTools {
         //    transaction.addToBackStack(null)
         transaction.commit()
 
+    }
+    fun getFirebaseFcmTokenBeforeStart(callBackToken :(String?)->Unit) {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+            //    Log.w(TAG, "Fetching FCM registration token failed", task.exception)
+                callBackToken(null)
+                return@OnCompleteListener
+            }
+
+            // Get new FCM registration token
+            val token = task.result
+            Log.v("fcm token",token)
+            callBackToken(token)
+
+        })
     }
     fun getStringDate(date:String): String? {
       /*  val inst: OffsetDateTime = OffsetDateTime.ofInstant(

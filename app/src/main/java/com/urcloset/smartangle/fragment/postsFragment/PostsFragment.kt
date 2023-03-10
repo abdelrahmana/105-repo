@@ -36,7 +36,9 @@ import com.urcloset.smartangle.model.NotificationModel
 import com.urcloset.smartangle.model.PostsModel
 import com.urcloset.smartangle.model.project_105.CountryModel
 import com.urcloset.smartangle.model.project_105.CountryWithCity
+import com.urcloset.smartangle.notification.MyFirebaseMessaging
 import com.urcloset.smartangle.tools.*
+import com.urcloset.smartangle.tools.BasicTools.getFirebaseFcmTokenBeforeStart
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -130,14 +132,20 @@ class PostsFragment():TemplateFragment() {
             if (selectedViewType == 0) // grid
                 setGridList()
             else setNormalList()
-            setCategoriesAdaptor(ArrayList(), ArrayList(),categories)
+            setCategoriesAdaptor(ArrayList<String>().also { it.add("") }, ArrayList<String>().also { it.add("") },categories)
 
         }
         setNotification()
-
+        getFirebaseFcmTokenBeforeStart(callBackTokenIsComing)
 
 
         return cview
+    }
+    val callBackTokenIsComing : (String?)->Unit = {
+        if(!BasicTools.getToken(requireContext()).isEmpty()){
+            MyFirebaseMessaging.saveTokenRQ(it?:"", requireContext())
+
+        }
     }
     override fun init_events() {
         if (arguments?.getBoolean("show_review",false) == true

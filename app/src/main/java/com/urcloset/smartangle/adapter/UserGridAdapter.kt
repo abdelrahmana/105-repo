@@ -2,26 +2,18 @@ package com.urcloset.smartangle.adapter
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.cardview.widget.CardView
 import androidx.viewpager.widget.PagerAdapter
 import com.bumptech.glide.Glide
-import com.google.gson.Gson
-import com.urcloset.shop.tools.hide
-import com.urcloset.shop.tools.visible
 import com.urcloset.smartangle.R
 import com.urcloset.smartangle.activity.sellerActivity.SellerActivity
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
-import com.urcloset.smartangle.fragment.HomeFragment.HomeFragment.Companion.allUsers
 import com.urcloset.smartangle.model.NearbyUsersModel
-import com.urcloset.smartangle.model.UsersModel
 import com.urcloset.smartangle.tools.AppObservable
 import com.urcloset.smartangle.tools.BasicTools
 import com.urcloset.smartangle.tools.TemplateActivity
@@ -33,9 +25,9 @@ import java.util.HashMap
 class UserGridAdapter(var context: Context?, val nearbyUsersModel: NearbyUsersModel) : PagerAdapter() {
     private var layoutInflater: LayoutInflater? = null
     var index =0
-    var users = nearbyUsersModel.data!!.nearbyUsers.data
-    val lastPage = nearbyUsersModel.data!!.nearbyUsers.lastPage
-    var page = nearbyUsersModel.data!!.nearbyUsers.currentPage
+    var users = nearbyUsersModel.data!!.data
+    val lastPage = nearbyUsersModel.data!!.lastPage
+    var page = nearbyUsersModel.data!!.currentPage
     var disposable= CompositeDisposable()
     lateinit var progress:ProgressBar
 
@@ -297,7 +289,7 @@ class UserGridAdapter(var context: Context?, val nearbyUsersModel: NearbyUsersMo
                     .subscribeWith(object : AppObservable<NearbyUsersModel>(context!!) {
                         override fun onSuccess(result: NearbyUsersModel) {
                             if (result.status!!) {
-                                users.addAll(result.data!!.nearbyUsers.data)
+                                users.addAll(result.data!!.data)
                                 notifyDataSetChanged()
 
                                 }
@@ -336,6 +328,6 @@ class UserGridAdapter(var context: Context?, val nearbyUsersModel: NearbyUsersMo
     }
 
     override fun getCount(): Int {
-        return Math.ceil(nearbyUsersModel.data?.nearbyUsers?.total!!/6.0).toInt()
+        return Math.ceil(nearbyUsersModel.data?.total!!/6.0).toInt()
     }
 }

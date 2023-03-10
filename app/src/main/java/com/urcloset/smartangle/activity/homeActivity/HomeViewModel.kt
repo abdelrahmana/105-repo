@@ -13,8 +13,8 @@ class HomeViewModel : ViewModel() {
      val savePosts : LiveData<CategoryModel?> =_savePosts
     private val _postMutable = MutableLiveData<PostsModel?>()
     val postLiveData : LiveData<PostsModel?> =_postMutable
-    private val _saveUsers = MutableLiveData<ArrayList<NearbyUsersModel.Data.NearbyUsers.User>?>()
-    val saveUsers : LiveData<ArrayList<NearbyUsersModel.Data.NearbyUsers.User>?> =_saveUsers
+    private val _saveUsers = MutableLiveData<ArrayList<NearbyUsersModel.Data.User>?>()
+    val saveUsers : LiveData<ArrayList<NearbyUsersModel.Data.User>?> =_saveUsers
 
    private var _loadPreviousNavBottom = MutableLiveData<Int>()
      var loadPreviousNavBottom :LiveData<Int> =_loadPreviousNavBottom
