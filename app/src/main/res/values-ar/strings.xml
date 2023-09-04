@@ -447,5 +447,8 @@
     <string name="select_products">حدد المنتجات التي تريد إضافتها إلى القسم المباع :</string>
     <string name="give_us_rating">قيم التطبيق لتجربة أفضل</string>
     <string name="later">لاحقاً</string>
+    <string name="contact_whats">تواصل واتس اب للشراء</string>
+    <string name="follow_new">متابعة</string>
+    <string name="share">مشاركة</string>
 
 </resources>

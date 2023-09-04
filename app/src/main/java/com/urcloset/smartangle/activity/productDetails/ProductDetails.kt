@@ -18,6 +18,7 @@ import android.view.Window
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -89,7 +90,7 @@ class ProductDetails : TemplateActivity() ,IProductDetailsActivity{
     val colorAdapter = ColorAdapterProductDetail()
     lateinit var sizeAdapter: SizeAdapterProductDetails
     lateinit var photoGalleryAdapter: PhotoGalleryProductDetailAdapter
-    lateinit var rlWhats: RelativeLayout
+    lateinit var rlWhats: ConstraintLayout
     lateinit var shimmerColor: ShimmerFrameLayout
     lateinit var shimmerSizes: ShimmerFrameLayout
     lateinit var shimmerCondition: ShimmerFrameLayout

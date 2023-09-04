@@ -451,12 +451,13 @@
 
         <LinearLayout
             android:visibility="gone"
+            tools:visibility="visible"
             android:id="@+id/controller"
             android:layout_marginTop="@dimen/two_unit"
             android:weightSum="3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <RelativeLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/rl_bookmark"
                 android:layout_marginEnd="@dimen/d0_8"
                 android:background="@drawable/category_unselected_item_bg"
@@ -464,14 +465,30 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/d5_2">
 
+                <TextView
+                    android:layout_marginStart="5dp"
+                    app:layout_constraintTop_toTopOf="@+id/bookMarkImage"
+                    android:id="@+id/bookMarkText"
+                    android:textColor="@color/red_new"
+                    android:text="@string/follow_new"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/bookMarkImage"
+                    android:layout_width="0dp"
+                    app:layout_constraintStart_toEndOf="@+id/bookMarkImage"
+                    android:layout_height="wrap_content"/>
                 <ImageView
+                    android:layout_marginStart="25dp"
+                    android:id="@+id/bookMarkImage"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_centerInParent="true"
                     android:src="@drawable/book_mark_ic"
                     android:layout_width="@dimen/d2"
                     android:layout_height="@dimen/d2"/>
-            </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <RelativeLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:background="@drawable/category_unselected_item_bg"
                 android:layout_marginStart="@dimen/d0_8"
                 android:layout_weight="1"
@@ -479,26 +496,57 @@
                 android:id="@+id/ly_report"
                 android:layout_height="@dimen/d5_2">
 
+                <TextView
+                    android:layout_marginStart="5dp"
+                    app:layout_constraintTop_toTopOf="@+id/reportImage"
+                    android:id="@+id/reportText"
+                    android:textColor="@color/red_new"
+                    android:text="@string/report"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/reportImage"
+                    android:layout_width="0dp"
+                    app:layout_constraintStart_toEndOf="@+id/reportImage"
+                    android:layout_height="wrap_content"/>
                 <ImageView
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/info_icon"
+                    android:id="@+id/reportImage"
+                    android:layout_marginStart="25dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_width="@dimen/d2"
-                    android:layout_height="@dimen/d2"/>
-            </RelativeLayout>
-            <RelativeLayout
+                    android:layout_height="@dimen/d2"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/info_icon" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_marginStart="@dimen/d0_8"
                 android:id="@+id/rl_share"
                 android:background="@drawable/dr_round_light_green"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/d5_2">
-
+                <TextView
+                    android:layout_marginStart="5dp"
+                    app:layout_constraintTop_toTopOf="@+id/share_image"
+                    android:id="@+id/shareText"
+                    android:textColor="@color/green_new"
+                    android:text="@string/share"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/share_image"
+                    android:layout_width="0dp"
+                    app:layout_constraintStart_toEndOf="@+id/share_image"
+                    android:layout_height="wrap_content"/>
                 <ImageView
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/ic_share"
+                    android:id="@+id/share_image"
+                    android:layout_marginStart="25dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_width="@dimen/d1_8"
-                    android:layout_height="@dimen/d1_8"/>
-            </RelativeLayout>
+                    android:layout_height="@dimen/d1_8"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_share" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
             <LinearLayout
@@ -534,11 +582,13 @@
                 <RelativeLayout
                     android:id="@+id/shimmer_report"
                     android:visibility="gone"
+                    tools:visibility="visible"
                     android:layout_marginStart= "@dimen/d0_8"
                     android:background="@drawable/category_unselected_item_bg"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/d5_2">
+
 
                     <ImageView
                         android:layout_centerInParent="true"
@@ -550,23 +600,39 @@
             </LinearLayout>
 
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:visibility="gone"
+            tools:visibility="visible"
             android:id="@+id/rl_whats"
             android:layout_marginTop="@dimen/two_unit"
             android:layout_marginBottom="@dimen/unit"
-            android:background="@drawable/dr_round_primary"
+            android:background="@drawable/dr_round_green"
             android:layout_width="match_parent"
             android:layout_height="@dimen/d5">
+            <TextView
+                android:layout_marginStart="20dp"
+                app:layout_constraintTop_toTopOf="@+id/iv_whats"
+                android:id="@+id/contact_whatss"
+                android:textColor="@color/white"
+                android:text="@string/contact_whats"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_whats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
             <ImageView
+                app:layout_constraintEnd_toStartOf="@+id/contact_whatss"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginEnd="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 android:id="@+id/iv_whats"
                 android:layout_centerInParent="true"
                 android:src="@drawable/whatsapp"
                 android:layout_marginStart="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/tv_may_like_too"

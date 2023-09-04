@@ -131,13 +131,13 @@
     <color name="facebook_dark">#3b5972</color>
     <color name="google_red">#EA4335</color>
     <color name="google_dark">#BB4335</color>
-
+    <color name="red_new">#d3485d</color>
     <color name="bg_screen1">#ff9800</color>
     <color name="bg_screen2">#ffc107</color>
     <color name="bg_screen3">#cddc39</color>
     <color name="bg_screen4">#8bc34a</color>
     <color name="bg_screen5">#4caf50</color>
-
+<color name="green_new">#39d184</color>
 
 
 

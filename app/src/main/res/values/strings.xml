@@ -563,6 +563,9 @@ I agree to pay 10 riyals when selling the product, and that it is in my possessi
     <string name="select_products">Select the products you want to add to the sold section:</string>
     <string name="give_us_rating">Rate App For Better Experience</string>
     <string name="later">Later</string>
+    <string name="contact_whats">Contact WhatsApp to Buy</string>
+    <string name="follow_new">Follow</string>
+    <string name="share">Share</string>
 
 
 </resources>
