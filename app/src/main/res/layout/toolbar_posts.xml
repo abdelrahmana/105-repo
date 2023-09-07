@@ -33,7 +33,6 @@ android:layout_marginTop="5dp"
                 >
 
                 <Spinner
-
                     android:id="@+id/sp_posts_filter"
                     style="@style/spinner_style"
                     android:layout_width="match_parent"

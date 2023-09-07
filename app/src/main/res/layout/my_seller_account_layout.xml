@@ -260,6 +260,7 @@
 
             </LinearLayout>
         </com.facebook.shimmer.ShimmerFrameLayout>
+        <!--
     <HorizontalScrollView
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
@@ -309,8 +310,56 @@
             android:layout_marginTop="@dimen/d1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
+
     </LinearLayout>
-    </HorizontalScrollView>
+    </HorizontalScrollView>-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                app:layout_constraintEnd_toStartOf="@+id/payCommission"
+                android:layout_marginStart="@dimen/d0_8"
+                app:layout_constraintTop_toTopOf="@+id/payCommission"
+                app:layout_constraintBottom_toBottomOf="@+id/payCommission"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="@dimen/d5_2"
+                >
+
+                <Spinner
+                    android:id="@+id/spinner_category_filter"
+                    style="@style/spinner_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:spinnerMode="dropdown" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginEnd="@dimen/d1_4"
+                    android:src="@drawable/ic_spinner_drop_down_posts" />
+            </RelativeLayout>
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:id="@+id/payCommission"
+                android:text="@string/pay_comission"
+                android:gravity="center"
+                android:minHeight="60dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginEnd="@dimen/d0_8"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="@dimen/d0_8"
+                android:layout_height="wrap_content"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/shimmer_cat"
             android:layout_marginTop="@dimen/d2"
@@ -334,10 +383,16 @@
         </com.facebook.shimmer.ShimmerFrameLayout>
 
 
-        <com.urcloset.smartangle.CustomViewPager
+       <!-- <com.urcloset.smartangle.CustomViewPager
             android:layout_marginTop="10dp"
             android:id="@+id/seller_view_pager"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/productsList"
+            android:layout_marginStart="@dimen/d0_8"
+            android:layout_marginEnd="@dimen/d0_8"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <com.facebook.shimmer.ShimmerFrameLayout
             android:visibility="gone"

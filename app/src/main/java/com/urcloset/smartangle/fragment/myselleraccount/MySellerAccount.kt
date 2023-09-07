@@ -19,6 +19,7 @@ import com.urcloset.smartangle.activity.homeActivity.HomeViewModel
 import com.urcloset.smartangle.adapter.*
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
+import com.urcloset.smartangle.databinding.MySellerAccountLayoutBinding
 import com.urcloset.smartangle.fragment.setting_fragment.SettingFragment
 import com.urcloset.smartangle.listeners.ItemClickListener
 import com.urcloset.smartangle.model.*
@@ -61,13 +62,14 @@ class MySellerAccount() : TemplateFragment() {
     lateinit var cvCats:CardView
     var data : ProductStateModel.State?=null
 
-
+    var binding : MySellerAccountLayoutBinding? =null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.my_seller_account_layout, container, false)
+        binding = MySellerAccountLayoutBinding.bind(view)
         tvName = view.findViewById(R.id.tv_name)
         ivAvatar = view.findViewById(R.id.iv_avatar)
         tvAvailableProduct = view.findViewById(R.id.tv_available_product)
@@ -111,7 +113,29 @@ class MySellerAccount() : TemplateFragment() {
 
         viewModelHome.setPreviousNavBottom(R.id.setting)
 
-        return view
+        return binding!!.root
+    }
+    fun setSpinnerClickListener() { // filter when selection new category
+        binding?.spinnerCategoryFilter?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                if (position!=0) {
+                    categories.get(position).id.toString()
+                }
+                else // all categories
+                {
+
+                }
+
+
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+        }
     }
 
     override fun init_events() {
@@ -199,11 +223,6 @@ class MySellerAccount() : TemplateFragment() {
                         myTextShimmer.hide()
                         myTextShimmer.visibility = View.GONE
                         tvAvailableProduct.visibility = View.VISIBLE
-
-
-
-
-
                         if (result.status!!) {
 
                             val user = result.data!!.user
@@ -281,7 +300,7 @@ class MySellerAccount() : TemplateFragment() {
         return true
 
     }
-    private fun getProducts(id: Int?) {
+    private fun getProducts(id: Int?) { // with user id
 
 
         val shopApi =

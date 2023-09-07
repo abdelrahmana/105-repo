@@ -7,6 +7,7 @@ import com.facebook.shimmer.ShimmerFrameLayout
 fun ProgressBar.gone(){
     visibility=View.GONE
 }
+
 fun ProgressBar.visible(){
     visibility= View.VISIBLE
 }
@@ -22,6 +23,9 @@ fun TextView.visible(){
 }
 fun TextView.hide(){
     visibility= View.INVISIBLE
+}
+fun View.show(showHidden : Boolean) {
+    visibility  = if (showHidden)View.VISIBLE else View.GONE
 }
 
 fun Button.gone(){

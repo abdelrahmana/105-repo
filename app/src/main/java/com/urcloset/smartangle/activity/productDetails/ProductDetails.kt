@@ -83,8 +83,8 @@ class ProductDetails : TemplateActivity() ,IProductDetailsActivity{
     lateinit var ivBack: ImageView
     lateinit var rvColors: RecyclerView
     lateinit var rvSizes: RecyclerView
-    lateinit var rlBookMark: RelativeLayout
-    lateinit var rlReport: RelativeLayout
+    lateinit var rlBookMark: ConstraintLayout
+    lateinit var rlReport: ConstraintLayout
     lateinit var viewPager: CustomViewPager
     lateinit var ivAvatar: ImageView
     val colorAdapter = ColorAdapterProductDetail()
@@ -108,22 +108,17 @@ class ProductDetails : TemplateActivity() ,IProductDetailsActivity{
     lateinit var shimmerNumProducts: ShimmerFrameLayout
     lateinit var shimmerStar: ShimmerFrameLayout
     lateinit var userSection:LinearLayout
-    lateinit  var rlShare :RelativeLayout
+    lateinit  var rlShare :ConstraintLayout
     var productDetailModel:ProductDetailsModel.Data?=null
     var savedBefore = false
     var counter: Int = 0
     var slepped: Boolean = false
     var count: Int = 1
     var productID:String?=null
-
-
-
     //similar product
     lateinit var rvSimilar:RecyclerView
     lateinit var similarProductAdapter: SimilarProductAdapter
     lateinit var tvMayLikeToo:TextView
-
-
     //location
     lateinit var tvLocation:TextView
 
@@ -132,9 +127,6 @@ class ProductDetails : TemplateActivity() ,IProductDetailsActivity{
         setContentView(R.layout.activity_product_details)
         supportPostponeEnterTransition()
     }
-
-
-
     override fun init_activity(savedInstanceState: Bundle?)
     {
 
