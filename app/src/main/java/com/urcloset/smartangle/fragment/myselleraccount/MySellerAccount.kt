@@ -5,21 +5,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.cardview.widget.CardView
-import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.urcloset.shop.tools.hide
+import com.urcloset.shop.tools.show
 import com.urcloset.shop.tools.visible
 import com.urcloset.smartangle.CustomViewPager
 import com.urcloset.smartangle.R
-import com.urcloset.smartangle.activity.homeActivity.HomeActivity
-import com.urcloset.smartangle.activity.homeActivity.HomeViewModel
 import com.urcloset.smartangle.adapter.*
+import com.urcloset.smartangle.adapter.SpinnerAdapter
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
 import com.urcloset.smartangle.databinding.MySellerAccountLayoutBinding
+import com.urcloset.smartangle.fragment.myselleraccount.adaptor.AdaptorProductsNew
 import com.urcloset.smartangle.fragment.setting_fragment.SettingFragment
 import com.urcloset.smartangle.listeners.ItemClickListener
 import com.urcloset.smartangle.model.*
@@ -44,12 +44,14 @@ class MySellerAccount() : TemplateFragment() {
     lateinit var ivBack : ImageView
     lateinit var categories:List<CategoryModel.Category>
     var products = ArrayList<ProductModel.Product>()
-    lateinit var rvCategories: RecyclerView
+  //  lateinit var rvCategories: RecyclerView
     val categoryAdapter= CategoryAdapterSeller()
     lateinit var sellerCategoriesProducts: MySellerProductsAdapter
-    lateinit var viewPager: CustomViewPager
+   // lateinit var viewPager: CustomViewPager
     private var allProducts=ArrayList<ArrayList<ProductModel.Product>>()
+    var productAdaptor : AdaptorProductsNew? = null
     var selctedCategory = 0
+    var allProductNew = ArrayList<ProductModel.Product>() // contians new arrayOf all Products
 
     var lang ="en"
     lateinit var categoryShimmer :ShimmerFrameLayout
@@ -58,11 +60,11 @@ class MySellerAccount() : TemplateFragment() {
     lateinit var starShimmer:ShimmerFrameLayout
     lateinit var myTextShimmer: ShimmerFrameLayout
     lateinit var myLocationSimmer:ShimmerFrameLayout
-    lateinit var rlAllProducts:RelativeLayout
-    lateinit var cvCats:CardView
+   // lateinit var rlAllProducts:RelativeLayout
+   // lateinit var cvCats:CardView
     var data : ProductStateModel.State?=null
-
     var binding : MySellerAccountLayoutBinding? =null
+    var selectedCategory = 0 // id of all
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -81,21 +83,22 @@ class MySellerAccount() : TemplateFragment() {
         star3 = view.findViewById(R.id.iv_star_3)
         star4 = view.findViewById(R.id.iv_star_4)
         star5 = view.findViewById(R.id.iv_star_5)
-        rvCategories = view.findViewById(R.id.rv_categories)
-        viewPager = view.findViewById(R.id.seller_view_pager)
-        viewPager.setPagingEnabled(false)
+     //   rvCategories = view.findViewById(R.id.rv_categories)
+     //   viewPager = view.findViewById(R.id.seller_view_pager)
+     //   viewPager.setPagingEnabled(false)
         ivBack = view.findViewById(R.id.iv_back)
         ivAvatar = view.findViewById(R.id.iv_avatar)
         myTextShimmer = view.findViewById(R.id.my_text_info_shimmer)
         categoryShimmer = view.findViewById(R.id.shimmer_cat)
         productSimmer = view.findViewById(R.id.shimmer_my_main_product)
-        rlAllProducts = view.findViewById(R.id.rl_all_cat)
+      //  rlAllProducts = view.findViewById(R.id.rl_all_cat)
         tvName.setText(TemplateActivity.loginResponse?.data?.user?.name)
-        cvCats = view.findViewById(R.id.cv_cat)
+       // cvCats = view.findViewById(R.id.cv_cat)
         rlSetting = view.findViewById(R.id.rl_setting)
+        productAdaptor = AdaptorProductsNew(requireContext(),ArrayList<ProductModel.Product>(),true)
         if(BasicTools.isConnected(parent!!)) {
-            BasicTools.showShimmer(rvCategories, categoryShimmer, true)
-            viewPager.visibility = View.GONE
+           // BasicTools.showShimmer(rvCategories, categoryShimmer, true)
+         //   viewPager.visibility = View.GONE
             productStateShimmer = view.findViewById(R.id.shimmer_product_state)
             productSimmer.visible()
 
@@ -112,8 +115,7 @@ class MySellerAccount() : TemplateFragment() {
 
 
         viewModelHome.setPreviousNavBottom(R.id.setting)
-
-        return binding!!.root
+        return view
     }
     fun setSpinnerClickListener() { // filter when selection new category
         binding?.spinnerCategoryFilter?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -123,13 +125,18 @@ class MySellerAccount() : TemplateFragment() {
                 position: Int,
                 id: Long
             ) {
-                if (position!=0) {
-                    categories.get(position).id.toString()
+
+                if (position!=0) { // not selecting all
+                  //  categories.get(position-1).id.toString()
+                    selectedCategory = categories.get(position-1).id?:0
                 }
                 else // all categories
                 {
+                    selectedCategory = 0
 
                 }
+                getFilteredList(selectedCategory,allProductNew,productAdaptor)
+
 
 
             }
@@ -143,7 +150,7 @@ class MySellerAccount() : TemplateFragment() {
             val f = SettingFragment()
             parent!!.show_fragment2(f, false, false, R.id.root_fragment_home)
         }
-        categoryAdapter.setOnCategoryClickListener(object : ItemClickListener {
+      /*  categoryAdapter.setOnCategoryClickListener(object : ItemClickListener {
             override fun onClick(position: Int) {
                 rlAllProducts.background= resources.getDrawable(R.drawable.seller_category_unselected_item_bg)
                 cvCats.cardElevation = 4f
@@ -155,10 +162,10 @@ class MySellerAccount() : TemplateFragment() {
             }
 
 
-        })
-        rlAllProducts.setOnClickListener {
+        })*/
+      /*  rlAllProducts.setOnClickListener {
         selelctAllCategores()
-        }
+        }*/
 
 
         ivBack.setOnClickListener {
@@ -174,10 +181,10 @@ class MySellerAccount() : TemplateFragment() {
 
     private fun selelctAllCategores() {
         categoryAdapter.selected =-1
-        viewPager.setCurrentItem(0)
+      //  viewPager.setCurrentItem(0)
         sellerCategoriesProducts.reset()
-        cvCats.cardElevation = 0f
-        rlAllProducts.background = resources.getDrawable(R.drawable.category_selected_item_bg)
+      //  cvCats.cardElevation = 0f
+     //   rlAllProducts.background = resources.getDrawable(R.drawable.category_selected_item_bg)
         categoryAdapter.notifyDataSetChanged()
     }
 
@@ -207,17 +214,17 @@ class MySellerAccount() : TemplateFragment() {
                 )
         val observable = shopApi!!.getUserProfile(TemplateActivity.loginResponse?.data?.user?.id!!)
         disposable.clear()
-        disposable.add(
+        disposable.add( // when get profile get categories from it
             observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : AppObservable<UserProfileModel>(parent!!) {
                     override fun onSuccess(result: UserProfileModel) {
                         myLocationSimmer.hide()
                         myLocationSimmer.visibility = View.GONE
-                        BasicTools.showShimmer(rvCategories,categoryShimmer,false)
+                     //   BasicTools.showShimmer(rvCategories,categoryShimmer,false)
                         categoryShimmer.visibility = View.GONE
                         starShimmer.hide()
-                        cvCats.visibility = View.VISIBLE
+                      //  cvCats.visibility = View.VISIBLE
                         starShimmer.visibility = View.GONE
                         view?.findViewById<LinearLayout>(R.id.mystar)?.visibility = View.VISIBLE
                         myTextShimmer.hide()
@@ -227,18 +234,20 @@ class MySellerAccount() : TemplateFragment() {
 
                             val user = result.data!!.user
                             categories = result.data.categoires as List<CategoryModel.Category>
-                            rlAllProducts.visibility = View.VISIBLE
+                          //  rlAllProducts.visibility = View.VISIBLE
                             getProducts(result.data.user?.id!!)
                             tvRateCount.text = user!!.countRaters?.toInt().toString()
                             setUpRateStars(user.rate!!)
                             categoryAdapter.submitList(categories)
+                            setCategoriesAdaptor(ArrayList<String>().also { it.add("") },
+                                ArrayList<String>().also { it.add("") },categories)
 
-                            rvCategories.layoutManager = LinearLayoutManager(
+                        /*    rvCategories.layoutManager = LinearLayoutManager(
                                 parent,
                                 LinearLayoutManager.HORIZONTAL,
                                 false
                             )
-                            rvCategories.adapter = categoryAdapter
+                            rvCategories.adapter = categoryAdapter */
                             if (lang == "en") {
                                 tvAvailableProduct.text =
                                     "Available Product (" + user!!.countAviableProducts + ")"
@@ -267,13 +276,12 @@ class MySellerAccount() : TemplateFragment() {
 
                             tvName.text = user.name
 
-
                         }
 
                     }
 
                     override fun onFailed(status: Int) {
-                        BasicTools.showShimmer(rvCategories,categoryShimmer,false)
+                     //   BasicTools.showShimmer(rvCategories,categoryShimmer,false)
                         starShimmer.hide()
                         myLocationSimmer.hide()
                         myLocationSimmer.visibility = View.GONE
@@ -291,7 +299,23 @@ class MySellerAccount() : TemplateFragment() {
                     }
                 }));
     }
+    private fun setCategoriesAdaptor(
+        images: ArrayList<String>, names: ArrayList<String>,
+        categories: List<CategoryModel.Category>
+    ) {
+        categories.forEach {
+            images.add(it.mediaPath!!)
+            if (!BasicTools.isDeviceLanEn())
+                names.add(it.nameAr!!)
+            else names.add(it.nameEn!!)
 
+
+        }
+        val postsFilter =
+            SpinnerAdapter(parent!!, images = images, names = names)
+        binding?.spinnerCategoryFilter?.adapter = postsFilter
+
+    }
     override fun init_fragment(savedInstanceState: Bundle?) {
 
     }
@@ -318,10 +342,12 @@ class MySellerAccount() : TemplateFragment() {
                     override fun onSuccess(result: ProductModel) {
                         productSimmer.hide()
                         productSimmer.visibility = View.GONE
-                        viewPager.visibility = View.VISIBLE
+                   //     viewPager.visibility = View.VISIBLE
                         if (result.status!!) {
                             products = (result.products as ArrayList<ProductModel.Product>?)!!
                             allProducts.clear()
+                            allProductNew.clear()
+                          allProductNew.addAll(products.filter { (it.itemStatus !=2 && it.itemStatus !=3) })
                             allProducts.add( products.filter {
                                 it.itemStatus!=2 && it.itemStatus!=3
 
@@ -339,11 +365,18 @@ class MySellerAccount() : TemplateFragment() {
 
                                 allProducts.add(tempProducts)
 
-
                             }
 
+                            binding?.productsList?.layoutManager = LinearLayoutManager(
+                                parent,
+                                LinearLayoutManager.VERTICAL,
+                                false
+                            )
+                            binding?.productsList?.adapter = productAdaptor
+                            setSpinnerClickListener()
 
-                            sellerCategoriesProducts = MySellerProductsAdapter(
+                            getFilteredList(selectedCategory,allProductNew,productAdaptor)
+                      /*      sellerCategoriesProducts = MySellerProductsAdapter(
                                 allProducts,
                                 parent!!,
                                 categories
@@ -352,7 +385,7 @@ class MySellerAccount() : TemplateFragment() {
 
                             viewPager.adapter = sellerCategoriesProducts
                             viewPager.visibility = View.VISIBLE
-                            selelctAllCategores()
+                            selelctAllCategores() */
 
                         }
 
@@ -368,6 +401,19 @@ class MySellerAccount() : TemplateFragment() {
                 })
         )
 
+    }
+
+    private fun getFilteredList(
+        selectedCategory: Int,
+        allProducts: ArrayList<ProductModel.Product>,
+        productAdaptor: AdaptorProductsNew?) {
+        var filteredList = ArrayList<ProductModel.Product>()
+        if (selectedCategory == 0) {
+            productAdaptor?.setArrayListNew(allProducts)
+        }
+        else
+            productAdaptor?.setArrayListNew(allProducts.filter { it.categoryId == selectedCategory.toString() } as ArrayList<ProductModel.Product>)
+          binding?.emptyProducts?.show(productAdaptor?.arrayList.isNullOrEmpty())
     }
 
 

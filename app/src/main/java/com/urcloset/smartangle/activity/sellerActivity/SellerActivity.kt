@@ -44,6 +44,7 @@ import kotlin.collections.HashMap
 
 
 class SellerActivity : TemplateActivity() {
+    // todo need to update it
     var disposable = CompositeDisposable()
     var disposableNotifiaion = CompositeDisposable()
     var selleruserId: String? = null

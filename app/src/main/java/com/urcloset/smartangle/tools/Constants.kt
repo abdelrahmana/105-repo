@@ -18,7 +18,7 @@ object Constants {
     var LOGIN_TYPE_NORMAL="normal"
     var LOGIN_TYPE_GMAIL="google"
     var LOGIN_TYPE_FACEBOOK="facebook"
-    var api_url = "apis.urcloset.org/api/"
+    var api_url ="endpoint.urcloset.net/api/" //"apis.urcloset.org/api/"
     var PAYMENY_TYPE="TEST"
   //  var PAYMENY_TYPE="LIVE"
     var api_url_image = "apis.urcloset.org/storage/"

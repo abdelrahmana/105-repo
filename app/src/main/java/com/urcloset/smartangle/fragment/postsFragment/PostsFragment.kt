@@ -499,7 +499,6 @@ class PostsFragment():TemplateFragment() {
 
 
         }
-
         val postsFilter =
             SpinnerAdapter(parent!!, images = images, names = names)
         spinner.adapter = postsFilter

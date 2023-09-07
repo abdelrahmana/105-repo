@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView android:orientation="vertical"
+<androidx.constraintlayout.widget.ConstraintLayout android:orientation="vertical"
     android:fillViewport="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <androidx.core.widget.NestedScrollView
+        android:orientation="vertical"
+        android:fillViewport="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
     <LinearLayout
         android:id="@+id/linear"
-
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -370,7 +374,6 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <include layout="@layout/category_item_shimmer"/>
@@ -390,10 +393,9 @@
             android:layout_height="wrap_content"/>-->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/productsList"
-            android:layout_marginStart="@dimen/d0_8"
-            android:layout_marginEnd="@dimen/d0_8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
         <com.facebook.shimmer.ShimmerFrameLayout
             android:visibility="gone"
             android:layout_gravity="center_horizontal"
@@ -437,14 +439,18 @@
 
         </com.facebook.shimmer.ShimmerFrameLayout>
 
-
+        <ImageView
+            android:src="@drawable/category_empty"
+            android:id="@+id/empty_products"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="320dp"/>
     </LinearLayout>
 
-
-
-
-
 </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
