@@ -29,9 +29,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-import kotlinx.android.synthetic.main.activity_contact_and_support.*
-import kotlinx.android.synthetic.main.toolbar_backpress1.*
-
 
 class ContactAndSupportActivity : TemplateActivity() {
     lateinit var btnSubmit:CardView
@@ -72,14 +69,14 @@ class ContactAndSupportActivity : TemplateActivity() {
     }
 
     override fun init_views() {
-        btnSubmit = submit
+        btnSubmit = findViewById(R.id.submit)
         email = findViewById(R.id.et_email)
         subject = findViewById(R.id.et_subject)
         des = findViewById(R.id.et_des)
         shimmerFrameLayout = findViewById(R.id.shimmer)
         chatShimmerFrameLayout = findViewById(R.id.chat_shimmer)
 
-        progressBar = progress_bar_chat
+        progressBar = findViewById(R.id.progress_bar_chat)
         rvBox = findViewById(R.id.rv_box)
         lybox = findViewById(R.id.lybox)
         box = findViewById(R.id.tv_box)
@@ -120,14 +117,14 @@ class ContactAndSupportActivity : TemplateActivity() {
         })
         lysupport.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View?) {
-                rv_box.visibility = View.GONE
+                findViewById<RecyclerView>(R.id.rv_box).visibility = View.GONE
 
                 support.setTextColor(Color.WHITE)
                 lysupport.background = resources.getDrawable(R.drawable.selected_text_button_bg_for_contact)
                 box.setTextColor(Color.BLACK)
                 lybox.background = resources.getDrawable(R.drawable.unselected_text_button_bg_for_contact)
-                rv_box.visibility = View.GONE
-                body.visibility = View.VISIBLE
+                findViewById<RecyclerView>(R.id.rv_box).visibility = View.GONE
+                findViewById<LinearLayout>(R.id.body).visibility = View.VISIBLE
 
                 findViewById<LinearLayout>(R.id.ly_empty).visibility = View.GONE
 
@@ -142,8 +139,8 @@ class ContactAndSupportActivity : TemplateActivity() {
                 lybox.background = resources.getDrawable(R.drawable.selected_text_button_bg_for_contact)
                 support.setTextColor(Color.BLACK)
                 lysupport.background = resources.getDrawable(R.drawable.unselected_text_button_bg_for_contact)
-                rv_box.visibility = View.VISIBLE
-                body.visibility = View.GONE
+                findViewById<RecyclerView>(R.id.rv_box).visibility = View.VISIBLE
+                findViewById<LinearLayout>(R.id.body).visibility = View.GONE
                 getChat()
 
             }
@@ -159,7 +156,7 @@ class ContactAndSupportActivity : TemplateActivity() {
     }
 
     fun sendMessage(){
-        if(et_email.text.toString().isNotEmpty() && et_subject.text.toString().isNotEmpty() && et_des.text.toString().isNotEmpty()) {
+        if(email.text.toString().isNotEmpty() && subject.text.toString().isNotEmpty() && des.text.toString().isNotEmpty()) {
             showShimmerAddBtn(true)
 
             val shopApi =
@@ -171,9 +168,9 @@ class ContactAndSupportActivity : TemplateActivity() {
                         AppApi::class.java
                     )
             val map = HashMap<String, String>()
-            map.put("email", et_email.text.toString())
-            map.put("subject", et_subject.text.toString())
-            map.put("message", et_des.text.toString())
+            map.put("email", email.text.toString())
+            map.put("subject", subject.text.toString())
+            map.put("message", des.text.toString())
 
             val observable = shopApi!!.sendMessage(map)
             disposable.add(
@@ -187,9 +184,9 @@ class ContactAndSupportActivity : TemplateActivity() {
                                 Toast.LENGTH_SHORT
                             ).show()
                             showShimmerAddBtn(false)
-                            et_email.setText("")
-                            et_subject.setText("")
-                            et_des.setText("")
+                            email.setText("")
+                            subject.setText("")
+                            des.setText("")
 
 
                         }
@@ -216,10 +213,10 @@ class ContactAndSupportActivity : TemplateActivity() {
     fun showShimmerAddBtn(state:Boolean){
 
         if (state) {
-            submit.visibility = View.GONE
+            btnSubmit.visibility = View.GONE
             shimmerFrameLayout.visible()
         } else {
-            submit.visibility = View.VISIBLE
+            btnSubmit.visibility = View.VISIBLE
             shimmerFrameLayout.hide()
             shimmerFrameLayout.visibility = View.GONE
         }

@@ -3,13 +3,16 @@ package com.urcloset.smartangle.activity.demo105
 
 import android.os.Bundle
 import com.urcloset.smartangle.R
+import com.urcloset.smartangle.databinding.ActivitySellerProfileBinding
+import com.urcloset.smartangle.databinding.FragmentMyAccountBinding
 import com.urcloset.smartangle.tools.BasicTools
 import com.urcloset.smartangle.tools.TemplateActivity
-import kotlinx.android.synthetic.main.fragment_my_account.*
 
 class UserAccountAct : TemplateActivity() {
+    var binding : FragmentMyAccountBinding? =null
     override fun set_layout() {
-        setContentView(R.layout.fragment_my_account)
+        binding = FragmentMyAccountBinding.inflate(layoutInflater)
+        setContentView(binding!!.root)
     }
 
     override fun init_activity(savedInstanceState: Bundle?) {
@@ -22,7 +25,7 @@ class UserAccountAct : TemplateActivity() {
 
     override fun init_events() {
 
-        iv_tshirt.setOnClickListener {
+        binding?.ivTshirt?.setOnClickListener {
 
             BasicTools.openActivity(this@UserAccountAct,
 

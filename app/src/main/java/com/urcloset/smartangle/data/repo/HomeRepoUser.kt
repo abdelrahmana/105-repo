@@ -14,6 +14,7 @@ import com.urcloset.smartangle.model.PublishStateModel
 import com.urcloset.smartangle.tools.BasicTools
 import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.RequestBody
+import okhttp3.Response
 import okhttp3.ResponseBody
 import javax.inject.Inject
 import kotlin.collections.HashMap
@@ -98,6 +99,24 @@ class HomeRepoUser @Inject constructor(private val webService: AppApi,
 
         res.onSuccess {
             completion(data!!.data , null)
+
+
+        }
+        res.onException {
+            completion(null ,message.toString())
+
+
+        }
+        res.onError {
+            completion(null,context.getString(R.string.error_happend)) // handle error from error body
+        }
+    }
+
+    suspend fun changeProductStatus(hashMap: HashMap<String, Any>?, completion: (ResponseBody?, String?) -> Unit) {
+        val res = webService.deleteProduct(hashMap)//webService.postIgnoreOrder(hashMap)
+
+        res.onSuccess {
+            completion(data!! , null)
 
 
         }

@@ -94,8 +94,8 @@ class AboutAppActivity : TemplateActivity() {
     }
 
     override fun init_views() {
-        about = tv_about
-        aboutProgress = about_progress
+        about =findViewById(R.id.tv_about)
+        aboutProgress = findViewById(R.id.about_progress)
         ivBack = findViewById(R.id.iv_back)
         logo = findViewById(R.id.logo_img)
     }

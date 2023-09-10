@@ -2,7 +2,8 @@ apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
 
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-parcelize'//'kotlin-android-extensions'
+//apply plugin'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 apply plugin:  'dagger.hilt.android.plugin'
@@ -17,12 +18,12 @@ android {
             keyAlias 'key_urcloset'
         }
     }
-    compileSdkVersion 31
+    compileSdkVersion 33
     buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.urcloset.smartangle"
         minSdkVersion 22
-        targetSdkVersion 31
+        targetSdkVersion 33
         versionCode 119
         versionName "7.2"
         multiDexEnabled true
@@ -141,6 +142,7 @@ dependencies {
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 
     implementation 'de.hdodenhof:circleimageview:3.0.1'
+    implementation "com.github.skydoves:powermenu:2.2.4"
 
     /*map */
     implementation 'com.google.android.gms:play-services-maps:17.0.1'

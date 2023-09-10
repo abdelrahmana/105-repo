@@ -9,7 +9,9 @@
     android:layout_height="match_parent">
 
 
-        <include layout="@layout/toolbar_backpress1"/>
+        <include
+            android:id="@+id/toolBar"
+            layout="@layout/toolbar_backpress1"/>
 
 
 

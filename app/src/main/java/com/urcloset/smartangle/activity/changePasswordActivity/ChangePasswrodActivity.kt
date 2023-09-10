@@ -7,6 +7,7 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.View
 import android.widget.EditText
+import android.widget.ImageView
 import com.mobsandgeeks.saripaar.ValidationError
 import com.mobsandgeeks.saripaar.Validator
 import com.mobsandgeeks.saripaar.annotation.ConfirmPassword
@@ -17,14 +18,13 @@ import com.urcloset.shop.tools.visible
 import com.urcloset.smartangle.R
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
+import com.urcloset.smartangle.databinding.ActivityChangePasswrodBinding
 import com.urcloset.smartangle.tools.AppObservable
 import com.urcloset.smartangle.tools.BasicTools
 import com.urcloset.smartangle.tools.TemplateActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_change_passwrod.*
-import kotlinx.android.synthetic.main.toolbar_backpress1.*
 import okhttp3.ResponseBody
 
 class ChangePasswrodActivity  : TemplateActivity(),Validator.ValidationListener {
@@ -40,8 +40,10 @@ class ChangePasswrodActivity  : TemplateActivity(),Validator.ValidationListener 
     @NotEmpty(sequence = 1, messageResId = R.string.please_fill_out)
     @ConfirmPassword(messageResId = R.string.password_donot_match)
     lateinit var editRePassword: EditText
+    var binding : ActivityChangePasswrodBinding ?=null
     override fun set_layout() {
-        setContentView(R.layout.activity_change_passwrod)
+        binding = ActivityChangePasswrodBinding.inflate(layoutInflater)
+        setContentView(/*R.layout.activity_change_passwrod*/binding!!.root)
     }
 
     override fun init_activity(savedInstanceState: Bundle?) {
@@ -51,28 +53,28 @@ class ChangePasswrodActivity  : TemplateActivity(),Validator.ValidationListener 
     override fun init_views() {
         validator = Validator(this)
         validator!!.setValidationListener(this)
-        editOldPassword=edit_old_password
-        editNewPassword=edit_new_password
-        editRePassword=edit_re_enter_password
+        editOldPassword=findViewById(R.id.edit_old_password)
+        editNewPassword= findViewById(R.id.edit_new_password)
+        editRePassword= findViewById(R.id.edit_re_enter_password)
 
     }
 
     override fun init_events() {
 
-        iv_back.setOnClickListener {
+        binding?.toolBar?.ivBack?.setOnClickListener {
             BasicTools.exitActivity(this@ChangePasswrodActivity)
         }
 
         /*old*/
-        eye_password_old.setOnClickListener {
+        binding?.eyePasswordOld?.setOnClickListener {
             if(editOldPassword.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
 
 
-                eye_password_old.setImageResource(R.drawable.visibility_3x)
+                binding?.eyePasswordOld?.setImageResource(R.drawable.visibility_3x)
                 editOldPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
             }
             else{
-                eye_password_old.setImageResource(R.drawable.visibility_off_3x)
+                binding?.eyePasswordOld?.setImageResource(R.drawable.visibility_off_3x)
                 editOldPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
             }
@@ -81,15 +83,15 @@ class ChangePasswrodActivity  : TemplateActivity(),Validator.ValidationListener 
 
         /*new */
 
-        eye_password_new.setOnClickListener {
+        binding?.eyePasswordNew?.setOnClickListener {
             if(editNewPassword.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
 
 
-                eye_password_new.setImageResource(R.drawable.visibility_3x)
+                binding?.eyePasswordNew?.setImageResource(R.drawable.visibility_3x)
                 editNewPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
             }
             else{
-                eye_password_new.setImageResource(R.drawable.visibility_off_3x)
+                binding?.eyePasswordNew?.setImageResource(R.drawable.visibility_off_3x)
                 editNewPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
             }
@@ -101,22 +103,22 @@ class ChangePasswrodActivity  : TemplateActivity(),Validator.ValidationListener 
 
         /*re Enter */
 
-        eye_password_re_enter.setOnClickListener {
+        binding?.eyePasswordReEnter?.setOnClickListener {
             if(editRePassword.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
 
 
-                eye_password_re_enter.setImageResource(R.drawable.visibility_3x)
+                binding?.eyePasswordReEnter?.setImageResource(R.drawable.visibility_3x)
                 editRePassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
             }
             else{
-                eye_password_re_enter.setImageResource(R.drawable.visibility_off_3x)
+                binding?.eyePasswordReEnter?.setImageResource(R.drawable.visibility_off_3x)
                 editRePassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
             }
         }
 
 
-        card_save.setOnClickListener{
+        binding?.cardSave?.setOnClickListener{
             validator!!.validate()
 
         }
@@ -138,11 +140,11 @@ class ChangePasswrodActivity  : TemplateActivity(),Validator.ValidationListener 
     fun showShimmerBtn(state: Boolean){
 
         if(state){
-            card_save.visibility= View.GONE
-            shimmer_wait.visible()
+            binding?.cardSave?.visibility= View.GONE
+            binding?.shimmerWait?.visible()
         }else{
-            card_save.visibility= View.VISIBLE
-            shimmer_wait.hide()
+            binding?.cardSave?.visibility= View.VISIBLE
+            binding?.shimmerWait?.hide()
         }
     }
 

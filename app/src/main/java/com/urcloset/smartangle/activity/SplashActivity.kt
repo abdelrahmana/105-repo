@@ -8,6 +8,7 @@ import android.os.CountDownTimer
 import android.util.Log
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.database.FirebaseDatabase
@@ -28,7 +29,6 @@ import com.urcloset.smartangle.tools.FcmCall.setFirebaseData
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : TemplateActivity() {
     var disposable: CompositeDisposable = CompositeDisposable()
@@ -37,7 +37,7 @@ class SplashActivity : TemplateActivity() {
     override fun set_layout() {
         setContentView(R.layout.activity_splash)
     }
-
+    lateinit var iv_splash : ImageView
     override fun init_activity(savedInstanceState: Bundle?) {
 
 
@@ -54,6 +54,7 @@ class SplashActivity : TemplateActivity() {
         FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         BasicTools.initialize_image_loader(this@SplashActivity)
+        iv_splash = findViewById(R.id.iv_splash)
         iv_splash.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.logo1))
         anim = AnimationUtils.loadAnimation(this@SplashActivity, android.R.anim.fade_in)
 

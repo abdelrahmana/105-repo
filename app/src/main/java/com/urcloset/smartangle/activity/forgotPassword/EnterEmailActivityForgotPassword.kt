@@ -17,11 +17,10 @@ import com.mobsandgeeks.saripaar.ValidationError
 import com.mobsandgeeks.saripaar.Validator
 import com.mobsandgeeks.saripaar.annotation.Email
 import com.mobsandgeeks.saripaar.annotation.NotEmpty
+import com.urcloset.smartangle.databinding.ActivityEnterEmailForgotpasswordBinding
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_enter_email_forgotpassword.*
-import kotlinx.android.synthetic.main.toolbar_backpress1.*
 
 class EnterEmailActivityForgotPassword : TemplateActivity(), Validator.ValidationListener {
     var disposable= CompositeDisposable()
@@ -30,8 +29,10 @@ class EnterEmailActivityForgotPassword : TemplateActivity(), Validator.Validatio
     @NotEmpty(sequence = 1, messageResId = R.string.please_fill_out)
     @Email(sequence = 2, messageResId = R.string.enter_a_valid_email_address)
     lateinit var editEmail: EditText
+    var binding : ActivityEnterEmailForgotpasswordBinding? =null
     override fun set_layout() {
-        setContentView(R.layout.activity_enter_email_forgotpassword)
+        binding = ActivityEnterEmailForgotpasswordBinding.inflate(layoutInflater)
+        setContentView(binding!!.root)
     }
 
     override fun init_activity(savedInstanceState: Bundle?) {
@@ -40,20 +41,20 @@ class EnterEmailActivityForgotPassword : TemplateActivity(), Validator.Validatio
 
     override fun init_views() {
         
-        editEmail=edit_email
+        editEmail=binding!!.editEmail
 
     }
 
     override fun init_events() {
 
-        iv_back.setOnClickListener {
+        binding?.toolbar?.ivBack?.setOnClickListener {
             BasicTools.exitActivity(this@EnterEmailActivityForgotPassword)
         }
 
         validator = Validator(this)
         validator!!.setValidationListener(this)
 
-        card_contintue.setOnClickListener{
+        binding?.cardContintue?.setOnClickListener{
             validator!!.validate()
 
         }
@@ -77,11 +78,11 @@ class EnterEmailActivityForgotPassword : TemplateActivity(), Validator.Validatio
     fun showShimmerBtn(state: Boolean){
 
         if(state){
-            card_contintue.visibility= View.GONE
-            shimmer_wait.visible()
+            binding?.cardContintue?.visibility= View.GONE
+            binding?.shimmerWait?.visible()
         }else{
-            card_contintue.visibility= View.VISIBLE
-            shimmer_wait.hide()
+            binding?.cardContintue?.visibility= View.VISIBLE
+            binding?.shimmerWait?.hide()
         }
     }
 

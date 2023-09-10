@@ -451,5 +451,6 @@
     <string name="follow_new">متابعة</string>
     <string name="share">مشاركة</string>
     <string name="pay_comission">Pay Commission</string>
+    <string name="product_deleted">تم حذف المنتج بنجاح .</string>
 
 </resources>

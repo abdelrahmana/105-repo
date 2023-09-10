@@ -2,6 +2,7 @@ package com.urcloset.smartangle.fragment.myselleraccount.adaptor
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -13,7 +14,9 @@ import com.urcloset.smartangle.tools.BasicTools
 
 
 class AdaptorProductsNew( // one selection
-    var context: Context, var arrayList: ArrayList<ProductModel.Product>,val isOwner : Boolean//,
+    var context: Context,
+    var arrayList: ArrayList<ProductModel.Product>,
+    val isOwner: Boolean, val callBackMoreOption: (Triple<Int,ProductModel.Product,View>) -> Unit
    // var selectedArrayList: ArrayList<ModelTrip>
 ) :
     RecyclerView.Adapter<AdaptorProductsNew.ViewHolder>() {
@@ -58,6 +61,9 @@ class AdaptorProductsNew( // one selection
                        0
                    )?.mediaPath!!
                )).into(itemViews.productImage)
+           itemViews.cardMoreOption.setOnClickListener{
+               callBackMoreOption.invoke(Triple(adapterPosition,selectedItem,itemViews.cardMoreOption))
+           }
        }
 
 

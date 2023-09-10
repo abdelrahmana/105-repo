@@ -36,26 +36,6 @@ import com.urcloset.smartangle.tools.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_add_product.*
-
-import kotlinx.android.synthetic.main.activity_add_product.et_price
-import kotlinx.android.synthetic.main.activity_add_product.rv_categories
-import kotlinx.android.synthetic.main.activity_add_product.rv_colors
-import kotlinx.android.synthetic.main.activity_add_product.rv_conditions
-import kotlinx.android.synthetic.main.activity_add_product.rv_photos
-import kotlinx.android.synthetic.main.activity_add_product.rv_size
-import kotlinx.android.synthetic.main.activity_add_product.shimmer_layout
-import kotlinx.android.synthetic.main.activity_add_product.shimmer_sizes
-import kotlinx.android.synthetic.main.activity_add_product.sp_duration
-import kotlinx.android.synthetic.main.activity_add_product.tv_ba_n
-import kotlinx.android.synthetic.main.activity_add_product.tv_ba_y
-import kotlinx.android.synthetic.main.activity_add_product.tv_code
-import kotlinx.android.synthetic.main.activity_add_product.tv_des
-import kotlinx.android.synthetic.main.activity_add_product.tv_ia_n
-import kotlinx.android.synthetic.main.activity_add_product.tv_ia_y
-import kotlinx.android.synthetic.main.activity_add_product.tv_name
-import kotlinx.android.synthetic.main.activity_add_product.tv_no_negotiable
-import kotlinx.android.synthetic.main.activity_add_product.tv_yes_negotiable
 
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -81,6 +61,7 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
     lateinit var sizeAdapter: SizeAdapter
     val photos = ArrayList<AddPhotoModel>()
     lateinit var tvName: EditText
+    lateinit var tvPhone : EditText
     lateinit var tvDes: EditText
     lateinit var etPrice: EditText
     lateinit var rvPhotos: RecyclerView
@@ -197,28 +178,29 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
 
 
     override fun init_views() {
-        rvCategories = rv_categories
-        tvName = tv_name
-        tvDes = tv_des
-        rvPhotos = rv_photos
-        rvConditions = rv_conditions
-        tvYesNegotiable = tv_yes_negotiable
-        tvNoNegotiable = tv_no_negotiable
-        tvYesBox = tv_ba_y
-        tvNoBox = tv_ba_n
-        tvInvoiceAvaliable = tv_ia_y
-        tvInvoiceUnAvaliable = tv_ia_n
-        duration = sp_duration
-        rvColors = rv_colors
-        rvSize = rv_size
+        rvCategories = findViewById(R.id.rv_categories)
+        tvName =findViewById(R.id.tv_name)
+        //tvPhone = findViewById(R.id.phoneEdit)
+        tvDes = findViewById(R.id.tv_des)
+        rvPhotos =findViewById(R.id.rv_photos)
+        rvConditions =findViewById(R.id.rv_conditions)
+        tvYesNegotiable = findViewById(R.id.tv_yes_negotiable)
+        tvNoNegotiable = findViewById(R.id.tv_no_negotiable)
+        tvYesBox = findViewById(R.id.tv_ba_y)
+        tvNoBox = findViewById(R.id.tv_ba_n)
+        tvInvoiceAvaliable = findViewById(R.id.tv_ia_y)
+        tvInvoiceUnAvaliable =findViewById(R.id.tv_ia_n)
+        duration = findViewById(R.id.sp_duration)
+        rvColors =findViewById(R.id.rv_colors)
+        rvSize =findViewById(R.id.rv_size)
         addButton = findViewById(R.id.bn_add)
-        etPrice = et_price
-        shimmerFrameLayout = shimmer_layout
-        tvCode = tv_code
-        editPhone = phone
-        shimmerColor = shimmer_color
-        shimmerSizes = shimmer_sizes
-        shimmerCategories = shimmer_categories
+        etPrice =findViewById(R.id.et_price)
+        shimmerFrameLayout =findViewById(R.id.shimmer_layout)
+        tvCode = findViewById(R.id.tv_code)
+        editPhone =findViewById(R.id.phone)
+        shimmerColor =findViewById(R.id.shimmer_color)
+        shimmerSizes =findViewById(R.id.shimmer_sizes)
+        shimmerCategories = findViewById(R.id.shimmer_categories)
 
 
     }
@@ -414,7 +396,7 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
         }
 
         tvCode.setText(TemplateActivity.loginResponse?.data?.user?.countryCode)
-        phone.setText(TemplateActivity.loginResponse?.data?.user?.phoneNumber)
+        editPhone.setText(TemplateActivity.loginResponse?.data?.user?.phoneNumber)
     }
     val callBackConfirmConsent :(Int)->Unit = {isAgree->
         if (isAgree==1) {
@@ -691,10 +673,10 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
     fun showShimmerAddBtn(state: Boolean) {
 
         if (state) {
-            bn_add.visibility = View.GONE
+            addButton.visibility = View.GONE
             shimmerFrameLayout.visible()
         } else {
-            bn_add.visibility = View.VISIBLE
+            addButton.visibility = View.VISIBLE
             shimmerFrameLayout.hide()
         }
     }
@@ -703,11 +685,11 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
         if(tvName.text.toString().trim().isNotEmpty()) {
             if (tvDes.text.toString().trim().isNotEmpty()) {
                 if (etPrice.text.toString().trim().isNotEmpty()) {
-                    if(phone.text.toString().trim().isNotEmpty()) {
+                    if(editPhone.text.toString().trim().isNotEmpty()) {
                         if (uris.size > 0) {
 
 
-                            bn_add.isEnabled = false
+                            addButton.isEnabled = false
                             try {
 
                                 val sizes = ArrayList<Int>()
@@ -738,7 +720,7 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
                                     categoryAdapter.currentList[categoryIdIndex].id.toString()
                                 )
                                 map.put("country_code", tvCode.text.toString())
-                                map.put("phone_number", phone.text.toString())
+                                map.put("phone_number", editPhone.text.toString())
                                 map.put(
                                     "condition_id",
                                     conditionAdapter.currentList[conditionIdPosition].id.toString()
@@ -773,14 +755,14 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
 
 
                                // openDialog(images,sizes,map,colors)
-                                bn_add.isEnabled = true
+                                addButton.isEnabled = true
                              //   getProductCommision(etPrice.text.toString(),images,sizes,map,colors,this)
                                 addProductRQDialog(images,sizes,map,colors)
 
                             } catch (e: Exception) {
                                 e.printStackTrace()
 
-                                    bn_add.isEnabled = true
+                                    addButton.isEnabled = true
                                 showShimmerAddBtn(false)
                                 Log.d("Photo", "addProduct: " + e.message.toString())
 
@@ -869,7 +851,7 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
                             HomeActivity::class.java,
                             true
                         ) //OrderSentActivity*/
-                        bn_add.isEnabled = true
+                        addButton.isEnabled = true
 
                     }
 
@@ -878,7 +860,7 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
                         Log.d("Photo", "addProduct: " + status.toString())
 
                         showToastMessage(getString(R.string.faild))
-                        bn_add.isEnabled = true
+                        addButton.isEnabled = true
                         showShimmerAddBtn(false)
 
                         super.onFailed(status)

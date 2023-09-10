@@ -104,6 +104,7 @@ class SettingFragment : TemplateFragment() {
         line = fragmentView.findViewById(R.id.line3)
         tvVoice = fragmentView.findViewById(R.id.tv_voices)
         share = fragmentView.findViewById(R.id.share)
+
         viewModelHome.setPreviousNavBottom(R.id.setting)
 
         return fragmentView

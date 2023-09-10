@@ -25,7 +25,6 @@ import com.urcloset.smartangle.tools.TemplateActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.toolbar_condition.*
 
 class ConditionActivity : TemplateActivity(),IConditionActivity {
 

@@ -6,15 +6,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.currencyapp.data.repo.HomeRepoUser
-import com.urcloset.smartangle.activity.publishStatusActivity.InterfacePublication
-import com.urcloset.smartangle.di.RepoDi
 import com.urcloset.smartangle.model.ProductModel
 import com.urcloset.smartangle.tools.DissMissProgress
 import com.urcloset.smartangle.tools.ProgressDialog
 import com.urcloset.smartangle.tools.ShowProgress
 import dagger.hilt.android.lifecycle.HiltViewModel
-import droidninja.filepicker.viewmodels.BaseViewModel
 import kotlinx.coroutines.launch
+import okhttp3.ResponseBody
 import javax.inject.Inject
 
 @HiltViewModel
@@ -23,7 +21,10 @@ open class ProductViewModel @Inject constructor(val repoDi : HomeRepoUser) : Vie
     private val offersOnReview = MutableLiveData<ArrayList<ProductModel.Product>?>()
     val offersOnReviewLiveData :LiveData<ArrayList<ProductModel.Product>?> = offersOnReview
 
-  //  private val offersOnComplete = MutableLiveData<ArrayList<Content>?>()
+    private val _deleteProudct = MutableLiveData<Pair<Int,ResponseBody>?>()
+    val deleteProudct :LiveData<Pair<Int,ResponseBody>?> = _deleteProudct
+
+    //  private val offersOnComplete = MutableLiveData<ArrayList<Content>?>()
    // val offersOnCompelete :LiveData<ArrayList<Content>?> = offersOnComplete
     private val _errorViewModel = MutableLiveData<String?>()
     val errorViewModel :LiveData<String?> = _errorViewModel
@@ -31,14 +32,38 @@ open class ProductViewModel @Inject constructor(val repoDi : HomeRepoUser) : Vie
     val networkLoader :LiveData<ProgressDialog?> = _networkLoader
     fun getMutableLiveOnReview() = offersOnReview
     //fun getMutableLiveOnTheWay() = offersOnTheWay
-
+    fun setDeleteProduct(deleteProudct : Pair<Int,ResponseBody>?) {
+        _deleteProudct.postValue(deleteProudct)
+    }
     fun setNetworkLoader(loader : ProgressDialog?) {
         _networkLoader.postValue(loader)
     }
     fun setError(error : String?) {
         _errorViewModel.postValue(error)
     }
+    fun changeProductStatus(
+        hashMap: HashMap<String, Any>?,productPosition : Int // to access Order List By Status, productPosition: kotlin.Int){}, productPosition: kotlin.Int){}
+    ) {
+        setNetworkLoader(ShowProgress())
+        viewModelScope.launch {
+            /*  orderListByStatus.getCurrentList(repoDi,hashMap
+              )*/
+            repoDi.changeProductStatus(hashMap){ response, errors ->
+                setNetworkLoader(DissMissProgress())
 
+                response?.let { it ->
+                    // offersOnTheWay.value = it as ArrayList
+                    //  orderListByStatus.getLiveData().value = it as ArrayList
+                    _deleteProudct.value = Pair(productPosition,response)
+                }
+                errors?.let { it ->
+                    setError(it)
+                }
+
+            }
+
+        }
+    }
     fun getOffersDependOnStatus(
         orderListByStatus: InterfacePublication // to access Order List By Status
     ) {

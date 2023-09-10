@@ -14,9 +14,7 @@ import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_enter_code.*
-import kotlinx.android.synthetic.main.activity_register.*
-import kotlinx.android.synthetic.main.toolbar_backpress1.*
+import com.urcloset.smartangle.databinding.ActivityEnterCodeBinding
 import java.util.concurrent.TimeUnit
 
 class EnterCodeForgotPassowrdPhoneActivity : TemplateActivity() {
@@ -25,8 +23,10 @@ class EnterCodeForgotPassowrdPhoneActivity : TemplateActivity() {
     private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
     private var storedVerificationId: String? = ""
     private lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
+    var binding : ActivityEnterCodeBinding ? =null
     override fun set_layout() {
-        setContentView(R.layout.activity_enter_code)
+        binding = ActivityEnterCodeBinding.inflate(layoutInflater)
+        setContentView(binding!!.root)
     }
 
     override fun init_activity(savedInstanceState: Bundle?) {
@@ -45,18 +45,18 @@ class EnterCodeForgotPassowrdPhoneActivity : TemplateActivity() {
     override fun init_events() {
 
         auth = Firebase.auth
-        tv_number.setText("${TemplateActivity.countryCodeForgotPasswrod}${TemplateActivity.phoneForgotPasswrod}")
+        binding?.tvNumber?.setText("${TemplateActivity.countryCodeForgotPasswrod}${TemplateActivity.phoneForgotPasswrod}")
 
-        card_resend.setOnClickListener {
+        binding?.cardResend?.setOnClickListener {
             reStartPhoneNumberVerification("${TemplateActivity.countryCodeForgotPasswrod}${TemplateActivity.phoneForgotPasswrod}")
 
         }
 
         counterDown=object : CountDownTimer(60000,1000){
             override fun onFinish() {
-                tv_resend.setText(" 00:00 ")
-                btn_next.visibility= View.VISIBLE
-                card_resend.visibility= View.VISIBLE
+                binding?.tvResend?.setText(" 00:00 ")
+                binding?.btnNext?.visibility= View.VISIBLE
+                binding?.cardResend?.visibility= View.VISIBLE
 
                 /*     if(BasicTools.isConnected(parent!!))
                      getverifyCodeRQ()
@@ -69,13 +69,13 @@ class EnterCodeForgotPassowrdPhoneActivity : TemplateActivity() {
             override fun onTick(p0: Long) {
 
                 val seconds :Int= (p0 / 1000).toInt()
-                tv_resend.setText("00:"+  BasicTools.normalNumber(seconds.toString())+" ")
+                binding?.tvResend?.setText("00:"+  BasicTools.normalNumber(seconds.toString())+" ")
             }
 
         }.start()
 
 
-        iv_back.setOnClickListener {
+        binding?.toolBar?.ivBack?.setOnClickListener {
             TemplateActivity.SignUpModel.smsCode=""
             BasicTools.exitActivity(this@EnterCodeForgotPassowrdPhoneActivity)
         }
@@ -106,10 +106,10 @@ class EnterCodeForgotPassowrdPhoneActivity : TemplateActivity() {
 
         }*/
 
-        btn_next.setOnClickListener {
+        binding?.btnNext?.setOnClickListener {
 
 
-            var code=edit_code.text.toString()
+            var code=binding?.editCode?.text.toString()
 
             if(code.isNullOrEmpty()){
                 showToastMessage(R.string.enter_code)

@@ -5,11 +5,13 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.navigation.NavigationView
@@ -30,10 +32,9 @@ import com.urcloset.smartangle.tools.TemplateActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.toolbar.*
 import okhttp3.ResponseBody
 import ru.nikartm.support.BadgePosition
+import ru.nikartm.support.ImageBadgeView
 
 
 class MainActivity : TemplateActivity() {
@@ -63,6 +64,11 @@ class MainActivity : TemplateActivity() {
     lateinit var rootAbout3:TextView
     lateinit var ivArrowDown:ImageView
     lateinit var ivArrowRight:ImageView
+    lateinit var toolBarTitle : TextView
+    lateinit var toolBar : Toolbar
+    lateinit var shoppingImage : ImageBadgeView
+    lateinit var logOut : ImageView
+    lateinit var root_fragment : FrameLayout
 
     override fun set_layout() {
         setContentView(R.layout.navigation_drawer)
@@ -75,7 +81,12 @@ class MainActivity : TemplateActivity() {
     override fun init_views() {
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        toolBarTitle = findViewById(R.id.tv_title_toolbar)
         drawerLayout =findViewById(R.id.drawer_layout)
+        root_fragment = findViewById(R.id.root_fragment)
+        toolBar = findViewById(R.id.activity_toolbar)
+        shoppingImage = findViewById(R.id.iv_shpping_cart)
+        logOut = findViewById(R.id.iv_logout)
         navigationView =findViewById(R.id.nav_view)
         val parentView = navigationView!!.getHeaderView(0)
         rootHome=parentView.findViewById(R.id.root_home)
@@ -97,20 +108,20 @@ class MainActivity : TemplateActivity() {
 
 
     fun setActivityTitle(txt:Int){
-        tv_title_toolbar.setText(resources.getString(txt))
+        toolBarTitle.setText(resources.getString(txt))
     }
 
     fun setActivityTitle(txt:String){
-        tv_title_toolbar.setText(txt)
+        toolBarTitle.setText(txt)
     }
     override fun init_events() {
 
 
         setActivityTitle(R.string.app_name)
-        setSupportActionBar(activity_toolbar)
+        setSupportActionBar(toolBar)
         val toggle : ActionBarDrawerToggle =
             object :
-                ActionBarDrawerToggle(this, drawerLayout, activity_toolbar , R.string.item4, R.string.close_drawer){
+                ActionBarDrawerToggle(this, drawerLayout, toolBar , R.string.item4, R.string.close_drawer){
 
 
 
@@ -158,14 +169,14 @@ class MainActivity : TemplateActivity() {
 
 
 
-        iv_logout.setOnClickListener{
+        logOut.setOnClickListener{
             var intent=Intent(this@MainActivity,LoginAcitivty::class.java)
             startActivity(intent)
             finish()
         }
 
 
-        iv_shpping_cart.setBadgeValue(badgetItem)
+        shoppingImage.setBadgeValue(badgetItem)
             .setBadgeOvalAfterFirst(false)
             .setMaxBadgeValue(99)
             .setBadgePosition(BadgePosition.TOP_RIGHT)
@@ -184,7 +195,7 @@ class MainActivity : TemplateActivity() {
 
     fun resetBadget(item:Int){
         badgetItem+=item
-        iv_shpping_cart.setBadgeValue(badgetItem)
+        shoppingImage.setBadgeValue(badgetItem)
             .setBadgeOvalAfterFirst(true)
             .setMaxBadgeValue(99)
             .setBadgeTextSize(12F)

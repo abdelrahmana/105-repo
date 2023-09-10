@@ -17,21 +17,19 @@ import com.hbb20.CountryCodePicker
 import com.mobsandgeeks.saripaar.ValidationError
 import com.mobsandgeeks.saripaar.Validator
 import com.mobsandgeeks.saripaar.annotation.NotEmpty
+import com.urcloset.smartangle.databinding.ActivityEnterPhoneForgotpasswordBinding
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-
-import kotlinx.android.synthetic.main.activity_enter_phone_forgotpassword.*
-import kotlinx.android.synthetic.main.toolbar_backpress1.*
-
 class EnterPhoneActivityForgotPassword : TemplateActivity(), Validator.ValidationListener {
     var disposable= CompositeDisposable()
     var validator: Validator? = null
     lateinit var countryCode: CountryCodePicker
     @NotEmpty(sequence = 1, messageResId = R.string.please_fill_out)
     lateinit var editPhone: EditText
+    var binding : ActivityEnterPhoneForgotpasswordBinding ? = null
     override fun set_layout() {
-        setContentView(R.layout.activity_enter_phone_forgotpassword)
+        setContentView(binding!!.root)
     }
 
     override fun init_activity(savedInstanceState: Bundle?) {
@@ -40,21 +38,21 @@ class EnterPhoneActivityForgotPassword : TemplateActivity(), Validator.Validatio
 
     override fun init_views() {
 
-        editPhone=edit_phone
-        countryCode=country_code
+        editPhone=binding!!.editPhone
+        countryCode=binding!!.countryCode
 
     }
 
     override fun init_events() {
 
-        iv_back.setOnClickListener {
+        binding?.toolbar?.ivBack?.setOnClickListener {
             BasicTools.exitActivity(this@EnterPhoneActivityForgotPassword)
         }
 
         validator = Validator(this)
         validator!!.setValidationListener(this)
 
-        card_contintue.setOnClickListener{
+        binding?.cardContintue?.setOnClickListener{
             validator!!.validate()
 
         }
@@ -80,11 +78,11 @@ class EnterPhoneActivityForgotPassword : TemplateActivity(), Validator.Validatio
     fun showShimmerBtn(state: Boolean){
 
         if(state){
-            card_contintue.visibility= View.GONE
-            shimmer_wait.visible()
+            binding?.cardContintue?.visibility= View.GONE
+            binding?.shimmerWait?.visible()
         }else{
-            card_contintue.visibility= View.VISIBLE
-            shimmer_wait.hide()
+            binding?.cardContintue?.visibility= View.VISIBLE
+            binding?.shimmerWait?.hide()
         }
     }
 

@@ -110,6 +110,8 @@ interface AppApi {
  suspend fun getRejected():ApiResponse<ProductItemResponse>
     @GET("auth/product/myProducts/unPaid")
     suspend fun getUnPaidProducts():ApiResponse<ProductItemResponse>
+    @POST("auth/product/change/status")
+    fun deleteProduct(@Body map: java.util.HashMap<String, Any>?):ApiResponse<ResponseBody>
     @POST("auth/product/financialSettlement")
     suspend fun postPaymentAfterMyFatoraPay(@Body hashMap: HashMap<String, Any>?)
     :ApiResponse<ResponseBody>

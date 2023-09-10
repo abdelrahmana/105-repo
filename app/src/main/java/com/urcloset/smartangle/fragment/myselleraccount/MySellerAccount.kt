@@ -1,19 +1,31 @@
 package com.urcloset.smartangle.fragment.myselleraccount
+
+import android.app.Dialog
+import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.google.gson.Gson
+import com.skydoves.powermenu.MenuAnimation
+import com.skydoves.powermenu.OnMenuItemClickListener
+import com.skydoves.powermenu.PowerMenu
+import com.skydoves.powermenu.PowerMenuItem
 import com.urcloset.shop.tools.hide
 import com.urcloset.shop.tools.show
 import com.urcloset.shop.tools.visible
-import com.urcloset.smartangle.CustomViewPager
 import com.urcloset.smartangle.R
+import com.urcloset.smartangle.activity.publishStatusActivity.ProductViewModel
+import com.urcloset.smartangle.activity.updateProduct.UpdateProductActivity
 import com.urcloset.smartangle.adapter.*
 import com.urcloset.smartangle.adapter.SpinnerAdapter
 import com.urcloset.smartangle.api.ApiClient
@@ -21,13 +33,15 @@ import com.urcloset.smartangle.api.AppApi
 import com.urcloset.smartangle.databinding.MySellerAccountLayoutBinding
 import com.urcloset.smartangle.fragment.myselleraccount.adaptor.AdaptorProductsNew
 import com.urcloset.smartangle.fragment.setting_fragment.SettingFragment
-import com.urcloset.smartangle.listeners.ItemClickListener
 import com.urcloset.smartangle.model.*
 import com.urcloset.smartangle.tools.*
+import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MySellerAccount() : TemplateFragment() {
     var disposable = CompositeDisposable()
     lateinit var rlSetting:RelativeLayout
@@ -52,6 +66,9 @@ class MySellerAccount() : TemplateFragment() {
     var productAdaptor : AdaptorProductsNew? = null
     var selctedCategory = 0
     var allProductNew = ArrayList<ProductModel.Product>() // contians new arrayOf all Products
+    @Inject
+    lateinit var progressDialog : Dialog
+    val model : ProductViewModel by viewModels()
 
     var lang ="en"
     lateinit var categoryShimmer :ShimmerFrameLayout
@@ -62,6 +79,71 @@ class MySellerAccount() : TemplateFragment() {
     lateinit var myLocationSimmer:ShimmerFrameLayout
    // lateinit var rlAllProducts:RelativeLayout
    // lateinit var cvCats:CardView
+   val callBackMoreOption :(Triple<Int,ProductModel.Product,View>)->Unit= {
+      setMoreOptionSelection(it.first,it.second,it.third)
+
+
+   }
+
+    var powerMenu : PowerMenu? = null
+    private fun setMoreOptionSelection(
+        productPosition: Int,
+        product: ProductModel.Product,
+        third: View
+    ) {
+        val arrayList = ArrayList<PowerMenuItem>()
+
+        val onMenuItemClickListener: OnMenuItemClickListener<PowerMenuItem?> =
+            object : OnMenuItemClickListener<PowerMenuItem?> {
+                override fun onItemClick(position: Int, item: PowerMenuItem?) {
+                   if (arrayList.get(position).title == getString(R.string.edit)) // get the selected
+                   {
+                       val intent = Intent(context, UpdateProductActivity::class.java)
+                       val gson = Gson()
+                       intent.putExtra("product", gson.toJson(product))
+                       context?.startActivity(intent)
+                   } else  // delete item from here
+
+                       model.changeProductStatus(HashMap<String,Any>().also {
+                           it.put("item_status","0")
+                           it.put("product_id",product.id.toString())
+
+                       },productPosition)
+                       // delete process
+                    powerMenu?.dismiss()
+
+                }
+            }
+     /*   if(product.currentPublishStatus?.statusValue==1) { // in review
+        }*/
+        if(product.currentPublishStatus?.statusValue==2) { // published
+            arrayList.add(PowerMenuItem(getString(R.string.edit), false))
+        }
+     /*   if(product.currentPublishStatus?.statusValue==0) { // rejected
+        }*/
+        arrayList.add(PowerMenuItem(getString(R.string.delete), false))
+
+        powerMenu = PowerMenu.Builder(context!!)
+            .addItemList(arrayList)
+           // .addItem(PowerMenuItem(getString(R.string.edit), false)) // add an item.
+           // .addItem(PowerMenuItem(getString(R.string.delete), false)) // add an item.
+            .addItemList(arrayList.toList())
+            .setAnimation(MenuAnimation.SHOWUP_TOP_LEFT) // Animation start point (TOP | LEFT).
+            .setMenuRadius(10f) // sets the corner radius.
+            .setMenuShadow(10f) // sets the shadow.
+            .setTextColor(ContextCompat.getColor(context!!, R.color.gray_color_new))
+            .setTextGravity(Gravity.CENTER)
+           // .setTextTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD))
+            .setSelectedTextColor(Color.WHITE)
+            .setMenuColor(Color.WHITE)
+            .setSelectedMenuColor(ContextCompat.getColor(context!!, R.color.colorPrimary))
+            .setOnMenuItemClickListener(onMenuItemClickListener)
+            .build()
+
+        powerMenu?.showAsDropDown(third)
+    }
+
+
     var data : ProductStateModel.State?=null
     var binding : MySellerAccountLayoutBinding? =null
     var selectedCategory = 0 // id of all
@@ -95,7 +177,8 @@ class MySellerAccount() : TemplateFragment() {
         tvName.setText(TemplateActivity.loginResponse?.data?.user?.name)
        // cvCats = view.findViewById(R.id.cv_cat)
         rlSetting = view.findViewById(R.id.rl_setting)
-        productAdaptor = AdaptorProductsNew(requireContext(),ArrayList<ProductModel.Product>(),true)
+        productAdaptor = AdaptorProductsNew(requireContext(),ArrayList<ProductModel.Product>(),true,
+            callBackMoreOption)
         if(BasicTools.isConnected(parent!!)) {
            // BasicTools.showShimmer(rvCategories, categoryShimmer, true)
          //   viewPager.visibility = View.GONE
@@ -112,9 +195,8 @@ class MySellerAccount() : TemplateFragment() {
         else {
             Toast.makeText(parent!!, R.string.no_connection, Toast.LENGTH_SHORT).show()
         }
-
-
         viewModelHome.setPreviousNavBottom(R.id.setting)
+        setViewModelObservers()
         return view
     }
     fun setSpinnerClickListener() { // filter when selection new category
@@ -144,6 +226,7 @@ class MySellerAccount() : TemplateFragment() {
             }
         }
     }
+
 
     override fun init_events() {
         rlSetting.setOnClickListener {
@@ -187,7 +270,31 @@ class MySellerAccount() : TemplateFragment() {
      //   rlAllProducts.background = resources.getDrawable(R.drawable.category_selected_item_bg)
         categoryAdapter.notifyDataSetChanged()
     }
+    fun setViewModelObservers() {
+        model.deleteProudct.observe(viewLifecycleOwner, Observer{ // for sending to maintenance
+            if (it!=null){
+                productAdaptor?.arrayList?.removeAt(it.first)
+                productAdaptor?.notifyItemRemoved(it.first)
+                Toast.makeText(context, getString(R.string.product_deleted), Toast.LENGTH_SHORT).show()
 
+                model.setDeleteProduct(null)
+            }
+
+        })
+        model.networkLoader.observe(viewLifecycleOwner, Observer{
+            it?.let { progress->
+                progress.setDialog(progressDialog) // open close principles
+                model.setNetworkLoader(null)
+            }
+        })
+
+        model.errorViewModel.observe(viewLifecycleOwner) {
+            it?.let { error ->
+                BasicTools.showSnackMessages(requireActivity(), error)
+
+            }
+        }
+    }
     override fun onResume() {
    /*     if(HomeActivity.bottomNavigation?.currentItem!=4){
             HomeActivity.doNothing =  true

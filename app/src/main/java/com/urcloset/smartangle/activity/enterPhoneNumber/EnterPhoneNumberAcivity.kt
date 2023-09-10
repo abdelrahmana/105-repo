@@ -14,20 +14,20 @@ import com.urcloset.smartangle.tools.TemplateActivity
 import com.urcloset.shop.tools.hide
 import com.urcloset.shop.tools.visible
 import com.hbb20.CountryCodePicker
+import com.urcloset.smartangle.databinding.ActivityEnterPhoneNumberBinding
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.activity_enter_phone_number.*
-import kotlinx.android.synthetic.main.toolbar_backpress1.*
 
 class EnterPhoneNumberAcivity : TemplateActivity(), Validator.ValidationListener {
     var disposable= CompositeDisposable()
     lateinit var countryCode: CountryCodePicker
     var validator: Validator? = null
 
-
+    var binding : ActivityEnterPhoneNumberBinding ? =null
     @NotEmpty(sequence = 1, messageResId = R.string.please_fill_out)
     lateinit var editphone: EditText
     override fun set_layout() {
-        setContentView(R.layout.activity_enter_phone_number)
+        binding = ActivityEnterPhoneNumberBinding.inflate(layoutInflater)
+        setContentView(binding!!.root)
     }
 
     override fun init_activity(savedInstanceState: Bundle?) {
@@ -36,8 +36,8 @@ class EnterPhoneNumberAcivity : TemplateActivity(), Validator.ValidationListener
 
     override fun init_views() {
 
-        countryCode=country_code
-        editphone=edit_phone
+        countryCode=binding!!.countryCode
+        editphone=binding!!.editPhone
     }
 
 
@@ -45,14 +45,14 @@ class EnterPhoneNumberAcivity : TemplateActivity(), Validator.ValidationListener
     override fun init_events() {
 
 
-        iv_back.setOnClickListener {
+        binding?.toolbar?.ivBack?.setOnClickListener {
             BasicTools.exitActivity(this@EnterPhoneNumberAcivity)
         }
         validator = Validator(this)
         validator!!.setValidationListener(this)
 
 
-        card_contintue.setOnClickListener{
+        binding?.cardContintue?.setOnClickListener{
             validator!!.validate()
 
         }
@@ -78,11 +78,11 @@ class EnterPhoneNumberAcivity : TemplateActivity(), Validator.ValidationListener
     fun showShimmerBtn(state: Boolean){
 
         if(state){
-            card_contintue.visibility= View.GONE
-            shimmer_wait.visible()
+            binding?.cardContintue?.visibility= View.GONE
+            binding?.shimmerWait?.visible()
         }else{
-            card_contintue.visibility= View.VISIBLE
-            shimmer_wait.hide()
+            binding?.cardContintue?.visibility= View.VISIBLE
+            binding?.shimmerWait?.hide()
         }
     }
 

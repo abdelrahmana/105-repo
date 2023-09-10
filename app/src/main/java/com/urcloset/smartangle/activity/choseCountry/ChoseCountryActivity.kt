@@ -7,9 +7,9 @@ import android.widget.Spinner
 import androidx.cardview.widget.CardView
 import com.urcloset.smartangle.R
 import com.urcloset.smartangle.activity.homeActivity.HomeActivity
+import com.urcloset.smartangle.databinding.ActivityChoseCountryBinding
 import com.urcloset.smartangle.tools.BasicTools
 import com.urcloset.smartangle.tools.TemplateActivity
-import kotlinx.android.synthetic.main.activity_chose_country.*
 
 class ChoseCountryActivity : TemplateActivity() {
     lateinit var spinnerCountry : Spinner
@@ -18,9 +18,10 @@ class ChoseCountryActivity : TemplateActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
-
+    var binding : ActivityChoseCountryBinding? =null
     override fun set_layout() {
-        setContentView(R.layout.activity_chose_country)
+        binding = ActivityChoseCountryBinding.inflate(layoutInflater)
+        setContentView(binding!!.root)
 
     }
 
@@ -54,9 +55,9 @@ class ChoseCountryActivity : TemplateActivity() {
     }
 
     override fun init_views() {
-        spinnerCountry =country
-        spinnerCity  = city
-        cardFinish = card_finish
+        spinnerCountry =binding!!.country
+        spinnerCity  =binding!!.city
+        cardFinish = binding!!.cardFinish
     }
 
     override fun init_events() {
