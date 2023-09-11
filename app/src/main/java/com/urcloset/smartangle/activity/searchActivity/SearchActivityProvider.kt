@@ -33,6 +33,7 @@ import com.urcloset.smartangle.activity.selectedCityActivity.SelectedCityActivit
 import com.urcloset.smartangle.adapter.project105.ProviderSearchAdapter
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
+import com.urcloset.smartangle.databinding.ActivitySearchProviderBinding
 import com.urcloset.smartangle.model.project_105.ProivderSeachModel
 import com.urcloset.smartangle.model.project_105.SearchProductV2Model
 import com.urcloset.smartangle.tools.AppObservable
@@ -42,8 +43,6 @@ import com.urcloset.smartangle.tools.TemplateActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_search_provider.*
-import kotlinx.android.synthetic.main.toolbar_backpress1.*
 
 class SearchActivityProvider : TemplateActivity(),ISearchProviderActivity {
 
@@ -89,8 +88,10 @@ class SearchActivityProvider : TemplateActivity(),ISearchProviderActivity {
     var serachByLocation="0"
 
     lateinit var rootEmpty:LinearLayout
+    var binding : ActivitySearchProviderBinding?=null
     override fun set_layout() {
-        setContentView(R.layout.activity_search_provider)
+        binding = ActivitySearchProviderBinding.inflate(layoutInflater)
+        setContentView(binding!!.root)
     }
 
     override fun init_activity(savedInstanceState: Bundle?) {
@@ -100,28 +101,28 @@ class SearchActivityProvider : TemplateActivity(),ISearchProviderActivity {
     override fun init_views() {
         mFusedLocationClient= LocationServices.getFusedLocationProviderClient(this)
         adapter=ProviderSearchAdapter(this@SearchActivityProvider, ArrayList(),this)
-        cardRate2=card_rate2
-        cardRate3=card_rate3
-        cardRate4=card_rate4
+        cardRate2=binding!!.cardRate2
+        cardRate3=binding!!.cardRate3
+        cardRate4=binding!!.cardRate4
         editSearch=findViewById(R.id.edit_search_product)
-        rv=rv_search_history
-        seekbar=seek_bar_distance
-        seekbarText=tv_seekbar
+        rv=binding!!.rvSearchHistory
+        seekbar=binding!!.seekBarDistance
+        seekbarText=binding!!.tvSeekbar
         ivFilter=findViewById(R.id.iv_filter)
-        cardAllUser=card_all_users
-        cardCurrentLocation=card_you_area
+        cardAllUser=binding!!.cardAllUsers
+        cardCurrentLocation=binding!!.cardYouArea
 
         prgs=findViewById(R.id.prgs_search_provider)
 
         rootEmpty=findViewById(R.id.root_empty_search)
-        ivBack=iv_back
-        cardTextRate2=tv_rate2
-        cardTextRate3=tv_rate3
-        cardTextRate4=tv_rate4
+        ivBack=binding!!.toolbar.ivBack
+        cardTextRate2=binding!!.tvRate2
+        cardTextRate3=binding!!.tvRate3
+        cardTextRate4=binding!!.tvRate4
 
         layoutManagerSearch= GridLayoutManager(this,2, LinearLayoutManager.HORIZONTAL,false)
-        cardTextCurrentLocation=tv_current_location
-        cardTextAllUser=tv_all_user
+        cardTextCurrentLocation=binding!!.tvCurrentLocation
+        cardTextAllUser=binding!!.tvAllUser
         btnSearch=findViewById(R.id.btn_search)
         shimmerSearch=findViewById(R.id.shimmer_search)
 

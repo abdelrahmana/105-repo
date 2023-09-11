@@ -3,14 +3,15 @@ package com.urcloset.smartangle.activity.forgotPassword
 
 import android.os.Bundle
 import com.urcloset.smartangle.R
+import com.urcloset.smartangle.databinding.ActivtySelectWayBinding
 import com.urcloset.smartangle.tools.BasicTools
 import com.urcloset.smartangle.tools.TemplateActivity
-import kotlinx.android.synthetic.main.activty_select_way.*
-import kotlinx.android.synthetic.main.toolbar_backpress1.*
 
 class SelectWayActivity : TemplateActivity() {
+    var binding : ActivtySelectWayBinding?=null
     override fun set_layout() {
-        setContentView(R.layout.activty_select_way)
+        binding = ActivtySelectWayBinding.inflate(layoutInflater)
+        setContentView(binding!!.root)
     }
 
     override fun init_activity(savedInstanceState: Bundle?) {
@@ -22,17 +23,17 @@ class SelectWayActivity : TemplateActivity() {
     }
 
     override fun init_events() {
-        iv_back.setOnClickListener {
+        binding?.toolbar?.ivBack?.setOnClickListener {
             BasicTools.exitActivity(this@SelectWayActivity)
         }
 
 
-        root_email_way.setOnClickListener {
+        binding?.rootEmailWay?.setOnClickListener {
 
             BasicTools.openActivity(this@SelectWayActivity,EnterEmailActivityForgotPassword::class.java,false)
         }
 
-        root_sms_way.setOnClickListener {
+        binding?.rootSmsWay?.setOnClickListener {
 
             BasicTools.openActivity(this@SelectWayActivity,EnterPhoneActivityForgotPassword::class.java,false)
 

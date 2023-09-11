@@ -22,6 +22,7 @@ import com.urcloset.smartangle.R
 import com.urcloset.smartangle.activity.productDetails.ProductDetails
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
+import com.urcloset.smartangle.databinding.ActivityHomeBinding
 import com.urcloset.smartangle.fragment.HomeFragment.HomeFragment
 import com.urcloset.smartangle.fragment.bookmark_fragment.BookMarkFragment
 import com.urcloset.smartangle.fragment.myselleraccount.MySellerAccount
@@ -38,7 +39,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_home.*
 import okhttp3.ResponseBody
 import kotlin.collections.HashMap
 
@@ -52,8 +52,10 @@ class HomeActivity : TemplateActivity() {
 
 
     }
+    var binding : ActivityHomeBinding? =null
     override fun set_layout() {
-        setContentView(R.layout.activity_home)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding!!.root)
 
     }
     val viewModel : HomeViewModel by viewModels()
@@ -322,7 +324,7 @@ class HomeActivity : TemplateActivity() {
 
     override fun set_fragment_place() {
 
-        this.fragment_place=root_fragment_home
+        this.fragment_place=binding!!.rootFragmentHome
 
     }
 

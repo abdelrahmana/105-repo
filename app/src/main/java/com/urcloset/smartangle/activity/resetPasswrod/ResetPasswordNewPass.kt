@@ -18,6 +18,7 @@ import com.urcloset.smartangle.R
 import com.urcloset.smartangle.activity.loginActivity.LoginAcitivty
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
+import com.urcloset.smartangle.databinding.ActivityForgotPasswrodBinding
 import com.urcloset.smartangle.model.project21.MessageModel
 import com.urcloset.smartangle.tools.AppObservable
 import com.urcloset.smartangle.tools.BasicTools
@@ -26,8 +27,6 @@ import com.urcloset.smartangle.tools.TemplateActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_forgot_passwrod.*
-import kotlinx.android.synthetic.main.toolbar_backpress1.*
 import okhttp3.ResponseBody
 
 class ResetPasswordNewPass : TemplateActivity() , Validator.ValidationListener {
@@ -43,9 +42,10 @@ class ResetPasswordNewPass : TemplateActivity() , Validator.ValidationListener {
     @ConfirmPassword(messageResId = R.string.password_donot_match)
     lateinit var editRePassword: EditText
 
-
+    var binding : ActivityForgotPasswrodBinding? =null
     override fun set_layout() {
-        setContentView(R.layout.activity_forgot_passwrod)
+        binding = ActivityForgotPasswrodBinding.inflate(layoutInflater)
+        setContentView(binding!!.root)
     }
 
     override fun init_activity(savedInstanceState: Bundle?) {
@@ -56,28 +56,28 @@ class ResetPasswordNewPass : TemplateActivity() , Validator.ValidationListener {
         validator = Validator(this)
         validator!!.setValidationListener(this)
 
-        editNewPassword=edit_new_password
-        editRePassword=edit_re_enter_password
+        editNewPassword=binding!!.editNewPassword
+        editRePassword=binding!!.editReEnterPassword
 
     }
 
     override fun init_events() {
-        iv_back.setOnClickListener {
+        binding!!.toolbar.ivBack.setOnClickListener {
             BasicTools.exitActivity(this@ResetPasswordNewPass)
         }
 
 
         /*new */
 
-        eye_password_new.setOnClickListener {
+        binding!!.eyePasswordNew.setOnClickListener {
             if(editNewPassword.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
 
 
-                eye_password_new.setImageResource(R.drawable.visibility_3x)
+                binding!!.eyePasswordNew.setImageResource(R.drawable.visibility_3x)
                 editNewPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
             }
             else{
-                eye_password_new.setImageResource(R.drawable.visibility_off_3x)
+                binding!!.eyePasswordNew.setImageResource(R.drawable.visibility_off_3x)
                 editNewPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
             }
@@ -89,22 +89,22 @@ class ResetPasswordNewPass : TemplateActivity() , Validator.ValidationListener {
 
         /*re Enter */
 
-        eye_password_re_enter.setOnClickListener {
+        binding!!.eyePasswordReEnter.setOnClickListener {
             if(editRePassword.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
 
 
-                eye_password_re_enter.setImageResource(R.drawable.visibility_3x)
+                binding!!.eyePasswordReEnter.setImageResource(R.drawable.visibility_3x)
                 editRePassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
             }
             else{
-                eye_password_re_enter.setImageResource(R.drawable.visibility_off_3x)
+                binding!!.eyePasswordReEnter.setImageResource(R.drawable.visibility_off_3x)
                 editRePassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
             }
         }
 
 
-        card_save.setOnClickListener{
+        binding!!.cardSave.setOnClickListener{
             validator!!.validate()
 
         }
@@ -122,11 +122,11 @@ class ResetPasswordNewPass : TemplateActivity() , Validator.ValidationListener {
     fun showShimmerBtn(state: Boolean){
 
         if(state){
-            card_save.visibility= View.GONE
-            shimmer_wait.visible()
+            binding!!.cardSave.visibility= View.GONE
+            binding!!.shimmerWait.visible()
         }else{
-            card_save.visibility= View.VISIBLE
-            shimmer_wait.hide()
+            binding!!.cardSave.visibility= View.VISIBLE
+            binding!!.shimmerWait.hide()
         }
     }
 

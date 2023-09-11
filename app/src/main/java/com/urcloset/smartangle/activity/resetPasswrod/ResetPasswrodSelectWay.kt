@@ -36,6 +36,7 @@ import com.urcloset.smartangle.activity.verification_code.EnterCodeActivity
 import com.urcloset.smartangle.activity.verification_code.VerificationCodeEmailActivity
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
+import com.urcloset.smartangle.databinding.ActivityResetPasswrodSelectedWayBinding
 import com.urcloset.smartangle.model.project_105.CheckEmailPhoneModel
 import com.urcloset.smartangle.tools.AppObservable
 import com.urcloset.smartangle.tools.BasicTools
@@ -46,7 +47,6 @@ import droidninja.filepicker.FilePickerConst
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_reset_passwrod_selected_way.*
 
 import okhttp3.ResponseBody
 
@@ -92,14 +92,12 @@ class ResetPasswrodSelectWay : TemplateActivity(),Validator.ValidationListener{
 
 
     lateinit var editPhone: EditText
-
-
-
-
+    var binding : ActivityResetPasswrodSelectedWayBinding?=null
 
 
     override fun set_layout() {
-        setContentView(R.layout.activity_reset_passwrod_selected_way)
+        binding = ActivityResetPasswrodSelectedWayBinding.inflate(layoutInflater)
+        setContentView(binding!!.root)
     }
 
     override fun init_activity(savedInstanceState: Bundle?) {
@@ -132,12 +130,12 @@ class ResetPasswrodSelectWay : TemplateActivity(),Validator.ValidationListener{
 
 
 
-        cardEmail=card_email
+        cardEmail=binding!!.cardEmail
         rootEmail=findViewById(R.id.root_email)
         rootPhone=findViewById(R.id.root_phone)
         cardTextEmail=findViewById(R.id.tv_email)
         cardIconEmail=findViewById(R.id.iv_email)
-        cardPhone=card_phone
+        cardPhone=binding!!.cardPhone
         cardTextPhone=findViewById(R.id.tv_phone)
         cardIconPhone=findViewById(R.id.iv_phone)
 
@@ -197,8 +195,8 @@ class ResetPasswrodSelectWay : TemplateActivity(),Validator.ValidationListener{
             cardTextEmail.setTextColor(ContextCompat.getColor(this@ResetPasswrodSelectWay,R.color.white))
             cardTextPhone.setTextColor(ContextCompat.getColor(this@ResetPasswrodSelectWay,R.color.login_btn))
 
-            iv_email.setColorFilter(ContextCompat.getColor(this@ResetPasswrodSelectWay, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY)
-            iv_phone.setColorFilter(ContextCompat.getColor(this@ResetPasswrodSelectWay, R.color.login_btn), android.graphics.PorterDuff.Mode.MULTIPLY)
+            binding!!.ivEmail.setColorFilter(ContextCompat.getColor(this@ResetPasswrodSelectWay, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY)
+            binding!!.ivPhone.setColorFilter(ContextCompat.getColor(this@ResetPasswrodSelectWay, R.color.login_btn), android.graphics.PorterDuff.Mode.MULTIPLY)
 
             cardEmail.radius=BasicTools.dpToPxFloat(10,this@ResetPasswrodSelectWay)
             cardPhone.radius=BasicTools.dpToPxFloat(10,this@ResetPasswrodSelectWay)
@@ -233,8 +231,8 @@ class ResetPasswrodSelectWay : TemplateActivity(),Validator.ValidationListener{
             cardTextPhone.setTextColor(ContextCompat.getColor(this@ResetPasswrodSelectWay,R.color.white))
             cardTextEmail.setTextColor(ContextCompat.getColor(this@ResetPasswrodSelectWay,R.color.login_btn))
 
-            iv_phone.setColorFilter(ContextCompat.getColor(this@ResetPasswrodSelectWay, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY)
-            iv_email.setColorFilter(ContextCompat.getColor(this@ResetPasswrodSelectWay, R.color.login_btn), android.graphics.PorterDuff.Mode.MULTIPLY)
+            binding!!.ivPhone.setColorFilter(ContextCompat.getColor(this@ResetPasswrodSelectWay, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY)
+            binding!!.ivEmail.setColorFilter(ContextCompat.getColor(this@ResetPasswrodSelectWay, R.color.login_btn), android.graphics.PorterDuff.Mode.MULTIPLY)
 
             cardEmail.radius=BasicTools.dpToPxFloat(10,this@ResetPasswrodSelectWay)
             cardPhone.radius=BasicTools.dpToPxFloat(10,this@ResetPasswrodSelectWay)

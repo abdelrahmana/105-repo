@@ -22,16 +22,13 @@ import com.urcloset.smartangle.tools.TemplateActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_notification.*
-import kotlinx.android.synthetic.main.activity_notification.shimmer_visitor
-import kotlinx.android.synthetic.main.activity_seller.*
-import kotlinx.android.synthetic.main.activity_visitor.*
 import java.util.*
 import kotlin.collections.ArrayList
 import android.util.Base64
 import android.widget.*
 import com.google.gson.Gson
 import com.urcloset.smartangle.activity.productDetails.ProductDetails
+import com.urcloset.smartangle.databinding.ActivityNotificationBinding
 import com.urcloset.smartangle.listeners.ItemClickListener
 import com.urcloset.smartangle.model.BasicModel
 import java.security.MessageDigest
@@ -56,6 +53,7 @@ class NotificationActivity : TemplateActivity(),ItemClickListener {
 
     }
 
+    var binding : ActivityNotificationBinding?=null
     override fun onResume() {
         super.onResume()
         currentPage = 1
@@ -64,7 +62,8 @@ class NotificationActivity : TemplateActivity(),ItemClickListener {
     }
 
     override fun set_layout() {
-        setContentView(R.layout.activity_notification)
+        binding = ActivityNotificationBinding.inflate(layoutInflater)
+        setContentView(binding!!.root)
 
     }
 
@@ -78,9 +77,9 @@ class NotificationActivity : TemplateActivity(),ItemClickListener {
     }
 
     override fun init_views() {
-        rvNotifications = rv_notifications
+        rvNotifications = binding!!.rvNotifications
         progressBar = findViewById(R.id.progress)
-        shimmerVisitor = shimmer_visitor
+        shimmerVisitor = binding!!.shimmerVisitor
         ivBackPress=findViewById(R.id.iv_back)
 
 

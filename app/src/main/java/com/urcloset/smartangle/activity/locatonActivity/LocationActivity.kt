@@ -30,13 +30,12 @@ import com.google.android.gms.location.*
 import com.urcloset.smartangle.R
 import com.urcloset.smartangle.activity.choseCountry.ChoseCountryActivity
 import com.urcloset.smartangle.activity.selectedCityActivity.SelectedCityActivity
+import com.urcloset.smartangle.databinding.ActivityLocationBinding
 import com.urcloset.smartangle.tools.BasicTools
 import com.urcloset.smartangle.tools.Constants
 import com.urcloset.smartangle.tools.Constants.PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION
 import com.urcloset.smartangle.tools.Constants.PERMISSIONS_REQUEST_ENABLE_GPS
 import com.urcloset.smartangle.tools.TemplateActivity
-import kotlinx.android.synthetic.main.activity_location.*
-import kotlinx.android.synthetic.main.toolbar_backpress1.*
 
 class LocationActivity : TemplateActivity() {
     lateinit var cardDenied : LinearLayout
@@ -53,9 +52,10 @@ class LocationActivity : TemplateActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
-
+    var binding : ActivityLocationBinding? =null
     override fun set_layout() {
-        setContentView(R.layout.activity_location)
+        binding = ActivityLocationBinding.inflate(layoutInflater)
+        setContentView(binding!!.root)
 
     }
 
@@ -63,10 +63,10 @@ class LocationActivity : TemplateActivity() {
     }
 
     override fun init_views() {
-        cardDenied = card_denied
-        btnAllow=card_allow
-        shimmerAllow = shimmer_allow
-        ivBack=iv_back
+        cardDenied = binding!!.cardDenied
+        btnAllow=binding!!.cardAllow
+        shimmerAllow = binding!!.shimmerAllow
+        ivBack=binding!!.toolbar.ivBack
 
       //  BasicTools.openActivity(this@LocationActivity,SelectedCityActivity::class.java,false)
         mFusedLocationClient= LocationServices.getFusedLocationProviderClient(this)

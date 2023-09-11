@@ -40,6 +40,7 @@ import com.urcloset.smartangle.activity.selectedCityActivity.SelectedCityActivit
 import com.urcloset.smartangle.activity.signUp.SignUpAcitivty
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
+import com.urcloset.smartangle.databinding.ActivityLoginBinding
 import com.urcloset.smartangle.model.project_105.LoginResponseModel
 import com.urcloset.smartangle.tools.AppObservable
 import com.urcloset.smartangle.tools.BasicTools
@@ -52,7 +53,6 @@ import com.urcloset.smartangle.tools.TemplateActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_login.*
 import okhttp3.*
 import org.json.JSONException
 import org.json.JSONObject
@@ -98,8 +98,10 @@ class LoginAcitivty : TemplateActivity(), Validator.ValidationListener {
 
     lateinit var  rootEmail:LinearLayout
     lateinit var  rootPhone:LinearLayout
+    var binding : ActivityLoginBinding? =null
     override fun set_layout() {
-        setContentView(R.layout.activity_login)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding!!.root)
     }
 
     override fun init_activity(savedInstanceState: Bundle?) {
@@ -231,11 +233,11 @@ class LoginAcitivty : TemplateActivity(), Validator.ValidationListener {
             // Stuff that updates the UI
 
             if (state) {
-                card_login.visibility = View.GONE
-                shimmer_login.visible()
+                binding!!.cardLogin.visibility = View.GONE
+                binding!!.shimmerLogin.visible()
             } else {
-                card_login.visibility = View.VISIBLE
-                shimmer_login.hide()
+                binding!!.cardLogin.visibility = View.VISIBLE
+                binding!!.shimmerLogin.hide()
             }
         }
     }
@@ -243,8 +245,8 @@ class LoginAcitivty : TemplateActivity(), Validator.ValidationListener {
     override fun init_views() {
 
 
-        cardGoogle=card_google
-        cardFaceBook=card_facebook
+        cardGoogle=binding!!.cardGoogle
+        cardFaceBook=binding!!.cardFacebook
 
         BasicTools.initialize_image_loader(this@LoginAcitivty)
         countryCode=findViewById<CountryCodePicker>(R.id.country_code)
@@ -256,20 +258,20 @@ class LoginAcitivty : TemplateActivity(), Validator.ValidationListener {
         AppEventsLogger.activateApp(getApplication());
         animIn = AnimationUtils.loadAnimation(this@LoginAcitivty, android.R.anim.fade_in)
         animOut = AnimationUtils.loadAnimation(this@LoginAcitivty, android.R.anim.fade_out)
-        edituserName=edit_email
-        editPassword=edit_password
-        editPhone=edit_phone
+        edituserName=binding!!.editEmail
+        editPassword=binding!!.editPassword
+        editPhone=binding!!.editPhone
 
 
-        rootEmail=root_email
-        rootPhone=root_phone
+        rootEmail=binding!!.rootEmail
+        rootPhone=binding!!.rootPhone
 
-        cardEmail=card_email
-        cardTextEmail=tv_email
-        cardIconEmail=iv_email
-        cardPhone=card_phone
-        cardTextPhone=tv_phone
-        cardIconPhone=iv_phone
+        cardEmail=binding!!.cardEmail
+        cardTextEmail=binding!!.tvEmail
+        cardIconEmail=binding!!.ivEmail
+        cardPhone=binding!!.cardPhone
+        cardTextPhone=binding!!.tvPhone
+        cardIconPhone=binding!!.ivPhone
 
 
 
@@ -324,28 +326,28 @@ class LoginAcitivty : TemplateActivity(), Validator.ValidationListener {
                 // accessToken != null && !accessToken.isExpired
             })
 
-        tv_sign_up.setOnClickListener {
+        binding!!.tvSignUp.setOnClickListener {
 
             TemplateActivity.SignUpModel.smsCode=""
             openActivity(this@LoginAcitivty, SignUpAcitivty::class.java,false)
         }
-        card_login.setOnClickListener {
+        binding!!.cardLogin.setOnClickListener {
 
             validator!!.validate()
           // openActivity(this@LoginAcitivty,SignUpAcitivty::class.java,false)
         }
 
 
-        eye_password.setOnClickListener {
-            if(edit_password.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
+        binding!!.eyePassword.setOnClickListener {
+            if(binding!!.editPassword.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
 
 
-                eye_password.setImageResource(R.drawable.visibility_3x)
-                edit_password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                binding!!.eyePassword.setImageResource(R.drawable.visibility_3x)
+                binding!!.editPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
             }
             else{
-                eye_password.setImageResource(R.drawable.visibility_off_3x)
-                edit_password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                binding!!.eyePassword.setImageResource(R.drawable.visibility_off_3x)
+                binding!!.editPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
             }
         }
@@ -363,7 +365,7 @@ class LoginAcitivty : TemplateActivity(), Validator.ValidationListener {
         }
 
 
-        tv_skip.setOnClickListener {
+        binding!!.tvSkip.setOnClickListener {
 
             BasicTools.openActivity(this@LoginAcitivty, SelectedCityActivity::class.java,false)
           //  BasicTools.clearAllActivity(this@LoginAcitivty,HomeActivity::class.java)
@@ -372,7 +374,7 @@ class LoginAcitivty : TemplateActivity(), Validator.ValidationListener {
 
 
 
-        tv_forgot_password.setOnClickListener {
+        binding!!.tvForgotPassword.setOnClickListener {
             BasicTools.openActivity(this@LoginAcitivty,ResetPasswrodSelectWay::class.java,false)
         }
 
@@ -381,11 +383,11 @@ class LoginAcitivty : TemplateActivity(), Validator.ValidationListener {
             cardEmail.setCardBackgroundColor(ContextCompat.getColor(this@LoginAcitivty,R.color.login_btn))
             cardPhone.setCardBackgroundColor(ContextCompat.getColor(this@LoginAcitivty,R.color.white))
 
-            tv_email.setTextColor(ContextCompat.getColor(this@LoginAcitivty,R.color.white))
-            tv_phone.setTextColor(ContextCompat.getColor(this@LoginAcitivty,R.color.login_btn))
+            binding!!.tvEmail.setTextColor(ContextCompat.getColor(this@LoginAcitivty,R.color.white))
+            binding!!.tvPhone.setTextColor(ContextCompat.getColor(this@LoginAcitivty,R.color.login_btn))
 
-            iv_email.setColorFilter(ContextCompat.getColor(this@LoginAcitivty, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY)
-            iv_phone.setColorFilter(ContextCompat.getColor(this@LoginAcitivty, R.color.login_btn), android.graphics.PorterDuff.Mode.MULTIPLY)
+            binding!!.ivEmail.setColorFilter(ContextCompat.getColor(this@LoginAcitivty, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY)
+            binding!!.ivPhone.setColorFilter(ContextCompat.getColor(this@LoginAcitivty, R.color.login_btn), android.graphics.PorterDuff.Mode.MULTIPLY)
 
             cardEmail.radius=BasicTools.dpToPxFloat(10,this)
             cardPhone.radius=BasicTools.dpToPxFloat(10,this)
@@ -410,11 +412,11 @@ class LoginAcitivty : TemplateActivity(), Validator.ValidationListener {
             cardPhone.setCardBackgroundColor(ContextCompat.getColor(this@LoginAcitivty,R.color.login_btn))
             cardEmail.setCardBackgroundColor(ContextCompat.getColor(this@LoginAcitivty,R.color.white))
 
-            tv_phone.setTextColor(ContextCompat.getColor(this@LoginAcitivty,R.color.white))
-            tv_email.setTextColor(ContextCompat.getColor(this@LoginAcitivty,R.color.login_btn))
+            binding!!.tvPhone.setTextColor(ContextCompat.getColor(this@LoginAcitivty,R.color.white))
+            binding!!.tvEmail.setTextColor(ContextCompat.getColor(this@LoginAcitivty,R.color.login_btn))
 
-            iv_phone.setColorFilter(ContextCompat.getColor(this@LoginAcitivty, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY)
-            iv_email.setColorFilter(ContextCompat.getColor(this@LoginAcitivty, R.color.login_btn), android.graphics.PorterDuff.Mode.MULTIPLY)
+            binding!!.ivPhone.setColorFilter(ContextCompat.getColor(this@LoginAcitivty, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY)
+            binding!!.ivEmail.setColorFilter(ContextCompat.getColor(this@LoginAcitivty, R.color.login_btn), android.graphics.PorterDuff.Mode.MULTIPLY)
             cardEmail.radius=BasicTools.dpToPxFloat(10,this)
             cardPhone.radius=BasicTools.dpToPxFloat(10,this)
 

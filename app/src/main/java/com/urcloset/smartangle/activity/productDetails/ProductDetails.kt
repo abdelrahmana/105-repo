@@ -37,6 +37,7 @@ import com.urcloset.smartangle.adapter.*
 import com.urcloset.smartangle.adapter.project105.SimilarProductAdapter
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
+import com.urcloset.smartangle.databinding.ActivityProductDetailsBinding
 import com.urcloset.smartangle.model.BasicModel
 import com.urcloset.smartangle.model.ProductDetailsModel
 import com.urcloset.smartangle.model.ProductModel
@@ -47,22 +48,6 @@ import com.urcloset.smartangle.tools.TemplateActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_add_product.*
-import kotlinx.android.synthetic.main.activity_product_details.*
-import kotlinx.android.synthetic.main.activity_product_details.iv_avatar
-import kotlinx.android.synthetic.main.activity_product_details.iv_star_1
-import kotlinx.android.synthetic.main.activity_product_details.iv_star_2
-import kotlinx.android.synthetic.main.activity_product_details.iv_star_3
-import kotlinx.android.synthetic.main.activity_product_details.iv_star_4
-import kotlinx.android.synthetic.main.activity_product_details.iv_star_5
-import kotlinx.android.synthetic.main.activity_product_details.rv_colors
-import kotlinx.android.synthetic.main.activity_product_details.shimmer_sizes
-import kotlinx.android.synthetic.main.activity_product_details.tv_des
-import kotlinx.android.synthetic.main.activity_product_details.tv_rate_count
-
-
-
-import kotlinx.android.synthetic.main.toolbar_backpress1.*
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
@@ -122,9 +107,11 @@ class ProductDetails : TemplateActivity() ,IProductDetailsActivity{
     //location
     lateinit var tvLocation:TextView
 
+    var binding : ActivityProductDetailsBinding?=null
 
     override fun set_layout() {
-        setContentView(R.layout.activity_product_details)
+        binding = ActivityProductDetailsBinding.inflate(layoutInflater)
+        setContentView(binding!!.root)
         supportPostponeEnterTransition()
     }
     override fun init_activity(savedInstanceState: Bundle?)
@@ -174,44 +161,44 @@ class ProductDetails : TemplateActivity() ,IProductDetailsActivity{
     }
 
     override fun init_views() {
-        tvTitle = tv_title
-        tvDes = tv_des
-        tvPrice = tv_price
-        tvCondition = tv_condition
-        tvUsed = tv_used
-        boxAvailable = tv_box
-        invoiceAvailable = tv_invoice
-        negotable = tv_neg
-        rvColors = rv_colors
-        rvSizes = rv_sizes
-        viewPager = custom_view_pager
-        ivBack = iv_back
-        rlReport = ly_report
-        rlBookMark = rl_bookmark
-        rlWhats = rl_whats
-        shimmerColor = shimmer_colors
-        shimmerSizes = shimmer_sizes
-        shimmerCondition = shimmer_condition
-        bookShimmer = book_shimmer
-        ivAvatar = iv_avatar
-        name = tv_username
-        star = stars_rate
-        tvUserAvailableProduct = tv_user_available_product
-        tvRateCount = tv_rate_count
-        star1 = iv_star_1
-        star2 = iv_star_2
-        star3 = iv_star_3
-        star4 = iv_star_4
-        star5 = iv_star_5
-        shimmerName = shimmer_name
-        shimmerNumProducts = shimmer_num_products
-        shimmerStar = shimmer_star
-        userSection = user_section
+        tvTitle = binding!!.tvTitle
+        tvDes = binding!!.tvDes
+        tvPrice =binding!!.tvPrice
+        tvCondition =binding!!.tvCondition
+        tvUsed =binding!!.tvUsed
+        boxAvailable =binding!!.tvBox
+        invoiceAvailable =binding!!.tvInvoice
+        negotable =binding!!.tvNeg
+        rvColors =binding!!.rvColors
+        rvSizes =binding!!.rvSizes
+        viewPager =binding!!.customViewPager
+        ivBack =binding!!.toolbar.ivBack
+        rlReport =binding!!.lyReport
+        rlBookMark =binding!!.rlBookmark
+        rlWhats =binding!!.rlWhats
+        shimmerColor =binding!!.shimmerColors
+        shimmerSizes =binding!!.shimmerSizes
+        shimmerCondition =binding!!.shimmerCondition
+        bookShimmer =binding!!.bookShimmer
+        ivAvatar =binding!!.ivAvatar
+        name =binding!!.tvUsername
+        star =binding!!.starRate
+        tvUserAvailableProduct =binding!!.tvUserAvailableProduct
+        tvRateCount =binding!!.tvRateCount
+        star1 =binding!!.ivStar1
+        star2 =binding!!.ivStar2
+        star3 =binding!!.ivStar3
+        star4 =binding!!.ivStar4
+        star5 =binding!!.ivStar5
+        shimmerName =binding!!.shimmerName
+        shimmerNumProducts =binding!!.shimmerNumProducts
+        shimmerStar =binding!!.shimmerStar
+        userSection =binding!!.userSection
 
-        rvSimilar=rv_similar_product
-        tvMayLikeToo=tv_may_like_too
-        tvLocation=tv_location
-        rlShare = rl_share
+        rvSimilar=binding!!.rvSimilarProduct
+        tvMayLikeToo=binding!!.tvMayLikeToo
+        tvLocation=binding!!.tvLocation
+        rlShare =binding!!.rlShare
     }
 
     override fun init_events() {
@@ -791,7 +778,7 @@ class ProductDetails : TemplateActivity() ,IProductDetailsActivity{
 
     }
     fun endProductShimmer(){
-        BasicTools.showShimmer(rvColors, shimmer_colors, false)
+        BasicTools.showShimmer(rvColors, binding!!.shimmerColors, false)
         BasicTools.showShimmer(rvSizes, shimmerSizes, false)
         shimmerSizes.visibility = View.GONE
         shimmerColor.visibility = View.GONE

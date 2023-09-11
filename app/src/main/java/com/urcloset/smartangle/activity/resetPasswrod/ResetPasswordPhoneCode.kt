@@ -15,10 +15,10 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.urcloset.smartangle.R
 import com.urcloset.smartangle.activity.signUp.CompleteDataAct
+import com.urcloset.smartangle.databinding.ActivityVCodePhoneBinding
 import com.urcloset.smartangle.tools.BasicTools
 import com.urcloset.smartangle.tools.TemplateActivity
-import kotlinx.android.synthetic.main.activity_v_code.*
-import kotlinx.android.synthetic.main.toolbar_backpress1.*
+
 import java.util.concurrent.TimeUnit
 
 class ResetPasswordPhoneCode : TemplateActivity() {
@@ -30,9 +30,10 @@ class ResetPasswordPhoneCode : TemplateActivity() {
     private var storedVerificationId: String? = ""
     private lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
     lateinit var btnNext: CardView
-  
+    var binding : ActivityVCodePhoneBinding?=null
     override fun set_layout() {
-        setContentView(R.layout.activity_v_code_phone)
+        binding = ActivityVCodePhoneBinding.inflate(layoutInflater)
+        setContentView(binding!!.root)
     }
 
     override fun init_activity(savedInstanceState: Bundle?) {
@@ -111,7 +112,7 @@ class ResetPasswordPhoneCode : TemplateActivity() {
         auth = Firebase.auth
 
 
-        iv_back.setOnClickListener {
+        binding!!.toolbar.ivBack.setOnClickListener {
             TemplateActivity.SignUpModel.smsCode=""
             BasicTools.exitActivity(this@ResetPasswordPhoneCode)
         }

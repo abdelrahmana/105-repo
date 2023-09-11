@@ -20,6 +20,7 @@ import com.urcloset.smartangle.R
 import com.urcloset.smartangle.adapter.project105.*
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
+import com.urcloset.smartangle.databinding.ActivitySearchBinding
 import com.urcloset.smartangle.dialog.ChooseColorDialog
 import com.urcloset.smartangle.model.project_105.*
 import com.urcloset.smartangle.tools.AppObservable
@@ -99,9 +100,10 @@ class SearchActivity : TemplateActivity(), ISearchActivity {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
-
+    var binding : ActivitySearchBinding?=null
     override fun set_layout() {
-        setContentView(R.layout.activity_search)
+        binding = ActivitySearchBinding.inflate(layoutInflater)
+        setContentView(binding!!.root)
     }
 
 
@@ -155,7 +157,7 @@ class SearchActivity : TemplateActivity(), ISearchActivity {
 
         ivBack=findViewById(R.id.iv_back)
 
-        addColor = iv_add_color
+        addColor = binding!!.ivAddColor
        // rvSearchHistory = findViewById<RecyclerView>(R.id.rv_search_history)
 
         ivFilter=findViewById(R.id.iv_filter)

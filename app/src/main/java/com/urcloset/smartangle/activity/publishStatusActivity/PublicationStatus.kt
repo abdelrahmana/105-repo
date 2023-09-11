@@ -22,6 +22,7 @@ import com.urcloset.smartangle.adapter.ProductPublishStateAdapter
 import com.urcloset.smartangle.adapter.SellerProductsAdapter
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
+import com.urcloset.smartangle.databinding.ActivityPublicationStatusBinding
 import com.urcloset.smartangle.model.ProductModel
 import com.urcloset.smartangle.model.ProductStateModel
 import com.urcloset.smartangle.model.PublishStateModel
@@ -32,8 +33,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_add_product.*
-import kotlinx.android.synthetic.main.activity_publication_status.*
 import java.util.*
 import kotlin.collections.ArrayList
 @AndroidEntryPoint
@@ -48,12 +47,10 @@ class PublicationStatus : TemplateActivity() {
     lateinit var rvShimmer:ShimmerFrameLayout
     lateinit var ivBack:ImageView
     lateinit var pagerAdapter: ProductPublishStateAdapter
-
-
-
-
+    var binding : ActivityPublicationStatusBinding?=null
     override fun set_layout() {
-        setContentView(R.layout.activity_publication_status)
+        binding = ActivityPublicationStatusBinding.inflate(layoutInflater)
+        setContentView(binding!!.root)
     }
 
     override fun init_activity(savedInstanceState: Bundle?) {
@@ -81,11 +78,11 @@ class PublicationStatus : TemplateActivity() {
 
     }
     override fun init_views() {
-        viewPager = viewpager
-        tvPublished =tv_published
-        tvInReview = tv_review
-        tvRejected = tv_rejected
-        rvShimmer = rv_shimmer
+        viewPager =binding!!.viewpager
+        tvPublished =binding!!.tvPublished
+        tvInReview =binding!!.tvReview
+        tvRejected =binding!!.tvRejected
+        rvShimmer =binding!!.rvShimmer
         ivBack = findViewById(R.id.iv_back)
     }
 

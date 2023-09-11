@@ -13,6 +13,7 @@ import android.util.Log
 import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import com.urcloset.smartangle.R
+import com.urcloset.smartangle.databinding.ActivitySaveContactListBinding
 import com.urcloset.smartangle.model.project_105.ContactModel
 import com.urcloset.smartangle.tools.BasicTools
 import com.urcloset.smartangle.tools.Constants.PERMISSIONS_REQUEST_READ_CONTACTS
@@ -21,16 +22,16 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_save_contact_list.*
-import kotlinx.android.synthetic.main.toolbar_backpress1.*
 
 class SaveContactListActivity : TemplateActivity() {
     private lateinit var disposable: Disposable
 
     lateinit var ivBack:ImageView
     lateinit var cardNext:CardView;
+    var binding : ActivitySaveContactListBinding?=null
     override fun set_layout() {
-        setContentView(R.layout.activity_save_contact_list)
+        binding = ActivitySaveContactListBinding.inflate(layoutInflater)
+        setContentView(binding!!.root)
     }
 
     override fun init_activity(savedInstanceState: Bundle?) {
@@ -40,8 +41,8 @@ class SaveContactListActivity : TemplateActivity() {
     override fun init_views() {
 
 
-        ivBack=iv_back
-        cardNext=btn_next
+        ivBack=binding!!.toolbar.ivBack
+        cardNext=binding!!.btnNext
 
     }
 

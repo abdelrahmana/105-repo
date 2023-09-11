@@ -11,6 +11,7 @@ import android.widget.TextView
 import com.urcloset.smartangle.R
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
+import com.urcloset.smartangle.databinding.ActivityPrivacyBinding
 import com.urcloset.smartangle.model.PrivacyModel
 import com.urcloset.smartangle.tools.AppObservable
 import com.urcloset.smartangle.tools.BasicTools
@@ -18,8 +19,6 @@ import com.urcloset.smartangle.tools.TemplateActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_privacy.*
-import kotlinx.android.synthetic.main.toolbar_general.*
 import java.util.*
 
 class PrivacyActivity : TemplateActivity() {
@@ -29,10 +28,10 @@ class PrivacyActivity : TemplateActivity() {
    var lang:String ="en"
     var disposable= CompositeDisposable()
 
-
-
+    var binding : ActivityPrivacyBinding? =null
     override fun set_layout() {
-        setContentView(R.layout.activity_privacy)
+        binding = ActivityPrivacyBinding.inflate(layoutInflater)
+        setContentView(binding!!.root)
     }
 
     override fun init_activity(savedInstanceState: Bundle?) {
@@ -78,9 +77,9 @@ class PrivacyActivity : TemplateActivity() {
     }
 
     override fun init_views() {
-        tvPrivacy = tv_privacy
-        ivBack = iv_back
-        progress = progress_privacy
+        tvPrivacy =binding!!.tvPrivacy
+        ivBack = binding!!.toolbar.ivBack
+        progress = binding!!.progressPrivacy
     }
 
     override fun init_events() {
