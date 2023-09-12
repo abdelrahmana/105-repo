@@ -7,6 +7,7 @@ import com.urcloset.smartangle.R
 import com.urcloset.smartangle.activity.signUp.CompleteDataAct
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
+import com.urcloset.smartangle.databinding.ActivityVCodeBinding
 import com.urcloset.smartangle.model.project_105.CheckOtpEmailModel
 import com.urcloset.smartangle.tools.AppObservable
 import com.urcloset.smartangle.tools.BasicTools
@@ -14,17 +15,16 @@ import com.urcloset.smartangle.tools.TemplateActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_v_code.*
-import kotlinx.android.synthetic.main.toolbar_backpress1.*
 
 class VerificationCodeEmailActivity : TemplateActivity() {
 
     lateinit var ivBack:ImageView
 
     var disposable: CompositeDisposable = CompositeDisposable()
-
+    var binding : ActivityVCodeBinding?=null
     override fun set_layout() {
-        setContentView(R.layout.activity_v_code)
+        binding = ActivityVCodeBinding.inflate(layoutInflater)
+        setContentView(binding!!.root)
     }
 
     override fun init_activity(savedInstanceState: Bundle?) {
@@ -44,11 +44,11 @@ class VerificationCodeEmailActivity : TemplateActivity() {
             BasicTools.exitActivity(this)
         }
 
-        btn_next.setOnClickListener {
+        binding!!.btnNext.setOnClickListener {
 
 
 
-            if(edit_code.text.trim().isEmpty())
+            if(binding!!.editCode.text.trim().isEmpty())
                 showToastMessage(R.string.enter_code)
 
             else {
@@ -71,14 +71,14 @@ class VerificationCodeEmailActivity : TemplateActivity() {
 
 
 
-            BasicTools.showShimmer(btn_next,shimmer_wait,true)
+            BasicTools.showShimmer(binding!!.btnNext,binding!!.shimmerWait,true)
 
             var map = HashMap<String, String>()
 
 
 
                 map.put("email",TemplateActivity.signupEmail)
-                map.put("code",edit_code.text.trim().toString())
+                map.put("code",binding!!.editCode.text.trim().toString())
 
 
 
@@ -96,7 +96,7 @@ class VerificationCodeEmailActivity : TemplateActivity() {
                         override fun onSuccess(result: CheckOtpEmailModel) {
 
 
-                            BasicTools.showShimmer(btn_next,shimmer_wait,false)
+                            BasicTools.showShimmer(binding!!.btnNext,binding!!.shimmerWait,false)
 
 
 
@@ -111,7 +111,7 @@ class VerificationCodeEmailActivity : TemplateActivity() {
                         }
                         override fun onFailed(status: Int) {
 
-                            BasicTools.showShimmer(btn_next,shimmer_wait,false)
+                            BasicTools.showShimmer(binding!!.btnNext,binding!!.shimmerWait,false)
                             showToastMessage(R.string.faild)
                             //BasicTools.logOut(parent!!)
                         }

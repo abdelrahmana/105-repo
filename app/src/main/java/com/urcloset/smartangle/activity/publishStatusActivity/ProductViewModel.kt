@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.currencyapp.data.repo.HomeRepoUser
+import com.urcloset.smartangle.model.BasicModel
 import com.urcloset.smartangle.model.ProductModel
 import com.urcloset.smartangle.tools.DissMissProgress
 import com.urcloset.smartangle.tools.ProgressDialog
@@ -21,8 +22,8 @@ open class ProductViewModel @Inject constructor(val repoDi : HomeRepoUser) : Vie
     private val offersOnReview = MutableLiveData<ArrayList<ProductModel.Product>?>()
     val offersOnReviewLiveData :LiveData<ArrayList<ProductModel.Product>?> = offersOnReview
 
-    private val _deleteProudct = MutableLiveData<Pair<Int,ResponseBody>?>()
-    val deleteProudct :LiveData<Pair<Int,ResponseBody>?> = _deleteProudct
+    private val _deleteProudct = MutableLiveData<Pair<Int,BasicModel>?>()
+    val deleteProudct :LiveData<Pair<Int,BasicModel>?> = _deleteProudct
 
     //  private val offersOnComplete = MutableLiveData<ArrayList<Content>?>()
    // val offersOnCompelete :LiveData<ArrayList<Content>?> = offersOnComplete
@@ -32,7 +33,7 @@ open class ProductViewModel @Inject constructor(val repoDi : HomeRepoUser) : Vie
     val networkLoader :LiveData<ProgressDialog?> = _networkLoader
     fun getMutableLiveOnReview() = offersOnReview
     //fun getMutableLiveOnTheWay() = offersOnTheWay
-    fun setDeleteProduct(deleteProudct : Pair<Int,ResponseBody>?) {
+    fun setDeleteProduct(deleteProudct : Pair<Int,BasicModel>?) {
         _deleteProudct.postValue(deleteProudct)
     }
     fun setNetworkLoader(loader : ProgressDialog?) {

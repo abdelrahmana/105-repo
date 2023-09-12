@@ -25,12 +25,12 @@ import com.google.gson.Gson
 import com.urcloset.smartangle.R
 import com.urcloset.smartangle.activity.productDetails.ProductDetails
 import com.urcloset.smartangle.activity.searchActivity.ISearchActivity
+import com.urcloset.smartangle.databinding.ProductItemBinding
 
 import com.urcloset.smartangle.model.project_105.SearchProductV2Model
 
 import com.urcloset.smartangle.tools.BasicTools
 import com.urcloset.smartangle.tools.DownloadListener
-import kotlinx.android.synthetic.main.product_item.view.*
 
 
 import kotlinx.coroutines.CoroutineScope
@@ -56,11 +56,13 @@ class ResultProductSearchAdapter(): RecyclerView.Adapter<ResultProductSearchAdap
        this.iview=iview
 
     }
-
+    var binding : ProductItemBinding? =null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterViewHolder {
+        binding = ProductItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return AdapterViewHolder(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.product_item, parent, false)
+           /* LayoutInflater.from(parent.context)
+                .inflate(R.layout.product_item, parent, false)*/
+            binding!!
         )
     }
 
@@ -138,10 +140,10 @@ class ResultProductSearchAdapter(): RecyclerView.Adapter<ResultProductSearchAdap
 
 
 
-        var ivImg=holder.view.iv_product
+        var ivImg=holder.view.ivProduct
        // var tvView=holder.view.tv_views as TextView
         var price=holder.view.price as TextView
-        var card=holder.view.root_product as LinearLayout
+        var card=holder.view.rootProduct as LinearLayout
 
 
       //  tvView.setText(item?.views.toString())
@@ -225,5 +227,5 @@ class ResultProductSearchAdapter(): RecyclerView.Adapter<ResultProductSearchAdap
 
 
 
-    class AdapterViewHolder(val view: View) : RecyclerView.ViewHolder(view)
+    class AdapterViewHolder(val view: ProductItemBinding) : RecyclerView.ViewHolder(view.root)
 }

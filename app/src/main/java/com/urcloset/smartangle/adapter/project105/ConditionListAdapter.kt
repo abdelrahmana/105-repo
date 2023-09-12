@@ -23,14 +23,12 @@ import com.google.gson.Gson
 
 import com.urcloset.smartangle.R
 import com.urcloset.smartangle.activity.productDetails.ProductDetails
+import com.urcloset.smartangle.databinding.BookmarkItemBinding
 import com.urcloset.smartangle.fragment.bookmark_fragment.IBookMarkFragment
 import com.urcloset.smartangle.model.project_105.BookmarkMV3
 
 import com.urcloset.smartangle.tools.BasicTools
 import com.urcloset.smartangle.tools.DownloadListener
-import kotlinx.android.synthetic.main.bookmark_item.view.*
-import kotlinx.android.synthetic.main.bookmark_item.view.root
-import kotlinx.android.synthetic.main.new_product_item.view.*
 
 
 import kotlinx.coroutines.CoroutineScope
@@ -56,11 +54,14 @@ class ConditionListAdapter(): RecyclerView.Adapter<ConditionListAdapter.AdapterV
        this.iview=iview
 
     }
-
+    var binding : BookmarkItemBinding?=null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterViewHolder {
+        binding = BookmarkItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return AdapterViewHolder(
+            binding!!
+            /*
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.bookmark_item, parent, false)
+                .inflate(R.layout.bookmark_item, parent, false)*/
         )
     }
 
@@ -143,10 +144,10 @@ class ConditionListAdapter(): RecyclerView.Adapter<ConditionListAdapter.AdapterV
 
 
 
-        var name=holder.view.tv_title as TextView
-        var desc=holder.view.tv_desc as TextView
-        var ivBookmark=holder.view.iv_bookmark as ImageView
-        var ivImg=holder.view.iv_img as ImageView
+        var name=holder.view.tvTitle as TextView
+        var desc=holder.view.tvDesc as TextView
+        var ivBookmark=holder.view.ivBookmark as ImageView
+        var ivImg=holder.view.ivImg as ImageView
          var root =holder.view.root as LinearLayout
 
         
@@ -211,5 +212,5 @@ class ConditionListAdapter(): RecyclerView.Adapter<ConditionListAdapter.AdapterV
 
 
 
-    class AdapterViewHolder(val view: View) : RecyclerView.ViewHolder(view)
+    class AdapterViewHolder(val view: BookmarkItemBinding) : RecyclerView.ViewHolder(view.root)
 }

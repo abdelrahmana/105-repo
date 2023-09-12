@@ -1,6 +1,4 @@
 package com.urcloset.smartangle.activity.homeActivity
-
-
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -28,7 +26,6 @@ import com.urcloset.smartangle.fragment.bookmark_fragment.BookMarkFragment
 import com.urcloset.smartangle.fragment.myselleraccount.MySellerAccount
 import com.urcloset.smartangle.fragment.postsFragment.PostsFragment
 import com.urcloset.smartangle.fragment.setting_fragment.SettingFragment
-
 
 import com.urcloset.smartangle.tools.AppObservable
 import com.urcloset.smartangle.tools.BasicTools
@@ -73,7 +70,6 @@ class HomeActivity : TemplateActivity() {
                     Log.d("Share product", data.toString())
                     intent.putExtra("id", data)
                     startActivity(intent)
-
                 }
 
 
@@ -304,7 +300,7 @@ class HomeActivity : TemplateActivity() {
                 true
             }
 
-        viewModel.loadPreviousNavBottom.observe(this, Observer<Int> { updatedId ->
+        viewModel.loadPreviousNavBottom.observe(this, Observer<Int?> { updatedId ->
             if (updatedId != null) {
                 // this is the id
                 //bottomNavigationView.
@@ -332,7 +328,7 @@ class HomeActivity : TemplateActivity() {
 
 
     fun initBottomNavigation() {
-        bottomNavigation = findViewById(R.id.bottom_navigation) as BottomNavigationView
+        bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNavigation?.setItemIconTintList(null)
         val pixels = 5 * resources.displayMetrics.density
         if (Build.VERSION.SDK_INT >= 21)

@@ -24,6 +24,7 @@ import com.urcloset.shop.tools.hide
 import com.urcloset.shop.tools.show
 import com.urcloset.shop.tools.visible
 import com.urcloset.smartangle.R
+import com.urcloset.smartangle.activity.productDetails.ProductDetails
 import com.urcloset.smartangle.activity.publishStatusActivity.ProductViewModel
 import com.urcloset.smartangle.activity.updateProduct.UpdateProductActivity
 import com.urcloset.smartangle.adapter.*
@@ -84,7 +85,12 @@ class MySellerAccount() : TemplateFragment() {
 
 
    }
+    val callBackProductDetails :(ProductModel.Product)->Unit= {
+        val intent = Intent(requireContext(), ProductDetails::class.java)
+        intent.putExtra("id", it.id.toString())
+        startActivity(intent)
 
+    }
     var powerMenu : PowerMenu? = null
     private fun setMoreOptionSelection(
         productPosition: Int,
@@ -126,8 +132,7 @@ class MySellerAccount() : TemplateFragment() {
         powerMenu = PowerMenu.Builder(context!!)
             .addItemList(arrayList)
            // .addItem(PowerMenuItem(getString(R.string.edit), false)) // add an item.
-           // .addItem(PowerMenuItem(getString(R.string.delete), false)) // add an item.
-            .addItemList(arrayList.toList())
+            // .addItem(PowerMenuItem(getString(R.string.delete), false)) // add an item.
             .setAnimation(MenuAnimation.SHOWUP_TOP_LEFT) // Animation start point (TOP | LEFT).
             .setMenuRadius(10f) // sets the corner radius.
             .setMenuShadow(10f) // sets the shadow.
@@ -178,7 +183,7 @@ class MySellerAccount() : TemplateFragment() {
        // cvCats = view.findViewById(R.id.cv_cat)
         rlSetting = view.findViewById(R.id.rl_setting)
         productAdaptor = AdaptorProductsNew(requireContext(),ArrayList<ProductModel.Product>(),true,
-            callBackMoreOption)
+            callBackMoreOption,callBackProductDetails)
         if(BasicTools.isConnected(parent!!)) {
            // BasicTools.showShimmer(rvCategories, categoryShimmer, true)
          //   viewPager.visibility = View.GONE

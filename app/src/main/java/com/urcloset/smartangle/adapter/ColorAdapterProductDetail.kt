@@ -2,7 +2,6 @@ package com.urcloset.smartangle.adapter
 
 import android.content.res.ColorStateList
 import android.graphics.Color
-import android.graphics.PorterDuff
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,11 +10,12 @@ import android.widget.RelativeLayout
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.urcloset.smartangle.R
+import com.urcloset.smartangle.databinding.ColorItemBinding
 import com.urcloset.smartangle.listeners.ItemClickListener
 import com.urcloset.smartangle.model.ColorModel
 
-class ColorAdapterProductDetail() : ListAdapter<ColorModel.Color, ColorAdapterProductDetail.ViewHolder>(object :
+class ColorAdapterProductDetail() : ListAdapter<ColorModel.Color, ColorAdapterProductDetail.ViewHolder>
+    (object :
     DiffUtil.ItemCallback<ColorModel.Color>() {
 
     override fun areItemsTheSame(oldItem: ColorModel.Color, newItem: ColorModel.Color): Boolean {
@@ -30,10 +30,14 @@ class ColorAdapterProductDetail() : ListAdapter<ColorModel.Color, ColorAdapterPr
         return oldItem.isSelected == newItem.isSelected
     }
 }) {
+    var binding : ColorItemBinding?=null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ColorAdapterProductDetail.ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.color_item, parent, false)
-        return ViewHolder(view)
+      binding = ColorItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+   //     val view = LayoutInflater.from(parent.context).inflate(R.layout.color_item, parent, false)
+        return ViewHolder(binding!!)
     }
+
+
 
     override fun onBindViewHolder(holder: ColorAdapterProductDetail.ViewHolder, position: Int) {
         holder.colorImage.backgroundTintList=(ColorStateList.valueOf(Color.parseColor(getItem(position).value)))
@@ -58,10 +62,10 @@ class ColorAdapterProductDetail() : ListAdapter<ColorModel.Color, ColorAdapterPr
         this.onColorListener = onColorListener
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    class ViewHolder(itemView: ColorItemBinding) : RecyclerView.ViewHolder(itemView.root)
     {
-        val colorImage: RelativeLayout = itemView.findViewById(R.id.rv_color)
-        val ivColorSelected: ImageView = itemView.findViewById(R.id.iv_color_selected)
+        val colorImage: RelativeLayout = itemView.rvColor//itemView.findViewById(R.id.rv_color)
+        val ivColorSelected: ImageView =itemView.ivColorSelected// itemView.findViewById(R.id.iv_color_selected)
 
 
 

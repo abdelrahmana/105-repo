@@ -185,7 +185,7 @@ class HomeFragment : TemplateFragment(),NestedScrollPaginationView.OnMyScrollCha
                          //   areaViewPager.adapter = userGridAdapter
 
                             if ( allNearbyUsers.size <= 0) {
-                                views?.findViewById<LinearLayout>(R.id.ly_empty).visibility =
+                                views?.findViewById<LinearLayout>(R.id.ly_empty)?.visibility =
                                     View.VISIBLE
                              //   views?.findViewById<TextView>(R.id.tv_area_title).visibility =
                                 //    View.GONE

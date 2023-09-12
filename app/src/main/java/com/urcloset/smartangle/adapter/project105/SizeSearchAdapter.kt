@@ -18,14 +18,12 @@ import androidx.recyclerview.widget.RecyclerView
 
 import com.urcloset.smartangle.R
 import com.urcloset.smartangle.activity.conditionActivity.IConditionActivity
+import com.urcloset.smartangle.databinding.CardConditionBookmarkV2Binding
 import com.urcloset.smartangle.model.ConditionModel
 import com.urcloset.smartangle.model.project_105.ConditionBookMarkModel
 import com.urcloset.smartangle.model.project_105.SizeModelHassan
 
 import com.urcloset.smartangle.tools.BasicTools
-
-import kotlinx.android.synthetic.main.card_condition_bookmark_v2.view.*
-
 
 
 import kotlinx.coroutines.CoroutineScope
@@ -51,12 +49,13 @@ class SizeSearchAdapter(): RecyclerView.Adapter<SizeSearchAdapter.AdapterViewHol
       // this.iview=iview
 
     }
-
+    var binding : CardConditionBookmarkV2Binding?=null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterViewHolder {
+        binding = CardConditionBookmarkV2Binding.inflate(LayoutInflater.from(parent.context),parent,false)
         return AdapterViewHolder(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.card_condition_bookmark_v2, parent, false)
-        )
+          /*  LayoutInflater.from(parent.context)
+                .inflate(R.layout.card_condition_bookmark_v2, parent, false)*/
+            binding!!)
     }
 
 
@@ -123,13 +122,9 @@ class SizeSearchAdapter(): RecyclerView.Adapter<SizeSearchAdapter.AdapterViewHol
         Log.i("ImageAdapter","IMAGE_URI=$item")
 
 
-       
 
-
-
-
-        var name=holder.view.tv_condition_name as TextView
-        var card=holder.view.card_condition as CardView
+        var name=holder.view.tvConditionName as TextView
+        var card=holder.view.cardCondition as CardView
 
         
         
@@ -199,5 +194,5 @@ class SizeSearchAdapter(): RecyclerView.Adapter<SizeSearchAdapter.AdapterViewHol
 
 
 
-    class AdapterViewHolder(val view: View) : RecyclerView.ViewHolder(view)
+    class AdapterViewHolder(val view: CardConditionBookmarkV2Binding) : RecyclerView.ViewHolder(view.root)
 }

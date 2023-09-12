@@ -13,7 +13,7 @@
     android:layout_gravity="center_horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/root"
+    android:id="@+id/rootItem"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:background="@drawable/product_images_bg"

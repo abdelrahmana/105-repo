@@ -5,11 +5,9 @@ import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.icu.number.Precision.currency
 import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.transition.Explode
 import android.util.Log
 import android.view.Gravity
 import android.view.View
@@ -23,10 +21,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.facebook.shimmer.ShimmerFrameLayout
-import com.google.firebase.dynamiclinks.DynamicLink
-import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
-import com.google.firebase.dynamiclinks.ktx.dynamicLinks
-import com.google.firebase.ktx.Firebase
 import com.google.gson.Gson
 import com.urcloset.shop.tools.hide
 import com.urcloset.shop.tools.visible
@@ -43,7 +37,6 @@ import com.urcloset.smartangle.model.ProductDetailsModel
 import com.urcloset.smartangle.model.ProductModel
 import com.urcloset.smartangle.tools.AppObservable
 import com.urcloset.smartangle.tools.BasicTools
-import com.urcloset.smartangle.tools.Constants
 import com.urcloset.smartangle.tools.TemplateActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -72,7 +65,7 @@ class ProductDetails : TemplateActivity() ,IProductDetailsActivity{
     lateinit var rlReport: ConstraintLayout
     lateinit var viewPager: CustomViewPager
     lateinit var ivAvatar: ImageView
-    val colorAdapter = ColorAdapterProductDetail()
+    lateinit var colorAdapter : ColorAdapterProductDetail
     lateinit var sizeAdapter: SizeAdapterProductDetails
     lateinit var photoGalleryAdapter: PhotoGalleryProductDetailAdapter
     lateinit var rlWhats: ConstraintLayout
@@ -153,7 +146,7 @@ class ProductDetails : TemplateActivity() ,IProductDetailsActivity{
 
 
         rvColors.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        rvColors.adapter = colorAdapter
+
         rvSizes.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
 
@@ -432,8 +425,9 @@ class ProductDetails : TemplateActivity() ,IProductDetailsActivity{
                                 tvTitle.text = result.productDetails.item?.name
                                 tvPrice.text = result.productDetails.item?.price.toString()+resources.getString(R.string.currency)
                                 tvDes.text = result.productDetails.item?.description
-
+                                colorAdapter = ColorAdapterProductDetail()
                                 colorAdapter.submitList(result.productDetails.item?.selectedColors)
+                                rvColors.adapter = colorAdapter
                                 sizeAdapter = SizeAdapterProductDetails(lang)
                                 rvSizes.adapter = sizeAdapter
                                 sizeAdapter.submitList(result.productDetails.item?.selectedSizes)
@@ -693,13 +687,13 @@ class ProductDetails : TemplateActivity() ,IProductDetailsActivity{
     }
 
     fun hideController() {
-        findViewById<RelativeLayout>(R.id.rl_whats).visibility = View.GONE
+        findViewById<ConstraintLayout>(R.id.rl_whats).visibility = View.GONE
         findViewById<LinearLayout>(R.id.controller).visibility = View.GONE
 
     }
 
     fun showController() {
-        findViewById<RelativeLayout>(R.id.rl_whats).visibility = View.VISIBLE
+        findViewById<ConstraintLayout>(R.id.rl_whats).visibility = View.VISIBLE
         findViewById<LinearLayout>(R.id.controller).visibility = View.VISIBLE
 
     }

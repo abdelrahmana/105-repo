@@ -24,10 +24,10 @@ import com.google.gson.Gson
 import com.urcloset.smartangle.R
 import com.urcloset.smartangle.activity.productDetails.IProductDetailsActivity
 import com.urcloset.smartangle.activity.productDetails.ProductDetails
+import com.urcloset.smartangle.databinding.NewProductItemBinding
 import com.urcloset.smartangle.model.ProductDetailsModel
 import com.urcloset.smartangle.tools.BasicTools
 import com.urcloset.smartangle.tools.DownloadListener
-import kotlinx.android.synthetic.main.new_product_item.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -49,11 +49,13 @@ class SimilarProductAdapter(): RecyclerView.Adapter<SimilarProductAdapter.Adapte
        this.iview=iview
 
     }
-
+    var binding : NewProductItemBinding?=null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterViewHolder {
+        binding = NewProductItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return AdapterViewHolder(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.new_product_item, parent, false)
+           /* LayoutInflater.from(parent.context)
+                .inflate(R.layout.new_product_item, parent, false)*/
+        binding!!
         )
     }
 
@@ -123,10 +125,10 @@ class SimilarProductAdapter(): RecyclerView.Adapter<SimilarProductAdapter.Adapte
         var txt=context!!.resources.getString(R.string.quantity)*/
 
 
-        var ivImage=holder.view.iv_product as ImageView
-        var tvViews=holder.view.tv_views as TextView
-        var ivOptions=holder.view.iv_info as ImageView
-        var root=holder.view.root as LinearLayout
+        var ivImage=holder.view.ivProduct as ImageView
+        var tvViews=holder.view.tvViews as TextView
+        var ivOptions=holder.view.ivInfo as ImageView
+      //  var root=holder.view.root as LinearLayout
 
         if(item!!.itemMedia!=null && item.itemMedia?.size!!>0) {
             val urlLink= BasicTools.getUrlImg(context!!,item?.itemMedia?.get(0)?.mediaPath.toString())
@@ -142,7 +144,7 @@ class SimilarProductAdapter(): RecyclerView.Adapter<SimilarProductAdapter.Adapte
         }
         tvViews.text = item.views.toString()
 
-       root.setOnClickListener {
+       binding?.rootItem?.setOnClickListener {
             val intent = Intent(context, ProductDetails::class.java)
             val gson = Gson()
             intent.putExtra("product", gson.toJson(item))
@@ -165,5 +167,5 @@ class SimilarProductAdapter(): RecyclerView.Adapter<SimilarProductAdapter.Adapte
 
 
 
-    class AdapterViewHolder(val view: View) : RecyclerView.ViewHolder(view)
+    class AdapterViewHolder(val view: NewProductItemBinding) : RecyclerView.ViewHolder(view.root)
 }

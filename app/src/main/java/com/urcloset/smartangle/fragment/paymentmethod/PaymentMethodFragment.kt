@@ -73,6 +73,8 @@ class PaymentMethodFragment : TemplateFragment() {
                 is MFResult.Fail -> {
                     Toast.makeText(requireContext(), Gson().toJson(it.error),Toast.LENGTH_SHORT).show()
                 }
+
+                else -> {}
             }
             binding.progressLoader.visibility = View.GONE
 
@@ -137,6 +139,8 @@ class PaymentMethodFragment : TemplateFragment() {
                     })*/
                     Log.d("TAG", "Fail: " + Gson().toJson(result.error))
                 }
+
+                else -> {}
             }
             Log.d("TAG", "invoiceId: $invoiceId")
         }

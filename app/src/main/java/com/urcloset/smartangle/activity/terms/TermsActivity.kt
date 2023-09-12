@@ -11,6 +11,7 @@ import android.widget.TextView
 import com.urcloset.smartangle.R
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
+import com.urcloset.smartangle.databinding.ActivityTermsBinding
 import com.urcloset.smartangle.model.PrivacyModel
 import com.urcloset.smartangle.tools.AppObservable
 import com.urcloset.smartangle.tools.BasicTools
@@ -18,7 +19,6 @@ import com.urcloset.smartangle.tools.TemplateActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_terms.*
 import java.util.*
 
 class TermsActivity : TemplateActivity() {
@@ -27,12 +27,10 @@ class TermsActivity : TemplateActivity() {
     var lang:String ="en"
     lateinit var ivBack: ImageView
     lateinit var progress:ProgressBar
-
-
-
-
+    var binding : ActivityTermsBinding?=null
     override fun set_layout() {
-        setContentView(R.layout.activity_terms)
+        binding = ActivityTermsBinding.inflate(layoutInflater)
+        setContentView(binding!!.root)
     }
 
     override fun init_activity(savedInstanceState: Bundle?) {
@@ -78,7 +76,7 @@ class TermsActivity : TemplateActivity() {
     }
 
     override fun init_views() {
-        tvTerms = tv_terms
+        tvTerms =binding!!.tvTerms
         ivBack=findViewById(R.id.iv_back)
         progress = findViewById(R.id.progress_bar_terms)
 

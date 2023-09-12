@@ -28,7 +28,6 @@ import com.urcloset.smartangle.tools.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.fragment_book_mark.*
 import okhttp3.ResponseBody
 
 class BookMarkFragment : TemplateFragment(),IBookMarkFragment {

@@ -16,8 +16,8 @@ class HomeViewModel : ViewModel() {
     private val _saveUsers = MutableLiveData<ArrayList<NearbyUsersModel.Data.User>?>()
     val saveUsers : LiveData<ArrayList<NearbyUsersModel.Data.User>?> =_saveUsers
 
-   private var _loadPreviousNavBottom = MutableLiveData<Int>()
-     var loadPreviousNavBottom :LiveData<Int> =_loadPreviousNavBottom
+   private var _loadPreviousNavBottom = MutableLiveData<Int?>()
+     var loadPreviousNavBottom :LiveData<Int?> =_loadPreviousNavBottom
     fun setPreviousNavBottom (id:Int?) // id of what item need to change
     {
         this._loadPreviousNavBottom.value = id

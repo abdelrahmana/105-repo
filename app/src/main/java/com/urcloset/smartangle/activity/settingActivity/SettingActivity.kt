@@ -24,6 +24,8 @@ import com.urcloset.smartangle.activity.terms.TermsActivity
 import com.urcloset.smartangle.activity.visitorActivity.VisitorActivity
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
+import com.urcloset.smartangle.databinding.ActivitySettingBinding
+import com.urcloset.smartangle.databinding.ActivitySettingsBinding
 import com.urcloset.smartangle.fragment.UserInfoFragment
 import com.urcloset.smartangle.model.project_105.CardResultModel
 import com.urcloset.smartangle.tools.AppObservable
@@ -32,11 +34,8 @@ import com.urcloset.smartangle.tools.TemplateActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_settings.*
 import okhttp3.ResponseBody
 import kotlin.collections.HashMap
-
-
 class SettingActivity : TemplateActivity() {
     lateinit var voiceIdentifiy: RelativeLayout
     lateinit var rootAccountSetting: CardView
@@ -60,10 +59,9 @@ class SettingActivity : TemplateActivity() {
     lateinit var ivBack:ImageView
     lateinit var shimmerRootMyCard: ShimmerFrameLayout
     var disposable = CompositeDisposable()
-
-
-
+    var binding : ActivitySettingsBinding ?=null
     override fun set_layout() {
+        binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_settings)
 
     }
@@ -72,16 +70,16 @@ class SettingActivity : TemplateActivity() {
     }
 
     override fun init_views() {
-        cvVisitor = cv_visitors
-        cvTerms = cv_terms
-        cvSocial = cv_social
-        cvAbout = cv_about
-        cvPublishState = cv_publish_state
-        changePass = card_change_pass
-        cvSupport = cv_support
-        cvVoiceIdentifiy = cv_voice_identifiy
-        cvPrivacy = cv_privacy
-        cvLang = cv_lang
+        cvVisitor =binding!!.cvVisitors
+        cvTerms =binding!!.cvTerms
+        cvSocial =binding!!.cvSocial
+        cvAbout =binding!!.cvAbout
+        cvPublishState =binding!!.cvPublishState
+        changePass =binding!!.cardChangePass
+        cvSupport =binding!!.cvSupport
+        cvVoiceIdentifiy =binding!!.cvVoiceIdentifiy
+        cvPrivacy =binding!!.cvPrivacy
+        cvLang =binding!!.cvLang
         btnLogout = findViewById(R.id.card_logout)
         shimmerLogout = findViewById(R.id.shimmer_logout)
         rootAccountSetting = findViewById(R.id.root_account_setting)

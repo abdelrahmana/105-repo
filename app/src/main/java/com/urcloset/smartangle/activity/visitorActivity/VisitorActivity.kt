@@ -12,6 +12,7 @@ import com.urcloset.smartangle.R
 import com.urcloset.smartangle.adapter.VisitorAdapter
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
+import com.urcloset.smartangle.databinding.ActivityVisitorBinding
 import com.urcloset.smartangle.model.NotificationModel
 import com.urcloset.smartangle.model.VisitorModel
 import com.urcloset.smartangle.tools.AppObservable
@@ -20,7 +21,6 @@ import com.urcloset.smartangle.tools.TemplateActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_visitor.*
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -34,13 +34,11 @@ class VisitorActivity : TemplateActivity() {
     var isLoading =false
     var currentPage =1
     lateinit var progressBar: ProgressBar
-
-
-
-
+    var binding : ActivityVisitorBinding?=null
 
     override fun set_layout() {
-            setContentView(R.layout.activity_visitor)
+        binding = ActivityVisitorBinding.inflate(layoutInflater)
+            setContentView(binding!!.root)
 
     }
 
@@ -78,9 +76,9 @@ class VisitorActivity : TemplateActivity() {
                                 )
                                 rvVisitors.adapter = visitorAdapter
                                 if(BasicTools.isDeviceLanEn())
-                                tv_visitor.text =
+                                binding!!.tvVisitor.text =
                                     "Visitors (" + result.data?.users?.total.toString() + ")"
-                                else  tv_visitor.text =
+                                else  binding!!.tvVisitor.text =
                                     "الزوار (" + result.data?.users?.total.toString() + ")"
                                 if (result.data?.users?.data?.size!! <= 0) {
                                     findViewById<LinearLayout>(R.id.ly_empty).visibility =
@@ -160,8 +158,8 @@ class VisitorActivity : TemplateActivity() {
     }
 
     override fun init_views() {
-        rvVisitors = recyclerview_visitors
-        shimmerVisitor = shimmer_visitor
+        rvVisitors = binding!!.recyclerviewVisitors
+        shimmerVisitor = binding!!.shimmerVisitor
         ivBack=findViewById(R.id.iv_back)
         progressBar = findViewById(R.id.progress)
 

@@ -1,13 +1,12 @@
 package com.urcloset.smartangle.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.urcloset.smartangle.R
+import com.urcloset.smartangle.databinding.SizeItemBinding
 import com.urcloset.smartangle.model.SizeModel
 
 class SizeAdapterProductDetails(var lang: String): ListAdapter<SizeModel.Size, SizeAdapterProductDetails.ViewHolder>(object :
@@ -24,10 +23,13 @@ class SizeAdapterProductDetails(var lang: String): ListAdapter<SizeModel.Size, S
     ): Boolean {
         return false
     }
-}){
+})
+{
+    var binding : SizeItemBinding? =null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.size_item, parent, false)
-        return SizeAdapterProductDetails.ViewHolder(view)
+        binding = SizeItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+       // val view = LayoutInflater.from(parent.context).inflate(R.layout.size_item, parent, false)
+        return SizeAdapterProductDetails.ViewHolder(binding!!)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -49,8 +51,8 @@ class SizeAdapterProductDetails(var lang: String): ListAdapter<SizeModel.Size, S
 
     }
 
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        val name = itemView.findViewById<TextView>(R.id.name)
+    class ViewHolder(itemView: SizeItemBinding): RecyclerView.ViewHolder(itemView.root){
+        val name = itemView.name//itemView.findViewById<TextView>(R.id.name)
 
     }
 

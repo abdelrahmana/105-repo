@@ -33,6 +33,7 @@
         app:elevation="0dp"
         app:itemIconSize="42dp"
         app:itemIconTint="@null"
+        android:background="@color/card_color"
         app:labelVisibilityMode="unlabeled"
         app:menu="@menu/bottom_navigattion"
         />

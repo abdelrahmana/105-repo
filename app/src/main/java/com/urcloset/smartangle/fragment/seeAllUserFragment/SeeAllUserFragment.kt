@@ -19,6 +19,7 @@ import com.urcloset.smartangle.adapter.project105.ConditionListAdapter
 import com.urcloset.smartangle.adapter.project105.ProviderSearchAdapter
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
+import com.urcloset.smartangle.databinding.FragmentSeeAllUserBinding
 import com.urcloset.smartangle.model.project_105.ProivderSeachModel
 import com.urcloset.smartangle.tools.AppObservable
 import com.urcloset.smartangle.tools.BasicTools
@@ -27,7 +28,6 @@ import com.urcloset.smartangle.tools.TemplateFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.fragment_see_all_user.*
 
 class SeeAllUserFragment : TemplateFragment() , ISearchProviderActivity {
 
@@ -44,25 +44,27 @@ class SeeAllUserFragment : TemplateFragment() , ISearchProviderActivity {
     var disposableSearch: CompositeDisposable = CompositeDisposable()
     lateinit var layoutManager: GridLayoutManager
     lateinit var swip: SwipeRefreshLayout
+    var binding : FragmentSeeAllUserBinding?=null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var view = inflater.inflate(R.layout.fragment_see_all_user, container, false)
+        binding = FragmentSeeAllUserBinding.inflate(layoutInflater)
+       // var view = inflater.inflate(R.layout.fragment_see_all_user, container, false)
 
 
-        return view
+        return binding!!.root
     }
 
     override fun init_views() {
 
-        rv=rv_seeall_user
-        shimmer=shimmer_wait_seeall_user
-        rootEmpty=root_empty_page
-        prgs=prgs_seeall_user
-        swip=swip_seeall_user
-        ivBack=iv_back
+        rv=binding!!.rvSeeallUser //rv_seeall_user
+        shimmer=binding!!.shimmerWaitSeeallUser//shimmer_wait_seeall_user
+        rootEmpty=binding!!.rootEmptyPage//root_empty_page
+        prgs=binding!!.prgsSeeallUser//prgs_seeall_user
+        swip=binding!!.swipSeeallUser//swip_seeall_user
+        ivBack=binding!!.ivBack//iv_back
 
         layoutManager= GridLayoutManager(parent!!,3, LinearLayoutManager.VERTICAL,false)
 

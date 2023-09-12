@@ -21,8 +21,8 @@ import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.urcloset.smartangle.activity.signUp.CompleteDataAct
+import com.urcloset.smartangle.databinding.ActivityVCodePhoneBinding
 
-import kotlinx.android.synthetic.main.toolbar_backpress1.*
 import java.util.concurrent.TimeUnit
 
 
@@ -40,8 +40,11 @@ class EnterCodeActivity : TemplateActivity() {
 
     lateinit var btnNext:CardView
   //  var counterDown: CountDownTimer?=null
+    var binding : ActivityVCodePhoneBinding?=null
+
     override fun set_layout() {
-        setContentView(R.layout.activity_v_code_phone)
+        binding = ActivityVCodePhoneBinding.inflate(layoutInflater)
+        setContentView(/*R.layout.activity_v_code_phone*/binding!!.root)
     }
 
     override fun init_activity(savedInstanceState: Bundle?) {
@@ -141,7 +144,7 @@ class EnterCodeActivity : TemplateActivity() {
 //        }.start()
 //
 
-        iv_back.setOnClickListener {
+        binding!!.toolbar.ivBack.setOnClickListener {
             TemplateActivity.SignUpModel.smsCode=""
             BasicTools.exitActivity(this@EnterCodeActivity)
         }

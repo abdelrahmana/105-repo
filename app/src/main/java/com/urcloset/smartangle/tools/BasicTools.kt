@@ -104,14 +104,14 @@ object BasicTools {
         if (bundle != null) {
             fragment.arguments = bundle
         }
-        transaction.setCustomAnimations(
+        transaction?.setCustomAnimations(
             R.anim.enter_from_right, R.anim.exit_to_left,
             R.anim.enter_from_left, R.anim.exit_to_right)
         //R.id.frameLayout_direction+
-        transaction.replace(id, fragment, tag)
-        transaction.addToBackStack(tag)
+        transaction?.replace(id, fragment, tag)
+        transaction?.addToBackStack(tag)
         //    transaction.addToBackStack(null)
-        transaction.commit()
+        transaction?.commit()
 
     }
     fun getFirebaseFcmTokenBeforeStart(callBackToken :(String?)->Unit) {

@@ -29,7 +29,7 @@ abstract class MySwipHelper(context: Context,private val recyclerView:RecyclerVi
 
 
     private val gesterListener=object:GestureDetector.SimpleOnGestureListener(){
-        override fun onSingleTapUp(e: MotionEvent?): Boolean {
+        override fun onSingleTapUp(e: MotionEvent): Boolean {
             for(button in buttonList!!)
                 if(button.onClick(e!!.x,e!!.y))
                     break

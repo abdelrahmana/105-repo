@@ -15,11 +15,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 import com.urcloset.smartangle.R
+import com.urcloset.smartangle.databinding.BookmarkItemBinding
 import com.urcloset.smartangle.fragment.bookmark_fragment.IBookMarkFragment
 import com.urcloset.smartangle.model.project_105.BookmarkMV3
-
-import kotlinx.android.synthetic.main.bookmark_item.view.*
-
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -42,11 +40,12 @@ class BookMarkAdapter(): RecyclerView.Adapter<BookMarkAdapter.AdapterViewHolder>
        this.iview=iview
 
     }
-
+    var binding : BookmarkItemBinding?=null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterViewHolder {
-        return AdapterViewHolder(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.bookmark_item, parent, false)
+        binding = BookmarkItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        return AdapterViewHolder(binding!!
+           /* LayoutInflater.from(parent.context)
+                .inflate(R.layout.bookmark_item, parent, false)*/
         )
     }
 
@@ -116,8 +115,8 @@ class BookMarkAdapter(): RecyclerView.Adapter<BookMarkAdapter.AdapterViewHolder>
         var txt=context!!.resources.getString(R.string.quantity)*/
 
 
-        var name=holder.view.tv_title as TextView
-        var desc=holder.view.tv_desc as TextView
+        var name=holder.view.tvTitle as TextView
+        var desc=holder.view.tvDesc as TextView
 
         name.setText(item?.name)
         desc.setText(item?.description)
@@ -154,5 +153,5 @@ class BookMarkAdapter(): RecyclerView.Adapter<BookMarkAdapter.AdapterViewHolder>
 
 
 
-    class AdapterViewHolder(val view: View) : RecyclerView.ViewHolder(view)
+    class AdapterViewHolder(val view: BookmarkItemBinding) : RecyclerView.ViewHolder(view.root)
 }

@@ -22,12 +22,12 @@ import androidx.recyclerview.widget.RecyclerView
 
 import com.urcloset.smartangle.R
 import com.urcloset.smartangle.activity.conditionActivity.IConditionActivity
+import com.urcloset.smartangle.databinding.ColorItemBinding
 import com.urcloset.smartangle.model.ConditionModel
 import com.urcloset.smartangle.model.project_105.ColorModelHassan
 import com.urcloset.smartangle.model.project_105.ConditionBookMarkModel
 
 import com.urcloset.smartangle.tools.BasicTools
-import kotlinx.android.synthetic.main.color_item.view.*
 
 
 import kotlinx.coroutines.CoroutineScope
@@ -53,11 +53,14 @@ class ColorSearchAdapter(): RecyclerView.Adapter<ColorSearchAdapter.AdapterViewH
       // this.iview=iview
 
     }
-
+    var binding : ColorItemBinding?=null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterViewHolder {
+        binding = ColorItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+
         return AdapterViewHolder(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.color_item, parent, false)
+          /*  LayoutInflater.from(parent.context)
+                .inflate(R.layout.color_item, parent, false)*/
+            binding!!
         )
     }
 
@@ -130,8 +133,8 @@ class ColorSearchAdapter(): RecyclerView.Adapter<ColorSearchAdapter.AdapterViewH
 
 
 
-        var root=holder.view.rv_color as RelativeLayout
-        var selectedIV=holder.view.iv_color_selected as ImageView
+        var root=holder.view.rvColor as RelativeLayout
+        var selectedIV=holder.view.ivColorSelected as ImageView
 
 
         root.background.setColorFilter(
@@ -199,5 +202,5 @@ class ColorSearchAdapter(): RecyclerView.Adapter<ColorSearchAdapter.AdapterViewH
 
 
 
-    class AdapterViewHolder(val view: View) : RecyclerView.ViewHolder(view)
+    class AdapterViewHolder(val view: ColorItemBinding) : RecyclerView.ViewHolder(view.root)
 }

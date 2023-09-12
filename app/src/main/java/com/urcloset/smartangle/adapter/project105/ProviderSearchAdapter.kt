@@ -23,13 +23,13 @@ import com.google.gson.Gson
 import com.urcloset.smartangle.R
 import com.urcloset.smartangle.activity.searchActivity.ISearchProviderActivity
 import com.urcloset.smartangle.activity.sellerActivity.SellerActivity
+import com.urcloset.smartangle.databinding.UserItemBinding
 
 import com.urcloset.smartangle.model.project_105.BookmarkMV3
 import com.urcloset.smartangle.model.project_105.ProivderSeachModel
 
 import com.urcloset.smartangle.tools.BasicTools
 import com.urcloset.smartangle.tools.DownloadListener
-import kotlinx.android.synthetic.main.user_item.view.*
 
 
 import kotlinx.coroutines.CoroutineScope
@@ -57,11 +57,13 @@ class ProviderSearchAdapter(): RecyclerView.Adapter<ProviderSearchAdapter.Adapte
 
 
     }
-
+    var binding : UserItemBinding? =null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterViewHolder {
+        binding = UserItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return AdapterViewHolder(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.user_item, parent, false)
+           /* LayoutInflater.from(parent.context)
+                .inflate(R.layout.user_item, parent, false)*/
+            binding!!
         )
     }
 
@@ -142,10 +144,10 @@ class ProviderSearchAdapter(): RecyclerView.Adapter<ProviderSearchAdapter.Adapte
 
 
 
-        var name=holder.view.tv_title as TextView
+        var name=holder.view.tvTitle as TextView
    
         var root=holder.view.visit as CardView
-        var ivImg=holder.view.iv_user_img as ImageView
+        var ivImg=holder.view.ivUserImg as ImageView
 
         
 
@@ -197,5 +199,5 @@ class ProviderSearchAdapter(): RecyclerView.Adapter<ProviderSearchAdapter.Adapte
 
 
 
-    class AdapterViewHolder(val view: View) : RecyclerView.ViewHolder(view)
+    class AdapterViewHolder(val view: UserItemBinding) : RecyclerView.ViewHolder(view.root)
 }

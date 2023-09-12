@@ -25,6 +25,7 @@ import com.urcloset.smartangle.adapter.ProductStateAdapter
 import com.urcloset.smartangle.adapter.SellerProductsAdapter
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
+import com.urcloset.smartangle.databinding.ActivitySellerBinding
 import com.urcloset.smartangle.dialog.RateDialog
 import com.urcloset.smartangle.listeners.ItemClickListener
 import com.urcloset.smartangle.model.*
@@ -32,11 +33,6 @@ import com.urcloset.smartangle.tools.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_add_product.*
-import kotlinx.android.synthetic.main.activity_seller.*
-import kotlinx.android.synthetic.main.activity_seller.rv_categories
-import kotlinx.android.synthetic.main.activity_seller.tv_name
-import kotlinx.android.synthetic.main.category_products_seller_layout.*
 import java.lang.Exception
 import java.util.*
 import kotlin.collections.ArrayList
@@ -95,9 +91,10 @@ class SellerActivity : TemplateActivity() {
     var lang: String = "en"
     var productLoadingFinished = false
 
-
+    var binding : ActivitySellerBinding?=null
     override fun set_layout() {
-        setContentView(R.layout.activity_seller)
+        binding = ActivitySellerBinding.inflate(layoutInflater)
+        setContentView(/*R.layout.activity_seller*/binding!!.root)
     }
 
     override fun init_activity(savedInstanceState: Bundle?) {
@@ -230,33 +227,33 @@ class SellerActivity : TemplateActivity() {
 
 
     override fun init_views() {
-        rlAllCats = rl_all_cat
-        cvCats = cv_cat
-        tvName = tv_name
-        ivAvatar = iv_avatar
-        tvAvailableProduct = tv_available_product
-        tvLocation = tv_location
-        seekBar = seek_bar
-        ivPlayMusic = ic_play_music
-        lyVid = ly_vid
-        tvRateCount = tv_rate_count
-        star1 = iv_star_1
-        star2 = iv_star_2
-        star3 = iv_star_3
-        star4 = iv_star_4
-        star5 = iv_star_5
-        rvCategories = rv_categories
-        viewPager = seller_view_pager
+        rlAllCats =binding!!.rlAllCat
+        cvCats =binding!!.cvCat
+        tvName =binding!!.tvName
+        ivAvatar =binding!!.ivAvatar
+        tvAvailableProduct =binding!!.tvAvailableProduct
+        tvLocation =binding!!.tvLocation
+        seekBar =binding!!.seekBar
+        ivPlayMusic =binding!!.icPlayMusic
+        lyVid =binding!!.lyVid
+        tvRateCount =binding!!.tvRateCount
+        star1 =binding!!.ivStar1
+        star2 =binding!!.ivStar2
+        star3 =binding!!.ivStar3
+        star4 =binding!!.ivStar4
+        star5 =binding!!.ivStar5
+        rvCategories =binding!!.rvCategories
+        viewPager =binding!!.sellerViewPager
         ivBack = findViewById(R.id.iv_back)
-        notificationImage = iv_notification
-        ivSaveUser = iv_save_user
-        shimmerCategories = shimmer_category_seller
-        shimmerSeekBar = shimmer_seek_bar
-        shimmerMainProduct = shimmer_main_product
-        textInfoShimmer = text_info_shimmer
-        starShimmer = star_shimmer
-        locationShimmer = shimmer_location
-        shimmerNotification = shimmer_notification
+        notificationImage =binding!!.ivNotification
+        ivSaveUser =binding!!.ivSaveUser
+        shimmerCategories =binding!!.shimmerCategorySeller
+        shimmerSeekBar =binding!!.shimmerSeekBar
+        shimmerMainProduct =binding!!.shimmerMainProduct
+        textInfoShimmer =binding!!.textInfoShimmer
+        starShimmer =binding!!.starShimmer
+        locationShimmer =binding!!.shimmerLocation
+        shimmerNotification =binding!!.shimmerNotification
         var lang = "en"
         if (!BasicTools.isDeviceLanEn(this)) {
             lang = "ar"

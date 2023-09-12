@@ -22,6 +22,7 @@ import com.urcloset.smartangle.R
 import com.urcloset.smartangle.adapter.*
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
+import com.urcloset.smartangle.databinding.ActivityUpdateProductBinding
 import com.urcloset.smartangle.listeners.ItemClickListener
 import com.urcloset.smartangle.model.*
 import com.urcloset.smartangle.tools.AppObservable
@@ -34,7 +35,6 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 
-import kotlinx.android.synthetic.main.activity_update_product.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -106,9 +106,10 @@ class UpdateProductActivity : TemplateActivity() {
         )
         super.onCreate(savedInstanceState)
     }
-
+    var binding : ActivityUpdateProductBinding?=null
     override fun set_layout() {
-        setContentView(R.layout.activity_update_product)
+        binding = ActivityUpdateProductBinding.inflate(layoutInflater)
+        setContentView(/*R.layout.activity_update_product*/binding!!.root)
     }
 
     override fun init_activity(savedInstanceState: Bundle?) {
@@ -146,29 +147,29 @@ class UpdateProductActivity : TemplateActivity() {
     }
 
     override fun init_views() {
-        rvCategories = rv_categories
-        tvName = tv_name
-        etPhone = et_phone
-        tvDes = tv_des
-        rvPhotos = rv_photos
-        rvConditions = rv_conditions
-        tvYesNegotiable = tv_yes_negotiable
-        tvNoNegotiable = tv_no_negotiable
-        tvYesBox = tv_ba_y
-        tvNoBox = tv_ba_n
-        tvInvoiceAvaliable = tv_ia_y
-        tvInvoiceUnAvaliable = tv_ia_n
-        duration = sp_duration
-        rvColors = rv_colors
-        rvSize = rv_size
-        addButton = bn_add_update
-        etPrice = et_price
-        shimmerFrameLayout = shimmer_layout
-        tvCode = tv_code
-        shimmerColor = shimmerColors
-        shimmerSizes = shimmerSize
-        shimmerCondition = shimmer_condition
-        shimmerCategories = shimmer_category
+        rvCategories =binding!!.rvCategories
+        tvName =binding!!.tvName
+        etPhone =binding!!.etPhone
+        tvDes =binding!!.tvDes
+        rvPhotos =binding!!.rvPhotos
+        rvConditions =binding!!.rvConditions
+        tvYesNegotiable =binding!!.tvYesNegotiable
+        tvNoNegotiable =binding!!.tvNoNegotiable
+        tvYesBox =binding!!.tvBaY
+        tvNoBox =binding!!.tvBaN
+        tvInvoiceAvaliable =binding!!.tvIaY
+        tvInvoiceUnAvaliable =binding!!.tvIaN
+        duration =binding!!.spDuration
+        rvColors =binding!!.rvColors
+        rvSize =binding!!.rvSize
+        addButton =binding!!.bnAddUpdate
+        etPrice =binding!!.etPrice
+        shimmerFrameLayout =binding!!.shimmerLayout
+        tvCode =binding!!.tvCode
+        shimmerColor =binding!!.shimmerColors
+        shimmerSizes =binding!!.shimmerSize
+        shimmerCondition =binding!!.shimmerCondition
+        shimmerCategories =binding!!.shimmerCategory
 
     }
 
@@ -627,7 +628,7 @@ class UpdateProductActivity : TemplateActivity() {
                     if(etPhone.text.toString().trim().isNotEmpty()) {
                         if (photoAdapter.currentList.size > 0) {
                             showShimmerAddBtn(true)
-                            bn_add_update.isEnabled = false
+                            binding!!.bnAddUpdate.isEnabled = false
                             try {
 
                                 val sizes = ArrayList<Int>()
@@ -738,7 +739,7 @@ class UpdateProductActivity : TemplateActivity() {
                                                     result.messages,
                                                     Toast.LENGTH_SHORT
                                                 ).show()
-                                                bn_add_update.isEnabled = true
+                                               binding!!.bnAddUpdate.isEnabled = true
 
 
                                             }
@@ -746,7 +747,7 @@ class UpdateProductActivity : TemplateActivity() {
                                             override fun onFailed(status: Int) {
                                                 showShimmerAddBtn(false)
                                                 showToastMessage(R.string.faild)
-                                                bn_add_update.isEnabled = true
+                                               binding!!.bnAddUpdate.isEnabled = true
                                                 showShimmerAddBtn(false)
 
                                                 super.onFailed(status)
@@ -757,7 +758,7 @@ class UpdateProductActivity : TemplateActivity() {
                                 )
 
                             } catch (e: Exception) {
-                                bn_add_update.isEnabled = true
+                              binding!!.bnAddUpdate.isEnabled = true
                                 showShimmerAddBtn(false)
                                 showToastMessage(R.string.faild)
                             }
@@ -839,10 +840,10 @@ class UpdateProductActivity : TemplateActivity() {
     fun showShimmerAddBtn(state: Boolean) {
 
         if (state) {
-            bn_add_update.visibility = View.GONE
+          binding!!.bnAddUpdate.visibility = View.GONE
             shimmerFrameLayout.visible()
         } else {
-            bn_add_update.visibility = View.VISIBLE
+           binding!!.bnAddUpdate.visibility = View.VISIBLE
             shimmerFrameLayout.hide()
         }
     }

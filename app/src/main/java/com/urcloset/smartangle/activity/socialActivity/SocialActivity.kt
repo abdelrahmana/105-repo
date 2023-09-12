@@ -11,6 +11,7 @@ import android.widget.TextView
 import com.urcloset.smartangle.R
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
+import com.urcloset.smartangle.databinding.ActivitySocialBinding
 import com.urcloset.smartangle.model.LinkAccountModel
 import com.urcloset.smartangle.model.PersonalUserInfoModel
 import com.urcloset.smartangle.model.UnLinkAccountModel
@@ -20,7 +21,6 @@ import com.urcloset.smartangle.tools.TemplateActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_social.*
 import java.lang.Exception
 
 
@@ -41,10 +41,10 @@ class SocialActivity : TemplateActivity() {
     var twitterLink:String? = null
 
     var disposable = CompositeDisposable()
-
-
+    var binding : ActivitySocialBinding?=null
     override fun set_layout() {
-        setContentView(R.layout.activity_social)
+        binding = ActivitySocialBinding.inflate(layoutInflater)
+        setContentView(binding!!.root)
 
 
     }
@@ -171,14 +171,14 @@ class SocialActivity : TemplateActivity() {
 
 
     override fun init_views() {
-        tvFacebook = tv_facebook
-        tvWhatsApp = tv_whatsapp
-        tvTwitter = tv_twitter
-        tvInstagram = tv_instagram
-        faceState = face_sate
-        whatstate = whats_sate
-        twitterState = twitter_sate
-        instaState = insta_state
+        tvFacebook =binding!!.tvFacebook
+        tvWhatsApp =binding!!.tvWhatsapp
+        tvTwitter =binding!!.tvTwitter
+        tvInstagram =binding!!.tvInstagram
+        faceState =binding!!.faceSate
+        whatstate =binding!!.whatsSate
+        twitterState =binding!!.twitterSate
+        instaState =binding!!.instaState
         backIcon = findViewById(R.id.iv_back)
         progress = findViewById(R.id.progress_social)
     }

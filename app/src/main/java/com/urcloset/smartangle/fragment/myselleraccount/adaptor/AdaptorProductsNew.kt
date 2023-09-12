@@ -16,8 +16,10 @@ import com.urcloset.smartangle.tools.BasicTools
 class AdaptorProductsNew( // one selection
     var context: Context,
     var arrayList: ArrayList<ProductModel.Product>,
-    val isOwner: Boolean, val callBackMoreOption: (Triple<Int,ProductModel.Product,View>) -> Unit
-   // var selectedArrayList: ArrayList<ModelTrip>
+    val isOwner: Boolean,
+    val callBackMoreOption: (Triple<Int, ProductModel.Product, View>) -> Unit,
+    val callBackProductDetails: (ProductModel.Product) -> Unit
+    // var selectedArrayList: ArrayList<ModelTrip>
 ) :
     RecyclerView.Adapter<AdaptorProductsNew.ViewHolder>() {
 
@@ -63,6 +65,9 @@ class AdaptorProductsNew( // one selection
                )).into(itemViews.productImage)
            itemViews.cardMoreOption.setOnClickListener{
                callBackMoreOption.invoke(Triple(adapterPosition,selectedItem,itemViews.cardMoreOption))
+           }
+           itemViews.productContainerConstrain.setOnClickListener{
+               callBackProductDetails.invoke(selectedItem)
            }
        }
 

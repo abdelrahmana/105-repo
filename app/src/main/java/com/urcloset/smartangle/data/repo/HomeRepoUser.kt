@@ -9,6 +9,7 @@ import com.urcloset.smartangle.activity.publishStatusActivity.InterfacePublicati
 import com.urcloset.smartangle.activity.publishStatusActivity.PublicationStatus
 import com.urcloset.smartangle.api.AppApi
 import com.urcloset.smartangle.data.model.agreement_terms.AgreementResponseTerms
+import com.urcloset.smartangle.model.BasicModel
 import com.urcloset.smartangle.model.ProductModel
 import com.urcloset.smartangle.model.PublishStateModel
 import com.urcloset.smartangle.tools.BasicTools
@@ -112,7 +113,7 @@ class HomeRepoUser @Inject constructor(private val webService: AppApi,
         }
     }
 
-    suspend fun changeProductStatus(hashMap: HashMap<String, Any>?, completion: (ResponseBody?, String?) -> Unit) {
+    suspend fun changeProductStatus(hashMap: HashMap<String, Any>?, completion: (BasicModel?, String?) -> Unit) {
         val res = webService.deleteProduct(hashMap)//webService.postIgnoreOrder(hashMap)
 
         res.onSuccess {

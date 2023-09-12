@@ -32,6 +32,7 @@ import com.urcloset.smartangle.activity.terms.TermsActivity
 import com.urcloset.smartangle.activity.visitorActivity.VisitorActivity
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
+import com.urcloset.smartangle.databinding.FragmentSettingsBinding
 import com.urcloset.smartangle.fragment.UserInfoFragment
 import com.urcloset.smartangle.fragment.paymentmethod.PaymentMethodFragment
 import com.urcloset.smartangle.fragment.unpaid.UnpaidCommissionsFragment
@@ -45,18 +46,6 @@ import com.urcloset.smartangle.tools.TemplateFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_settings.card_change_pass
-import kotlinx.android.synthetic.main.activity_settings.cv_about
-import kotlinx.android.synthetic.main.activity_settings.cv_lang
-import kotlinx.android.synthetic.main.activity_settings.cv_privacy
-import kotlinx.android.synthetic.main.activity_settings.cv_publish_state
-import kotlinx.android.synthetic.main.activity_settings.cv_social
-import kotlinx.android.synthetic.main.activity_settings.cv_support
-import kotlinx.android.synthetic.main.activity_settings.cv_terms
-import kotlinx.android.synthetic.main.activity_settings.cv_visitors
-import kotlinx.android.synthetic.main.activity_settings.cv_voice_identifiy
-import kotlinx.android.synthetic.main.fragment_settings.*
-import kotlinx.android.synthetic.main.toolbar_backpress1.*
 import okhttp3.ResponseBody
 import kotlin.collections.HashMap
 
@@ -86,13 +75,14 @@ class SettingFragment : TemplateFragment() {
     lateinit var share:CardView
     lateinit var whatsAppSupport : CardView
     var disposable = CompositeDisposable()
-
+    var binding : FragmentSettingsBinding? =null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        fragmentView = inflater.inflate(R.layout.fragment_settings, container, false)
+        binding = FragmentSettingsBinding.inflate(layoutInflater,container,false)
+        fragmentView = binding!!.root//inflater.inflate(R.layout.fragment_settings, container, false)
 
         btnLogout = fragmentView.findViewById(R.id.card_logout)
         shimmerLogout = fragmentView.findViewById(R.id.shimmer_logout)
@@ -107,14 +97,14 @@ class SettingFragment : TemplateFragment() {
 
         viewModelHome.setPreviousNavBottom(R.id.setting)
 
-        return fragmentView
+        return binding!!.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (BasicTools.getToken(requireContext()).isNotEmpty())
-            cardCommission.visibility = View.VISIBLE
-        cardCommission?.setOnClickListener{
+            binding?.cardCommission?.visibility = View.VISIBLE
+        binding?.cardCommission?.setOnClickListener{
             val fragment = UnpaidCommissionsFragment()
             changeFragmentBack(requireActivity(),fragment,"commissions",null,R.id.root_fragment_home)
       //      parent?.show_fragment2(fragment, false, false, R.id.root_fragment_home)
@@ -122,17 +112,17 @@ class SettingFragment : TemplateFragment() {
     }
 
     override fun init_views() {
-        cvVisitor = cv_visitors
-        cvTerms = cv_terms
-        cvSocial = cv_social
-        cvAbout = cv_about
-        cvPublishState = cv_publish_state
-        changePass = card_change_pass
-        cvSupport = cv_support
-        cvVoiceIdentifiy = cv_voice_identifiy
-        cvPrivacy = cv_privacy
-        cvLang = cv_lang
-        ivBack = iv_back
+        cvVisitor =binding!!.cvVisitors// cv_visitors
+        cvTerms =binding!!.cvTerms// cv_terms
+        cvSocial =binding!!.cvSocial// cv_social
+        cvAbout =binding!!.cvAbout// cv_about
+        cvPublishState =binding!!.cvPublishState// cv_publish_state
+        changePass =binding!!.cardChangePass// card_change_pass
+        cvSupport =binding!!.cvSupport// cv_support
+        cvVoiceIdentifiy =binding!!.cvVoiceIdentifiy// cv_voice_identifiy
+        cvPrivacy =binding!!.cvPrivacy// cv_privacy
+        cvLang =binding!!.cvLang// cv_lang
+        ivBack =binding!!.toolbar.ivBack// iv_back
 
 
     }
@@ -241,7 +231,7 @@ class SettingFragment : TemplateFragment() {
 
 
         }
-        supportWhats?.setOnClickListener{
+        binding?.supportWhats?.setOnClickListener{
             startActivity(sharePdfForWhatsApp("+966554015105"))
         }
         myCard.setOnClickListener {

@@ -25,6 +25,7 @@ import com.urcloset.shop.tools.visible
 import com.urcloset.smartangle.R
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
+import com.urcloset.smartangle.databinding.ActivitySoundBinding
 import com.urcloset.smartangle.model.CategoryModel
 import com.urcloset.smartangle.model.UserProfileModel
 import com.urcloset.smartangle.tools.AppObservable
@@ -33,7 +34,6 @@ import com.urcloset.smartangle.tools.TemplateActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_sound.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -84,9 +84,10 @@ class SoundActivity : TemplateActivity(), RecordingSampler.CalculateVolumeListen
     private var writepermissions: Array<String> = arrayOf(
         Manifest.permission.WRITE_EXTERNAL_STORAGE
     )
-
+    var binding : ActivitySoundBinding?=null
     override fun set_layout() {
-        setContentView(R.layout.activity_sound)
+        binding = ActivitySoundBinding.inflate(layoutInflater)
+        setContentView(binding!!.root)
 
     }
 
@@ -223,7 +224,7 @@ class SoundActivity : TemplateActivity(), RecordingSampler.CalculateVolumeListen
         recorder = null
         player?.release()
         player = null
-        btnUpload = btn_upload
+        btnUpload = binding!!.btnUpload //btn_upload
     }
 
     override fun init_views() {
