@@ -148,7 +148,7 @@ class ConditionListAdapter(): RecyclerView.Adapter<ConditionListAdapter.AdapterV
         var desc=holder.view.tvDesc as TextView
         var ivBookmark=holder.view.ivBookmark as ImageView
         var ivImg=holder.view.ivImg as ImageView
-         var root =holder.view.root as LinearLayout
+     //    var root =holder.view.root as LinearLayout
 
         
         
@@ -198,7 +198,7 @@ class ConditionListAdapter(): RecyclerView.Adapter<ConditionListAdapter.AdapterV
             iview!!.delete(item?.id!!,position)
 
         }
-        root.setOnClickListener {
+        binding?.rootLinear?.setOnClickListener {
             val intent = Intent(context, ProductDetails::class.java)
             val gson = Gson()
             intent.putExtra("product", gson.toJson(data?.get(position)))

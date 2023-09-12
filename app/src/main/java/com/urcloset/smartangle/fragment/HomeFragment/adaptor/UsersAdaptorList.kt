@@ -72,7 +72,7 @@ class UsersAdaptorList(
                 itemData.fullPath?:""
             )*/).circleCrop()
                 .apply( RequestOptions().override(200, 200))
-                .error(R.color.background_image).placeholder(R.color.background_image).dontAnimate()
+                .error(R.drawable.user_default).placeholder(R.drawable.user_default).dontAnimate()
                 .into(imageItemadaptorBinding.ivUserImg1)
             // set work status
             //imageItemadaptorBinding.price.text = itemData.?:""

@@ -8,9 +8,15 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
-import android.view.View.*
-import android.widget.*
+import android.view.View.GONE
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
+import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
+import android.widget.SeekBar
+import android.widget.TextView
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -28,15 +34,17 @@ import com.urcloset.smartangle.api.AppApi
 import com.urcloset.smartangle.databinding.ActivitySellerBinding
 import com.urcloset.smartangle.dialog.RateDialog
 import com.urcloset.smartangle.listeners.ItemClickListener
-import com.urcloset.smartangle.model.*
-import com.urcloset.smartangle.tools.*
+import com.urcloset.smartangle.model.BasicModel
+import com.urcloset.smartangle.model.CategoryModel
+import com.urcloset.smartangle.model.ProductModel
+import com.urcloset.smartangle.model.UserProfileModel
+import com.urcloset.smartangle.tools.AppObservable
+import com.urcloset.smartangle.tools.BasicTools
+import com.urcloset.smartangle.tools.TemplateActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import java.lang.Exception
-import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
+import java.util.Locale
 
 
 class SellerActivity : TemplateActivity() {
@@ -366,7 +374,8 @@ class SellerActivity : TemplateActivity() {
                 shimmerSeekBar.visibility = GONE
                 lyVid.visibility = View.VISIBLE
                 seekBar.max = mediaPlayer!!.duration
-
+                //mediaPlayer?.start()
+                ivPlayMusic.performClick()
 
             }
             )
@@ -397,7 +406,7 @@ class SellerActivity : TemplateActivity() {
 
                 }
             runnable = Runnable {
-                seekBar.progress = mediaPlayer!!.currentPosition
+                seekBar.progress = mediaPlayer?.currentPosition?:0
                 handler.postDelayed(runnable!!, 1000)
             }
 
@@ -754,6 +763,11 @@ class SellerActivity : TemplateActivity() {
                 })
         )
 
+    }
+
+    override fun onDestroy() {
+        mediaPlayer?.release()
+        super.onDestroy()
     }
 
     fun selectAllCategories() {

@@ -162,7 +162,7 @@ class ProviderSearchAdapter(): RecyclerView.Adapter<ProviderSearchAdapter.Adapte
 
         if(!item?.image.isNullOrEmpty()){
 
-            BasicTools.loadImage(BasicTools.getUrlImg(context!!,item?.image!!),
+            BasicTools.loadUsersImage(BasicTools.getUrlImg(context!!,item?.image!!),
                 ivImg,object : DownloadListener {
                     override fun completed(status: Boolean, bitmap: Bitmap) {
                         var anim = AnimationUtils.loadAnimation(context, android.R.anim.fade_in)

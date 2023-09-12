@@ -358,6 +358,7 @@
                 android:paddingEnd="10dp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
+                app:backgroundTint="@color/background_camera"
                 android:layout_marginEnd="@dimen/d0_8"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

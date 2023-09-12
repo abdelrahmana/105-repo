@@ -452,5 +452,7 @@
     <string name="share">مشاركة</string>
     <string name="pay_comission">Pay Commission</string>
     <string name="product_deleted">تم حذف المنتج بنجاح .</string>
+    <string name="delete_all"><u>حذف الكل</u></string>
+    <string name="all_notifcations_deleted">تم حذف جميع الإشعارات</string>
 
 </resources>

@@ -1,5 +1,6 @@
 package com.urcloset.smartangle.activity.notificationActivity
 
+import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
@@ -26,15 +27,19 @@ import java.util.*
 import kotlin.collections.ArrayList
 import android.util.Base64
 import android.widget.*
+import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import com.google.gson.Gson
 import com.urcloset.smartangle.activity.productDetails.ProductDetails
 import com.urcloset.smartangle.databinding.ActivityNotificationBinding
 import com.urcloset.smartangle.listeners.ItemClickListener
 import com.urcloset.smartangle.model.BasicModel
+import dagger.hilt.android.AndroidEntryPoint
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
+import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class NotificationActivity : TemplateActivity(),ItemClickListener {
     lateinit var rvNotifications:RecyclerView
     var disposable= CompositeDisposable()
@@ -44,12 +49,14 @@ class NotificationActivity : TemplateActivity(),ItemClickListener {
     lateinit var notificationAdapter:NotificationAdapter
     lateinit var shimmerVisitor : ShimmerFrameLayout
     var isLoading =false
+    @Inject lateinit var progressDialog :Dialog
 
     lateinit var ivBackPress:ImageView
-
+    val model : NotificationViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setViewModelObservers()
 
     }
 
@@ -74,6 +81,13 @@ class NotificationActivity : TemplateActivity(),ItemClickListener {
             false
         )
         getNotifications(currentPage.toString())
+        binding?.deleteAll?.setOnClickListener{
+            if (BasicTools.isConnected(this))
+            // delete all
+            model.deleteAllNotifications(HashMap<String, Any>().also { it.put("type","all") })
+            else
+                BasicTools.showSnackMessages(this@NotificationActivity, getString(R.string.no_connection))
+        }
     }
 
     override fun init_views() {
@@ -84,7 +98,28 @@ class NotificationActivity : TemplateActivity(),ItemClickListener {
 
 
     }
+    fun setViewModelObservers() {
+        model.deleteAllNotifications.observe(this, androidx.lifecycle.Observer{ // for sending to maintenance
+            if (it!=null){
+                Toast.makeText(this@NotificationActivity, getString(R.string.all_notifcations_deleted), Toast.LENGTH_SHORT).show()
+                model.deleteAllNotifications(null)
+            }
 
+        })
+        model.networkLoader.observe(this@NotificationActivity, Observer{
+            it?.let { progress->
+                progress.setDialog(progressDialog) // open close principles
+                model.setNetworkLoader(null)
+            }
+        })
+
+        model.errorViewModel.observe(this@NotificationActivity) {
+            it?.let { error ->
+                BasicTools.showSnackMessages(this@NotificationActivity, error)
+
+            }
+        }
+    }
     override fun init_events() {
         ivBackPress.setOnClickListener {
             onBackPressed()
@@ -140,8 +175,8 @@ class NotificationActivity : TemplateActivity(),ItemClickListener {
                                     result.data.list.notifications as ArrayList<NotificationModel.Data.NotificationList.NotificationItem>
                                 )
                                 notificationAdapter.setOnItemClickListener(this@NotificationActivity)
-
                                 rvNotifications.adapter = notificationAdapter
+                                binding?.deleteAll?.visibility = View.VISIBLE
                             }
                             else{
                                 findViewById<LinearLayout>(R.id.ly_empty).visibility = View.VISIBLE

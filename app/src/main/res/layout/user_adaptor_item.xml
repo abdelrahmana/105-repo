@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/iv_user_img1"
                 android:layout_width="@dimen/d5"
                 android:layout_height="@dimen/d5"
@@ -28,8 +28,7 @@
                 android:layout_marginTop="@dimen/d1_4"
                 android:layout_marginRight="@dimen/d2_4"
                 android:layout_marginBottom="@dimen/d1"
-                android:scaleType="fitXY"
-                android:src="@drawable/user_image_holder" />
+                />
 
         </RelativeLayout>
         <TextView

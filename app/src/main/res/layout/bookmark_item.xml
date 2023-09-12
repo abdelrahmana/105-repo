@@ -19,7 +19,7 @@
 
     <LinearLayout
         android:padding="@dimen/half_unit"
-        android:id="@+id/root"
+        android:id="@+id/rootLinear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"

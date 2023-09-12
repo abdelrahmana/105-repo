@@ -130,4 +130,22 @@ class HomeRepoUser @Inject constructor(private val webService: AppApi,
             completion(null,context.getString(R.string.error_happend)) // handle error from error body
         }
     }
+
+    suspend fun deleteAllNotifications(hashMap: HashMap<String, Any>?, completion: (BasicModel?, String?) -> Unit) {
+        val res = webService.deleteProduct(hashMap)//webService.postIgnoreOrder(hashMap)
+
+        res.onSuccess {
+            completion(data!! , null)
+
+
+        }
+        res.onException {
+            completion(null ,message.toString())
+
+
+        }
+        res.onError {
+            completion(null,context.getString(R.string.error_happend)) // handle error from error body
+        }
+    }
 }

@@ -568,6 +568,8 @@ I agree to pay 10 riyals when selling the product, and that it is in my possessi
     <string name="share">Share</string>
     <string name="pay_comission">Pay Commission</string>
     <string name="product_deleted">Product Deleted Successfully</string>
+    <string name="delete_all"><u>Delete All</u></string>
+    <string name="all_notifcations_deleted">"All Notifications Are Deleted "</string>
 
 
 </resources>

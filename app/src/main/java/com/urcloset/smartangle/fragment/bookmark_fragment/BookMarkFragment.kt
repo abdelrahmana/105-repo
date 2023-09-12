@@ -20,9 +20,11 @@ import com.urcloset.smartangle.R
 import com.urcloset.smartangle.activity.conditionActivity.ConditionActivity
 import com.urcloset.smartangle.activity.homeActivity.HomeActivity
 import com.urcloset.smartangle.activity.homeActivity.HomeViewModel
+import com.urcloset.smartangle.activity.notificationActivity.NotificationActivity
 import com.urcloset.smartangle.adapter.project105.ConditionListAdapter
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
+import com.urcloset.smartangle.databinding.FragmentBookMarkBinding
 import com.urcloset.smartangle.model.project_105.BookmarkMV3
 import com.urcloset.smartangle.tools.*
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -47,12 +49,14 @@ class BookMarkFragment : TemplateFragment(),IBookMarkFragment {
 
     lateinit var views : View
     lateinit var rootEmpty:LinearLayout
+    var binding : FragmentBookMarkBinding? =null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-         views = inflater.inflate(R.layout.fragment_book_mark, container, false)
+        binding = FragmentBookMarkBinding.inflate(layoutInflater,container,false)
+         views = binding!!.root//inflater.inflate(R.layout.fragment_book_mark, container, false)
 
         viewModelHome.setPreviousNavBottom(R.id.bookmark)
 
@@ -61,7 +65,12 @@ class BookMarkFragment : TemplateFragment(),IBookMarkFragment {
 
 
     override fun init_views() {
-
+        binding?.ivNotification?.setOnClickListener{
+            if (TemplateActivity.loginResponse?.data?.accessToken!=null) {
+                TemplateActivity.isNotificationVisited =1
+                BasicTools.openActivity(parent!!, NotificationActivity::class.java, false)
+            }
+        }
         swip=views!!.findViewById(R.id.swip_bookmark)
         rv=views!!.findViewById(R.id.rv_bookmark)
         ivFilter=views!!.findViewById(R.id.iv_search)

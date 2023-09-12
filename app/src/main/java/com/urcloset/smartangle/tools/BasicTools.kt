@@ -1074,6 +1074,23 @@ object BasicTools {
 
     }
     @JvmOverloads
+    fun loadUsersImage(url: String, image_view: ImageView?, listener: DownloadListener?, loading_drawable: Drawable? = null) {
+        try {
+            Glide.with(image_view!!.context).load(url)
+                .error(R.drawable.user_default).placeholder(R.drawable.user_default).dontAnimate()
+                .apply( RequestOptions().override(600, 600)).into(image_view)
+        } catch (e: Exception) {
+            Glide.with(image_view!!.context).load(R.drawable.user_default).dontAnimate()
+                .apply( RequestOptions().override(600, 600)).into(image_view)
+           // e.printStackTrace()
+        } catch (er: Error) {
+            Glide.with(image_view!!.context).load(R.drawable.user_default).dontAnimate()
+                .apply( RequestOptions().override(600, 600)).into(image_view)
+         //   er.printStackTrace()
+        }
+
+    }
+    @JvmOverloads
     fun loadImageWithHero(context: Context,url: String, image_view: ImageView, listener: DownloadListener?, loading_drawable: Drawable? = null) {
         try {
             val imageLoader = ImageLoader.getInstance()
