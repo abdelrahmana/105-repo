@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_backpress1"/>
+    <TextView
+        android:paddingRight="@dimen/d0_8"
+        android:paddingLeft="@dimen/d0_8"
+        android:layout_gravity="start"
+        android:textSize="@dimen/header_text"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:text="@string/pay_comission"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:paddingRight="@dimen/d0_8"
+        android:paddingLeft="@dimen/d0_8"
+        android:layout_marginTop="60dp"
+        android:layout_gravity="start"
+        android:textSize="15sp"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:text="@string/write_commission"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardCommission"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/d0_8"
+        android:layout_marginEnd="@dimen/d0_8"
+        app:cardBackgroundColor="@color/card_color"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:minHeight="60dp"
+            android:layout_height="wrap_content">
+
+            <EditText
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:id="@+id/priceEditText"
+                android:layout_width="0dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColorHint="@color/gray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textSize="16sp"
+                android:background="@null"
+                android:gravity="center"
+                android:drawablePadding="10dp"
+                android:inputType="numberDecimal"
+                android:hint="@string/default_commission"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/send"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="@dimen/d0_8"
+        android:layout_marginEnd="@dimen/d0_8"
+        android:gravity="center"
+        android:text="@string/confirm_pay"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/colorPrimary"
+        app:cornerRadius="10dp" />
+</LinearLayout>

@@ -570,6 +570,9 @@ I agree to pay 10 riyals when selling the product, and that it is in my possessi
     <string name="product_deleted">Product Deleted Successfully</string>
     <string name="delete_all"><u>Delete All</u></string>
     <string name="all_notifcations_deleted">"All Notifications Are Deleted "</string>
+    <string name="write_commission">Please Enter Commissions</string>
+    <string name="default_commission">10 SAR</string>
+    <string name="confirm_pay">Confirm Pay</string>
 
 
 </resources>

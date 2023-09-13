@@ -32,7 +32,9 @@ import com.urcloset.smartangle.adapter.SpinnerAdapter
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
 import com.urcloset.smartangle.databinding.MySellerAccountLayoutBinding
+import com.urcloset.smartangle.fragment.directpay.DirectPayFragment
 import com.urcloset.smartangle.fragment.myselleraccount.adaptor.AdaptorProductsNew
+import com.urcloset.smartangle.fragment.paymentmethod.PaymentMethodFragment
 import com.urcloset.smartangle.fragment.setting_fragment.SettingFragment
 import com.urcloset.smartangle.model.*
 import com.urcloset.smartangle.tools.*
@@ -202,6 +204,15 @@ class MySellerAccount() : TemplateFragment() {
         }
         viewModelHome.setPreviousNavBottom(R.id.setting)
         setViewModelObservers()
+        binding?.payCommission?.setOnClickListener{
+            BasicTools.changeFragmentBack(
+                requireActivity(),
+                DirectPayFragment(),
+                "payment_direct_pay",
+                null,
+                R.id.root_fragment_home
+            )
+        }
         return view
     }
     fun setSpinnerClickListener() { // filter when selection new category

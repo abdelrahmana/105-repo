@@ -450,9 +450,12 @@
     <string name="contact_whats">تواصل واتس اب للشراء</string>
     <string name="follow_new">متابعة</string>
     <string name="share">مشاركة</string>
-    <string name="pay_comission">Pay Commission</string>
+    <string name="pay_comission">دفع العمولة</string>
     <string name="product_deleted">تم حذف المنتج بنجاح .</string>
     <string name="delete_all"><u>حذف الكل</u></string>
     <string name="all_notifcations_deleted">تم حذف جميع الإشعارات</string>
+    <string name="write_commission">الرجاء إدخال العمولة</string>
+    <string name="default_commission">10 ريال</string>
+    <string name="confirm_pay">تأكيد الدفع</string>
 
 </resources>
