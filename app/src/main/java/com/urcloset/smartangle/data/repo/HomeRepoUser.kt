@@ -132,7 +132,7 @@ class HomeRepoUser @Inject constructor(private val webService: AppApi,
     }
 
     suspend fun deleteAllNotifications(hashMap: HashMap<String, Any>?, completion: (BasicModel?, String?) -> Unit) {
-        val res = webService.deleteProduct(hashMap)//webService.postIgnoreOrder(hashMap)
+        val res = webService.deleteAllNotifications(hashMap)//webService.postIgnoreOrder(hashMap)
 
         res.onSuccess {
             completion(data!! , null)
