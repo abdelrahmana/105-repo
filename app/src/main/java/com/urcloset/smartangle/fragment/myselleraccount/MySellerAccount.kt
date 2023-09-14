@@ -274,7 +274,8 @@ class MySellerAccount() : TemplateFragment() {
     }
 
     override fun onDestroyView() {
-        disposable.dispose()
+        disposable.clear()
+      //  disposable.dispose()
         super.onDestroyView()
     }
 
@@ -321,7 +322,6 @@ class MySellerAccount() : TemplateFragment() {
         super.onResume()
     }
     fun getPersonaluserProfile(){
-
         if(!BasicTools.isDeviceLanEn())
             lang ="ar"
         val shopApi =
@@ -336,7 +336,7 @@ class MySellerAccount() : TemplateFragment() {
                     AppApi::class.java
                 )
         val observable = shopApi!!.getUserProfile(TemplateActivity.loginResponse?.data?.user?.id!!)
-        disposable.clear()
+        //disposable.clear()
         disposable.add( // when get profile get categories from it
             observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
