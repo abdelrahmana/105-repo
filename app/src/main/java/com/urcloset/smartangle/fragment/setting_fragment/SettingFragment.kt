@@ -34,6 +34,8 @@ import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
 import com.urcloset.smartangle.databinding.FragmentSettingsBinding
 import com.urcloset.smartangle.fragment.UserInfoFragment
+import com.urcloset.smartangle.fragment.directpay.DirectPayFragment
+import com.urcloset.smartangle.fragment.historypayment.HistoryPaymentFragment
 import com.urcloset.smartangle.fragment.paymentmethod.PaymentMethodFragment
 import com.urcloset.smartangle.fragment.unpaid.UnpaidCommissionsFragment
 import com.urcloset.smartangle.model.project_105.CardResultModel
@@ -105,9 +107,12 @@ class SettingFragment : TemplateFragment() {
         if (BasicTools.getToken(requireContext()).isNotEmpty())
             binding?.cardCommission?.visibility = View.VISIBLE
         binding?.cardCommission?.setOnClickListener{
-            val fragment = UnpaidCommissionsFragment()
+            val fragment = DirectPayFragment()//UnpaidCommissionsFragment()
             changeFragmentBack(requireActivity(),fragment,"commissions",null,R.id.root_fragment_home)
       //      parent?.show_fragment2(fragment, false, false, R.id.root_fragment_home)
+        }
+        binding?.cardHistoryPayment?.setOnClickListener{
+            changeFragmentBack(requireActivity(),HistoryPaymentFragment(),"commissions_history",null,R.id.root_fragment_home)
         }
     }
 

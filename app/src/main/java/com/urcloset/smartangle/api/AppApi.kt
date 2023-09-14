@@ -4,6 +4,7 @@ package com.urcloset.smartangle.api
 
 import com.skydoves.sandwich.ApiResponse
 import com.urcloset.smartangle.data.model.agreement_terms.AgreementResponseTerms
+import com.urcloset.smartangle.data.model.paymenthistory.PaymentHistoryResponse
 import com.urcloset.smartangle.model.*
 import com.urcloset.smartangle.model.project21.*
 import com.urcloset.smartangle.model.project_105.*
@@ -118,6 +119,9 @@ interface AppApi {
     suspend fun postPaymentAfterMyFatoraPay(@Body hashMap: HashMap<String, Any>?)
     :ApiResponse<ResponseBody>
 
+    @GET("auth/product/CommissionPaymentList")
+    suspend fun getHistoryPayment()
+            :ApiResponse<PaymentHistoryResponse>
     @POST("auth/contact_us/message/send")
     fun sendMessage(@Body map: Map<String, String>):Observable<SendMessageModel>
     @GET("auth/contact_us/chat/get")

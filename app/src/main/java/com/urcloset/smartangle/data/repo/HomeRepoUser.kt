@@ -1,6 +1,7 @@
 package com.example.currencyapp.data.repo
 
 import android.content.Context
+import com.skydoves.sandwich.ApiResponse
 import com.skydoves.sandwich.onError
 import com.skydoves.sandwich.onException
 import com.skydoves.sandwich.onSuccess
@@ -9,6 +10,7 @@ import com.urcloset.smartangle.activity.publishStatusActivity.InterfacePublicati
 import com.urcloset.smartangle.activity.publishStatusActivity.PublicationStatus
 import com.urcloset.smartangle.api.AppApi
 import com.urcloset.smartangle.data.model.agreement_terms.AgreementResponseTerms
+import com.urcloset.smartangle.data.model.paymenthistory.PaymentHistoryResponse
 import com.urcloset.smartangle.model.BasicModel
 import com.urcloset.smartangle.model.ProductModel
 import com.urcloset.smartangle.model.PublishStateModel
@@ -93,6 +95,11 @@ class HomeRepoUser @Inject constructor(private val webService: AppApi,
         res?.onError {
             completion(null,context.getString(R.string.error_happend)) // handle error from error body
         }
+    }
+    suspend fun getPaymentHistory(): ApiResponse<PaymentHistoryResponse> {
+        return  webService.getHistoryPayment()//webService.postIgnoreOrder(hashMap)
+
+
     }
 
     suspend fun getProducts(interfacePublicationStatus: InterfacePublication, completion: (List<ProductModel.Product>?, String?) -> Unit) {

@@ -457,5 +457,6 @@
     <string name="write_commission">الرجاء إدخال العمولة</string>
     <string name="default_commission">10 ريال</string>
     <string name="confirm_pay">تأكيد الدفع</string>
+    <string name="record_payment">سجل المدفوعات</string>
 
 </resources>

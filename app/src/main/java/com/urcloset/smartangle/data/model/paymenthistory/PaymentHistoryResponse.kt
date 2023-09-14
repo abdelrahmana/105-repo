@@ -1,7 +1,7 @@
 package com.urcloset.smartangle.data.model.paymenthistory
 
 data class PaymentHistoryResponse(
-    val `data`: List<Data>,
+    val `data`: List<Data>?,
     val messages: Any,
     val status: Boolean
 )
