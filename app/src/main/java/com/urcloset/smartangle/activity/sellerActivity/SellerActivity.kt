@@ -1,5 +1,6 @@
 package com.urcloset.smartangle.activity.sellerActivity
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.media.MediaPlayer
@@ -11,6 +12,7 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
+import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
@@ -23,16 +25,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.urcloset.shop.tools.hide
+import com.urcloset.shop.tools.show
 import com.urcloset.shop.tools.visible
 import com.urcloset.smartangle.CustomViewPager
 import com.urcloset.smartangle.R
+import com.urcloset.smartangle.activity.productDetails.ProductDetails
 import com.urcloset.smartangle.adapter.CategoryAdapterSeller
 import com.urcloset.smartangle.adapter.ProductStateAdapter
 import com.urcloset.smartangle.adapter.SellerProductsAdapter
+import com.urcloset.smartangle.adapter.SpinnerAdapter
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
 import com.urcloset.smartangle.databinding.ActivitySellerBinding
 import com.urcloset.smartangle.dialog.RateDialog
+import com.urcloset.smartangle.fragment.myselleraccount.adaptor.AdaptorProductsNew
 import com.urcloset.smartangle.listeners.ItemClickListener
 import com.urcloset.smartangle.model.BasicModel
 import com.urcloset.smartangle.model.CategoryModel
@@ -73,12 +79,12 @@ class SellerActivity : TemplateActivity() {
     var userSeller: UserProfileModel.Data? = null
     lateinit var categories: List<CategoryModel.Category>
     var products = ArrayList<ProductModel.Product>()
-    lateinit var rvCategories: RecyclerView
-    lateinit var shimmerCategories: ShimmerFrameLayout
+   // lateinit var rvCategories: RecyclerView
+  //  lateinit var shimmerCategories: ShimmerFrameLayout
     lateinit var productStateAdapter: ProductStateAdapter
     val categoryAdapter = CategoryAdapterSeller()
     lateinit var sellerCategoriesProducts: SellerProductsAdapter
-    lateinit var viewPager: CustomViewPager
+   // lateinit var viewPager: CustomViewPager
     var runnable: Runnable? = null
     private var handler = Handler()
     private var allProducts = ArrayList<ArrayList<ProductModel.Product>>()
@@ -93,20 +99,28 @@ class SellerActivity : TemplateActivity() {
     lateinit var locationShimmer: ShimmerFrameLayout
     lateinit var shimmerNotification: ShimmerFrameLayout
     lateinit var chooseDialog: RateDialog
-    lateinit var rlAllCats: RelativeLayout
-    lateinit var cvCats: CardView
+   // lateinit var rlAllCats: RelativeLayout
+   // lateinit var cvCats: CardView
     var data: UserProfileModel.Data? = null
     var lang: String = "en"
     var productLoadingFinished = false
-
+    var productAdaptor : AdaptorProductsNew? = null
+    var allProductNew = ArrayList<ProductModel.Product>() // contians new arrayOf all Products
     var binding : ActivitySellerBinding?=null
     override fun set_layout() {
         binding = ActivitySellerBinding.inflate(layoutInflater)
+        productAdaptor = AdaptorProductsNew(this,ArrayList<ProductModel.Product>(),false,
+            null,callBackProductDetails)
         setContentView(/*R.layout.activity_seller*/binding!!.root)
     }
+    val callBackProductDetails :(ProductModel.Product)->Unit= {
+        val intent = Intent(this, ProductDetails::class.java)
+        intent.putExtra("id", it.id.toString())
+        startActivity(intent)
 
+    }
     override fun init_activity(savedInstanceState: Bundle?) {
-        BasicTools.showShimmer(rvCategories, shimmerCategories, true)
+       // BasicTools.showShimmer(rvCategories, shimmerCategories, true)
         locationShimmer.visible()
         shimmerMainProduct.visible()
         shimmerSeekBar.visible()
@@ -118,7 +132,7 @@ class SellerActivity : TemplateActivity() {
             intent.getStringExtra("identifier")
 
 
-        viewPager.setPagingEnabled(false)
+        //viewPager.setPagingEnabled(false)
 
 
         if (!BasicTools.isDeviceLanEn())
@@ -160,12 +174,14 @@ class SellerActivity : TemplateActivity() {
                     override fun onSuccess(result: ProductModel) {
                         shimmerMainProduct.hide()
                         shimmerMainProduct.visibility = View.GONE
-                        viewPager.visibility = VISIBLE
+                        //viewPager.visibility = VISIBLE
 
                         if (result.status!!) {
 
                             products = (result.products as ArrayList<ProductModel.Product>?)!!
                             allProducts.clear()
+                            allProductNew.clear()
+                            allProductNew.addAll(products.filter { (it.itemStatus !=2 && it.itemStatus !=3) })
                             allProducts.add(products.filter {
                                 it.itemStatus != 2 && it.itemStatus != 3
 
@@ -186,13 +202,23 @@ class SellerActivity : TemplateActivity() {
 
 
                             }
+                            binding?.productsList?.layoutManager = LinearLayoutManager(
+                                parent,
+                                LinearLayoutManager.VERTICAL,
+                                false
+                            )
+                            binding?.productsList?.adapter = productAdaptor
+                            setSpinnerClickListener()
+
+                            getFilteredList(selectedCategory,allProductNew,productAdaptor)
+
                             sellerCategoriesProducts = SellerProductsAdapter(
                                 allProducts,
                                 this@SellerActivity,
                                 categories,
                             )
                             productLoadingFinished = true
-                            viewPager.adapter = sellerCategoriesProducts
+                            //viewPager.adapter = sellerCategoriesProducts
                             try {
                                 if (allProducts[categoryAdapter.selected].size == 0)
                                     ivSaveUser.visibility = GONE
@@ -223,7 +249,7 @@ class SellerActivity : TemplateActivity() {
 
                     override fun onFailed(status: Int) {
                         shimmerMainProduct.hide()
-                        viewPager.visibility = VISIBLE
+                        //viewPager.visibility = VISIBLE
                         shimmerMainProduct.visibility = View.GONE
 
 
@@ -235,8 +261,8 @@ class SellerActivity : TemplateActivity() {
 
 
     override fun init_views() {
-        rlAllCats =binding!!.rlAllCat
-        cvCats =binding!!.cvCat
+      //  rlAllCats =binding!!.rlAllCat
+     //   cvCats =binding!!.cvCat
         tvName =binding!!.tvName
         ivAvatar =binding!!.ivAvatar
         tvAvailableProduct =binding!!.tvAvailableProduct
@@ -250,12 +276,12 @@ class SellerActivity : TemplateActivity() {
         star3 =binding!!.ivStar3
         star4 =binding!!.ivStar4
         star5 =binding!!.ivStar5
-        rvCategories =binding!!.rvCategories
-        viewPager =binding!!.sellerViewPager
+        //rvCategories =binding!!.rvCategories
+      //  viewPager =binding!!.sellerViewPager
         ivBack = findViewById(R.id.iv_back)
         notificationImage =binding!!.ivNotification
         ivSaveUser =binding!!.ivSaveUser
-        shimmerCategories =binding!!.shimmerCategorySeller
+       // shimmerCategories =binding!!.shimmerCategorySeller
         shimmerSeekBar =binding!!.shimmerSeekBar
         shimmerMainProduct =binding!!.shimmerMainProduct
         textInfoShimmer =binding!!.textInfoShimmer
@@ -306,7 +332,7 @@ class SellerActivity : TemplateActivity() {
 
             toggleNotification(selleruserId!!, operaton.toString())
         }
-        categoryAdapter.setOnCategoryClickListener(object : ItemClickListener {
+   /*     categoryAdapter.setOnCategoryClickListener(object : ItemClickListener {
             override fun onClick(position: Int) {
                 if (productLoadingFinished) {
                     rlAllCats.background =
@@ -322,17 +348,17 @@ class SellerActivity : TemplateActivity() {
                     }
                     sellerCategoriesProducts.reset()
 
-                    viewPager.setCurrentItem(position + 1)
+                    //viewPager.setCurrentItem(position + 1)
                 }
 
 
             }
 
-        })
-        rlAllCats.setOnClickListener {
+        })*/
+   /*     rlAllCats.setOnClickListener {
             if (productLoadingFinished)
                 selectAllCategories()
-        }
+        }*/
 
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -406,8 +432,10 @@ class SellerActivity : TemplateActivity() {
 
                 }
             runnable = Runnable {
-                seekBar.progress = mediaPlayer?.currentPosition?:0
-                handler.postDelayed(runnable!!, 1000)
+                if (mediaPlayer !=null) {
+                    seekBar.progress = mediaPlayer?.currentPosition ?: 0
+                    handler.postDelayed(runnable!!, 1000)
+                }
             }
 
 //                handler.postDelayed(runnable!!, 1000)
@@ -552,11 +580,11 @@ class SellerActivity : TemplateActivity() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : AppObservable<UserProfileModel>(this) {
                     override fun onSuccess(result: UserProfileModel) {
-                        BasicTools.showShimmer(rvCategories, shimmerCategories, false)
+                      //  BasicTools.showShimmer(rvCategories, shimmerCategories, false)
                         locationShimmer.hide()
                         locationShimmer.visibility = View.GONE
                         lyVid.visibility = View.GONE
-                        shimmerCategories.visibility = View.GONE
+                      //  shimmerCategories.visibility = View.GONE
                         textInfoShimmer.hide()
                         textInfoShimmer.visibility = GONE
                         starShimmer.hide()
@@ -564,12 +592,14 @@ class SellerActivity : TemplateActivity() {
                         findViewById<LinearLayout>(R.id.stars).visibility = View.VISIBLE
 
                         if (result.status!!) {
-                            cvCats.visibility = View.VISIBLE
+                        //    cvCats.visibility = View.VISIBLE
                             val user = result.data!!.user
                             tvName.text = user?.name
                             data = result.data
                             userSeller = result.data
                             categories = result.data.categoires as ArrayList<CategoryModel.Category>
+                            setCategoriesAdaptor(ArrayList<String>().also { it.add("") },
+                                ArrayList<String>().also { it.add("") },categories)
                             if (data?.addtionInfo?.enableNotification!!)
                                 operaton = 0
                             else operaton = 1
@@ -620,12 +650,12 @@ class SellerActivity : TemplateActivity() {
                             setUpRateStars(user.rate!!)
                             categoryAdapter.submitList(categories)
 
-                            rvCategories.layoutManager = LinearLayoutManager(
+                            /*rvCategories.layoutManager = LinearLayoutManager(
                                 this@SellerActivity,
                                 LinearLayoutManager.HORIZONTAL,
                                 false
                             )
-                            rvCategories.adapter = categoryAdapter
+                            rvCategories.adapter = categoryAdapter*/
                             if (lang == "en") {
                                 tvAvailableProduct.text =
                                     "Available Product (" + user!!.countAviableProducts + ")"
@@ -646,7 +676,7 @@ class SellerActivity : TemplateActivity() {
                     override fun onFailed(status: Int) {
                         locationShimmer.hide()
                         locationShimmer.visibility = View.GONE
-                        shimmerCategories.visibility = View.GONE
+                        //shimmerCategories.visibility = View.GONE
                         lyVid.visibility = View.GONE
                         shimmerSeekBar.hide()
                         shimmerSeekBar.visibility = GONE
@@ -681,18 +711,18 @@ class SellerActivity : TemplateActivity() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : AppObservable<UserProfileModel>(this) {
                     override fun onSuccess(result: UserProfileModel) {
-                        BasicTools.showShimmer(rvCategories, shimmerCategories, false)
+                       // BasicTools.showShimmer(rvCategories, shimmerCategories, false)
                         locationShimmer.hide()
                         locationShimmer.visibility = View.GONE
                         lyVid.visibility = View.GONE
 
-                        shimmerCategories.visibility = View.GONE
+                      //  shimmerCategories.visibility = View.GONE
                         textInfoShimmer.hide()
                         textInfoShimmer.visibility = GONE
                         starShimmer.hide()
                         starShimmer.visibility = View.GONE
                         findViewById<LinearLayout>(R.id.stars).visibility = View.VISIBLE
-                        rlAllCats.visibility = View.VISIBLE
+                      //  rlAllCats.visibility = View.VISIBLE
 
 
 
@@ -702,7 +732,8 @@ class SellerActivity : TemplateActivity() {
 
                             userSeller = result.data
                             categories = result.data.categoires as List<CategoryModel.Category>
-
+                            setCategoriesAdaptor(ArrayList<String>().also { it.add("") },
+                                ArrayList<String>().also { it.add("") },categories)
                             getProducts(result.data.user?.id!!)
                             setUpPlayVoice(user!!)
                             tvRateCount.text = user.countRaters?.toInt().toString()
@@ -723,12 +754,12 @@ class SellerActivity : TemplateActivity() {
                                 } else tvLocation.setText(getString(R.string.not_avaliable))
 
                             }
-                            rvCategories.layoutManager = LinearLayoutManager(
+                            /*rvCategories.layoutManager = LinearLayoutManager(
                                 this@SellerActivity,
                                 LinearLayoutManager.HORIZONTAL,
                                 false
                             )
-                            rvCategories.adapter = categoryAdapter
+                            rvCategories.adapter = categoryAdapter*/
                             if (lang == "en") {
                                 tvAvailableProduct.text =
                                     "Available Product (" + user!!.countAviableProducts + ")"
@@ -748,7 +779,7 @@ class SellerActivity : TemplateActivity() {
                     override fun onFailed(status: Int) {
                         locationShimmer.hide()
                         locationShimmer.visibility = View.GONE
-                        shimmerCategories.visibility = View.GONE
+                        //shimmerCategories.visibility = View.GONE
                         lyVid.visibility = View.GONE
                         shimmerSeekBar.hide()
                         shimmerSeekBar.visibility = GONE
@@ -764,9 +795,67 @@ class SellerActivity : TemplateActivity() {
         )
 
     }
+    var selectedCategory = 0
+    fun setSpinnerClickListener() { // filter when selection new category
+        binding?.spinnerCategoryFilter?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+
+                if (position!=0) { // not selecting all
+                    //  categories.get(position-1).id.toString()
+                    selectedCategory = categories.get(position-1).id?:0
+                }
+                else // all categories
+                {
+                    selectedCategory = 0
+
+                }
+                getFilteredList(selectedCategory,allProductNew,productAdaptor)
+
+
+
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+        }
+    }
+    private fun setCategoriesAdaptor(
+        images: ArrayList<String>, names: ArrayList<String>,
+        categories: List<CategoryModel.Category>
+    ) {
+        categories.forEach {
+            images.add(it.mediaPath!!)
+            if (!BasicTools.isDeviceLanEn())
+                names.add(it.nameAr!!)
+            else names.add(it.nameEn!!)
+
+
+        }
+        val postsFilter =
+            SpinnerAdapter(this@SellerActivity, images = images, names = names)
+        binding?.spinnerCategoryFilter?.adapter = postsFilter
+
+    }
+    private fun getFilteredList(
+        selectedCategory: Int,
+        allProducts: ArrayList<ProductModel.Product>,
+        productAdaptor: AdaptorProductsNew?) {
+        var filteredList = ArrayList<ProductModel.Product>()
+        if (selectedCategory == 0) {
+            productAdaptor?.setArrayListNew(allProducts)
+        }
+        else
+            productAdaptor?.setArrayListNew(allProducts.filter { it.categoryId == selectedCategory.toString() } as ArrayList<ProductModel.Product>)
+        binding?.emptyProducts?.show(productAdaptor?.arrayList.isNullOrEmpty())
+    }
 
     override fun onDestroy() {
         mediaPlayer?.release()
+        mediaPlayer = null
         super.onDestroy()
     }
 
@@ -778,10 +867,10 @@ class SellerActivity : TemplateActivity() {
                 ivSaveUser.visibility = VISIBLE
 
         }
-        rlAllCats.background = resources.getDrawable(R.drawable.category_selected_item_bg)
-        cvCats.cardElevation = 0f
+      //  rlAllCats.background = resources.getDrawable(R.drawable.category_selected_item_bg)
+     //   cvCats.cardElevation = 0f
         sellerCategoriesProducts.reset()
-        viewPager.setCurrentItem(0)
+        //viewPager.setCurrentItem(0)
         categoryAdapter.selected = -1
         categoryAdapter.notifyDataSetChanged()
     }

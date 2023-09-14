@@ -34,7 +34,6 @@ import com.urcloset.smartangle.api.AppApi
 import com.urcloset.smartangle.databinding.MySellerAccountLayoutBinding
 import com.urcloset.smartangle.fragment.directpay.DirectPayFragment
 import com.urcloset.smartangle.fragment.myselleraccount.adaptor.AdaptorProductsNew
-import com.urcloset.smartangle.fragment.paymentmethod.PaymentMethodFragment
 import com.urcloset.smartangle.fragment.setting_fragment.SettingFragment
 import com.urcloset.smartangle.model.*
 import com.urcloset.smartangle.tools.*
@@ -66,8 +65,9 @@ class MySellerAccount() : TemplateFragment() {
     lateinit var sellerCategoriesProducts: MySellerProductsAdapter
    // lateinit var viewPager: CustomViewPager
     private var allProducts=ArrayList<ArrayList<ProductModel.Product>>()
-    var productAdaptor : AdaptorProductsNew? = null
+
     var selctedCategory = 0
+    var productAdaptor : AdaptorProductsNew? = null
     var allProductNew = ArrayList<ProductModel.Product>() // contians new arrayOf all Products
     @Inject
     lateinit var progressDialog : Dialog

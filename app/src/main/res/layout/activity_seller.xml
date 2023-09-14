@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    android:orientation="vertical"
+<androidx.core.widget.NestedScrollView android:orientation="vertical"
     android:fillViewport="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <LinearLayout
@@ -358,19 +358,40 @@
             </LinearLayout>
 
         </com.facebook.shimmer.ShimmerFrameLayout>
-        <HorizontalScrollView
-            android:scrollbarThumbHorizontal="@drawable/scroll_style_custome"
-
-
-            android:layout_gravity="center_horizontal"
-            android:layout_width="wrap_content"
-
-            android:layout_height="wrap_content">
             <LinearLayout
                 android:orientation="horizontal"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <androidx.cardview.widget.CardView
+                <RelativeLayout
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintEnd_toStartOf="@+id/payCommission"
+                    android:layout_marginStart="@dimen/d0_8"
+                    android:layout_marginEnd="@dimen/d0_8"
+                    app:layout_constraintTop_toTopOf="@+id/payCommission"
+                    app:layout_constraintBottom_toBottomOf="@+id/payCommission"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="@dimen/d5_2"
+                    >
+
+                    <Spinner
+                        android:id="@+id/spinner_category_filter"
+                        style="@style/spinner_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="start"
+                        android:spinnerMode="dropdown" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginEnd="@dimen/d1_4"
+                        android:src="@drawable/ic_spinner_drop_down_posts" />
+                </RelativeLayout>
+            <!--    <androidx.cardview.widget.CardView
                     android:visibility="gone"
                     android:orientation="vertical"
                     android:layout_marginEnd="13dp"
@@ -401,29 +422,41 @@
                         android:layout_height="35dp"
                         android:src="@drawable/ic_all_categories" />
                </RelativeLayout>
-                </androidx.cardview.widget.CardView>
+                </androidx.cardview.widget.CardView>-->
 
 
-        <androidx.recyclerview.widget.RecyclerView
+       <!-- <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_categories"
             android:orientation="horizontal"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/d2"
 
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"/>-->
 
             </LinearLayout>
 
-        </HorizontalScrollView>
 
 
 
 
-        <com.urcloset.smartangle.CustomViewPager
+       <!-- <com.urcloset.smartangle.CustomViewPager
             android:layout_marginTop="@dimen/d1"
             android:id="@+id/seller_view_pager"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/productsList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/emptyProducts"
+            android:text="@string/no_result"
+            android:layout_gravity="center"
+            android:minHeight="300dp"
+            android:visibility="gone"
+            android:gravity="center"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <com.facebook.shimmer.ShimmerFrameLayout
             android:visibility="gone"
