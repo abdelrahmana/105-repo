@@ -21,7 +21,7 @@ object Constants {
     var api_url ="endpoint.urcloset.net/api/" //"apis.urcloset.org/api/"
     var PAYMENY_TYPE="TEST"
   //  var PAYMENY_TYPE="LIVE"
-    var api_url_image = "apis.urcloset.org/storage/"
+    var api_url_image = "endpoint.urcloset.net/storage/"
     val MAPVIEW_BUNDLE_KEY = "MapViewBundleKey"
     val ERROR_DIALOG_REQUEST = 9001
     val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 9002

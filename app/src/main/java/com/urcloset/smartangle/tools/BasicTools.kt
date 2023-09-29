@@ -326,7 +326,7 @@ object BasicTools {
     }
     fun getUrlHttpImg(context:Context,url:String):String{
         return if(Build.VERSION.SDK_INT==23)
-            "http://"+Constants.api_url_image+url
+            "https://"+Constants.api_url_image+url
         else getProtocol(context)+Constants.api_url_image+url
     }
 

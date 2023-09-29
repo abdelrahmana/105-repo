@@ -31,10 +31,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         app:elevation="0dp"
-        app:itemIconSize="42dp"
         app:itemIconTint="@null"
         android:background="@color/card_color"
-        app:labelVisibilityMode="unlabeled"
+        app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_navigattion"
         />
 

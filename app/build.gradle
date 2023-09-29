@@ -24,8 +24,8 @@ android {
         applicationId "com.urcloset.smartangle"
         minSdkVersion 22
         targetSdkVersion 33
-        versionCode 119
-        versionName "7.2"
+        versionCode 121
+        versionName "8.1"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

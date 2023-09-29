@@ -150,7 +150,7 @@ class PostAdapter():RecyclerView.Adapter<PostAdapter.ViewHolder>() {
     }
     fun addNewItem(item: PostsModel.Data.Post){
         posts?.add(item)
-        notifyItemInserted(posts?.size!!-1)
+      //  notifyItemInserted(posts?.size!!-1)
 
     }
     fun loadAndHandleImageSwitcher(holder: ViewHolder, post:PostsModel.Data.Post, imageIndex:Int){

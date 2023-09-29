@@ -195,7 +195,7 @@
     <string name="message_title">عنوان الرسالة</string>
     <string name="price_hint">السعر</string>
     <string name="add_new_message">اضف رسالة جديدة</string>
-    <string name="add">اضف</string>
+    <string name="add">إضافة</string>
     <string name="menu_1">Home</string>
     <string name="menu_2">Abous us</string>
     <string name="menu_2_1">About Mattajir</string>
@@ -458,5 +458,6 @@
     <string name="default_commission">10 ريال</string>
     <string name="confirm_pay">تأكيد الدفع</string>
     <string name="record_payment">سجل المدفوعات</string>
+    <string name="ads">إعلاناتى</string>
 
 </resources>

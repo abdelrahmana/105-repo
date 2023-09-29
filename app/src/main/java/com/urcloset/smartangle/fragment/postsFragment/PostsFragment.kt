@@ -718,6 +718,8 @@ class PostsFragment():TemplateFragment() {
 
                                     }
                                 }
+                                postGridAdapter?.notifyDataSetChanged()
+                                postAdapter?.notifyDataSetChanged()
 
                             }
 

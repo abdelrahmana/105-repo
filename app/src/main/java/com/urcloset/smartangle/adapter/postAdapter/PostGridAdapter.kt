@@ -89,7 +89,7 @@ class PostGridAdapter():RecyclerView.Adapter<PostGridAdapter.ViewHolder>() {
     }
     fun addNewItem(item: PostsModel.Data.Post){
         posts?.add(item)
-        notifyItemInserted(posts?.size!! - 1)
+     //   notifyItemInserted(posts?.size!! - 1)
 
     }
 

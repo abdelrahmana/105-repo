@@ -8,27 +8,27 @@
     <item
         android:id="@+id/posts"
         android:icon="@drawable/post_selector"
-        android:title="" />
+        android:title="@string/home" />
 
     <item
         android:id="@+id/users"
         android:icon="@drawable/user_selector"
-        android:title=""
+        android:title="@string/all_users"
         />
     <item
         android:id="@+id/adding"
         android:icon="@drawable/adding"
-        android:title=""
+        android:title="@string/add"
         />
     <item
         android:id="@+id/bookmark"
         android:icon="@drawable/book_mark_selector"
-        android:title=""
+        android:title="@string/favorite"
         />
     <item
         android:id="@+id/setting"
         android:icon="@drawable/setting_selector"
-        android:title=""
+        android:title="@string/ads"
         />
 
 </menu>
