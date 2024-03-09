@@ -42,11 +42,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 
 
-class ProductDetails : TemplateActivity() ,IProductDetailsActivity{
+class ProductDetails : TemplateActivity(), IProductDetailsActivity {
     var lang = "en"
     var disposable = CompositeDisposable()
     lateinit var product: ProductModel.Product
@@ -65,7 +63,7 @@ class ProductDetails : TemplateActivity() ,IProductDetailsActivity{
     lateinit var rlReport: ConstraintLayout
     lateinit var viewPager: CustomViewPager
     lateinit var ivAvatar: ImageView
-    lateinit var colorAdapter : ColorAdapterProductDetail
+    lateinit var colorAdapter: ColorAdapterProductDetail
     lateinit var sizeAdapter: SizeAdapterProductDetails
     lateinit var photoGalleryAdapter: PhotoGalleryProductDetailAdapter
     lateinit var rlWhats: ConstraintLayout
@@ -81,34 +79,36 @@ class ProductDetails : TemplateActivity() ,IProductDetailsActivity{
     lateinit var star3: ImageView
     lateinit var star4: ImageView
     lateinit var star5: ImageView
-    lateinit var star:LinearLayout
+    lateinit var star: LinearLayout
     lateinit var shimmerName: ShimmerFrameLayout
     lateinit var shimmerNumProducts: ShimmerFrameLayout
     lateinit var shimmerStar: ShimmerFrameLayout
-    lateinit var userSection:LinearLayout
-    lateinit  var rlShare :ConstraintLayout
-    var productDetailModel:ProductDetailsModel.Data?=null
+    lateinit var userSection: LinearLayout
+    lateinit var rlShare: ConstraintLayout
+    var productDetailModel: ProductDetailsModel.Data? = null
     var savedBefore = false
     var counter: Int = 0
     var slepped: Boolean = false
     var count: Int = 1
-    var productID:String?=null
-    //similar product
-    lateinit var rvSimilar:RecyclerView
-    lateinit var similarProductAdapter: SimilarProductAdapter
-    lateinit var tvMayLikeToo:TextView
-    //location
-    lateinit var tvLocation:TextView
+    var productID: String? = null
 
-    var binding : ActivityProductDetailsBinding?=null
+    //similar product
+    lateinit var rvSimilar: RecyclerView
+    lateinit var similarProductAdapter: SimilarProductAdapter
+    lateinit var tvMayLikeToo: TextView
+
+    //location
+    lateinit var tvLocation: TextView
+
+    var binding: ActivityProductDetailsBinding? = null
 
     override fun set_layout() {
         binding = ActivityProductDetailsBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
         supportPostponeEnterTransition()
     }
-    override fun init_activity(savedInstanceState: Bundle?)
-    {
+
+    override fun init_activity(savedInstanceState: Bundle?) {
 
         try {
             val gson = Gson()
@@ -118,13 +118,15 @@ class ProductDetails : TemplateActivity() ,IProductDetailsActivity{
             )
             val productsImages = ArrayList<ProductDetailsModel.Data.Item.ItemMedia>()
             product.itemMedia?.forEach {
-                productsImages.add(ProductDetailsModel.Data.Item.ItemMedia(
-                    fullPath = it?.fullPath,
-                    id = it?.id,
-                    itemId = it?.itemId,
-                    mediaPath = it?.mediaPath,
-                    mediaType = it?.mediaType
-                ))
+                productsImages.add(
+                    ProductDetailsModel.Data.Item.ItemMedia(
+                        fullPath = it?.fullPath,
+                        id = it?.id,
+                        itemId = it?.itemId,
+                        mediaPath = it?.mediaPath,
+                        mediaType = it?.mediaType
+                    )
+                )
 
             }
             photoGalleryAdapter = PhotoGalleryProductDetailAdapter(
@@ -134,8 +136,7 @@ class ProductDetails : TemplateActivity() ,IProductDetailsActivity{
             )
             viewPager.adapter = photoGalleryAdapter
             getProductDetails(product.id.toString())
-        }
-        catch (e:java.lang.Exception){
+        } catch (e: java.lang.Exception) {
             productID = intent.getStringExtra("id")
 
             getProductDetails(productID.toString())
@@ -150,48 +151,47 @@ class ProductDetails : TemplateActivity() ,IProductDetailsActivity{
         rvSizes.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
 
-
     }
 
     override fun init_views() {
         tvTitle = binding!!.tvTitle
         tvDes = binding!!.tvDes
-        tvPrice =binding!!.tvPrice
-        tvCondition =binding!!.tvCondition
-        tvUsed =binding!!.tvUsed
-        boxAvailable =binding!!.tvBox
-        invoiceAvailable =binding!!.tvInvoice
-        negotable =binding!!.tvNeg
-        rvColors =binding!!.rvColors
-        rvSizes =binding!!.rvSizes
-        viewPager =binding!!.customViewPager
-        ivBack =binding!!.toolbar.ivBack
-        rlReport =binding!!.lyReport
-        rlBookMark =binding!!.rlBookmark
-        rlWhats =binding!!.rlWhats
-        shimmerColor =binding!!.shimmerColors
-        shimmerSizes =binding!!.shimmerSizes
-        shimmerCondition =binding!!.shimmerCondition
-        bookShimmer =binding!!.bookShimmer
-        ivAvatar =binding!!.ivAvatar
-        name =binding!!.tvUsername
-        star =binding!!.starRate
-        tvUserAvailableProduct =binding!!.tvUserAvailableProduct
-        tvRateCount =binding!!.tvRateCount
-        star1 =binding!!.ivStar1
-        star2 =binding!!.ivStar2
-        star3 =binding!!.ivStar3
-        star4 =binding!!.ivStar4
-        star5 =binding!!.ivStar5
-        shimmerName =binding!!.shimmerName
-        shimmerNumProducts =binding!!.shimmerNumProducts
-        shimmerStar =binding!!.shimmerStar
-        userSection =binding!!.userSection
+        tvPrice = binding!!.tvPrice
+        tvCondition = binding!!.tvCondition
+        tvUsed = binding!!.tvUsed
+        boxAvailable = binding!!.tvBox
+        invoiceAvailable = binding!!.tvInvoice
+        negotable = binding!!.tvNeg
+        rvColors = binding!!.rvColors
+        rvSizes = binding!!.rvSizes
+        viewPager = binding!!.customViewPager
+        ivBack = binding!!.toolbar.ivBack
+        rlReport = binding!!.lyReport
+        rlBookMark = binding!!.rlBookmark
+        rlWhats = binding!!.rlWhats
+        shimmerColor = binding!!.shimmerColors
+        shimmerSizes = binding!!.shimmerSizes
+        shimmerCondition = binding!!.shimmerCondition
+        bookShimmer = binding!!.bookShimmer
+        ivAvatar = binding!!.ivAvatar
+        name = binding!!.tvUsername
+        star = binding!!.starRate
+        tvUserAvailableProduct = binding!!.tvUserAvailableProduct
+        tvRateCount = binding!!.tvRateCount
+        star1 = binding!!.ivStar1
+        star2 = binding!!.ivStar2
+        star3 = binding!!.ivStar3
+        star4 = binding!!.ivStar4
+        star5 = binding!!.ivStar5
+        shimmerName = binding!!.shimmerName
+        shimmerNumProducts = binding!!.shimmerNumProducts
+        shimmerStar = binding!!.shimmerStar
+        userSection = binding!!.userSection
 
-        rvSimilar=binding!!.rvSimilarProduct
-        tvMayLikeToo=binding!!.tvMayLikeToo
-        tvLocation=binding!!.tvLocation
-        rlShare =binding!!.rlShare
+        rvSimilar = binding!!.rvSimilarProduct
+        tvMayLikeToo = binding!!.tvMayLikeToo
+        tvLocation = binding!!.tvLocation
+        rlShare = binding!!.rlShare
     }
 
     override fun init_events() {
@@ -260,16 +260,16 @@ class ProductDetails : TemplateActivity() ,IProductDetailsActivity{
 
 
         rlWhats.setOnClickListener {
-          /*  counter++
-            if (!slepped) {
-                timer.start()
-                slepped = true
-            }*/
+            /*  counter++
+              if (!slepped) {
+                  timer.start()
+                  slepped = true
+              }*/
             whenOpenWhats()
 
         }
         userSection.setOnClickListener {
-            if(productDetailModel!=null){
+            if (productDetailModel != null) {
                 val intent = Intent(this, SellerActivity::class.java)
                 intent.putExtra("identifier", productDetailModel?.item?.owner?.id.toString())
                 startActivity(intent)
@@ -283,8 +283,8 @@ class ProductDetails : TemplateActivity() ,IProductDetailsActivity{
                 !productDetailModel?.item?.price.toString().isNullOrEmpty()
             ) {
                 BasicTools.shareProduct(
-                    name=productDetailModel?.item?.name.toString(),
-                    owner =productDetailModel?.item?.owner?.name.toString(),
+                    name = productDetailModel?.item?.name.toString(),
+                    owner = productDetailModel?.item?.owner?.name.toString(),
                     price = productDetailModel?.item?.price.toString(),
                     id = productDetailModel?.item?.id.toString(),
                     image = productDetailModel?.item?.itemMedia?.get(0)?.mediaPath.toString(),
@@ -296,39 +296,41 @@ class ProductDetails : TemplateActivity() ,IProductDetailsActivity{
 
         }
     }
-fun whenOpenWhats(){
-    val alertDialogBuilder = AlertDialog.Builder(this@ProductDetails)
-    alertDialogBuilder.setMessage(getString(R.string.order_message))
-    alertDialogBuilder.setPositiveButton(getString(R.string.ok)) { dialog, which ->
-        val contact = product.countryCode + "" + product.phoneNumber
-        val text = "The product id ${product.id}\n the quantity is $counter"
-        try {
-            startActivity(
-                Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse(
-                        "https://api.whatsapp.com/send?phone=$contact Number&text=$text"
+
+    fun whenOpenWhats() {
+        val alertDialogBuilder = AlertDialog.Builder(this@ProductDetails)
+        alertDialogBuilder.setMessage(getString(R.string.order_message))
+        alertDialogBuilder.setPositiveButton(getString(R.string.ok)) { dialog, which ->
+            val contact = (product.countryCode ?: "") + "" + (product.phoneNumber ?: "")
+            val text = "The product id ${product.id}\n the quantity is $count"
+            try {
+                startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse(
+                            "https://api.whatsapp.com/send?phone=$contact Number&text=$text"
+                        )
                     )
                 )
-            )
-        } catch (e: Exception) {
-            Toast.makeText(
-                this@ProductDetails,
-                "Whatsapp app not installed in your phone",
-                Toast.LENGTH_SHORT
-            ).show()
+            } catch (e: Exception) {
+                Toast.makeText(
+                    this@ProductDetails,
+                    "Whatsapp app not installed in your phone",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+
+            }
+            dialog.dismiss()
 
         }
+        alertDialogBuilder.setNegativeButton(R.string.no) { dialog, which ->
+            dialog.cancel()
 
-        dialog.dismiss()
-
+        }
+        alertDialogBuilder.show()
     }
-    alertDialogBuilder.setNegativeButton(R.string.no) { dialog, which ->
-        dialog.cancel()
 
-    }
-    alertDialogBuilder.show()
-}
     override fun set_fragment_place() {
     }
 
@@ -365,9 +367,9 @@ fun whenOpenWhats(){
 
             }
 
-            var map=HashMap<String,String>()
-            map.put("item_id",id.toString())
-            map.put("count_similar","8")
+            var map = HashMap<String, String>()
+            map.put("item_id", id.toString())
+            map.put("count_similar", "8")
             val observable = shopApi!!.getProductDetails(map)
             disposable.add(
                 observable.subscribeOn(Schedulers.io())
@@ -385,7 +387,7 @@ fun whenOpenWhats(){
                                 if (item?.itemMedia?.size!! > 3) {
                                     count = 2
                                 }
-                                if(!::photoGalleryAdapter.isInitialized) {
+                                if (!::photoGalleryAdapter.isInitialized) {
                                     photoGalleryAdapter = PhotoGalleryProductDetailAdapter(
                                         context = this@ProductDetails,
                                         photos = (item.itemMedia),
@@ -396,40 +398,37 @@ fun whenOpenWhats(){
                                 }
                                 tvTitle.text = item.name
                                 tvDes.text = item.description
-                                tvPrice.text = item.price.toString()+resources.getString(R.string.currency)
+                                tvPrice.text =
+                                    item.price.toString() + resources.getString(R.string.currency)
 
                                 //set similar product----
-                                if(result.productDetails.similarProducts.isNullOrEmpty())
-                                    tvMayLikeToo.visibility=View.GONE
-                                else   tvMayLikeToo.visibility=View.VISIBLE
-                                similarProductAdapter= SimilarProductAdapter(this@ProductDetails,
-                                    result.productDetails.similarProducts!!,this@ProductDetails)
-                                rvSimilar.adapter=similarProductAdapter
+                                if (result.productDetails.similarProducts.isNullOrEmpty())
+                                    tvMayLikeToo.visibility = View.GONE
+                                else tvMayLikeToo.visibility = View.VISIBLE
+                                similarProductAdapter = SimilarProductAdapter(
+                                    this@ProductDetails,
+                                    result.productDetails.similarProducts!!, this@ProductDetails
+                                )
+                                rvSimilar.adapter = similarProductAdapter
 
                                 //-------
 
 
                                 //--set location
 
-                                if(BasicTools.isDeviceLanEn()) {
-                                    if(result.productDetails!!.item?.owner?.country!=null) {
+                                if (BasicTools.isDeviceLanEn()) {
+                                    if (result.productDetails!!.item?.owner?.country != null) {
                                         if (!result.productDetails!!.item?.owner?.country?.name.isNullOrEmpty())
-                                            tvLocation.setText(result.productDetails!!.item?.owner?.country?.name+", "+result.productDetails!!.item?.owner?.city?.name)
+                                            tvLocation.setText(result.productDetails!!.item?.owner?.country?.name + ", " + result.productDetails!!.item?.owner?.city?.name)
                                         else tvLocation.setText(getString(R.string.not_avaliable))
-                                    }
+                                    } else tvLocation.setText(getString(R.string.not_avaliable))
 
-
-                                    else tvLocation.setText(getString(R.string.not_avaliable))
-
-                                }
-                                else   {
-                                    if(result.productDetails!!.item?.owner?.country!=null) {
+                                } else {
+                                    if (result.productDetails!!.item?.owner?.country != null) {
                                         if (!result.productDetails!!.item?.owner?.country?.nameAr.isNullOrEmpty())
-                                            tvLocation.setText(result.productDetails!!.item?.owner?.country?.nameAr+", "+result.productDetails!!.item?.owner?.city?.nameAr)
-
-                                        else  tvLocation.setText(getString(R.string.not_avaliable))
-                                    }
-                                    else tvLocation.setText(getString(R.string.not_avaliable))
+                                            tvLocation.setText(result.productDetails!!.item?.owner?.country?.nameAr + ", " + result.productDetails!!.item?.owner?.city?.nameAr)
+                                        else tvLocation.setText(getString(R.string.not_avaliable))
+                                    } else tvLocation.setText(getString(R.string.not_avaliable))
 
                                 }
 
@@ -445,7 +444,10 @@ fun whenOpenWhats(){
                                             this@ProductDetails,
                                             result.productDetails?.item?.owner?.image!!
                                         )
-                                Log.i("TEST_TEST","${result.productDetails!!.item?.owner.toString()}")
+                                Log.i(
+                                    "TEST_TEST",
+                                    "${result.productDetails!!.item?.owner.toString()}"
+                                )
                                 setUser(
                                     result.productDetails.item?.owner!!.name!!,
 
@@ -455,7 +457,10 @@ fun whenOpenWhats(){
                                     result.productDetails.item?.owner?.countRaters!!.toInt()
                                 )
                                 tvTitle.text = result.productDetails.item?.name
-                                tvPrice.text = result.productDetails.item?.price.toString()+resources.getString(R.string.currency)
+                                tvPrice.text =
+                                    result.productDetails.item?.price.toString() + resources.getString(
+                                        R.string.currency
+                                    )
                                 tvDes.text = result.productDetails.item?.description
                                 colorAdapter = ColorAdapterProductDetail()
                                 colorAdapter.submitList(result.productDetails.item?.selectedColors)
@@ -499,12 +504,14 @@ fun whenOpenWhats(){
 
                                 }
                                 if (BasicTools.isDeviceLanEn()) {
-                                    tvCondition.text = result.productDetails?.item?.condition?.nameEn
+                                    tvCondition.text =
+                                        result.productDetails?.item?.condition?.nameEn
                                     if (result.productDetails?.item?.usedSentence != null && !result.productDetails?.item?.usedSentence?.equals(
                                             ""
                                         )!!
                                     ) {
-                                        tvUsed.text = result.productDetails?.item?.usedSentence?.english!!
+                                        tvUsed.text =
+                                            result.productDetails?.item?.usedSentence?.english!!
 
                                     }
                                     if (result.productDetails.item?.boxAvailable!! > 0)
@@ -519,12 +526,14 @@ fun whenOpenWhats(){
 
 
                                 } else {
-                                    tvCondition.text = result.productDetails?.item?.condition?.nameAr
+                                    tvCondition.text =
+                                        result.productDetails?.item?.condition?.nameAr
                                     if (result.productDetails?.item?.usedSentence != null && !result.productDetails?.item?.usedSentence?.equals(
                                             ""
                                         )!!
                                     ) {
-                                        tvUsed.text = result.productDetails?.item?.usedSentence?.arabic
+                                        tvUsed.text =
+                                            result.productDetails?.item?.usedSentence?.arabic
 
                                     }
                                     if (result.productDetails?.item?.boxAvailable!! > 0)
@@ -567,7 +576,7 @@ fun whenOpenWhats(){
         val shimmerBtn = dialog.findViewById<ShimmerFrameLayout>(R.id.shimmer_report)
         report.setOnClickListener {
             if (etMessage.text.toString().isNotEmpty())
-                if(BasicTools.isConnected(this))
+                if (BasicTools.isConnected(this))
                     sendReport(etMessage.text.toString(), shimmerBtn, report, dialog)
                 else showToastMessage(R.string.no_connection)
         }
@@ -585,7 +594,7 @@ fun whenOpenWhats(){
 
     fun sendReport(message: String, shimmer: ShimmerFrameLayout, btn: CardView, dialog: Dialog) {
         btn.visibility = View.GONE
-        shimmer.visibility =View.VISIBLE
+        shimmer.visibility = View.VISIBLE
         shimmer.startShimmerAnimation()
         val shopApi =
             ApiClient.getClientJwt(
@@ -730,7 +739,13 @@ fun whenOpenWhats(){
 
     }
 
-    fun setUser(userName: String, rate: Double, image: String?, productNumber: Int, rateCount: Int) {
+    fun setUser(
+        userName: String,
+        rate: Double,
+        image: String?,
+        productNumber: Int,
+        rateCount: Int
+    ) {
         name.setText(userName)
         if (!image.isNullOrEmpty())
             Glide.with(applicationContext).load(image)
@@ -784,7 +799,8 @@ fun whenOpenWhats(){
 
 
     }
-    fun beginProductShimmer(){
+
+    fun beginProductShimmer() {
         BasicTools.showShimmer(rvColors, shimmerColor, true)
         BasicTools.showShimmer(rvSizes, shimmerSizes, true)
         tvUsed.visibility = View.GONE
@@ -801,9 +817,9 @@ fun whenOpenWhats(){
         shimmerStar.visible()
 
 
-
     }
-    fun endProductShimmer(){
+
+    fun endProductShimmer() {
         BasicTools.showShimmer(rvColors, binding!!.shimmerColors, false)
         BasicTools.showShimmer(rvSizes, shimmerSizes, false)
         shimmerSizes.visibility = View.GONE
@@ -827,7 +843,6 @@ fun whenOpenWhats(){
     override fun onProductChange(position: Int, state: Int, product: ProductModel.Product) {
         // changeProductState(state,product,position)
     }
-
 
 
 }
