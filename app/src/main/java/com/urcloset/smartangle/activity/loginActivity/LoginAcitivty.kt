@@ -149,31 +149,33 @@ class LoginAcitivty : TemplateActivity(), Validator.ValidationListener {
         resultCode: Int,
         data: Intent?
     ) {
+        if(resultCode != RESULT_CANCELED)
+        data?.let {
+            callbackManager.onActivityResult(requestCode, resultCode, data)
+            //  callbackManager.onActivityResult(requestCode, resultCode, data)
+            super.onActivityResult(requestCode, resultCode, data)
+
+            if (requestCode == 7000) {
+                // The Task returned from this call is always completed, no need to attach
+                // a listener.
 
 
-        callbackManager.onActivityResult(requestCode, resultCode, data)
-        //  callbackManager.onActivityResult(requestCode, resultCode, data)
-        super.onActivityResult(requestCode, resultCode, data)
+                val task =
+                    GoogleSignIn.getSignedInAccountFromIntent(data)
+                val account = task.getResult(ApiException::class.java)
 
+                if (account!!.serverAuthCode != null) {
+                    Log.d("google", "serverAuthCode $account.serverAuthCode")
+                    getGoogleToken(
+                        account.serverAuthCode!!, account?.displayName
+                            ?: "", account?.email ?: "", task
+                    )
+                } else {
+                    Toast.makeText(this, getString(R.string.token_isnull), Toast.LENGTH_SHORT)
+                        .show()
+                }
 
-
-        if (requestCode == 7000) {
-            // The Task returned from this call is always completed, no need to attach
-            // a listener.
-
-
-            val task =
-                GoogleSignIn.getSignedInAccountFromIntent(data)
-            val account = task.getResult(ApiException::class.java)
-
-            if (account!!.serverAuthCode != null) {
-                Log.d("google", "serverAuthCode $account.serverAuthCode")
-                getGoogleToken(account.serverAuthCode!!, account?.displayName
-                    ?: "", account?.email ?: "",task)
-            } else {
-                Toast.makeText(this,getString(R.string.token_isnull),Toast.LENGTH_SHORT).show()
             }
-
         }
     }
     private fun getGoogleToken(
@@ -290,7 +292,6 @@ class LoginAcitivty : TemplateActivity(), Validator.ValidationListener {
 
         cardGoogle.setOnClickListener {
             mGoogleSignClient.signOut().addOnCompleteListener {
-
                 val signInIntent: Intent = mGoogleSignClient.getSignInIntent()
                 startActivityForResult(signInIntent, 7000)
             }

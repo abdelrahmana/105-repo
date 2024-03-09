@@ -122,8 +122,8 @@ class PostsFragment():TemplateFragment() {
         setWelcomeUser()
         setUserLocation()
         if (BasicTools.getToken(requireContext()).isNotEmpty()) // is logged in
-        cityId =
-            BasicTools.getUserModel(context?.getSharedPreferences("APP_DATA", Context.MODE_PRIVATE)?.getString(Constants.USER_MODEL,"")?:"")?.user?.cityId?:"1"
+      //  cityId =
+      //      BasicTools.getUserModel(context?.getSharedPreferences("APP_DATA", Context.MODE_PRIVATE)?.getString(Constants.USER_MODEL,"")?:"")?.user?.cityId?:"1"
         if (posts.isEmpty())
         getCategories()
         else {
@@ -194,7 +194,6 @@ class PostsFragment():TemplateFragment() {
                         }
                     }
 
-
                 }
             }
         })
@@ -230,6 +229,9 @@ class PostsFragment():TemplateFragment() {
             GridLayoutManager(parent, 3, GridLayoutManager.VERTICAL, false)
         postGridAdapter = PostGridAdapter(parent!!, ArrayList<PostsModel.Data.Post>(posts))
         rvPosts.adapter = postGridAdapter*/
+        if (postGridAdapter == null)
+            postGridAdapter =   PostGridAdapter(parent!!, posts)
+
         BasicTools.setRecycleView(rvPosts,postGridAdapter!!,
             null,requireContext(), GridModel(3,0),false)
         setGridViewType(cview)

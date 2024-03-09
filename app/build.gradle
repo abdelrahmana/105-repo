@@ -24,10 +24,20 @@ android {
         applicationId "com.urcloset.smartangle"
         minSdkVersion 22
         targetSdkVersion 33
-        versionCode 123
-        versionName "8.2"
+        versionCode 124
+        versionName "8.4"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        archivesBaseName = "dolabk-v${versionName}(${versionCode})-"
+    }
+    applicationVariants.configureEach { variant ->
+        variant.outputs.configureEach { output ->
+        def versionName = variant.versionName
+        def versionCode = variant.versionCode
+        def flavorName = variant.flavorName
+        def buildType = variant.buildType.name
+        outputFileName = "dolabk-v${versionName}(${versionCode})-${buildType}-${flavorName}.apk"
+    }
     }
     buildTypes {
         release {

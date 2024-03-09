@@ -19,6 +19,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.play.core.review.ReviewInfo
 import com.google.android.play.core.review.ReviewManagerFactory
+import com.google.firebase.FirebaseApp
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.urcloset.shop.tools.hide
 import com.urcloset.shop.tools.visible
 import com.urcloset.smartangle.R
@@ -761,7 +763,6 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
 
                             } catch (e: Exception) {
                                 e.printStackTrace()
-
                                     addButton.isEnabled = true
                                 showShimmerAddBtn(false)
                                 Log.d("Photo", "addProduct: " + e.message.toString())
@@ -859,11 +860,16 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
                         showShimmerAddBtn(false)
                         Log.d("Photo", "addProduct: " + status.toString())
 
-                        showToastMessage(getString(R.string.faild))
+                     //   showToastMessage(getString(R.string.faild))
                         addButton.isEnabled = true
                         showShimmerAddBtn(false)
 
                         super.onFailed(status)
+                    }
+                    override fun onFailed(error: String) {
+                        FirebaseCrashlytics.getInstance().recordException(Exception(error))
+                        showToastMessage(error)
+                        super.onFailed(error)
                     }
 
 

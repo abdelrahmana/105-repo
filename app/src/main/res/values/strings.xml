@@ -576,6 +576,8 @@ I agree to pay 10 riyals when selling the product, and that it is in my possessi
     <string name="record_payment">Payment Records</string>
     <string name="history_payment">Payemnt History</string>
     <string name="ads">Ads</string>
+    <string name="grid">Grid</string>
+    <string name="list">List</string>
 
 
 </resources>

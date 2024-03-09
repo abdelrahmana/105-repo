@@ -32,6 +32,9 @@ abstract class AppObservable<T> : DisposableObserver<T> {
     open fun onFailed(status: Int) {
 
     }
+    open fun onFailed(error: String) {
+
+    }
 
 
     override fun onNext(@NonNull t: T) {
@@ -52,8 +55,12 @@ abstract class AppObservable<T> : DisposableObserver<T> {
         if (e is HttpException) {
             val statsuCode = e.code()
             onFailed(statsuCode)
+            onFailed(e.message?:"")
+
         } else {
             onFailed(0)
+            onFailed(e.message?:"")
+
         }
         e.printStackTrace()
     }
