@@ -288,11 +288,12 @@ class ProductDetails : TemplateActivity() ,IProductDetailsActivity{
 
 
         rlWhats.setOnClickListener {
-            counter++
-            if (!slepped) {
+          //  counter++
+           // if (!slepped) {
                 timer.start()
-                slepped = true
-            }
+              //  slepped = true
+            //}
+            setDialogWhats()
 
         }
         userSection.setOnClickListener {
@@ -322,6 +323,39 @@ class ProductDetails : TemplateActivity() ,IProductDetailsActivity{
 
 
         }
+    }
+    fun setDialogWhats(){
+        val alertDialogBuilder = AlertDialog.Builder(this@ProductDetails)
+        alertDialogBuilder.setMessage(getString(R.string.order_message))
+        alertDialogBuilder.setPositiveButton(getString(R.string.ok)) { dialog, which ->
+            val contact = (product.countryCode?:"") + "" + (product.phoneNumber?:"")
+            val text = "The product id ${product.id}\n the quantity is $counter"
+            try {
+                startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse(
+                            "https://api.whatsapp.com/send?phone=$contact Number&text=$text"
+                        )
+                    )
+                )
+            } catch (e: Exception) {
+                Toast.makeText(
+                    this@ProductDetails,
+                    "Whatsapp app not installed in your phone",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+
+            }
+            dialog.dismiss()
+
+        }
+        alertDialogBuilder.setNegativeButton(R.string.no) { dialog, which ->
+            dialog.cancel()
+
+        }
+        alertDialogBuilder.show()
     }
 
     override fun set_fragment_place() {
