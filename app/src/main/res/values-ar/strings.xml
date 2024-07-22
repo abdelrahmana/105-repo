@@ -461,5 +461,8 @@
     <string name="ads">إعلاناتى</string>
     <string name="grid">شبكة</string>
     <string name="list">قائمة</string>
+    <string name="are_u_sure_to_do_this_action">هل انت متأكد من حذف الحساب</string>
+    <string name="confirm_action">تأكيد</string>
+    <string name="delete_account">حذف الحساب</string>
 
 </resources>

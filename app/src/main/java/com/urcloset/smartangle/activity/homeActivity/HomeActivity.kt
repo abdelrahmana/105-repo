@@ -1,12 +1,16 @@
 package com.urcloset.smartangle.activity.homeActivity
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation
@@ -53,10 +57,36 @@ class HomeActivity : TemplateActivity() {
     override fun set_layout() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
+        askPermissionsIfNeeded()
 
     }
     val viewModel : HomeViewModel by viewModels()
-
+    private fun askPermissionsIfNeeded() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            val permissions =
+                arrayOf(
+                    Manifest.permission.POST_NOTIFICATIONS,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+                )
+            val shouldAsk = permissions.any {
+                ContextCompat.checkSelfPermission(
+                    this,
+                    it
+                ) != PackageManager.PERMISSION_GRANTED
+            }
+            if (shouldAsk) {
+                notificationPermissionLauncher.launch(
+                    permissions
+                )
+            }
+        }
+    }
+    private val notificationPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()
+    ) { _ ->
+        // Do nothing on result
+    }
     override fun init_activity(savedInstanceState: Bundle?) {
         Firebase.dynamicLinks
             .getDynamicLink(intent)

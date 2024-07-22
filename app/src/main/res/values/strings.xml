@@ -578,6 +578,9 @@ I agree to pay 10 riyals when selling the product, and that it is in my possessi
     <string name="ads">Ads</string>
     <string name="grid">Grid</string>
     <string name="list">List</string>
+    <string name="are_u_sure_to_do_this_action">Are you sure to delete your account</string>
+    <string name="confirm_action">Confirm</string>
+    <string name="delete_account">Delete Account</string>
 
 
 </resources>

@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.urcloset.smartangle">
+
     <queries>
         <package android:name="com.facebook.katana" />
     </queries>
@@ -16,6 +17,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:allowBackup="true"
@@ -30,10 +32,11 @@
         android:usesCleartextTraffic="true">
 
 
-        <activity android:name=".activity.changeLanguage.ChangeLangActivity"
+        <activity
+            android:name=".activity.changeLanguage.ChangeLangActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize"  />
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activity.aboutApp.AboutAppActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
@@ -169,25 +172,50 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".activity.socialActivity.SocialActivityV2"
-            android:screenOrientation="portrait"
-            />
+        <activity
+            android:name=".activity.socialActivity.SocialActivityV2"
+            android:screenOrientation="portrait" />
         <activity
             android:exported="true"
             android:name=".activity.homeActivity.HomeActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize" >
-            <intent-filter android:autoVerify="true">
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <data
-                    android:host="urcloset.page.link/product"
-                    android:scheme="https"/>
-                <data
-                    android:host="urcloset.page.link/product"
-                    android:scheme="http"/>
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="https" />
+                <data android:host="urcloset.page.link/product" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="https" />
+                <data android:host="urcloset.page.link/product" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="http" />
+                <data android:host="urcloset.page.link/product" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="http" />
+                <data android:host="urcloset.page.link/product" />
             </intent-filter>
 
 
@@ -234,8 +262,8 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
 
 
             </intent-filter>
@@ -245,7 +273,7 @@
             android:name=".activity.productDetails.ProductDetails"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize" >
+            android:windowSoftInputMode="adjustResize">
 
         </activity>
 
@@ -264,20 +292,23 @@
         <meta-data
             android:name="com.google.android.gms.wallet.api.enabled"
             android:value="true" />
+
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
-            <activity
-                android:name="com.facebook.CustomTabActivity"
-                android:exported="true">
-                <intent-filter>
-                    <action android:name="android.intent.action.VIEW" />
-                    <category android:name="android.intent.category.DEFAULT" />
-                    <category android:name="android.intent.category.BROWSABLE" />
-                    <data android:scheme="@string/fb_login_protocol_scheme" />
-                </intent-filter>
-            </activity>
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".activity.publishStatusActivity.PublicationStatus"
             android:configChanges="orientation|screenSize|keyboardHidden"
@@ -336,11 +367,12 @@
             android:windowSoftInputMode="adjustResize">
 
         </activity>
-        <activity android:name=".activity.interdouctionActivity.IntroductionActivity"
+        <activity
+            android:name=".activity.interdouctionActivity.IntroductionActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize" >
+            android:windowSoftInputMode="adjustResize">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

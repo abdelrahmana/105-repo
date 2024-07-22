@@ -212,7 +212,8 @@ interface AppApi {
 
     @POST("contact/list/getName")
     fun getCard(@Body map: Map<String, String>):Observable<CardResultModel>
-
+    @POST("auth/deleteAccount")
+    fun postDeleteAccount():Observable<ResponseBody>
 
     @POST("auth/new_register")
     fun signUpWithoutImage(@Body map:Map<String,String>):

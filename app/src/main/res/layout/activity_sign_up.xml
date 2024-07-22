@@ -98,6 +98,7 @@
                 android:theme="@style/card_wave"
                 android:layout_width="0dp"
                 android:layout_weight="1"
+                android:visibility="gone"
                 app:cardUseCompatPadding="true"
                 app:cardPreventCornerOverlap="false"
                 android:layout_height="wrap_content"
@@ -153,6 +154,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 app:cardUseCompatPadding="true"
+                android:visibility="gone"
                 app:cardPreventCornerOverlap="false"
                 android:layout_height="wrap_content"
                 app:cardBackgroundColor="@color/white">

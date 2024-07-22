@@ -607,11 +607,11 @@ class UserInfoFragment : TemplateFragment(),Validator.ValidationListener {
             checkPhoneRQ(Constants.LOGIN_TYPE_EMAIL)
         }
 
-         else if(!phone.equals(TemplateActivity.loginResponse?.data?.user?.phoneNumber)
+       /*  else if(!phone.equals(TemplateActivity.loginResponse?.data?.user?.phoneNumber)
             ||
             !countryCode.selectedCountryCode.equals(TemplateActivity.loginResponse?.data?.user?.countryCode)){
             checkPhoneRQ(Constants.LOGIN_TYPE_PHONE)
-        }
+        }*/
 
         else  if(currentEmail &&currentPhone){
             if(selectedImg)
@@ -753,7 +753,7 @@ class UserInfoFragment : TemplateFragment(),Validator.ValidationListener {
 
             map.put("email",editEmail.text.trim().toString())
             map.put("name",editName.text.trim().toString())
-            map.put("phone_number",editPhone.text.trim().toString())
+            map.put("phone_number","58123456"/*editPhone.text.trim().toString()*/)
             map.put("country_code",countryCode.selectedCountryCode)
             map.put("country_id",(spinnerCountry.selectedItem as CountryModel.Data).id.toString())
             map.put("city_id",(spinnerCountryWithCity.selectedItem as CountryWithCity.Data.Citty).id.toString())
@@ -834,7 +834,7 @@ class UserInfoFragment : TemplateFragment(),Validator.ValidationListener {
 
             map.put("email",editEmail.text.trim().toString())
             map.put("name",editName.text.trim().toString())
-            map.put("phone_number",editPhone.text.trim().toString())
+            map.put("phone_number",/*editPhone.text.trim().toString()*/"58123456")
             map.put("country_code",countryCode.selectedCountryCode)
             map.put("country_id",(spinnerCountry.selectedItem as CountryModel.Data).id.toString())
             map.put("city_id",(spinnerCountryWithCity.selectedItem as CountryWithCity.Data.Citty).id.toString())
@@ -926,10 +926,10 @@ class UserInfoFragment : TemplateFragment(),Validator.ValidationListener {
                 map.put("email",editEmail.text.trim().toString())
             }
 
-            else if(txt.equals(Constants.LOGIN_TYPE_PHONE)){
-                map.put("phone_number",editPhone.text.trim().toString())
+          /*  else if(txt.equals(Constants.LOGIN_TYPE_PHONE)){
+                map.put("phone_number",/*editPhone.text.trim().toString()*/"58123456")
                 map.put("country_code",countryCode.selectedCountryCode)
-            }
+            }*/
             val shopApi = ApiClient.getClient(
                 BasicTools.getProtocol(parent!!).toString())
                 ?.create(AppApi::class.java)

@@ -10,10 +10,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 
 import androidx.cardview.widget.CardView
-import androidx.core.os.bundleOf
-import androidx.fragment.app.activityViewModels
 import com.facebook.shimmer.ShimmerFrameLayout
-import com.google.gson.Gson
 import com.urcloset.smartangle.R
 import com.urcloset.smartangle.activity.ContactAndSupportActivity.ContactAndSupportActivity
 import com.urcloset.smartangle.activity.aboutApp.AboutAppActivity
@@ -21,8 +18,6 @@ import com.urcloset.smartangle.activity.cardActivity.CardActivityInsideSetting
 import com.urcloset.smartangle.activity.changeLanguage.ChangeLangActivity
 
 import com.urcloset.smartangle.activity.changePasswordActivity.ChangePasswrodActivity
-import com.urcloset.smartangle.activity.homeActivity.HomeActivity
-import com.urcloset.smartangle.activity.homeActivity.HomeViewModel
 import com.urcloset.smartangle.activity.loginActivity.LoginAcitivty
 import com.urcloset.smartangle.activity.privacy.PrivacyActivity
 import com.urcloset.smartangle.activity.publishStatusActivity.PublicationStatus
@@ -36,8 +31,6 @@ import com.urcloset.smartangle.databinding.FragmentSettingsBinding
 import com.urcloset.smartangle.fragment.UserInfoFragment
 import com.urcloset.smartangle.fragment.directpay.DirectPayFragment
 import com.urcloset.smartangle.fragment.historypayment.HistoryPaymentFragment
-import com.urcloset.smartangle.fragment.paymentmethod.PaymentMethodFragment
-import com.urcloset.smartangle.fragment.unpaid.UnpaidCommissionsFragment
 import com.urcloset.smartangle.model.project_105.CardResultModel
 import com.urcloset.smartangle.tools.AppObservable
 import com.urcloset.smartangle.tools.BasicTools
@@ -114,6 +107,15 @@ class SettingFragment : TemplateFragment() {
         binding?.cardHistoryPayment?.setOnClickListener{
             changeFragmentBack(requireActivity(),HistoryPaymentFragment(),"commissions_history",null,R.id.root_fragment_home)
         }
+        onFragmentResult()
+        binding?.cardDeleteAccount?.setOnClickListener{
+            ConfirmActionBottomSheet.show("",
+                getString(R.string.are_u_sure_to_do_this_action),
+                getString(R.string.confirm_action),
+                childFragmentManager,
+                true,
+            )
+        }
     }
 
     override fun init_views() {
@@ -171,10 +173,10 @@ class SettingFragment : TemplateFragment() {
             line.visibility = View.GONE
             tvVoice.visibility = View.GONE
             textLoginLogOut.text = getString(R.string.sign_in)
+            binding?.deleteAccountCard?.visibility = View.GONE
 
         } else {
-
-
+            binding?.deleteAccountCard?.visibility = View.VISIBLE
             cvVisitor.visibility = View.VISIBLE
             cvSupport.visibility = View.VISIBLE
             cvVoiceIdentifiy.visibility = View.VISIBLE
@@ -258,9 +260,6 @@ class SettingFragment : TemplateFragment() {
         }
 
         rootAccountSetting.setOnClickListener {
-
-
-
             if (TemplateActivity.loginResponse == null)
                 parent!!.showToastMessage(R.string.you_have_to_login_first)
             else {
@@ -327,8 +326,50 @@ class SettingFragment : TemplateFragment() {
             parent!!.showToastMessage(R.string.no_connection)
         }
     }
+    private fun onFragmentResult() {
+        requireActivity().supportFragmentManager.setFragmentResultListener(
+            ConfirmActionBottomSheet.ACTION_DELETE,
+            viewLifecycleOwner
+        ) { requestKey, bundle ->
+            deleteAccount()
+        }
+    }
+    fun deleteAccount() {
+        if (BasicTools.isConnected(parent!!)) {
+            BasicTools.showShimmer(binding!!.cardDeleteAccount, binding!!.shimmerDeleteAccount, true)
+            val shopApi =  ApiClient.getClientJwt(
+                TemplateActivity.loginResponse?.data?.accessToken!!,
+                BasicTools.getProtocol(requireContext()).toString(), "en"
+            )?.create(
+                AppApi::class.java
+            )
+            val observable = shopApi!!.postDeleteAccount()
+            disposable.clear()
+            disposable.add(
+                observable.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeWith(object : AppObservable<ResponseBody>(parent!!) {
+                        override fun onSuccess(result: ResponseBody) {
+                            BasicTools.showShimmer(myCard, shimmerRootMyCard, false)
+                            // Should log out
+                            BasicTools.logOut(parent!!)
+                            BasicTools.clearAllActivity(parent!!, LoginAcitivty::class.java)
+                        }
+
+                        override fun onFailed(status: Int) {
+
+                            BasicTools.showShimmer(myCard, shimmerRootMyCard, false)
 
 
+                        }
+                    })
+            )
+
+        } else {
+
+            parent!!.showToastMessage(R.string.no_connection)
+        }
+    }
     fun getMyCard() {
         if (BasicTools.isConnected(parent!!)) {
 

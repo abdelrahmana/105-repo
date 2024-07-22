@@ -18,14 +18,14 @@ android {
             keyAlias 'key_urcloset'
         }
     }
-    compileSdkVersion 33
-    buildToolsVersion "29.0.3"
+    compileSdk 34
+    //buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.urcloset.smartangle"
         minSdkVersion 22
-        targetSdkVersion 33
-        versionCode 124
-        versionName "8.4"
+        targetSdk 34
+        versionCode 128
+        versionName "8.8"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         archivesBaseName = "dolabk-v${versionName}(${versionCode})-"
@@ -39,6 +39,7 @@ android {
         outputFileName = "dolabk-v${versionName}(${versionCode})-${buildType}-${flavorName}.apk"
     }
     }
+    namespace 'com.urcloset.smartangle'
     buildTypes {
         release {
             minifyEnabled false

@@ -721,7 +721,7 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
                                     "category_id",
                                     categoryAdapter.currentList[categoryIdIndex].id.toString()
                                 )
-                                map.put("country_code", tvCode.text.toString())
+                                map.put("country_code","+966" /*tvCode.text.toString()*/)
                                 map.put("phone_number", editPhone.text.toString())
                                 map.put(
                                     "condition_id",
