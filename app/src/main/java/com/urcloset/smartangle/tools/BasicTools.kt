@@ -25,7 +25,6 @@ import android.os.Bundle
 import android.provider.Settings
 import android.text.InputType
 import android.text.SpannableString
-import android.text.format.DateFormat
 import android.text.style.UnderlineSpan
 import android.util.Log
 import android.util.Patterns
@@ -37,6 +36,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -48,10 +48,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
 import com.google.android.material.textfield.TextInputLayout
-import com.google.android.play.core.review.ReviewInfo
-import com.google.android.play.core.review.ReviewManagerFactory
 import com.google.firebase.dynamiclinks.DynamicLink
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import com.google.firebase.messaging.FirebaseMessaging
@@ -77,10 +74,6 @@ import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 import java.text.SimpleDateFormat
-import java.time.Instant
-import java.time.OffsetDateTime
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.math.pow
 import kotlin.math.sqrt
@@ -96,6 +89,28 @@ object BasicTools {
         }else{
             card.visibility=View.VISIBLE
             shimmer.hide()
+        }
+    }
+    fun updateApp(context: Context){
+
+        // Replace "com.example.app" with your app's package name
+        val appPackageName =context.packageName //"com.example.app"
+
+        // Create the URI for the Google Play Store
+        var uri = Uri.parse("market://details?id=$appPackageName")
+
+        // Create an Intent to open the URI
+        var intent = Intent(Intent.ACTION_VIEW, uri)
+
+
+        // Check if there is an app that can handle this Intent
+        if (intent.resolveActivity(context.getPackageManager()) != null) {
+            context.startActivity(intent)
+        } else {
+            // If the Google Play app is not available, open the URL in a web browser
+            uri = Uri.parse("https://play.google.com/store/apps/details?id=$appPackageName")
+            intent = Intent(Intent.ACTION_VIEW, uri)
+            context.startActivity(intent)
         }
     }
     fun changeFragmentBack(activity: FragmentActivity, fragment: Fragment, tag: String, bundle: Bundle?, id : Int ) {
@@ -1402,14 +1417,18 @@ object BasicTools {
 
                     }
                     else{
-                        try{
+                        val shareIntent = Intent()
+                        shareIntent.action = Intent.ACTION_SEND
+                        shareIntent.type = "text/plain"
+                        shareIntent.putExtra(Intent.EXTRA_TEXT, "https://asetlinks.urcloset.net/product/$id")
+                        context.startActivity(Intent.createChooser(shareIntent, null))
+                    /*try{
                             (context as TemplateActivity).showToastMessage(it.result.toString())
                         }
                         catch (e:Exception){
                             Log.v("exception",e.toString())
                             (context as TemplateActivity).showToastMessage(e.toString())
-
-                        }
+                        }*/
 
                     }
                 }

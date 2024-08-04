@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.urcloset.smartangle",
+  "variantName": "release",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 125,
+      "versionName": "8.5",
+      "outputFile": "dolabk-v8.5(125)-release-.apk"
+    }
+  ],
+  "elementType": "File"
+}

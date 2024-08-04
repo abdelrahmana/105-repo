@@ -25,11 +25,15 @@ import com.urcloset.smartangle.activity.productDetails.ProductDetails
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
 import com.urcloset.smartangle.databinding.ActivityHomeBinding
+import com.urcloset.smartangle.deeplink.DeepLinkHandler
+import com.urcloset.smartangle.dialog.ForceUpdateDialog
 import com.urcloset.smartangle.fragment.HomeFragment.HomeFragment
 import com.urcloset.smartangle.fragment.bookmark_fragment.BookMarkFragment
 import com.urcloset.smartangle.fragment.myselleraccount.MySellerAccount
 import com.urcloset.smartangle.fragment.postsFragment.PostsFragment
 import com.urcloset.smartangle.fragment.setting_fragment.SettingFragment
+import com.urcloset.smartangle.globals.ForceUpdateChecker
+import com.urcloset.smartangle.globals.ForceUpdateChecker.Companion.keyForceUpdate
 
 import com.urcloset.smartangle.tools.AppObservable
 import com.urcloset.smartangle.tools.BasicTools
@@ -41,6 +45,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import okhttp3.ResponseBody
+import javax.inject.Inject
 import kotlin.collections.HashMap
 
 @AndroidEntryPoint
@@ -53,6 +58,8 @@ class HomeActivity : TemplateActivity() {
 
 
     }
+    @Inject
+    lateinit var deepLinkHandler: DeepLinkHandler
     var binding : ActivityHomeBinding? =null
     override fun set_layout() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
@@ -171,7 +178,11 @@ class HomeActivity : TemplateActivity() {
     }
 
     override fun init_events() {
-
+        ForceUpdateChecker(this,{value,result->
+            ForceUpdateDialog().apply {
+                arguments = bundleOf(keyForceUpdate to result)
+            }.show(supportFragmentManager,"")
+        }).check()
         initBottomNavigation()
        // val postsFragment = postsFragment//PostsFragment()
         val bundle  = bundleOf("show_review" to intent.getBooleanExtra("show_review",false))
@@ -419,7 +430,11 @@ class HomeActivity : TemplateActivity() {
 
     }
 
-
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        deepLinkHandler.handleDeepLink(intent?.data)
+        intent?.extras?.clear()
+    }
     fun saveTokenRQ(token: String?) {
         if (BasicTools.isConnected(this@HomeActivity)) {
          

@@ -581,6 +581,8 @@ I agree to pay 10 riyals when selling the product, and that it is in my possessi
     <string name="are_u_sure_to_do_this_action">Are you sure to delete your account</string>
     <string name="confirm_action">Confirm</string>
     <string name="delete_account">Delete Account</string>
+    <string name="update_app">Update</string>
+    <string name="new_update_is_required">a new update is required</string>
 
 
 </resources>

@@ -11,6 +11,7 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import com.urcloset.smartangle.databinding.LoaderLayoutBinding
+import com.urcloset.smartangle.deeplink.DeepLinkHandler
 import com.urcloset.smartangle.tools.GetObjectGson
 import dagger.Module
 import dagger.Provides
@@ -46,6 +47,10 @@ class CommonDi {
     @Provides
     fun getApplicationContext(@ApplicationContext context: Context?) : MyApplicationClass{
       return context?.applicationContext as MyApplicationClass
+    }
+    @Provides
+    fun getDeepLinkHandler(@ApplicationContext context: Context) : DeepLinkHandler{
+        return DeepLinkHandler.Base(context)
     }
     @Provides
     fun getGsonObject() : GetObjectGson{

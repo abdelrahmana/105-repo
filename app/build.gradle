@@ -24,8 +24,8 @@ android {
         applicationId "com.urcloset.smartangle"
         minSdkVersion 22
         targetSdk 34
-        versionCode 128
-        versionName "8.8"
+        versionCode 129
+        versionName "8.9"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         archivesBaseName = "dolabk-v${versionName}(${versionCode})-"
@@ -83,6 +83,7 @@ dependencies {
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
     implementation 'com.google.android.play:core-ktx:1.8.1'
     implementation 'com.google.firebase:firebase-database-ktx:20.1.0'
+    implementation 'com.google.firebase:firebase-config-ktx:22.0.0'
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
   //  implementation 'com.aurelhubert:ahbottomnavigation:2.3.4'
 
