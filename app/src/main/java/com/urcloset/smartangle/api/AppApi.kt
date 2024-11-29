@@ -115,7 +115,7 @@ interface AppApi {
     suspend fun deleteProduct(@Body map: HashMap<String, Any>?):ApiResponse<BasicModel>
     @POST("auth/notification/delete")
     suspend fun deleteAllNotifications(@Body map: HashMap<String, Any>?):ApiResponse<BasicModel>
-    @POST(/*"auth/product/financialSettlement"*/"auth/product/CommissionPayment")
+    @POST("auth/product/financialSettlement"/*"auth/product/CommissionPayment"*/)
     suspend fun postPaymentAfterMyFatoraPay(@Body hashMap: HashMap<String, Any>?)
     :ApiResponse<ResponseBody>
 

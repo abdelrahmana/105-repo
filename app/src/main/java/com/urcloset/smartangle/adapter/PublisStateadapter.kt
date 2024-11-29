@@ -14,6 +14,7 @@ import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.gson.Gson
 import com.urcloset.smartangle.R
 import com.urcloset.smartangle.activity.publishStatusActivity.InterfacePublication
+import com.urcloset.smartangle.activity.publishStatusActivity.UnPublishedOrdersImplementer
 import com.urcloset.smartangle.activity.updateProduct.UpdateProductActivity
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
@@ -35,10 +36,13 @@ class PublishStateAdapter(): RecyclerView.Adapter<PublishStateAdapter.ViewHolder
     private var products:ArrayList<ProductModel.Product> ?= null
     private var context:Context ?=null
     private var currentPageProduct : InterfacePublication? =null
-    constructor(context: Context, products:ArrayList<ProductModel.Product>,currentPageProduct :InterfacePublication) : this() {
+    private var callBackUnit : ((ProductModel.Product)->Unit)?= null
+    constructor(context: Context, products:ArrayList<ProductModel.Product>,currentPageProduct :InterfacePublication,
+                callBackUnit : (ProductModel.Product)->Unit) : this() {
 
         this.context=context
         this.products=products
+        this.callBackUnit = callBackUnit
         this.currentPageProduct = currentPageProduct
 
     }
@@ -87,6 +91,11 @@ class PublishStateAdapter(): RecyclerView.Adapter<PublishStateAdapter.ViewHolder
 
         }
         holder.name.text = product.name.toString()
+        if (currentPageProduct is UnPublishedOrdersImplementer) //
+            holder.cvPayCommission.visibility = View.VISIBLE
+        holder.cvPayCommission.setOnClickListener{
+            callBackUnit?.let { callBack -> callBack(product) }
+        }
 
         if(product.currentPublishStatus?.statusValue==1) {
             holder.imagestate.setImageResource(R.drawable.in_review)
@@ -244,6 +253,8 @@ class PublishStateAdapter(): RecyclerView.Adapter<PublishStateAdapter.ViewHolder
         val edit = view.findViewById<CardView>(R.id.cv_edit)
         val rejectedActions = view.findViewById<RelativeLayout>(R.id.rl_rejected_actions)
         val  cvEditandpublish = view.findViewById<CardView>(R.id.cv_editandpublish)
+        val  cvPayCommission = view.findViewById<CardView>(R.id.cv_pay)
+
         val timeEditText = view.findViewById<TextView>(R.id.time_edit_text)
         val lyEdit = view.findViewById<LinearLayout>(R.id.ly_edit)
 

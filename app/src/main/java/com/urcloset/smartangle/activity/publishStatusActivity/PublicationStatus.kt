@@ -41,6 +41,7 @@ class PublicationStatus : TemplateActivity() {
     var disposable = CompositeDisposable()
     lateinit var viewPager: ViewPager2
     var selectState:Int=1
+    lateinit var tvUnPublished:TextView
     lateinit var tvPublished:TextView
     lateinit var tvRejected:TextView
     lateinit var tvInReview:TextView
@@ -59,6 +60,7 @@ class PublicationStatus : TemplateActivity() {
         if(TemplateActivity.loginResponse?.data!!.accessToken!=null){
           //  getProductsByPublishState()
             setViewPagerCategories(ArrayList<InterfacePublication>().also {
+                it.add(UnPublishedOrdersImplementer())
                 it.add(PublicationOrdersImplementer())
                 it.add(SoldOrdersImplementer())
                 it.add(RejectedProductsImplementer())
@@ -80,6 +82,7 @@ class PublicationStatus : TemplateActivity() {
     override fun init_views() {
         viewPager =binding!!.viewpager
         tvPublished =binding!!.tvPublished
+        tvUnPublished =binding!!.tvUnPaid
         tvInReview =binding!!.tvReview
         tvRejected =binding!!.tvRejected
         rvShimmer =binding!!.rvShimmer
@@ -90,33 +93,51 @@ class PublicationStatus : TemplateActivity() {
         ivBack.setOnClickListener {
             finish()
         }
+        tvUnPublished.setOnClickListener {
+            tvUnPublished.background = getDrawable(R.drawable.publish_state_bg)
+            tvRejected.background = getDrawable(R.drawable.unselected_publish_state_bg)
+            tvPublished.background = getDrawable(R.drawable.unselected_publish_state_bg)
+            tvInReview.background = getDrawable(R.drawable.unselected_publish_state_bg)
+            tvUnPublished.setTextColor(resources.getColor(R.color.white))
+            tvPublished.setTextColor(Color.parseColor("#ACACAC"))
+            tvInReview.setTextColor(Color.parseColor("#ACACAC"))
+            tvRejected.setTextColor(Color.parseColor("#ACACAC"))
+            viewPager.setCurrentItem(0)
+        }
         tvPublished.setOnClickListener {
             tvPublished.background = getDrawable(R.drawable.publish_state_bg)
             tvInReview.background = getDrawable(R.drawable.unselected_publish_state_bg)
             tvRejected.background = getDrawable(R.drawable.unselected_publish_state_bg)
+            tvUnPublished.background = getDrawable(R.drawable.unselected_publish_state_bg)
+            tvUnPublished.setTextColor(Color.parseColor("#ACACAC"))
             tvPublished.setTextColor(resources.getColor(R.color.white))
-            tvInReview.setTextColor(Color.parseColor("#ACACAC"))
+            tvPublished.setTextColor(Color.parseColor("#ACACAC"))
             tvRejected.setTextColor(Color.parseColor("#ACACAC"))
-            viewPager.setCurrentItem(0)
+            viewPager.setCurrentItem(1)
+
         }
         tvInReview.setOnClickListener {
             tvPublished.background = getDrawable(R.drawable.unselected_publish_state_bg)
             tvInReview.background = getDrawable(R.drawable.publish_state_bg)
             tvRejected.background = getDrawable(R.drawable.unselected_publish_state_bg)
+            tvUnPublished.background = getDrawable(R.drawable.unselected_publish_state_bg)
+            tvUnPublished.setTextColor(Color.parseColor("#ACACAC"))
             tvInReview.setTextColor(resources.getColor(R.color.white))
             tvPublished.setTextColor(Color.parseColor("#ACACAC"))
             tvRejected.setTextColor(Color.parseColor("#ACACAC"))
-            viewPager.setCurrentItem(1)
+            viewPager.setCurrentItem(2)
 
         }
         tvRejected.setOnClickListener {
             tvPublished.background = getDrawable(R.drawable.unselected_publish_state_bg)
             tvInReview.background = getDrawable(R.drawable.unselected_publish_state_bg)
             tvRejected.background = getDrawable(R.drawable.publish_state_bg)
+            tvUnPublished.background = getDrawable(R.drawable.unselected_publish_state_bg)
+            tvUnPublished.setTextColor(Color.parseColor("#ACACAC"))
             tvRejected.setTextColor(resources.getColor(R.color.white))
             tvPublished.setTextColor(Color.parseColor("#ACACAC"))
             tvInReview.setTextColor(Color.parseColor("#ACACAC"))
-            viewPager.setCurrentItem(2)
+            viewPager.setCurrentItem(3)
 
         }
        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
@@ -129,33 +150,50 @@ class PublicationStatus : TemplateActivity() {
 
             override fun onPageSelected(position: Int) {
                 if (position == 0){
-                    tvPublished.background = getDrawable(R.drawable.selected_text_button_bg_small)
+                    tvUnPublished.background = getDrawable(R.drawable.selected_text_button_bg_small)
                     tvInReview.background = getDrawable(R.drawable.unselected_text_button_bg_small)
                     tvRejected.background = getDrawable(R.drawable.unselected_text_button_bg_small)
-                    tvPublished.setTextColor(resources.getColor(R.color.white))
+                    tvPublished.background = getDrawable(R.drawable.unselected_text_button_bg_small)
+                    tvPublished.setTextColor(Color.parseColor("#ACACAC"))
+                    tvUnPublished.setTextColor(resources.getColor(R.color.white))
                     tvInReview.setTextColor(Color.parseColor("#ACACAC"))
                     tvRejected.setTextColor(Color.parseColor("#ACACAC"))
                     viewPager.setCurrentItem(0)
 
                 }
                 if (position == 1){
-                    tvPublished.background = getDrawable(R.drawable.unselected_text_button_bg_small)
-                    tvInReview.background = getDrawable(R.drawable.selected_text_button_bg_small)
+                    tvInReview.background = getDrawable(R.drawable.unselected_text_button_bg_small)
+                    tvPublished.background = getDrawable(R.drawable.selected_text_button_bg_small)
                     tvRejected.background = getDrawable(R.drawable.unselected_text_button_bg_small)
-                    tvInReview.setTextColor(resources.getColor(R.color.white))
-                    tvPublished.setTextColor(Color.parseColor("#ACACAC"))
+                    tvPublished.setTextColor(resources.getColor(R.color.white))
+                    tvUnPublished.setTextColor(Color.parseColor("#ACACAC"))
+                    tvUnPublished.background = getDrawable(R.drawable.unselected_text_button_bg_small)
+                    tvInReview.setTextColor(Color.parseColor("#ACACAC"))
                     tvRejected.setTextColor(Color.parseColor("#ACACAC"))
                     viewPager.setCurrentItem(1)
                 }
                 if (position == 2){
                     tvPublished.background = getDrawable(R.drawable.unselected_text_button_bg_small)
+                    tvInReview.background = getDrawable(R.drawable.selected_text_button_bg_small)
+                    tvRejected.background = getDrawable(R.drawable.unselected_text_button_bg_small)
+                    tvInReview.setTextColor(resources.getColor(R.color.white))
+                    tvUnPublished.setTextColor(Color.parseColor("#ACACAC"))
+                    tvUnPublished.background = getDrawable(R.drawable.unselected_text_button_bg_small)
+                    tvPublished.setTextColor(Color.parseColor("#ACACAC"))
+                    tvRejected.setTextColor(Color.parseColor("#ACACAC"))
+                    viewPager.setCurrentItem(2)
+                }
+                if (position == 3){
+                    tvPublished.background = getDrawable(R.drawable.unselected_text_button_bg_small)
                     tvInReview.background = getDrawable(R.drawable.unselected_text_button_bg_small)
                     tvRejected.background = getDrawable(R.drawable.selected_text_button_bg_small)
                     tvRejected.setTextColor(resources.getColor(R.color.white))
+                    tvUnPublished.setTextColor(Color.parseColor("#ACACAC"))
+                    tvUnPublished.background = getDrawable(R.drawable.unselected_text_button_bg_small)
                     tvPublished.setTextColor(Color.parseColor("#ACACAC"))
                     tvInReview.setTextColor(Color.parseColor("#ACACAC"))
                  //   pagerAdapter.notifyDataSetChanged()
-                    viewPager.setCurrentItem(2)
+                    viewPager.setCurrentItem(3)
 
 
                 }

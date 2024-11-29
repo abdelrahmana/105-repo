@@ -15,6 +15,17 @@ interface InterfacePublication {
     ) : ApiResponse<ProductItemResponse>
     fun showHideViews(binding: PublishStateItemBinding)
 }
+class UnPublishedOrdersImplementer() : InterfacePublication {
+    override suspend fun getCurrentList(
+        dataSource: AppApi): ApiResponse<ProductItemResponse> {
+        return  dataSource.getUnPaidProducts()
+    }
+
+    override fun showHideViews(binding: PublishStateItemBinding) { // the default operation checked are here
+        binding.ivIconState.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.published_icon))
+        binding.tvState.text = binding.root.context.getString(R.string.unpaid)
+    }
+}
 class PublicationOrdersImplementer() : InterfacePublication {
     override suspend fun getCurrentList(
         dataSource: AppApi): ApiResponse<ProductItemResponse> {

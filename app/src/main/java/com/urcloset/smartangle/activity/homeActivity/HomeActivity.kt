@@ -51,23 +51,26 @@ import kotlin.collections.HashMap
 @AndroidEntryPoint
 class HomeActivity : TemplateActivity() {
 
-    var disposable= CompositeDisposable()
-    companion object{
-        var bottomNavigation: BottomNavigationView?=null
-        var doNothing: Boolean=false
+    var disposable = CompositeDisposable()
+
+    companion object {
+        var bottomNavigation: BottomNavigationView? = null
+        var doNothing: Boolean = false
 
 
     }
+
     @Inject
     lateinit var deepLinkHandler: DeepLinkHandler
-    var binding : ActivityHomeBinding? =null
+    var binding: ActivityHomeBinding? = null
     override fun set_layout() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
         askPermissionsIfNeeded()
 
     }
-    val viewModel : HomeViewModel by viewModels()
+
+    val viewModel: HomeViewModel by viewModels()
     private fun askPermissionsIfNeeded() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             val permissions =
@@ -89,11 +92,13 @@ class HomeActivity : TemplateActivity() {
             }
         }
     }
+
     private val notificationPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
     ) { _ ->
         // Do nothing on result
     }
+
     override fun init_activity(savedInstanceState: Bundle?) {
         Firebase.dynamicLinks
             .getDynamicLink(intent)
@@ -110,20 +115,18 @@ class HomeActivity : TemplateActivity() {
                 }
 
 
-
             }
             .addOnFailureListener(this) { e -> Log.w("", "getDynamicLink:onFailure", e) }
 
         FirebaseMessaging.getInstance().token
             .addOnCompleteListener(OnCompleteListener<String> { task ->
-                if(task.isSuccessful) {
+                if (task.isSuccessful) {
                     if (!BasicTools.getToken(this).isEmpty()) {
                         Log.d("fcm-save", "init_activity: ")
 
                         saveToken(task.result)
                     }
-                }
-                else {
+                } else {
                     Log.d("fcm-fail", "init_activity: ")
                 }
 
@@ -131,23 +134,23 @@ class HomeActivity : TemplateActivity() {
             })
 
     }
+
     fun saveToken(token: String?) {
 
-        val disposable= CompositeDisposable()
+        val disposable = CompositeDisposable()
         if (BasicTools.isConnected(this)) {
 
             val shopApi = ApiClient.getClientJwt(
                 BasicTools.getToken(this),
-                BasicTools.getProtocol(this).toString())
+                BasicTools.getProtocol(this).toString()
+            )
                 ?.create(AppApi::class.java)
 
 
+            val map = HashMap<String, String>()
+            map.put("token", "$token")
 
-
-            val map=HashMap<String,String>()
-            map.put("token","$token")
-
-            val observable= shopApi!!.saveDevicesToken(map)
+            val observable = shopApi!!.saveDevicesToken(map)
             disposable.clear()
             disposable.add(
                 observable.subscribeOn(Schedulers.io())
@@ -157,20 +160,21 @@ class HomeActivity : TemplateActivity() {
                             Log.d("FCM Update", "onSuccess: ")
 
                         }
+
                         override fun onFailed(status: Int) {
                             Log.d("FCM Update failure", "onSuccess: ")
 
                         }
-                    }))
+                    })
+            )
 
         }
 
     }
 
 
-
     val postsFragment = PostsFragment()
-    val homeFragment  = HomeFragment()
+    val homeFragment = HomeFragment()
     val bookMark = BookMarkFragment()
     val sellerAccount = MySellerAccount()
     override fun init_views() {
@@ -178,18 +182,18 @@ class HomeActivity : TemplateActivity() {
     }
 
     override fun init_events() {
-        ForceUpdateChecker(this,{value,result->
+        ForceUpdateChecker(this, { value, result ->
             ForceUpdateDialog().apply {
                 arguments = bundleOf(keyForceUpdate to result)
-            }.show(supportFragmentManager,"")
+            }.show(supportFragmentManager, "")
         }).check()
         initBottomNavigation()
-       // val postsFragment = postsFragment//PostsFragment()
-        val bundle  = bundleOf("show_review" to intent.getBooleanExtra("show_review",false))
+        // val postsFragment = postsFragment//PostsFragment()
+        val bundle = bundleOf("show_review" to intent.getBooleanExtra("show_review", false))
         postsFragment.arguments = bundle
         show_fragment2(postsFragment, false, false, R.id.root_fragment_home)
 
-      /*  bottomNavigation!!.setOnTabSelectedListener { position, wasSelected ->
+        /*  bottomNavigation!!.setOnTabSelectedListener { position, wasSelected ->
             // Do something cool here...
             when(position){
                 0 -> if (!wasSelected) {
@@ -279,19 +283,21 @@ class HomeActivity : TemplateActivity() {
                 when (menuItem.itemId) {
                     R.id.posts -> {
 
-                            if (!doNothing) {
-                                show_fragment2(postsFragment, false, false, R.id.root_fragment_home)
-                            }
+                        if (!doNothing) {
+                            show_fragment2(postsFragment, false, false, R.id.root_fragment_home)
+                        }
 
                     }
+
                     R.id.users -> {
-                        if(!doNothing) {
+                        if (!doNothing) {
                             // val f = HomeFragment()
 
                             show_fragment2(homeFragment, false, false, R.id.root_fragment_home)
                         }
 
                     }
+
                     R.id.adding -> {
                         if (TemplateActivity.loginResponse?.data?.accessToken != null) {
                             // will check if the user agree or not
@@ -301,36 +307,54 @@ class HomeActivity : TemplateActivity() {
                                 false
                             )
                         } else {
-                            Toast.makeText(applicationContext, getString(R.string.you_must_log_in), Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                applicationContext,
+                                getString(R.string.you_must_log_in),
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
 
                     }
+
                     R.id.bookmark -> {
                         if (TemplateActivity.loginResponse?.data?.accessToken != null) {
-                            if(!doNothing) {
+                            if (!doNothing) {
                                 //bottomNavigation!!.currentItem = 3
-                                val f =bookMark
+                                val f = bookMark
                                 show_fragment2(f, false, false, R.id.root_fragment_home)
                             }
-                        }
-                        else {
-                            Toast.makeText(applicationContext, getString(R.string.you_must_log_in), Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(
+                                applicationContext,
+                                getString(R.string.you_must_log_in),
+                                Toast.LENGTH_SHORT
+                            ).show()
 
 
                         }
 
                     }
+
                     R.id.setting -> {
                         if (TemplateActivity.loginResponse?.data?.accessToken != null) {
-                            if(!doNothing) {
+                            if (!doNothing) {
 
-                                show_fragment2(MySellerAccount(), false, false, R.id.root_fragment_home)
+                                show_fragment2(
+                                    MySellerAccount(),
+                                    false,
+                                    false,
+                                    R.id.root_fragment_home
+                                )
                             }
-                        }
-                        else {
-                            if(!doNothing) {
+                        } else {
+                            if (!doNothing) {
                                 val settingFragment = SettingFragment()
-                                show_fragment2(settingFragment, false, false, R.id.root_fragment_home)
+                                show_fragment2(
+                                    settingFragment,
+                                    false,
+                                    false,
+                                    R.id.root_fragment_home
+                                )
                             }
                         }
 
@@ -345,12 +369,12 @@ class HomeActivity : TemplateActivity() {
             if (updatedId != null) {
                 // this is the id
                 //bottomNavigationView.
-             /*   if (updatedId == R.id.users)
+                /*   if (updatedId == R.id.users)
                     bottomNavigation!!.menu?.findItem(R.id.users)?.setChecked(true)
                 else  if (updatedId == R.id.home)
                     bottomNavigation!!.menu?.findItem(R.id.home)?.setChecked(true)*/
                 //bottomNavigation!!.selectedItemId = updatedId
-               bottomNavigation!!.menu.findItem(updatedId)?.setChecked(true)
+                bottomNavigation!!.menu.findItem(updatedId)?.setChecked(true)
                 //  setCurrentCheckedItemIfAvaliable(updatedId,true) // when observe so we only need the selectdd not all action so send filter
                 viewModel.setPreviousNavBottom(null)
             }
@@ -361,11 +385,9 @@ class HomeActivity : TemplateActivity() {
 
     override fun set_fragment_place() {
 
-        this.fragment_place=binding!!.rootFragmentHome
+        this.fragment_place = binding!!.rootFragmentHome
 
     }
-
-
 
 
     fun initBottomNavigation() {
@@ -375,7 +397,7 @@ class HomeActivity : TemplateActivity() {
         if (Build.VERSION.SDK_INT >= 21)
             bottomNavigation!!.setElevation(pixels)
 
-/*
+        /*
             val item1 =AHBottomNavigationItem(resources.getString(R.string.home), R.drawable.ic_discover)
         val item2 = AHBottomNavigationItem(getString(R.string.account), R.drawable.ic_nearby_users)
         val item3 = AHBottomNavigationItem(resources.getString(R.string.add_product),
@@ -430,27 +452,28 @@ class HomeActivity : TemplateActivity() {
 
     }
 
-    override fun onNewIntent(intent: Intent?) {
+    override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         deepLinkHandler.handleDeepLink(intent?.data)
         intent?.extras?.clear()
     }
+
     fun saveTokenRQ(token: String?) {
         if (BasicTools.isConnected(this@HomeActivity)) {
-         
+
             val shopApi = ApiClient.getClientJwt(
                 BasicTools.getToken(this@HomeActivity),
-                BasicTools.getProtocol(this@HomeActivity).toString())
+                BasicTools.getProtocol(this@HomeActivity).toString()
+            )
                 ?.create(AppApi::class.java)
 
             val id: String = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
 
 
-
-            var map=HashMap<String,String>()
-            map.put("device_token","$token")
+            var map = HashMap<String, String>()
+            map.put("device_token", "$token")
             map.put("device_id", id.toString())
-            val observable= shopApi!!.saveDevicesToken(map)
+            val observable = shopApi!!.saveDevicesToken(map)
             disposable.clear()
             disposable.add(
                 observable.subscribeOn(Schedulers.io())
@@ -459,20 +482,23 @@ class HomeActivity : TemplateActivity() {
                         override fun onSuccess(result: ResponseBody) {
 
                         }
+
                         override fun onFailed(status: Int) {
                             //BasicTools.logOut(parent!!)
                         }
-                    }))
+                    })
+            )
 
-        }
-        else {
+        } else {
 
 
         }
     }
 
-
-
-
-
 }
+
+
+
+
+
+

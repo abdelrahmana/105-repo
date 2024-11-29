@@ -24,8 +24,8 @@ android {
         applicationId "com.urcloset.smartangle"
         minSdkVersion 22
         targetSdk 34
-        versionCode 129
-        versionName "8.9"
+        versionCode 130
+        versionName "9.0"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         archivesBaseName = "dolabk-v${versionName}(${versionCode})-"
@@ -81,9 +81,13 @@ dependencies {
     implementation 'com.google.android.gms:play-services-wallet:16.0.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
-    implementation 'com.google.android.play:core-ktx:1.8.1'
+    //implementation 'com.google.android.play:core-ktx:1.8.1'
+    implementation("com.google.android.play:app-update:2.1.0")
+    // For Kotlin users, also import the Kotlin extensions library for Play In-App Update:
+    implementation("com.google.android.play:app-update-ktx:2.1.0")
     implementation 'com.google.firebase:firebase-database-ktx:20.1.0'
     implementation 'com.google.firebase:firebase-config-ktx:22.0.0'
+    implementation 'androidx.activity:activity:1.9.1'
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
   //  implementation 'com.aurelhubert:ahbottomnavigation:2.3.4'
 

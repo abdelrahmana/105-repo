@@ -1,5 +1,6 @@
 package com.urcloset.smartangle.activity.addProductActivity
 
+import android.app.Activity
 import android.content.ClipData
 import android.content.Context
 import android.content.Intent
@@ -12,20 +13,35 @@ import android.provider.OpenableColumns
 import android.text.Html
 import android.util.Log
 import android.view.View
-import android.widget.*
+import android.widget.Adapter
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
+import android.widget.LinearLayout
+import android.widget.Spinner
+import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
-import com.google.android.play.core.review.ReviewInfo
-import com.google.android.play.core.review.ReviewManagerFactory
-import com.google.firebase.FirebaseApp
 import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.google.gson.Gson
 import com.urcloset.shop.tools.hide
 import com.urcloset.shop.tools.visible
 import com.urcloset.smartangle.R
+import com.urcloset.smartangle.activity.ContainerActivity
 import com.urcloset.smartangle.activity.homeActivity.HomeActivity
-import com.urcloset.smartangle.adapter.*
+import com.urcloset.smartangle.activity.publishStatusActivity.PublicationStatus
+import com.urcloset.smartangle.adapter.CategoryAdapter
+import com.urcloset.smartangle.adapter.ColorsAdapter
+import com.urcloset.smartangle.adapter.ConditionAdapter
+import com.urcloset.smartangle.adapter.PhotoAdapter
+import com.urcloset.smartangle.adapter.SizeAdapter
 import com.urcloset.smartangle.api.ApiClient
 import com.urcloset.smartangle.api.AppApi
 import com.urcloset.smartangle.dialog.BottomSheetRatApplication
@@ -33,24 +49,30 @@ import com.urcloset.smartangle.dialog.HintAddProductDialog
 import com.urcloset.smartangle.fragment.bottomsheetagree.ConsentBottomSheet
 import com.urcloset.smartangle.fragment.bottomsheetagree.ImplementerPublishConsent
 import com.urcloset.smartangle.listeners.ItemClickListener
-import com.urcloset.smartangle.model.*
-import com.urcloset.smartangle.tools.*
+import com.urcloset.smartangle.model.AddPhotoModel
+import com.urcloset.smartangle.model.CategoryModel
+import com.urcloset.smartangle.model.ColorModel
+import com.urcloset.smartangle.model.CommissionModel
+import com.urcloset.smartangle.model.ConditionModel
+import com.urcloset.smartangle.model.CreateProductModel
+import com.urcloset.smartangle.model.PersonalUserInfoModel
+import com.urcloset.smartangle.model.SentenceModel
+import com.urcloset.smartangle.model.SizeModel
+import com.urcloset.smartangle.tools.AppObservable
+import com.urcloset.smartangle.tools.BasicTools
+import com.urcloset.smartangle.tools.TemplateActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
-import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 
 
-class AddProductActivity : TemplateActivity() ,IAddProduct
-{
+class AddProductActivity : TemplateActivity(), IAddProduct {
     var disposable = CompositeDisposable()
     lateinit var rvCategories: RecyclerView
     lateinit var dialog: HintAddProductDialog
@@ -63,7 +85,7 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
     lateinit var sizeAdapter: SizeAdapter
     val photos = ArrayList<AddPhotoModel>()
     lateinit var tvName: EditText
-    lateinit var tvPhone : EditText
+    lateinit var tvPhone: EditText
     lateinit var tvDes: EditText
     lateinit var etPrice: EditText
     lateinit var rvPhotos: RecyclerView
@@ -79,7 +101,7 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
     var categoryIdIndex = 0
     var categories = ArrayList<CategoryModel.Category>()
     lateinit var conditions: List<ConditionModel.Condition>
-    lateinit var colorList :List<ColorModel.Color>
+    lateinit var colorList: List<ColorModel.Color>
     var boxAvaliable: Int = 1
     var invoiceAvailable: Int = 1
     var isNegotiable: Int = 1
@@ -93,15 +115,15 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
     val RESULT_LOAD_IMAGE = 1234
     var lang = "en"
     lateinit var shimmerFrameLayout: ShimmerFrameLayout
-    lateinit var shimmerColor:ShimmerFrameLayout
-    lateinit var shimmerSizes:ShimmerFrameLayout
-    lateinit var shimmerCategories:ShimmerFrameLayout
-    lateinit var tvCode:EditText
-    lateinit var editPhone:EditText
-    var first:String=""
-    var next:String=""
+    lateinit var shimmerColor: ShimmerFrameLayout
+    lateinit var shimmerSizes: ShimmerFrameLayout
+    lateinit var shimmerCategories: ShimmerFrameLayout
+    lateinit var tvCode: EditText
+    lateinit var editPhone: EditText
+    var first: String = ""
+    var next: String = ""
     var isOpened = false
-    var productMessage=""
+    var productMessage = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -111,25 +133,31 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
 
     override fun set_layout() {
         setContentView(R.layout.activity_add_product)
-
+    }
+    private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+    { result: ActivityResult ->
+        if (result.resultCode == RESULT_OK) {
+            addProduct()
+        }
     }
 
     fun openReviewGoogle(applicationContext: Context) {
-     /*   val request = ReviewManagerFactory.create(applicationContext).requestReviewFlow()
-        request.addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                // We got the ReviewInfo object
-                val reviewInfo : ReviewInfo = task.result
-                BasicTools.setReviewedBefore(applicationContext,true)
-            } else {
-                Toast.makeText(this,task.exception?.message?:"",Toast.LENGTH_SHORT).show()
-                // There was some problem, log or handle the error code.
-                // @ReviewErrorCode val reviewErrorCode = (task.getException()).errorCode
-            }
-        }*/
+        /*   val request = ReviewManagerFactory.create(applicationContext).requestReviewFlow()
+           request.addOnCompleteListener { task ->
+               if (task.isSuccessful) {
+                   // We got the ReviewInfo object
+                   val reviewInfo : ReviewInfo = task.result
+                   BasicTools.setReviewedBefore(applicationContext,true)
+               } else {
+                   Toast.makeText(this,task.exception?.message?:"",Toast.LENGTH_SHORT).show()
+                   // There was some problem, log or handle the error code.
+                   // @ReviewErrorCode val reviewErrorCode = (task.getException()).errorCode
+               }
+           }*/
         BottomSheetRatApplication()
             .show(supportFragmentManager, "bottom_sheet")
     }
+
     override fun init_activity(savedInstanceState: Bundle?) {
         lang = "en"
         photos.add(AddPhotoModel(null, R.drawable.dr_add_photo))
@@ -141,7 +169,7 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
         )
         rvCategories.adapter = categoryAdapter
         rvPhotos.adapter = photoAdapter
-       rvPhotos.layoutManager = GridLayoutManager(this, 3)
+        rvPhotos.layoutManager = GridLayoutManager(this, 3)
         photoAdapter.submitList(photos)
         rvConditions.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
@@ -162,54 +190,55 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
         getSizes()
 
         // Note
-        if(BasicTools.isDeviceLanEn()) {
-             first = "<font color='#FF5E5E'>Note: </font>"
-             next=
+        if (BasicTools.isDeviceLanEn()) {
+            first = "<font color='#FF5E5E'>Note: </font>"
+            next =
                 "<font color='#444444'> When You Add The Product.\n The Price cannot Be Modified </font>"
-        }
-        else{
-             first = "<font color='#FF5E5E'>ملاحظة: </font>"
-             next =
+        } else {
+            first = "<font color='#FF5E5E'>ملاحظة: </font>"
+            next =
                 "<font color='#444444'>عند إضافة المنتج لايمكنك تعديل السعر</font>"
 
         }
 
-       findViewById<TextView>(R.id.tv_note).setText(Html.fromHtml(first + next))
+        findViewById<TextView>(R.id.tv_note).setText(Html.fromHtml(first + next))
 
     }
 
 
     override fun init_views() {
         rvCategories = findViewById(R.id.rv_categories)
-        tvName =findViewById(R.id.tv_name)
+        tvName = findViewById(R.id.tv_name)
         //tvPhone = findViewById(R.id.phoneEdit)
         tvDes = findViewById(R.id.tv_des)
-        rvPhotos =findViewById(R.id.rv_photos)
-        rvConditions =findViewById(R.id.rv_conditions)
+        rvPhotos = findViewById(R.id.rv_photos)
+        rvConditions = findViewById(R.id.rv_conditions)
         tvYesNegotiable = findViewById(R.id.tv_yes_negotiable)
         tvNoNegotiable = findViewById(R.id.tv_no_negotiable)
         tvYesBox = findViewById(R.id.tv_ba_y)
         tvNoBox = findViewById(R.id.tv_ba_n)
         tvInvoiceAvaliable = findViewById(R.id.tv_ia_y)
-        tvInvoiceUnAvaliable =findViewById(R.id.tv_ia_n)
+        tvInvoiceUnAvaliable = findViewById(R.id.tv_ia_n)
         duration = findViewById(R.id.sp_duration)
-        rvColors =findViewById(R.id.rv_colors)
-        rvSize =findViewById(R.id.rv_size)
+        rvColors = findViewById(R.id.rv_colors)
+        rvSize = findViewById(R.id.rv_size)
         addButton = findViewById(R.id.bn_add)
-        etPrice =findViewById(R.id.et_price)
-        shimmerFrameLayout =findViewById(R.id.shimmer_layout)
+        etPrice = findViewById(R.id.et_price)
+        shimmerFrameLayout = findViewById(R.id.shimmer_layout)
         tvCode = findViewById(R.id.tv_code)
-        editPhone =findViewById(R.id.phone)
-        shimmerColor =findViewById(R.id.shimmer_color)
-        shimmerSizes =findViewById(R.id.shimmer_sizes)
+        editPhone = findViewById(R.id.phone)
+        shimmerColor = findViewById(R.id.shimmer_color)
+        shimmerSizes = findViewById(R.id.shimmer_sizes)
         shimmerCategories = findViewById(R.id.shimmer_categories)
 
 
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-
-        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
+        if (requestCode == 100 && resultCode == RESULT_OK) {
+            addProduct()
+        }
+        else if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
 
             val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
             val imagesEncodedList = ArrayList<String>()
@@ -219,7 +248,7 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
                 photos.removeAt(photos.size - 1)
                 photos.add(AddPhotoModel(selectedImage!!))
                 photos.add(AddPhotoModel(null, R.drawable.dr_add_photo))
-                if(photos.size==7){
+                if (photos.size == 7) {
                     photos.removeAt(photos.size - 1)
 
 
@@ -234,7 +263,7 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
                     val mClipData: ClipData = data.clipData!!
                     val mArrayUri = ArrayList<Uri>()
                     for (i: Int in 0..mClipData.itemCount - 1) {
-                        if(photos.size+i<7) {
+                        if (photos.size + i < 7) {
                             val item = mClipData.getItemAt(i)
                             val uri = item.uri
                             uris.add(uri)
@@ -270,8 +299,8 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
             photos.add(AddPhotoModel(uri))
 
         }
-        if(photos.size<6)
-        photos.add(AddPhotoModel(null, R.drawable.dr_add_photo))
+        if (photos.size < 6)
+            photos.add(AddPhotoModel(null, R.drawable.dr_add_photo))
         photoAdapter.submitList(photos)
         photoAdapter.notifyDataSetChanged()
     }
@@ -283,7 +312,10 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
                 intent.type = "image/*"
                 intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
                 intent.action = Intent.ACTION_GET_CONTENT
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), RESULT_LOAD_IMAGE)
+                startActivityForResult(
+                    Intent.createChooser(intent, "Select Picture"),
+                    RESULT_LOAD_IMAGE
+                )
             }
         })
         photoAdapter.setOnPhotoCancel(object : ItemClickListener {
@@ -355,9 +387,12 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
         })
         addButton.setOnClickListener {
             if (BasicTools.getAgreementsTerms(this))
-            addProduct()
+                addProductPayment()
             else
-                ConsentBottomSheet(ImplementerPublishConsent(),callBackConfirmConsent) // need to add this feature
+                ConsentBottomSheet(
+                    ImplementerPublishConsent(),
+                    callBackConfirmConsent
+                ) // need to add this feature
                     .show(supportFragmentManager, "consent_bottom_sheet")
 
         }
@@ -370,12 +405,11 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
         conditionAdapter.setOnConditionItemSelected(object : ItemClickListener {
             override fun onClick(position: Int) {
                 conditionIdPosition = position
-                if(position == 1){
+                if (position == 1) {
                     duration.visibility = View.VISIBLE
                     findViewById<LinearLayout>(R.id.ly_dur).visibility = View.VISIBLE
 
-                }
-                else {
+                } else {
                     findViewById<LinearLayout>(R.id.ly_dur).visibility = View.GONE
                     duration.visibility = View.GONE
 
@@ -400,10 +434,11 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
         tvCode.setText(TemplateActivity.loginResponse?.data?.user?.countryCode)
         editPhone.setText(TemplateActivity.loginResponse?.data?.user?.phoneNumber)
     }
-    val callBackConfirmConsent :(Int)->Unit = {isAgree->
-        if (isAgree==1) {
-            BasicTools.setAgreementsTerms(this ,true)
-            addProduct()
+
+    val callBackConfirmConsent: (Int) -> Unit = { isAgree ->
+        if (isAgree == 1) {
+            BasicTools.setAgreementsTerms(this, true)
+            addProductPayment()
         }
 
     }
@@ -425,7 +460,7 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
     }
 
     fun getCategories() {
-      BasicTools.showShimmer(rvCategories, shimmerCategories, true)
+        BasicTools.showShimmer(rvCategories, shimmerCategories, true)
         val shopApi =
             ApiClient.getClient(
 
@@ -566,13 +601,13 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
 
                         if (result.status!!) {
                             colorList = result.data as List<ColorModel.Color>
-                           val colors =    ArrayList<ColorModel.Color>()
+                            val colors = ArrayList<ColorModel.Color>()
                             colors.clear()
-                           result.data.forEach {
-                               val color :ColorModel.Color = it
-                               color.isSelected = 0
-                               colors.add(color)
-                           }
+                            result.data.forEach {
+                                val color: ColorModel.Color = it
+                                color.isSelected = 0
+                                colors.add(color)
+                            }
                             colorsAdapter.submitList(result.data)
 
                         }
@@ -614,7 +649,7 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
                             val sizes = result.data
                             sizes.forEach {
                                 val size = it
-                                if(size.isSelected!!>0)
+                                if (size.isSelected!! > 0)
                                     size.isSelected = 0
 
                             }
@@ -683,11 +718,20 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
         }
     }
 
+
+    private fun addProductPayment() // this is used to open payment first
+    {
+       // val intent = Intent(this, ContainerActivity::class.java)
+        //startForResult.launch(intent)
+        //startActivityForResult(intent,100)
+        addProduct() // lets add the product first
+    }
+
     private fun addProduct() {
-        if(tvName.text.toString().trim().isNotEmpty()) {
+        if (tvName.text.toString().trim().isNotEmpty()) {
             if (tvDes.text.toString().trim().isNotEmpty()) {
                 if (etPrice.text.toString().trim().isNotEmpty()) {
-                    if(editPhone.text.toString().trim().isNotEmpty()) {
+                    if (editPhone.text.toString().trim().isNotEmpty()) {
                         if (uris.size > 0) {
 
 
@@ -721,7 +765,7 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
                                     "category_id",
                                     categoryAdapter.currentList[categoryIdIndex].id.toString()
                                 )
-                                map.put("country_code","+966" /*tvCode.text.toString()*/)
+                                map.put("country_code", "+966" /*tvCode.text.toString()*/)
                                 map.put("phone_number", editPhone.text.toString())
                                 map.put(
                                     "condition_id",
@@ -755,15 +799,14 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
                                 }
 
 
-
-                               // openDialog(images,sizes,map,colors)
+                                // openDialog(images,sizes,map,colors)
                                 addButton.isEnabled = true
-                             //   getProductCommision(etPrice.text.toString(),images,sizes,map,colors,this)
-                                addProductRQDialog(images,sizes,map,colors)
+                                //   getProductCommision(etPrice.text.toString(),images,sizes,map,colors,this)
+                                addProductRQDialog(images, sizes, map, colors)
 
                             } catch (e: Exception) {
                                 e.printStackTrace()
-                                    addButton.isEnabled = true
+                                addButton.isEnabled = true
                                 showShimmerAddBtn(false)
                                 Log.d("Photo", "addProduct: " + e.message.toString())
 
@@ -777,8 +820,7 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
 
 
                         }
-                    }
-                    else {
+                    } else {
                         Toast.makeText(
                             this@AddProductActivity,
                             getString(R.string.phone_required),
@@ -802,19 +844,23 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
                     Toast.LENGTH_SHORT
                 ).show()
             }
-        }
-            else{
+        } else {
             Toast.makeText(
                 this@AddProductActivity,
                 getString(R.string.name_required),
                 Toast.LENGTH_SHORT
             ).show()
-            }
+        }
 
 
     }
 
-    fun addProductRQ(  images:ArrayList<MultipartBody.Part>,sizes:ArrayList<Int>,map:Map<String,String>,colors:ArrayList<Int>){
+    fun addProductRQ(
+        images: ArrayList<MultipartBody.Part>,
+        sizes: ArrayList<Int>,
+        map: Map<String, String>,
+        colors: ArrayList<Int>
+    ) {
         showShimmerAddBtn(true)
         val shopApi =
             ApiClient.getClientJwt(
@@ -839,13 +885,23 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
                     AppObservable<CreateProductModel>(this) {
                     override fun onSuccess(result: CreateProductModel) {
                         showShimmerAddBtn(false)
-                        Toast.makeText(this@AddProductActivity,getString(R.string.add_compeleted)
-                            ,Toast.LENGTH_SHORT).show()
-                 //       if (!BasicTools.getRevviewedBefore(applicationContext))
-                  //      openReviewGoogle(applicationContext)
-                    /*    if (!BasicTools.getRevviewedBefore(this@AddProductActivity))
-                            BasicTools.openReviewGoogle(this@AddProductActivity)*/
-                        startActivity(Intent(this@AddProductActivity, HomeActivity::class.java).putExtra("show_review",true))
+                        Toast.makeText(
+                            this@AddProductActivity,
+                            getString(R.string.add_compeleted),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        //       if (!BasicTools.getRevviewedBefore(applicationContext))
+                        //      openReviewGoogle(applicationContext)
+                        /*    if (!BasicTools.getRevviewedBefore(this@AddProductActivity))
+                                BasicTools.openReviewGoogle(this@AddProductActivity)*/
+                        showActivity(PublicationStatus::class.java)
+/*
+                        startActivity(
+                            Intent(
+                                this@AddProductActivity,
+                                HomeActivity::class.java
+                            ).putExtra("show_review", true)
+                        )*/
                         finish()
                         /*   BasicTools.openActivity(
                             this@AddProductActivity,
@@ -860,12 +916,13 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
                         showShimmerAddBtn(false)
                         Log.d("Photo", "addProduct: " + status.toString())
 
-                     //   showToastMessage(getString(R.string.faild))
+                        //   showToastMessage(getString(R.string.faild))
                         addButton.isEnabled = true
                         showShimmerAddBtn(false)
 
                         super.onFailed(status)
                     }
+
                     override fun onFailed(error: String) {
                         FirebaseCrashlytics.getInstance().recordException(Exception(error))
                         showToastMessage(error)
@@ -876,6 +933,7 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
                 })
         )
     }
+
     fun getUserProfile() {
         val shopApi =
             ApiClient.getClientJwt(
@@ -909,17 +967,20 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
         map: Map<String, String>,
         colors: ArrayList<Int>
     ) {
-        addProductRQ(images,sizes,map,colors)
+        addProductRQ(images, sizes, map, colors)
     }
-    fun getProductCommision(price:String, images:ArrayList<MultipartBody.Part>,
-                             sizes:ArrayList<Int>,
-                            map:Map<String,String>,
-                             colors:ArrayList<Int>,iview:IAddProduct){
-        var commision :String?=""
-        val lang =  if(BasicTools.isDeviceLanEn(this))
-             "en"
+
+    fun getProductCommision(
+        price: String, images: ArrayList<MultipartBody.Part>,
+        sizes: ArrayList<Int>,
+        map: Map<String, String>,
+        colors: ArrayList<Int>, iview: IAddProduct
+    ) {
+        var commision: String? = ""
+        val lang = if (BasicTools.isDeviceLanEn(this))
+            "en"
         else "ar"
-        if(BasicTools.isConnected(this)) {
+        if (BasicTools.isConnected(this)) {
             showShimmerAddBtn(true)
 
             val shopApi =
@@ -951,11 +1012,11 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
 //                                    }
 //
 //                                }
-                             commision = result.data!!.value!!
-                               val message= getCommisionMessage(commision.toString())
+                                commision = result.data!!.value!!
+                                val message = getCommisionMessage(commision.toString())
                                 dialog = HintAddProductDialog(
                                     this@AddProductActivity,
-                                    images, sizes, map, colors, iview,message
+                                    images, sizes, map, colors, iview, message
                                 )
                                 dialog.window!!.attributes.windowAnimations = R.style.dialogAnim
 
@@ -979,13 +1040,13 @@ class AddProductActivity : TemplateActivity() ,IAddProduct
                         }
                     }
                     ))
-        }
-        else {
+        } else {
             showToastMessage(R.string.no_connection)
         }
     }
-    fun getCommisionMessage(price: String):String{
-      return String.format(resources.getString(R.string.add_product_message),price)
+
+    fun getCommisionMessage(price: String): String {
+        return String.format(resources.getString(R.string.add_product_message), price)
     }
 
 

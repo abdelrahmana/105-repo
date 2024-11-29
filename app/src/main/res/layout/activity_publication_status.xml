@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="#ffffff"
+    android:id="@+id/root_fragment_home"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -40,14 +41,24 @@
         <TextView
             android:textSize="13sp"
             android:layout_weight="1"
-            android:id="@+id/tv_published"
+            android:id="@+id/tvUnPaid"
             android:textColor="@android:color/white"
             android:background="@drawable/publish_state_bg"
-            android:text="@string/published"
+            android:text="@string/unpaid"
             android:layout_width="0dp"
             android:layout_height="@dimen/d3_8"
             android:gravity="center"
 
+            />
+        <TextView
+            android:textSize="13sp"
+            android:layout_weight="1"
+            android:id="@+id/tv_published"
+            android:gravity="center"
+            android:background="@drawable/unselected_publish_state_bg"
+            android:text="@string/published"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/d3_8"
             />
         <TextView
             android:textSize="13sp"
@@ -62,6 +73,7 @@
         <TextView
             android:textSize="13sp"
             android:layout_weight="1"
+            android:visibility="gone"
             android:id="@+id/tv_rejected"
             android:gravity="center"
             android:background="@drawable/unselected_publish_state_bg"
@@ -124,4 +136,4 @@
         android:layout_height="wrap_content"/>
     </LinearLayout>
 
-</RelativeLayout>
+</FrameLayout>

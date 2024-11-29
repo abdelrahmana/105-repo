@@ -97,8 +97,8 @@ class SettingFragment : TemplateFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (BasicTools.getToken(requireContext()).isNotEmpty())
-            binding?.cardCommission?.visibility = View.VISIBLE
+       // if (BasicTools.getToken(requireContext()).isNotEmpty())
+       //     binding?.cardCommission?.visibility = View.VISIBLE
         binding?.cardCommission?.setOnClickListener{
             val fragment = DirectPayFragment()//UnpaidCommissionsFragment()
             changeFragmentBack(requireActivity(),fragment,"commissions",null,R.id.root_fragment_home)

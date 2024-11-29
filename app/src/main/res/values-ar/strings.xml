@@ -443,7 +443,7 @@
     <string name="unpaid_products">لقد قمت بنشر %d من المنتجات</string>
     <string name="short_description">أُقر باني أتحمل كافة المسؤولية على المنتجات التي أبيعها وأن تكون مطابقة للمواصفات التي يتم وضعها بالتطبيق، ويحق للتطبيق اتخاذ الاجراءات اللازمة عند مخالفة الشروط والاحكام وأُوافق على دفع ١٠ ريال عند بيع المنتج وان تكون بذمتي حتى الدفع.</string>
     <string name="card_holder_customize">اسم صاحب البطاقة</string>
-    <string name="add_compeleted">تمت الإضافة بنجاح</string>
+    <string name="add_compeleted">تمت الإضافة بنجاح برجاء دفع العمولة لكى يتم النشر</string>
     <string name="select_products">حدد المنتجات التي تريد إضافتها إلى القسم المباع :</string>
     <string name="give_us_rating">قيم التطبيق لتجربة أفضل</string>
     <string name="later">لاحقاً</string>
@@ -466,5 +466,8 @@
     <string name="delete_account">حذف الحساب</string>
     <string name="update_app">تحديث</string>
     <string name="new_update_is_required">برجاء تحديث النسخة الحالية</string>
+    <string name="will_pay_for_product">سيتم دفع هذه العمولة من أجل إضافة المنتج</string>
+    <string name="unpaid">غير مدفوعة</string>
+    <string name="pay">دفع العمولة</string>
 
 </resources>
