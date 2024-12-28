@@ -24,8 +24,8 @@ android {
         applicationId "com.urcloset.smartangle"
         minSdkVersion 22
         targetSdk 34
-        versionCode 130
-        versionName "9.0"
+        versionCode 131
+        versionName "9.1"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         archivesBaseName = "dolabk-v${versionName}(${versionCode})-"
