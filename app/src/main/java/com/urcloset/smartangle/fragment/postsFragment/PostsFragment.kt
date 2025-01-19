@@ -1,14 +1,20 @@
 package com.urcloset.smartangle.fragment.postsFragment
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
@@ -137,6 +143,7 @@ class PostsFragment():TemplateFragment() {
         }
         setNotification()
         getFirebaseFcmTokenBeforeStart(callBackTokenIsComing)
+        checkPermissions()
 
 
         return cview
@@ -921,6 +928,53 @@ class PostsFragment():TemplateFragment() {
 
 
         }
+
+    }
+    private fun checkPermissions() {
+        val permissions = arrayOf(
+            Manifest.permission.READ_CONTACTS,
+            Manifest.permission.READ_EXTERNAL_STORAGE
+        )
+
+        val missingPermissions = permissions.filter {
+            ContextCompat.checkSelfPermission(
+                requireContext(),
+                it
+            ) != PackageManager.PERMISSION_GRANTED
+        }
+
+        if (missingPermissions.isNotEmpty()) {
+            // Show prominent disclosure before requesting permissions
+            showProminentDisclosure(missingPermissions.toTypedArray())
+        }
+    }
+
+    private fun showProminentDisclosure(permissions: Array<String>) {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Permissions Required")
+            .setMessage(
+                "Our app requires access to your contact list and media files to provide a personalized experience:\n\n" +
+                        "1. **Access Contacts**: To help you find friends and share content.\n" +
+                        "2. **Access Photos/Media**: To let you upload and manage your media files.\n\n" +
+                        "We value your privacy and ensure your data will not be shared without your consent."
+            )
+            .setPositiveButton("Continue") { _: DialogInterface, _: Int ->
+                // Request permissions after user agrees
+                requestPermissions(permissions)
+            }
+            .setNegativeButton("Cancel") { dialog: DialogInterface, _: Int ->
+                // Dismiss the dialog if the user denies
+                dialog.dismiss()
+            }
+            .setCancelable(false) // Make sure the dialog cannot be dismissed by clicking outside
+            .show()
+    }
+
+    private fun requestPermissions(permissions: Array<String>) {
+        ActivityCompat.requestPermissions(requireActivity(), permissions, PERMISSION_REQUEST_CODE)
+    }
+    companion object{
+        private const val PERMISSION_REQUEST_CODE = 100
 
     }
 
